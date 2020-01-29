@@ -19,6 +19,15 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('city');
+            $table->string('state');
+            $table->string('country');
+            $table->date('birthday');
+            $table->string('photo');
+            $table->string('background_photo');
+            $table->string('description');
+            // Verificar como deixar "TRUE" como padrão de visibilidade
+            $table->boolean('public');
             $table->rememberToken();
             $table->timestamps();
         });
