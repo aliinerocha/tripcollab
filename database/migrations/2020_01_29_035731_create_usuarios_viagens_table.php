@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsuarioViagemTable extends Migration
+class CreateUsuariosViagensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateUsuarioViagemTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario_viagem', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_user');
+        Schema::create('usuarios_viagens', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_usuario');
             $table->unsignedBigInteger('id_viagem');
-            $table->foreing('id_user')->references('id')->on('users');
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->foreign('id_viagem')->references('id')->on('viagens');
         });
     }
@@ -28,6 +28,6 @@ class CreateUsuarioViagemTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuario_viagem');
+        Schema::dropIfExists('usuarios_viagens');
     }
 }
