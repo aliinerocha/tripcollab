@@ -1,0 +1,293 @@
+*:focus {
+    box-shadow: 0 0 0 0.1rem #0A3A66 !important;
+}
+
+
+body {
+    height: 100%;
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    padding-bottom: 7vh;
+    overflow-x: hidden;
+}
+/* INICIO DO CSS APLICADO SOMENTE A ABA_MENU */
+
+.nav-item a {
+  color: #121212;
+}
+
+.iconeNav:hover {
+  color: #ffffff;
+}
+
+/* FIM DO CSS APLICADO SOMENTE A ABA_MENU */
+
+/* CSS NAV SUPERIOR  */
+
+.navbar-brand > img {
+  width: 25px;
+  margin-right: 5px;
+}
+
+.navbar {
+  background-color: #1d6ab0;
+}
+
+.navbar a {
+  color: #ffffff;
+}
+
+.navbar-brand {
+    margin: 0;
+}
+
+.nav-link,
+.iconeNav {
+    padding: .75rem 0;
+}
+
+/* CSS BANNER */
+
+.banner-img {
+  object-fit: cover;
+  width: 100vw;
+  height: 20vh;
+}
+
+.titulo {
+  position: absolute;
+  margin-top: -15vh;
+}
+
+/* CSS COMUNIDADE */
+
+.input-group-text {
+  background-color: #ffffff;
+}
+
+.card-header {
+  background-color: #1d6ab0;
+  color: #ffffff;
+}
+
+.card .btn {
+  background-color: #1d6ab0;
+  color: #ffffff;
+}
+
+#comunidade-slider {
+  margin-left: 18vw;
+}
+
+/* CSS CARD VIAGEM */
+
+.filtro .btn {
+  background-color: #1d6ab0;
+  color: #ffffff;
+  border-color: #064c8c;
+}
+
+.filtro .btn:focus {
+  background-color: #0a3a66;
+  color: #ffffff;
+}
+
+.filtro .btn:active {
+  background-color: #1d6ab0;
+  color: #ffffff;
+}
+
+.link-detalhes {
+  text-decoration: underline;
+}
+
+.check {
+  color: #1db954;
+}
+
+.favorite {
+  color: #f54b5e;
+}
+
+.card-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.foto-perfil {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+}
+
+/* CSS NAV INFERIOR */
+.nav-inferior {
+  background-color: #ffffff;
+  height: 7vh;
+}
+.nav-inferior a {
+  text-decoration: none;
+  color: #7C7C7C;
+  padding: 25px;
+}
+
+.ativo {
+  border-top: solid #1d6ab0 3px;
+}
+
+/* CSS linha do tempo */
+
+.timeline {
+  background-color: white;
+  position: relative;
+  height: auto;
+  overflow: auto;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  bottom: 0px;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100%;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.timeline .entries {
+  width: calc(100% - 80px);
+  max-width: 800px;
+  margin: auto;
+  position: relative;
+  left: -5px;
+}
+
+.timeline .entries .entry {
+  width: calc(50% - 80px);
+  float: left;
+  padding: 20px;
+  clear: both;
+  text-align: left;
+}
+
+.timeline .entries .entry:not(:first-child) {
+  margin-top: -60px;
+}
+
+.timeline .entries .entry .title {
+  font-size: 20px;
+  margin-bottom: 12px;
+  position: relative;
+  color: black;
+}
+
+.timeline .entries .entry .title::before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 2px solid gray;
+  background-color: #fff;
+  border-radius: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -112px;
+  z-index: 1000;
+}
+
+.timeline .entries .entry .body {
+  color: #aaa;
+}
+
+.timeline .entries .entry:not(:first-child) {
+  margin-top: -60px;
+}
+
+.timeline .entries .entry:nth-child(2n) {
+  text-align: left;
+  float: right;
+}
+
+.timeline .entries .entry:nth-child(2n) .title::before {
+  left: -103px;
+}
+
+.timeline .entries .entry .body p {
+  line-height: 1.4em;
+}
+
+.timeline .avaliacao {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+/* CSS aba_detalhesDeViagem */
+.titulo_campo {
+  font-weight: bold;
+}
+
+.link {
+  color: #121212;
+}
+
+.link:hover{
+  color: #121212;
+}
+
+/* CSS aba_criarGruposDeViagem */
+.botao {
+  background-color: #1d6ab0;
+  color: #ffffff;
+  border-color: #064c8c;
+}
+.botao:hover {
+  background-color: #1d6ab0;
+  color: #ffffff;
+  border-color: #064c8c;
+}
+
+.botao_atencao {
+  background-color: #CC293B;
+  color:#ffffff;
+  border-color: #A61121;
+}
+
+.botao_atencao:hover {
+  background-color: #CC293B;
+  color:#ffffff;
+  border-color: #A61121;
+}
+
+/* CSS DEFINIR STATUS */
+.overlay {
+  background-color: #ffffff;
+  height: 25vh;
+  width: 70vw;
+}
+
+.tamanhoBotao {
+  width: 300px;
+}
+
+.pai {
+  position: relative;
+  opacity: 0.3;
+}
+
+.filho {
+  position: absolute;
+  top: 350px;
+  left:15%;
+  width: 350px;
+  height: 250px;
+  border: solid 1px #121212;
+}
+
+.close:hover {
+  color: #121212;
+}

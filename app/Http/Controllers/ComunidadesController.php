@@ -8,5 +8,5 @@ class ComunidadesController extends Controller
 {
     public function show($id) {
         return view('comunidades.show', compact('id'));
-    }
+    } 
 }
