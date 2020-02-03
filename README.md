@@ -1,78 +1,14 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Trip Collab
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+O Trip Collab é uma plataforma destinada a viagens colaborativas! Com o Trip Collab você terá acesso a várias comunidades de viagem diferentes e poderá encontrar aquela que se encaixa melhor aos seus interesses. Caso não consiga encontrar a comunidade ideal, você poderá criar a sua própria, seja ela destinada a reunir uma galera totalmente nova ou apenas organizar aquela viagem no fim de semana com os seus amigos, o Trip Collab oferece uma solução completa para você organizar o seu roteiro, lista de participantes, fazer uma vaquinha para cobrir os custos e de quebra ter a oportunidade de conhecer gente nova!
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## **Com o Trip Collab você pode:**
+-   **Criar um perfil com seus interesses de viagem:** curte viajar para ilhas paradisíacas ou prefere fazer um passeio para conhecer a história e cultura locais? Independente das suas preferências, com o seu perfil na plataforma você pode encontrar e ser encontrada pelas comunidades certas e curtir sua viagem dos sonhos.
+    
+-   **Saiba exatamente com quem vai viajar:** veja o histórico de viagem dos membros da comunidade, confira fotos de viagens anteriores e confira a classificação tanto da comunidade quanto de cada membro individualmente, com o Trip Collab você garante que vai viajar apenas com pessoas de confiança.
+    
+-   **Organizar viagens em família ou entre amigos:** não tá afim de conhecer gente nova? Sem problemas, o Trip Collab também te permite criar comunidades privadas para organizar sua viagem apenas com as pessoas que já fazem parte do seu círculo social.
+    
+-   **Organizar lista de participantes, contribuições, pagantes e vaquinhas:** chega de pirar com a organização da sua viagem, saiba exatamente quem vai participar, crie uma vaquinha no aplicativo para custear os gastos e saiba exatamente quem já contribuiu, comunique-se com facilidade e de forma organizada com a sua comunidade através das funcionalidade da plataforma.
+    
+-   **Traçar suas metas e mostrar suas conquistas:** quanto mais você viajar e usar a plataforma, mais vai pontuando e adquirindo conquistas para exibir no seu perfil. É uma ótima organizadora de viagens? É fã de carteirinha de viajar e conhecer gente nova? Temos *badges* exclusivas para você mostrar tudo isso no seu perfil!

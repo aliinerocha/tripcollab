@@ -1,0 +1,92 @@
+body {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: "Roboto", sans-serif;
+}
+/* inicio de estilos NAV */
+.navbar {
+    background-color: #1D6AB0;
+}
+nav>a, .icone {
+    color: white;
+}
+a:hover {
+    color:black;
+}
+img {
+    width: 35px;
+    
+}
+
+/* inicio de estilos Mensagem */
+/* modificando lista Mensagens */
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+ul li{
+    border-top: 1px solid #EEE;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+ul li button{
+    opacity: 0;
+    transition: opacity linear 0.3s;
+}
+
+ul li:hover button{
+    opacity: 1;
+}
+
+form {
+    display: inline;
+}
+
+.botao {
+    background-color: #1d6ab0;
+    color: #ffffff;
+    border-color: #064c8c;
+}
+
+
+/* Chat VerMensagem */
+.msg {
+    margin-bottom: 20px;
+}
+
+.propria{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.alheia>div{
+    background-color: #eeeeee;
+}
+
+.propria>div{
+    background-color: #4db6ac;
+    color: #FFF;
+}
+
+.msg>div{
+    width: 60%;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+}
+
+.msg .hora{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.msg .texto{
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
