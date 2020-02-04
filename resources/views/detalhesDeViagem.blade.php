@@ -1,7 +1,7 @@
 @extends('layout.template')
 
 @section('titulo')
-    Comunidade
+    Detalhes da Viagem
 @endsection
 
 @section('conteudo') 

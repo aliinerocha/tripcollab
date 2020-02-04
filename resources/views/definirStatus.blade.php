@@ -1,7 +1,7 @@
 @extends('layout.template')
 
 @section('titulo')
-    Comunidade
+    Definir status
 @endsection
 
 @section('conteudo') 

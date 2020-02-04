@@ -1,7 +1,7 @@
 @extends('layout.template')
 
 @section('titulo')
-    Comunidade
+    Criar novo Grupo de Viagem
 @endsection
 
 @section('conteudo') 

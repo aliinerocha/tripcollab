@@ -29,9 +29,9 @@
 <nav class="navbar sticky-top">
     <a class="navbar-brand" href="/home"><img src="./img/logo branco.png" alt="logo Trip Collab"> TRIPCOLLAB</a>
     <div class=" d-flex justify-content-end align-items-center">
-        <a class="nav-link d-flex align-items-center" href="#">
+        <a class="nav-link d-flex align-items-center" href="/home">
         <i class="material-icons mr-2">account_circle</i><span class="mr-5">SAIR</span></a>
-        <a class="btn iconeNav mr-3 p-0" href="aba_menu.html"><i class="material-icons">menu</i></a>
+        <a class="btn iconeNav mr-3 p-0" href="/menu"><i class="material-icons">menu</i></a>
     </div>
 </nav>
 

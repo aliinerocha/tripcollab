@@ -1,7 +1,7 @@
 @extends('layout.template')
 
 @section('titulo')
-    Comunidade
+    Criar nova Comunidade
 @endsection
 
 @section('conteudo') 
