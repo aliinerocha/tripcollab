@@ -10,7 +10,7 @@
             <div class="d-flex ml-3 align-items-center">
                 <a class="link" href="/comunidade"><i class="material-icons">arrow_back</i></a>
                 <div class="container">
-                    <h5>Criar novo Grupo de Viagem</h5>
+                    <h5>Criar nova Comunidade</h5>
                 </div>
             </div>
         </div>
@@ -21,13 +21,8 @@
                 <form method="POST" class="col-10 offset-1">
                         <img src="./img/add.png" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                         <div class="form-group mt-4">
-                            <label for="tituloDaViagem">Titulo da viagem:</label>
-                            <input type="text" class="form-control" id="tituloDaViagem" placeholder="Insira titulo da viagem">
-                        </div>
-                        <div class="form-group mt-4">
-                            <label for="dataDaViagem">Data:</label>
-                            <input type="text" class="form-control mb-2" id="tituloDaViagem" placeholder="Insira a data de partida">
-                            <input type="text" class="form-control" id="tituloDaViagem" placeholder="Insira a data de retorno">
+                            <label for="tituloComunidade">Titulo da Comunidade:</label>
+                            <input type="text" class="form-control" id="tituloComunidade" placeholder="Insira titulo da comunidade">
                         </div>
                         <div class="form-group mt-4">
                             <label for="palavrasChave">Palavras-chave:</label>
@@ -41,15 +36,7 @@
                             </select>
                         </div>
                         <div class="form-group mt-4">
-                            <label for="vincularComunidade">Vincular à comunidade:</label>
-                            <input type="text" class="form-control mb-2" id="vincularComunidade" placeholder="Insira o nome da comunidade">
-                        </div>
-                        <div class="form-group mt-4">
-                            <label for="investimentoPrevisto">Investimento previsto:</label>
-                            <input type="text" class="form-control mb-2" id="investimentoPrevisto" placeholder="Insira o investimento previsto">
-                        </div>
-                        <div class="form-group mt-4">
-                            <label for="visibilidadeDoGrupo">Visibilidade do grupo:</label>
+                            <label for="visibilidadeDoGrupo">Visibilidade da comunidade:</label>
                             <select class="form-control" id="visibilidadeDoGrupo">
                                 <option disabled selected value="padrao">Selecione o nível de visibilidade do Grupo</option>
                                 <option value="publico">Público</option>

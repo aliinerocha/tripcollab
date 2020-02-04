@@ -25,7 +25,7 @@
                 <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
             </div>
         </div>
-        <a href="#" class="p-0 m-0"> 
+        <a href="/criarComunidade" class="p-0 m-0"> 
             <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
         </a>
     </div>
@@ -104,7 +104,7 @@
                     <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
                 </div>
             </div>
-            <a href="aba_criarGrupoDeViagem.html" class="p-0 m-0"> 
+            <a href="/criarGrupoDeViagem" class="p-0 m-0"> 
                 <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
             </a>
         </div>
@@ -140,7 +140,7 @@
                         <img class="foto-perfil rounded-circle" src="./img/perfil.3.jpg" alt="foto de perfil do membro">
                     </div>
                 </div>
-            <a href="aba_detalhesDeViagem.html" class="text-muted float-right link-detalhes">ver mais detalhes</a>
+            <a href="/detalhesDeViagem" class="text-muted float-right link-detalhes">ver mais detalhes</a>
             </div>
         </div>
     </section>

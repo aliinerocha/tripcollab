@@ -83,6 +83,7 @@ Route::get('/verMensagem', function() {
     return view('verMensagem');
 });
 
-Route::get('teste', function () {
-    return view('teste');
+Route::get('criarComunidade', function () {
+    return view('criarComunidade');
 });
+
