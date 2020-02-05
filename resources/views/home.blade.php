@@ -42,7 +42,7 @@
     <nav class="navbar sticky-top">
         <a class="navbar-brand" href="#"><img class="logo" src="./img/logo branco.png" alt="logo Trip Collab"> TRIP COLLAB</a>
         <div class=" d-flex justify-content-end align-items-center">
-            <a class="nav-link d-flex align-items-center" href="login.html"><i
+            <a class="nav-link d-flex align-items-center" href="/login"><i
                     class="material-icons mr-2">account_circle</i><span class="mr-5">ENTRAR</span></a>
             <a class="btn iconeNav mr-3 p-0" href="aba_menu.html"><i class="material-icons">menu</i></a>
         </div>

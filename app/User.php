@@ -36,4 +36,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function trip() {
+        return $this->belongsToMany('App\Trip');
+    }
+
+    public function tripAdmin() {
+        return $this->hasMany('App\Trip');
+    }
+
+    public function group() {
+        return $this->belongsToMany('App\Group');
+    }
+
+    public function groupAdmin() {
+        return $this->hasMany('App\Group');
+    }
 }

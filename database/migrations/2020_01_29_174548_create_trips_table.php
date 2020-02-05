@@ -21,6 +21,7 @@ class CreateTripsTable extends Migration
             $table->dateTime('departure');
             $table->dateTime('return_date');
             $table->unsignedBigInteger('admin');
+            $table->foreign('admin')->references('id')->on('users');
             $table->timestamps();
         });
     }
