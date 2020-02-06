@@ -37,19 +37,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function trip() {
+    /* Relationships */
+
+    public function trips() {
         return $this->belongsToMany('App\Trip');
     }
 
-    public function tripAdmin() {
+    public function tripsAdmin() {
         return $this->hasMany('App\Trip');
     }
 
-    public function group() {
+    public function groups() {
         return $this->belongsToMany('App\Group');
     }
 
-    public function groupAdmin() {
+    public function groupsAdmin() {
         return $this->hasMany('App\Group');
+    }
+
+    public function interests() {
+        return $this->belongsToMany('App\Interest');
+    }
+
+    public function achievements() {
+        return $this->belongsToMany('App\Achievement');
     }
 }
