@@ -8,7 +8,7 @@
         <!-- NAV ABA-->
         <div class="bg-light pt-4 pb-4 mb-3">
             <div class="d-flex ml-3 align-items-center">
-                <a class="link" href="/comunidade"><i class="material-icons">arrow_back</i></a>
+                <a class="link" href="/group/comunidade"><i class="material-icons">arrow_back</i></a>
                 <div class="container">
                     <h5>Criar nova Comunidade</h5>
                 </div>

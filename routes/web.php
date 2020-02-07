@@ -16,52 +16,52 @@ Route::get('/home', function() {
 });
 
 Route::get('/cadastro', function() {
-    return view('cadastro');
+    return view('user/cadastro');
 });
 
 Route::get('/classificacao', function() {
-    return view('classificacao');
+    return view('user/classificacao');
 });
 
-Route::get('/comunidade', function() {
+Route::get('/comunidadesEviagens', function() {
     $footer = 'true';
-    return view('comunidade', compact('footer'));
+    return view('user/comunidadesEviagens', compact('footer'));
 });
 
 Route::get('/criarGrupoDeViagem', function() {
     $footer = 'true';
-    return view('criarGrupoDeViagem', compact('footer'));
+    return view('/trip/criarGrupoDeViagem', compact('footer'));
 });
 
 Route::get('/definirStatus', function() {
     $footer = 'true';
-    return view('definirStatus', compact('footer'));
+    return view('trip/definirStatus', compact('footer'));
 });
 
 Route::get('/detalhesDeViagem', function() {
     $footer = 'true';
-    return view('detalhesDeViagem', compact('footer'));
+    return view('trip/detalhesDeViagem', compact('footer'));
 });
 
 Route::get('/editarPerfil', function() {
-    return view('editarPerfil');
+    return view('user/editarPerfil');
 });
 
 Route::get('/grupoComunidade', function() {
     $footer = 'true';
-    return view('grupoComunidade', compact('footer'));
+    return view('/group/grupoComunidade', compact('footer'));
 });
 
 Route::get('/linhaDoTempo', function() {
-    return view('linhaDoTempo');
+    return view('user/linhaDoTempo');
 });
 
 Route::get('/login', function() {
-    return view('login');
+    return view('user/login');
 });
 
 Route::get('/mensagens', function() {
-    return view('mensagens');
+    return view('/user/messages/mensagens');
 });
 
 Route::get('/menu', function() {
@@ -70,27 +70,27 @@ Route::get('/menu', function() {
 });
 
 Route::get('/notificacoes', function() {
-    return view('notificacoes');
+    return view('user/notificacoes');
 });
 
-Route::get('/novoMensagem', function() {
-    return view('novoMensagem');
+Route::get('/novaMensagem', function() {
+    return view('user/messages/novaMensagem');
 });
 
 Route::get('/perfil', function() {
-    return view('perfil');
+    return view('user/perfil');
 });
 
 Route::get('/topico', function() {
-    return view('topico');
+    return view('group/topico');
 });
 
 Route::get('/verMensagem', function() {
-    return view('verMensagem');
+    return view('user/messages/verMensagem');
 });
 
-Route::get('criarComunidade', function () {
+Route::get('/criarComunidade', function () {
     $footer = 'true';
-    return view('criarComunidade', compact('footer'));
+    return view('group/criarComunidade', compact('footer'));
 });
 
