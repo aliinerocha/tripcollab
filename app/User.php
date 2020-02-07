@@ -70,4 +70,8 @@ class User extends Authenticatable
         return $this->belongsToMany('User', 'User', 'user1_id', 'user2_id');
     }
    
+
+    public function notifications() {
+        return $this->hasMany('App\Notification');
+    }
 }

@@ -25,6 +25,10 @@
                             <input type="text" class="form-control" id="tituloComunidade" placeholder="Insira titulo da comunidade">
                         </div>
                         <div class="form-group mt-4">
+                            <label for="descrcaoComunidade">Descrição da Comunidade:</label>
+                            <textarea type="text" class="form-control" id="descricaoComunidade" placeholder="Insira titulo da comunidade"></textarea>
+                        </div>
+                        <div class="form-group mt-4">
                             <label for="palavrasChave">Palavras-chave:</label>
                             <select mutiple class="form-control" id="palavrasChave">
                                 <option disabled selected>Selecione as palavras-chave deste grupo</option>

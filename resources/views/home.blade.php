@@ -42,9 +42,15 @@
     <nav class="navbar sticky-top">
         <a class="navbar-brand" href="#"><img class="logo" src="./img/logo branco.png" alt="logo Trip Collab"> TRIP COLLAB</a>
         <div class=" d-flex justify-content-end align-items-center">
+<<<<<<< HEAD
             <a class="nav-link d-flex align-items-center" href="/user/login"><i
                     class="material-icons mr-2">account_circle</i><span class="mr-5">ENTRAR</span></a>
             <a class="btn iconeNav mr-3 p-0" href="/menu"><i class="material-icons">menu</i></a>
+=======
+            <a class="nav-link d-flex align-items-center" href="login"><i
+                    class="material-icons mr-2">account_circle</i><span class="mr-5">ENTRAR</span></a>
+            <a class="btn iconeNav mr-3 p-0" href="menu"><i class="material-icons">menu</i></a>
+>>>>>>> 3c05b939ad7ddf459bd4b0457db07eb141edb41e
         </div>
     </nav>
 
@@ -81,7 +87,11 @@
                             <strong class="subtitulo ml-5 mb-0">Bora viajar juntos?</strong></h3>
                 </div>
                 <div>
+<<<<<<< HEAD
                         <button class="btn-cadastro btn btn-primary "> <a href="/user/cadastro">Cadastre-se</a> </button>
+=======
+                        <button class="btn-cadastro btn btn-primary "> <a href="cadastro">Cadastre-se</a> </button>
+>>>>>>> 3c05b939ad7ddf459bd4b0457db07eb141edb41e
                 </div>
         </div>
 

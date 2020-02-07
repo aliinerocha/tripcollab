@@ -53,7 +53,7 @@
 </div>
     <!-- SIMULAÇÃO DO OVERLAY PARA DEFINIR STATUS -->
     <div class="overlay filho p-4">
-                <a class="btn iconeNav p-0 mb-4" href="./aba_detalhesDeViagem.html"><i class="material-icons close">close</i></a>
+                <a class="btn iconeNav p-0 mb-4" href="/detalhesDeViagem"><i class="material-icons close">close</i></a>
                     <a href="/comunidade" class="btn botao mb-4 tamanhoBotao">Confirmar presença</a>
                     <a href="/comunidade" class="btn botao_atencao mb-4 tamanhoBotao">Deixar de seguir</a>
     </div>
