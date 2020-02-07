@@ -15,13 +15,8 @@ Route::get('/home', function() {
     return view('home');
 });
 
-<<<<<<< HEAD
-Route::get('/user/cadastro', function() {
-    return view('/user/cadastro');
-=======
 Route::get('/cadastro', function() {
     return view('user/cadastro');
->>>>>>> 3c05b939ad7ddf459bd4b0457db07eb141edb41e
 });
 
 Route::get('/classificacao', function() {
@@ -33,14 +28,9 @@ Route::get('/comunidadesEviagens', function() {
     return view('user/comunidadesEviagens', compact('footer'));
 });
 
-<<<<<<< HEAD
-Route::get('/trip/criarGrupoDeViagem', function() {
-    return view('/trip/criarGrupoDeViagem');
-=======
 Route::get('/criarGrupoDeViagem', function() {
     $footer = 'true';
     return view('/trip/criarGrupoDeViagem', compact('footer'));
->>>>>>> 3c05b939ad7ddf459bd4b0457db07eb141edb41e
 });
 
 Route::get('/definirStatus', function() {
@@ -54,7 +44,8 @@ Route::get('/detalhesDeViagem', function() {
 });
 
 Route::get('/editarPerfil', function() {
-    return view('user/editarPerfil');
+    $footer = 'true';
+    return view('user/editarPerfil', compact('footer'));
 });
 
 Route::get('/grupoComunidade', function() {
@@ -88,7 +79,8 @@ Route::get('/novaMensagem', function() {
 });
 
 Route::get('/perfil', function() {
-    return view('user/perfil');
+    $footer = 'true';
+    return view('user/perfil', compact('footer'));
 });
 
 Route::get('/topico', function() {

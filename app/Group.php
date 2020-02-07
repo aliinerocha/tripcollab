@@ -18,5 +18,7 @@ class Group extends Model
         return $this->belongsToMany('App\Interest');
     }
 
-    
+    public function topic() {
+        return $this->hasMany('App\Topic');
+    }
 }
