@@ -60,10 +60,10 @@
                     <label class="form-check-label" for="exampleCheck1">Concordo com os <a href="#">termos e condições.</a></label>
                 </div>
                 <div class="d-flex justify-content-center mb-2">
-                <a href="login.html" class="btn-cadastre btn btn-lg p-2 m-2 shadow-sm rounded">CADASTRE-SE</a>
+                <a href="/user/login" class="btn-cadastre btn btn-lg p-2 m-2 shadow-sm rounded">CADASTRE-SE</a>
             </div>
 
-                <h5>Já tem cadastro? Faça seu <a href="login.html">login</a> agora</h5>
+                <h5>Já tem cadastro? Faça seu <a href="/user/login">login</a> agora</h5>
 
             </form>
         </section>

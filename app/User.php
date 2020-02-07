@@ -62,4 +62,12 @@ class User extends Authenticatable
     public function achievements() {
         return $this->belongsToMany('App\Achievement');
     }
+    public function menssage() {
+        return $this->belongsToMany('App\menssage');
+    }
+    
+    public function User(){
+        return $this->belongsToMany('User', 'User', 'user1_id', 'user2_id');
+    }
+   
 }

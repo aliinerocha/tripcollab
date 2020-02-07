@@ -54,12 +54,12 @@
             <div class="  d-flex align-items-center topBar ffbox">
                     <div class="row  ffbox-flex mt-5 mb-5">
                         <div class="ml-5 mr-5">
-                            <a href="mensagens.html" class="  ">
+                            <a href="/user/messages/mensagens" class="  ">
                                 <h4> Caixa de entrada </h4>  
                              </a>
                         </div>
                        <div class="ml-5">
-                           <a href="novoMensagem.html" class="p-0 m-0" > 
+                           <a href="/user/messages/novoMensagem" class="p-0 m-0" > 
                             <i class="material-icons icon-messaging-new-message" style="color:#CFCFCF; font-size: 40px;">add_box</i>
                         </a>
                        </div>
@@ -84,7 +84,7 @@
                    
                 <ul role="navigation">
                     <li>
-                        <div class="media " id="lerMensagem"  onclick="window.location.href = 'verMensagem.html'" role="navigation">
+                        <div class="media " id="lerMensagem"  onclick="window.location.href = '/user/messages/verMensagem'" role="navigation">
                         
                             <!-- Foto do Usuário --> 
                             <div class="col-xs-12 p-0">
@@ -106,7 +106,7 @@
                     </li>
                     <hr>
                     <li>
-                        <div class="media " id="lerMensagem"  onclick="window.location.href = 'verMensagem.html'" role="navigation">
+                        <div class="media " id="lerMensagem"  onclick="window.location.href = '/user/messages/verMensagem'" role="navigation">
                         
                                 <!-- Foto do Usuário --> 
                             <div class="col-xs-12 p-0">

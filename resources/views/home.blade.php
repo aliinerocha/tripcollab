@@ -42,9 +42,9 @@
     <nav class="navbar sticky-top">
         <a class="navbar-brand" href="#"><img class="logo" src="./img/logo branco.png" alt="logo Trip Collab"> TRIP COLLAB</a>
         <div class=" d-flex justify-content-end align-items-center">
-            <a class="nav-link d-flex align-items-center" href="/login"><i
+            <a class="nav-link d-flex align-items-center" href="/user/login"><i
                     class="material-icons mr-2">account_circle</i><span class="mr-5">ENTRAR</span></a>
-            <a class="btn iconeNav mr-3 p-0" href="aba_menu.html"><i class="material-icons">menu</i></a>
+            <a class="btn iconeNav mr-3 p-0" href="/menu"><i class="material-icons">menu</i></a>
         </div>
     </nav>
 
@@ -81,7 +81,7 @@
                             <strong class="subtitulo ml-5 mb-0">Bora viajar juntos?</strong></h3>
                 </div>
                 <div>
-                        <button class="btn-cadastro btn btn-primary "> <a href="cadastro.html">Cadastre-se</a> </button>
+                        <button class="btn-cadastro btn btn-primary "> <a href="/user/cadastro">Cadastre-se</a> </button>
                 </div>
         </div>
 
@@ -98,7 +98,7 @@
             <!--Perfil-->
             <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class="subtitulo text-center">
-                     <a href="aba_perfil.html" class="btn-floating btn-blue "><i class="far fa-user-circle fa-2x fa-lg"></i> </a>
+                     <a href="/user/perfil" class="btn-floating btn-blue "><i class="far fa-user-circle fa-2x fa-lg"></i> </a>
                 </div>
                 <div class="card-body text-center">
                       <p> <h5 class="text-center " >Criar um perfil com seus interesses de viagem e compartilhe experiencias com a nossa comunidade</h5> </p>
@@ -109,7 +109,7 @@
              <!--destinos-->
             <div class=" col-xs-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="subtitulo text-center">
-                    <a href="aba_home.html"  class="btn-floating btn-blue"><i class="far fa-compass fa-2x fa-lg"></i></a>
+                    <a href="/trip/detalhesDeViagem"  class="btn-floating btn-blue"><i class="far fa-compass fa-2x fa-lg"></i></a>
                 </div>
                 <div class="card-body text-center mr-4">
                     <h5 class="text-center " >Encontre os destinos de seu interesse com as melhores oportunidades oferecidas pelos nossos parceiros.</h5>
@@ -120,7 +120,7 @@
              <!--comunidade-->
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="subtitulo text-center">
-                    <a href="aba_comunidade.html" class="btn-floating btn-blue btn-lg btn-default d-flex flex-column align-items-center"><i class="fas fa-users "></i></a>
+                    <a href="/group/grupoComunidade" class="btn-floating btn-blue btn-lg btn-default d-flex flex-column align-items-center"><i class="fas fa-users "></i></a>
                 </div>
                 <div class="card-body text-center mr-4">
                     <h5 class="text-center" >Crie, organize ou participe de grupos de viagem com amigos, familiares ou ainda conheça uma galera totalmente nova e compatível com seus interesses.</h5>
@@ -132,7 +132,7 @@
             <!--metas-->
             <div class=" col-xs-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="subtitulo text-center">
-                    <a href="aba_home.html"  class="btn-floating btn-blue btn-lg btn-default d-flex flex-column align-items-center"><i class="fas fa-flag "></i></a>
+                    <a href="/trip/criarGrupoDeViagem"  class="btn-floating btn-blue btn-lg btn-default d-flex flex-column align-items-center"><i class="fas fa-flag "></i></a>
                 </div>
                 <div class="card-body text-center mr-4">
                     <h5 class="text-center" >Crie, organize ou participe de grupos de viagem com amigos, familiares ou ainda conheça uma galera totalmente nova e compatível com seus interesses.</h5>
