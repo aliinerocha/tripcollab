@@ -24,19 +24,23 @@ Route::get('/classificacao', function() {
 });
 
 Route::get('/comunidade', function() {
-    return view('comunidade');
+    $footer = 'true';
+    return view('comunidade', compact('footer'));
 });
 
 Route::get('/criarGrupoDeViagem', function() {
-    return view('criarGrupoDeViagem');
+    $footer = 'true';
+    return view('criarGrupoDeViagem', compact('footer'));
 });
 
 Route::get('/definirStatus', function() {
-    return view('definirStatus');
+    $footer = 'true';
+    return view('definirStatus', compact('footer'));
 });
 
 Route::get('/detalhesDeViagem', function() {
-    return view('detalhesDeViagem');
+    $footer = 'true';
+    return view('detalhesDeViagem', compact('footer'));
 });
 
 Route::get('/editarPerfil', function() {
@@ -44,7 +48,8 @@ Route::get('/editarPerfil', function() {
 });
 
 Route::get('/grupoComunidade', function() {
-    return view('grupoComunidade');
+    $footer = 'true';
+    return view('grupoComunidade', compact('footer'));
 });
 
 Route::get('/linhaDoTempo', function() {
@@ -60,7 +65,8 @@ Route::get('/mensagens', function() {
 });
 
 Route::get('/menu', function() {
-    return view('menu');
+    $footer = 'false';
+    return view('menu', compact('footer'));
 });
 
 Route::get('/notificacoes', function() {
@@ -84,6 +90,7 @@ Route::get('/verMensagem', function() {
 });
 
 Route::get('criarComunidade', function () {
-    return view('criarComunidade');
+    $footer = 'true';
+    return view('criarComunidade', compact('footer'));
 });
 

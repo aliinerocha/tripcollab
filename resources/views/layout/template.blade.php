@@ -37,11 +37,13 @@
 
 @yield('conteudo')
 
+@if($footer === 'true')
 <footer class="nav-inferior nav fixed-bottom d-flex justify-content-around border-top">
 <a href="/linhaDoTempo" class="fas fa-atlas fa-lg col-2"></a>
 <a href="mensagens" class="far fa-comments fa-lg col-2"></a>
 <a href="/perfil" class="fas fa-home fa-lg col-2"></a>
 <a href="/comunidade" class="fas fa-users fa-lg col-2 ativo"></a>
 </footer>
+@endif
 </body>
 </html>
