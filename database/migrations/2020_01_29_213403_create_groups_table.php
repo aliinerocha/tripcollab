@@ -18,6 +18,8 @@ class CreateGroupsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('photo');
+            $table->unsignedBigInteger('admin');
+            $table->foreign('admin')->references('id')->on('users');
             $table->timestamps();
         });
     }
