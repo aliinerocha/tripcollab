@@ -8,7 +8,7 @@
     <!-- NAV ABA-->
     <div class="bg-light pt-4 pb-4 mb-3">
         <div class="d-flex ml-3 align-items-center">
-            <a class="link" href="/comunidade"><i class="material-icons">arrow_back</i></a>
+            <a class="link" href="comunidadesEViagens"><i class="material-icons">arrow_back</i></a>
             <div class="container">
                 <h5>Meus Grupos de Viagem</h5>
             </div>
@@ -54,7 +54,7 @@
     <!-- SIMULAÇÃO DO OVERLAY PARA DEFINIR STATUS -->
     <div class="overlay filho p-4">
                 <a class="btn iconeNav p-0 mb-4" href="/detalhesDeViagem"><i class="material-icons close">close</i></a>
-                    <a href="/comunidade" class="btn botao mb-4 tamanhoBotao">Confirmar presença</a>
-                    <a href="/comunidade" class="btn botao_atencao mb-4 tamanhoBotao">Deixar de seguir</a>
+                    <a href="comunidadesEViagens" class="btn botao mb-4 tamanhoBotao">Confirmar presença</a>
+                    <a href="comunidadesEViagens" class="btn botao_atencao mb-4 tamanhoBotao">Deixar de seguir</a>
     </div>
 @endsection

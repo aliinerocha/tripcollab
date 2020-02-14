@@ -23,9 +23,9 @@ Route::get('/classificacao', function() {
     return view('user/classificacao');
 });
 
-Route::get('/comunidadesEviagens', function() {
+Route::get('/comunidadesEViagens', function() {
     $footer = 'true';
-    return view('user/comunidadesEviagens', compact('footer'));
+    return view('user/comunidadesEViagens', compact('footer'));
 });
 
 Route::get('/criarGrupoDeViagem', function() {

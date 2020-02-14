@@ -63,15 +63,14 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Achievement');
     }
     public function menssage() {
-        return $this->belongsToMany('App\menssage');
+        return $this->belongsToMany('App\Menssage');
     }
     
     public function User(){
         return $this->belongsToMany('User', 'User', 'user1_id', 'user2_id');
     }
    
-
-    public function notifications() {
-        return $this->hasMany('App\Notification');
-    }
+    // public function activityLogs() {
+    //     return $this->hasMany('App\ActivityLog');
+    // }
 }

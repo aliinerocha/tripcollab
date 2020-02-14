@@ -44,7 +44,7 @@
                                     <smaller>membros</smaller>
                                 </div>
                                 <div class="botao">
-                                    <a href="#" class="botao btn btn-primary float-right border-0">Visitar</a>
+                                    <a href="grupoComunidade" class="botao btn btn-primary float-right border-0">Visitar</a>
                                 </div>
                             </div>
                         </div>

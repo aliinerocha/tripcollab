@@ -8,7 +8,7 @@
         <!-- NAV ABA-->
         <div class="bg-light pt-4 pb-4 mb-3">
             <div class="d-flex ml-3 align-items-center">
-                <a class="link" href="/comunidade"><i class="material-icons">arrow_back</i></a>
+                <a class="link" href="comunidadesEViagens"><i class="material-icons">arrow_back</i></a>
                 <div class="container">
                     <h5>Criar novo Grupo de Viagem</h5>
                 </div>
@@ -58,8 +58,8 @@
                             </select>
                         </div>
                         <div class="d-flex justify-content-end mt-4">
-                        <a href="/comunidade" class="btn botao_atencao mr-2">Cancelar</a>
-                        <a href="/comunidade" class="btn botao">Salvar</a>
+                        <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                        <a href="comunidadesEViagens" class="btn botao">Salvar</a>
                         </div>
                 </form>
             </div>

@@ -8,8 +8,11 @@ class activityLog extends Model
 {
     /* Relationships */
 
-    public function notifications() {
-        return $this->belongsTo('App\Notification');
-    }
+    // public function users() {
+    //     return $this->belongsTo('App\User');
+    // }
 
+    // public function notification() {
+    //     return $this->hasOne('App\Notification');
+    // }
 }
