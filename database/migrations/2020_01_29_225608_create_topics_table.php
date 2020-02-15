@@ -17,7 +17,9 @@ class CreateTopicsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->unsignedBigInteger('group_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
