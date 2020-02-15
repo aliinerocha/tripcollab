@@ -10,7 +10,12 @@ class Topic extends Model
         return $this->belongsTo('App\Group');
     }
 
-    public function topicMessage() {
+    public function topicMessages() {
         return $this->hasMany('App\TopicMessage');
     }
+
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
+
 }
