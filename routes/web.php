@@ -12,7 +12,8 @@
 */
 
 Route::get('/home', function() {
-    return view('home');
+    $footer = 'false';
+    return view('home', compact('footer'));
 });
 
 Route::get('/cadastro', function() {
@@ -54,7 +55,8 @@ Route::get('/grupoComunidade', function() {
 });
 
 Route::get('/linhaDoTempo', function() {
-    return view('user/linhaDoTempo');
+    $footer = 'true';
+    return view('user/linhaDoTempo', compact('footer'));
 });
 
 Route::get('/login', function() {
@@ -62,7 +64,8 @@ Route::get('/login', function() {
 });
 
 Route::get('/mensagens', function() {
-    return view('/user/messages/mensagens');
+    $footer = 'true';
+    return view('/user/messages/mensagens', compact('footer'));
 });
 
 Route::get('/menu', function() {
