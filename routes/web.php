@@ -83,7 +83,7 @@ Route::get('/notificacoes', function() {
 });
 
 Route::get('/novaMensagem', function() {
-    return view('user/messages/novaMensagem');
+    return view('user/messages/create');
 });
 
 Route::get('/perfil', function() {
@@ -103,7 +103,10 @@ Route::get('/criarComunidade', function () {
     $footer = 'true';
     return view('/Groups and Trips/group/create', compact('footer'));
 });
-
+Route::get('/editarComunidade', function () {
+    $footer = 'true';
+    return view('/Groups and Trips/group/edit', compact('footer'));
+});
 
 Auth::routes();
 

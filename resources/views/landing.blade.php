@@ -39,7 +39,7 @@
             </div>
             <div>
                     <button class="btn-cadastro btn btn-primary "> <a href="/user/cadastro">Cadastre-se</a> </button>
-                    <button class="btn-cadastro btn btn-primary "> <a href="cadastro">Cadastre-se</a> </button>
+
             </div>
     </div>
 
