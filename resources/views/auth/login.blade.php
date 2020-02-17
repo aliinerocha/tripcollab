@@ -27,7 +27,7 @@
     </nav>
     <div class="container">
         <section class="mt-4 mb-4">
-            <img class="ml-3 mr-3" src="./img/viajando.png" alt="pessoa c/ mala">
+            <img class="ml-3 mr-3" src="./img/viajando.png" alt="pessoa com mala">
             <h3 class="text-center">Bem-vindo Novamente </h3>
 
             <form form method="POST" action="{{ route('login') }}">

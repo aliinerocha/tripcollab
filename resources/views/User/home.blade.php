@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('layouts.template')
     <link rel="stylesheet" href="../public/css/perfil.css">
 @section('titulo')
     Perfil
@@ -53,7 +53,7 @@
             </div>
             <!-- Interesses -->
         </section>
-        
+
         <!-- Amigos -->
         <section class="amigos bg-light px-3 py-4">
             <h5 class="nome pt-1 pb-1 ml-3">Meus amigos</h5>

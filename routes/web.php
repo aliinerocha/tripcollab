@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/', function() {
+    $footer = 'false';
+    return view('landing', compact('footer'));
+});
+
 Route::get('/home', function() {
     $footer = 'false';
     return view('home', compact('footer'));

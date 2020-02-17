@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Trip;
 
-use App\activityLog;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ActivityLogController extends Controller
+class TripController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,21 +41,20 @@ class ActivityLogController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\activityLog  $activityLog
+     * @param  \App\Trip  $Trip
      * @return \Illuminate\Http\Response
      */
-    public function show(activityLog $activityLog)
+    public function show(Trip $trip)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\activityLog  $activityLog
+     * @param  \App\Trip  $Trip
      * @return \Illuminate\Http\Response
      */
-    public function edit(activityLog $activityLog)
+    public function edit(Trip $trip)
     {
         //
     }
@@ -64,10 +63,10 @@ class ActivityLogController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\activityLog  $activityLog
+     * @param  \App\Trip  $Trip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, activityLog $activityLog)
+    public function update(Request $request, Trip $trip)
     {
         //
     }
@@ -75,10 +74,10 @@ class ActivityLogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\activityLog  $activityLog
+     * @param  \App\Trip  $trip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(activityLog $activityLog)
+    public function destroy(Trip $trip)
     {
         //
     }

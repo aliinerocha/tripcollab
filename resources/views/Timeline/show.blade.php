@@ -1,10 +1,10 @@
-@extends('layout.template')
+@extends('layouts.template')
 
 @section('titulo')
     Criar nova Comunidade
 @endsection
 
-@section('conteudo') 
+@section('conteudo')
 <!-- BANNER -->
 <main class="mb-2">
         <img src="../img/worldmap.svg" class="img-fluid banner-img" alt="banner">

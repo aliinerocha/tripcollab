@@ -1,10 +1,10 @@
-@extends('layout.template')
+@extends('layouts.template')
 
 @section('titulo')
     Comunidade
 @endsection
 
-@section('conteudo') 
+@section('conteudo')
     <!-- BANNER -->
     <main class="mb-3">
             <img src="img\test03.jpg" class="img-fluid banner-img" alt="banner">
@@ -25,7 +25,7 @@
                 <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
             </div>
         </div>
-        <a href="/criarComunidade" class="p-0 m-0"> 
+        <a href="/criarComunidade" class="p-0 m-0">
             <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
         </a>
     </div>
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                     </div>
-            
+
                     <!-- CARD COMUNIDADE 2 -->
                     <div class="carousel-item">
                             <div class="card border-0" style="width: 18rem;">
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-            
+
                         <!-- CARD COMUNIDADE 3 -->
                         <div class="carousel-item">
                                 <div class="card border-0" style="width: 18rem;">
@@ -86,9 +86,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                 </div>
-                </div> 
+                </div>
     </section>
 
     <!-- MINHAS VIAGENS -->
@@ -104,7 +104,7 @@
                     <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
                 </div>
             </div>
-            <a href="/criarGrupoDeViagem" class="p-0 m-0"> 
+            <a href="/criarGrupoDeViagem" class="p-0 m-0">
                 <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
             </a>
         </div>

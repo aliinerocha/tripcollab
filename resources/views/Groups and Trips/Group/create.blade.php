@@ -1,10 +1,10 @@
-@extends('layout.template')
+@extends('layouts.template')
 
 @section('titulo')
     Criar nova Comunidade
 @endsection
 
-@section('conteudo') 
+@section('conteudo')
         <!-- NAV ABA-->
         <div class="bg-light pt-4 pb-4 mb-3">
             <div class="d-flex ml-3 align-items-center">
@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-    
+
         <!-- CARD COM OS DETALHES DO GRUPO DE VIAGEM SELECIONADO -->
         <main class="bg-light pt-4 pb-4">
             <div class="row">

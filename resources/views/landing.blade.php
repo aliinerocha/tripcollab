@@ -1,10 +1,10 @@
-@extends('layout.template')
+@extends('layouts.template')
 
 @section('titulo')
-    Criar nova Comunidade
+    TripCollab
 @endsection
 
-@section('conteudo') 
+@section('conteudo')
 
 <!-- banner -->
 
@@ -50,7 +50,7 @@
 <!-- Conteudo -->
 
 <div class="container-fluid card " >
-    <h2 class="text-center">Saiba porque sua viagem começa aqui</h2>
+    <h2 class="text-center">Saiba porquê sua viagem começa aqui</h2>
     <hr>
     <div class="row justify-content-center align-items-center">
         <!--Perfil-->

@@ -1,10 +1,10 @@
-@extends('layout.template')
+@extends('layouts.template')
 
 @section('titulo')
     Criar novo Grupo de Viagem
 @endsection
 
-@section('conteudo') 
+@section('conteudo')
     <!-- BANNER -->
     <main class="mb-3">
         <img src="img\ilhas_card.jpg" class="img-fluid banner-img" alt="banner">
@@ -23,7 +23,7 @@
             <h6 class="ml-2">458 membros</h6>
             <span class="ml-2"><a href="comunidadesEViagens" class="text-muted link-detalhes">Participar</a></span>
         </div>
-    
+
     <!-- NOME E MEMBROS -->
 
         <div class="container mb-4">
@@ -138,7 +138,7 @@
 
                 <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
-                        <img class="foto-perfil rounded-circle display-column" src="./img/perfil.1.jpg" alt="foto de perfil do membro"> 
+                        <img class="foto-perfil rounded-circle display-column" src="./img/perfil.1.jpg" alt="foto de perfil do membro">
                         <div class="small">Angelina</div>
                     </div>
 
@@ -188,23 +188,23 @@
 
         <div class="col-md-8">
             <div class="card-body px-0">
-    
+
                  <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
-                        <img class="foto-perfil rounded-circle display-column" src="./img/perfil.4.jpg" alt="foto de perfil do membro"> 
+                        <img class="foto-perfil rounded-circle display-column" src="./img/perfil.4.jpg" alt="foto de perfil do membro">
                         <div class="small">Fernando</div>
                     </div>
-    
+
                     <div class="d-flex flex-column w-100 ml-2">
                         <h5 class="card-title mb-auto">Momentos mais engraçados!</h5>
                         <div class="w-100 small d-flex align-items-end flex-column">1 de abril de 2020</div>
                         </div>
                     </div>
-    
+
                     <div class="mt-2">
                         Vamos compartilhar nossos momentos engraçados durante as viagens!
                     </div>
-    
+
                     <div class="d-flex w-100 mt-3 justify-content-between">
                             <div class="d-flex small">
                                 <span class="d-flex mr-2 align-items-center">
@@ -230,7 +230,7 @@
                                 </a>
                             </div>
                         </div>
-    
+
                 </div>
             </div>
         </section>

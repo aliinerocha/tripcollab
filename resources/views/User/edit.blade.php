@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('layouts.template')
     <link rel="stylesheet" href="../public/css/perfil.css">
 @section('titulo')
     Perfil
