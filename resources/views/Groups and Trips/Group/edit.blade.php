@@ -1,7 +1,7 @@
-@extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
+@extends('layouts.template')
 
 @section('titulo')
-    Criar nova Comunidade
+    Editar Comunidade
 @endsection
 
 @section('conteudo')
@@ -10,7 +10,7 @@
             <div class="d-flex ml-3 align-items-center">
                 <a class="link" href="comunidadesEViagens"><i class="material-icons">arrow_back</i></a>
                 <div class="container">
-                    <h5>Criar nova Comunidade</h5>
+                    <h5>Editar Comunidade</h5>
                 </div>
             </div>
         </div>

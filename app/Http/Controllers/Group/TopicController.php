@@ -12,9 +12,14 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __construct(Topic $topic)
     {
-        //
+        $this->topic = $topic;
+    }
+
+    public function index($group)
+    {
+       
     }
 
     /**
