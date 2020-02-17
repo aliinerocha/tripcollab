@@ -323,3 +323,32 @@ body {
 .close:hover {
   color: #121212;
 }
+
+/* CSS ABA PERFIL */
+/* CSS Foto da Capa */
+.capa img {
+  padding: 0;
+  height: 25vh;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* CSS Foto do Usuário, Botões e Descrição */
+.usuario-foto {
+  position: absolute;
+  margin-top:-50px;
+}
+
+.usuario-botoes i {
+  color: #7C7C7C;
+}
+
+  /* Área clicável */
+.usuario-botoes a {
+  padding: 18px;
+}
+
+.usuario-local i {
+  color: #7C7C7C;
+}
+/* FIM DO CSS ABA PERFIL */

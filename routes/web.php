@@ -31,7 +31,7 @@ Route::get('/classificacao', function() {
 
 Route::get('/comunidadesEViagens', function() {
     $footer = 'true';
-    return view('user/comunidadesEViagens', compact('footer'));
+    return view('Groups and Trips/index', compact('footer'));
 });
 
 Route::get('/criarGrupoDeViagem', function() {
@@ -51,7 +51,7 @@ Route::get('/detalhesDeViagem', function() {
 
 Route::get('/editarPerfil', function() {
     $footer = 'true';
-    return view('user/editarPerfil', compact('footer'));
+    return view('user/edit', compact('footer'));
 });
 
 Route::get('/grupoComunidade', function() {
