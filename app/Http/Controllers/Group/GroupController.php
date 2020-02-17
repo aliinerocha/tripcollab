@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
+    // use UploadTrait;
+    // public function __construct() {
+    //     $this->middleware('user.has.store')->only(['create','store']);
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,8 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $group = auth()->user()->group;
+        return view('Groups and Trips.Group.Show', compact('group'));
     }
 
     /**
@@ -24,7 +30,8 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        $group = \App\Group::all(['id', 'name']);
+        return view('Groups and Trips.Group.Create', compact('groups'));
     }
 
     /**
@@ -35,7 +42,19 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $user = auth()->user();
+
+        // if($request->hasFile('logo')) {
+        //     $data['logo'] = $this->imageUpload($request->file('logo')[0]);
+        // }
+
+        $store = $user->store()->create($data);
+
+        flash('Comunidade criada com sucesso')->success();
+
+        return redirect()->route('Groups and Trips.Group.Create');
     }
 
     /**
