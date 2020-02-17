@@ -30,20 +30,31 @@
             <img class="ml-3 mr-3" src="./img/viajando.png" alt="pessoa c/ mala">
             <h3 class="text-center">Bem-vindo Novamente </h3>
 
-            <form>
+            <form form method="POST" action="{{ route('login') }}">
+                @csrf
                 <div class="form-group">
                     <div class="col-md-4 mb-3">
-                        <label for="exampleInputEmail1"></label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label for="email"></label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="exampleInputPassword1"></label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+                        <label for="password"></label>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Senha">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         <small id="emailHelp" class="form-text text-muted text-right">Esqueceu sua senha?</small>
                     </div>
                 </div>
                 <div class="align-self-center">
-                    <a href="aba_perfil.html" type="submit" class="btn-cadastre btn-lg p-2 m-2 shadow rounded">Entrar</a>
+                    <button type="submit" class="btn-cadastre btn-lg p-2 m-2 shadow rounded">{{ __('Login') }}</button>
                     <h5>Ainda não tem cadastro?<a href="cadastro.html">Cadastre-se</a> </h5>
                 </div>
             </form>

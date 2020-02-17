@@ -99,3 +99,7 @@ Route::get('/criarComunidade', function () {
     return view('group/criarComunidade', compact('footer'));
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang=""pt-br>
 <head>
     <meta charset="UTF-8">
@@ -41,26 +40,44 @@
                 <hr class="col-3">
             </div>
 
-            <form>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
                 <div class="form-group">
-                    <label for="exampleInputNome1"></label>
-                    <input type="text" class="form-control" id="exampleInputNome1" placeholder="Nome">
+                    <label for="name"><!--{{ __('Name') }}--></label>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Nome">
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong><!--{{ $message }}--></strong>
+                        </span>
+                    @enderror
 
-                    <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entre com email">
+                    <label for="email"><!--{{ __('E-Mail Address') }}--></label>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" aria-describedby="emailHelp" value="{{ old('email') }}" placeholder="Entre com email" required autocomplete="email">
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
 
-                    <label for="exampleInputPassword1"></label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Crie uma Senha">
+                    <label for="password"><!--{{ __('Password') }}--></label>
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Crie uma Senha" required autocomplete="new-password">
 
-                    <label for="exampleInputPassword1"></label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirme sua Senha">
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
+                    <label for="password-confirm"><!--{{ __('Confirm Password') }}--></label>
+                    <input type="password" class="form-control" id="password_confirmation" placeholder="Confirme sua Senha" name="password_confirmation" required autocomplete="new-password">
                 </div>
+
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Concordo com os <a href="#">termos e condições.</a></label>
                 </div>
                 <div class="d-flex justify-content-center mb-2">
-                <a href="/user/login" class="btn-cadastre btn btn-lg p-2 m-2 shadow-sm rounded">CADASTRE-SE</a>
+                <button type="submit" class="btn-cadastre btn btn-lg p-2 m-2 shadow-sm rounded">{{ __('Register') }}</button>
             </div>
 
                 <h5>Já tem cadastro? Faça seu <a href="/user/login">login</a> agora</h5>
