@@ -83,7 +83,7 @@ Route::get('/notificacoes', function() {
 });
 
 Route::get('/novaMensagem', function() {
-    return view('user/messages/novaMensagem');
+    return view('user/messages/create');
 });
 
 Route::get('/perfil', function() {
