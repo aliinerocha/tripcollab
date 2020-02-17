@@ -31,7 +31,7 @@ Route::get('/classificacao', function() {
 
 Route::get('/comunidadesEViagens', function() {
     $footer = 'true';
-    return view('user/comunidadesEViagens', compact('footer'));
+    return view('Groups and Trips/index', compact('footer'));
 });
 
 Route::get('/criarGrupoDeViagem', function() {
@@ -47,7 +47,7 @@ Route::put('update/{id}/viagem', ['as' => 'update.trip', 'uses' => "Trip\TripCon
 
 Route::get('/editarPerfil', function() {
     $footer = 'true';
-    return view('user/editarPerfil', compact('footer'));
+    return view('user/edit', compact('footer'));
 });
 
 Route::get('/grupoComunidade', function() {
@@ -79,7 +79,7 @@ Route::get('/notificacoes', function() {
 });
 
 Route::get('/novaMensagem', function() {
-    return view('user/messages/novaMensagem');
+    return view('user/messages/create');
 });
 
 Route::get('/perfil', function() {
@@ -97,9 +97,12 @@ Route::get('/verMensagem', function() {
 
 Route::get('/criarComunidade', function () {
     $footer = 'true';
-    return view('group/criarComunidade', compact('footer'));
+    return view('/Groups and Trips/group/create', compact('footer'));
 });
-
+Route::get('/editarComunidade', function () {
+    $footer = 'true';
+    return view('/Groups and Trips/group/edit', compact('footer'));
+});
 
 Auth::routes();
 
