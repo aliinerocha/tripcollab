@@ -23,5 +23,14 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
+        // Itens acrescidos:
+        'city' => $faker->city,
+        'state' => $faker->state,
+        'country' => $faker->country,
+        'birthday' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'photo' => $faker->imageUrl($width = 640, $height = 480),
+        'background_photo' => $faker->imageUrl($width = 640, $height = 480),
+        'description' => $faker->sentence,
+        'public' => $faker->boolean(50),
     ];
 });

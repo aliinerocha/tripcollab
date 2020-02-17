@@ -1,5 +1,4 @@
 @extends('layouts.template')
-    <link rel="stylesheet" href="../public/css/perfil.css">
 @section('titulo')
     Perfil
 @endsection
@@ -31,22 +30,7 @@
                     </div>
                 </div>
                 <div class="form-row mx-3">
-                    <div class="col-sm-6 mb-3">
-                        <label for="senha">Senha</label>
-                        <input name="senha " type="password" class="form-control is-invalid" id="senha"
-                            placeholder="Digite a sua senha" required>
-                        <div class="invalid-feedback">
-                            Digite a sua senha!
-                        </div>
-                    </div>
-                    <div class="col-sm-6 mb-3">
-                        <label for="confirmaSenha">Confirme a sua Senha</label>
-                        <input name="confirmaSenha " type="password" class="form-control is-invalid" id="confirmaSenha"
-                            placeholder="Digite a sua senha novamente" required>
-                        <div class="invalid-feedback">
-                            Confirme a sua senha!
-                        </div>
-                    </div>
+                <button type="">Alterar Senha</button>
                 </div>
             </form>
         </section>
@@ -106,6 +90,13 @@
                             Ok!
                         </div>
                     </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="dataDeNascimento">Data de Nascimento</label>
+                        <input type="date" class="form-control is-valid" id="dataDeNascimento" required>
+                        <div class="valid-feedback">
+                            Ok!
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-12 my-3">
@@ -116,8 +107,10 @@
 
                 <div class="col-12 my-3">
                     <label for="descricao">Visibilidade do perfil</label>
-                    <textarea name="descricao" id="descricao" cols="30" rows="5" class="form-control">Ajustar!!!
-                    </textarea>
+                    <select name="descricao" id="descricao" cols="30" rows="5" class="form-control">
+                        <option selected>Público</option>
+                        <option>Privado</option>
+                    </select>
                 </div>
             </form>
             <!-- Dados do Usuário -->
