@@ -21,4 +21,8 @@ class Group extends Model
     public function topic() {
         return $this->hasMany('App\Topic');
     }
+
+    public function trips() {
+        return $this->belongsToMany('App\Trip');
+    } // Adicionado posteriormente
 }

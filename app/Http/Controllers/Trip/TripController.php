@@ -44,8 +44,13 @@ class TripController extends Controller
      * @param  \App\Trip  $Trip
      * @return \Illuminate\Http\Response
      */
-    public function show(Trip $trip)
+    public function show($id)
     {
+        $collection = \App\Trip::find($id)->get();
+        $trip = $collection[0];
+        $footer = 'true';
+        // dd($trip);
+        return view('/Groups and Trips/Trip/show', compact('footer', 'trip'));
     }
 
     /**
@@ -54,9 +59,13 @@ class TripController extends Controller
      * @param  \App\Trip  $Trip
      * @return \Illuminate\Http\Response
      */
-    public function edit(Trip $trip)
+    public function edit($id)
     {
-        //
+        $collection = \App\Trip::find($id)->get();
+        $trip = $collection[0];
+        $footer = 'true';
+        // dd($trip);
+        return view('/Groups and Trips/Trip/edit', compact('footer', 'trip'));
     }
 
     /**
@@ -66,9 +75,24 @@ class TripController extends Controller
      * @param  \App\Trip  $Trip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Trip $trip)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $trip = \App\Trip::find($id);
+
+        dd($trip->update($data));
+
+        /* *
+        if(!is_null($categories))
+        {
+            $product->categories()->sync($categories);
+        }* /
+        /* *
+        if($request->hasFile('photos')) {
+            $images = $this->imageUpload($request->file('photos'), 'image');
+            $product->photos()->createMany($images);
+        }; */
     }
 
     /**
