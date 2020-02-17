@@ -45,10 +45,7 @@ Route::get('show/viagem/{id}', ['as' => 'show.trip', 'uses' => "Trip\TripControl
 
 Route::put('update/{id}/viagem', ['as' => 'update.trip', 'uses' => "Trip\TripController@update"]);
 
-Route::get('/editarPerfil', function() {
-    $footer = 'true';
-    return view('user/edit', compact('footer'));
-});
+Route::get('/profile/{id}/edit' , 'User\UserController@edit');
 
 Route::get('/grupoComunidade', function() {
     $footer = 'true';

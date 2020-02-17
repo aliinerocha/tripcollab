@@ -1,4 +1,6 @@
-@extends('layouts.template')
+
+
+@extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
     Criar novo Grupo de Viagem

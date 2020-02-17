@@ -1,4 +1,5 @@
-@extends('layouts.template')
+
+@extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
     Detalhes da viagem
