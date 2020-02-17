@@ -101,7 +101,7 @@ Route::get('/verMensagem', function() {
 
 Route::get('/criarComunidade', function () {
     $footer = 'true';
-    return view('group/criarComunidade', compact('footer'));
+    return view('/Groups and Trips/group/create', compact('footer'));
 });
 
 

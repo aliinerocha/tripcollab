@@ -28,6 +28,11 @@
                             <label for="descrcaoComunidade">Descrição da Comunidade:</label>
                             <textarea type="text" class="form-control" id="descricaoComunidade" placeholder="Insira titulo da comunidade"></textarea>
                         </div>
+                        <!--  adicao do campo photo no grupo de viagem -->
+                        <div class="form-group mt-4">
+                            <label for="">Foto da comunidade</label>
+                            <input type="file" class="form-control-file" name="photo" multiple>
+                        </div>
                         <div class="form-group mt-4">
                             <label for="palavrasChave">Palavras-chave:</label>
                             <select mutiple class="form-control" id="palavrasChave">
