@@ -49,10 +49,7 @@ Route::get('/detalhesDeViagem', function() {
     return view('trip/detalhesDeViagem', compact('footer'));
 });
 
-Route::get('/editarPerfil', function() {
-    $footer = 'true';
-    return view('user/edit', compact('footer'));
-});
+Route::get('/profile/{id}/edit' , 'User\UserController@edit');
 
 Route::get('/grupoComunidade', function() {
     $footer = 'true';

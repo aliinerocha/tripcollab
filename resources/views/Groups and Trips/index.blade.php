@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
     Comunidade
@@ -8,7 +8,7 @@
     <!-- BANNER -->
     <main class="mb-3">
             <img src="img\test03.jpg" class="img-fluid banner-img" alt="banner">
-            <h3 class="titulo ml-3">Para onde você </br> quer ir hoje?</h3>
+            <h3 class="titulo ml-3">Para onde você <br> quer ir hoje?</h3>
         </div>
     </main>
 
@@ -41,7 +41,7 @@
                             <div class="card-body d-flex justify-content-between">
                                 <div class="texto d-flex justify-content-start align-items-center ">
                                     <h5 class="mr-2 mb-0">250</h5>
-                                    <smaller>membros</smaller>
+                                    <small>membros</small>
                                 </div>
                                 <div class="botao">
                                     <a href="grupoComunidade" class="botao btn btn-primary float-right border-0">Visitar</a>
@@ -60,7 +60,7 @@
                                 <div class="card-body d-flex justify-content-between">
                                     <div class="texto d-flex justify-content-start align-items-center ">
                                         <h5 class="mr-2 mb-0">180</h5>
-                                        <smaller>membros</smaller>
+                                        <small>membros</small>
                                     </div>
                                     <div class="botao">
                                         <a href="#" class="botao btn btn-primary float-right border-0">Visitar</a>
@@ -79,7 +79,7 @@
                                     <div class="card-body d-flex justify-content-between">
                                         <div class="texto d-flex justify-content-start align-items-center ">
                                             <h5 class="mr-2 mb-0">130</h5>
-                                            <smaller>membros</smaller>
+                                            <small>membros</small>
                                         </div>
                                         <div class="botao">
                                             <a href="#" class="botao btn btn-primary float-right border-0">Visitar</a>

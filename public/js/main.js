@@ -13,14 +13,3 @@ btnMenu.addEventListener("click", function() {
 btnMenu.addEventListener("click", function (){
     btnMenu.classList.toggle("change");
 }); 
-
-let nav = document.querySelector("#navInferior");
-
-let btnsNav = nav.querySelectorAll("a");
-
-for (var i = 0; i < btnsNav.length; i++) {
-    let current = window.location.href;
-        if (btnsNav[i].href === current) {
-        btnsNav[i].classList.add("ativo")
-        }
-}
