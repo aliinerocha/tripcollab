@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Group;
 
+use App\Http\Controllers\Controller;
 use App\Topic;
 use Illuminate\Http\Request;
 
@@ -17,9 +18,14 @@ class TopicController extends Controller
         $this->topic = $topic;
     }
 
-    public function index($group)
+    public function index($topic)
     {
-       //
+        $topics = auth()->user()->topic;
+        $topic = $topic->topics()->paginate(5);
+        
+        $footer = 'true';
+        return view('Groups and Trips/Group/Topics/show', compact('topics','footer'));
+  
     }
 
     /**
@@ -29,8 +35,9 @@ class TopicController extends Controller
      */
     public function create()
     {
-        $topics = \App\Category::all(['id', 'name']);
-        return view('Group and Trips.group.topics.create', compact('topics'));
+        $topics = \App\Topic::all(['id', 'name']);
+        $footer = 'true';
+        return view('Groups and Trips/Group/Topics/create', compact('topics','footer'));
     }
 
     /**

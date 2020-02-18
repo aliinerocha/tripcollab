@@ -69,6 +69,17 @@ Route::delete('/group/{id}', "Group\GroupController@destroy")->name('group.destr
 
 // Fim das Rotas das Comunidades
 
+
+
+//Inicio das Rotas dos Topicos
+
+Route::get('topic/create', 'Group\TopicController@create')->name('topic.create');
+Route::get('topic/show', 'Group\TopicController@show')->name('topic.show');
+
+//Fim das Rotas dos Topicos
+
+
+
 Route::get('/linhaDoTempo', function() {
     $footer = 'true';
     return view('user/linhaDoTempo', compact('footer'));
@@ -101,12 +112,13 @@ Route::get('/perfil', function() {
     return view('user/perfil', compact('footer'));
 });
 
-Route::get('/topico', function() {
-    return view('/Groups and Trips/group/topics/show');
-});
-Route::get('/criarTopico', function() {
-    return view('/Groups and Trips/group/topics/create');
-});
+// Route::get('/topico', function() {
+//     return view('/Groups and Trips/group/topics/show');
+// });
+
+
+
+
 
 Route::get('/verMensagem', function() {
     return view('user/messages/verMensagem');
