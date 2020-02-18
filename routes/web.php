@@ -55,15 +55,17 @@ Route::get('/profile/{id}/edit' , "User\UserController@edit")->name('user.edit')
 // Inicio das Rotas das Comunidades
 // Route::get('index/comunidadeEViagens', 'Group\GroupController@index', 'Trip\TripController@index')->name('index');
 
-Route::get('create/comunidade', 'Group\GroupController@create')->name('create');
+Route::get('group/create', 'Group\GroupController@create')->name('group.create');
 
-Route::post('store/comunidade', 'Group\GroupController@store')->name('store');
+// Route::post('group/store', 'Group\GroupController@store')->name('group.store');
 
-Route::get('edit/{id}/comunidade', ['as' => 'edit.group', 'uses' => "Group\GroupController@edit"] );
+Route::get('group/{id}/edit', 'Group\GroupController@edit')->name('group.edit');;
 
-Route::get('show/comunidade/{id}', ['as' => 'show.group', 'uses' => "Group\GroupController@show"]);
+Route::get('group/{id}/show', 'Group\GroupController@show')->name('group.show');;
 
-Route::put('update/{id}/comunidade', ['as' => 'update.group', 'uses' => "Group\GroupController@update"]);
+Route::put('group/{id}/update', 'Group\GroupController@update')->name('group.update');
+
+Route::delete('/group/{id}', "Group\GroupController@destroy")->name('group.destroy');
 
 // Fim das Rotas das Comunidades
 

@@ -128,8 +128,11 @@ class GroupController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Group $group)
+    public function destroy($id)
     {
-        //
+        $group = $this->$group->find($id);
+        $group->delete();
+
+        return redirect()->route('/home');
     }
 }
