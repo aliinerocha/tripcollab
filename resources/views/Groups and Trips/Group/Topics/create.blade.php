@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Novo Topic</title>
+        <title>Novo Topico</title>
         <link rel="icon" href="./img/icone_logo.png">
         <link rel="alternate" hreflang="x-default" href="https://secure.meetup.com/messages/">
         <!-- Bootstrap -->
@@ -49,35 +49,36 @@
             <hr class="col">
         </div>
     </div> 
-    <form action="{{route('Groups and Trips.topics')}}" method="POST" enctype="multipart/form-data">
-    @csrf
+    <div class="row">
+        <form action="" method="POST" enctype="multipart/form-data" class="col-10 offset-1" >
+        @csrf 
 
-        <div class="form-group">
-            <label>Nome Topico</label>
-            <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{old('name')}}">
-            @error('name')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
-        </div>
+            <div class="form-group mt-4" >
+                <label>Nome Topico</label>
+                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{old('name')}}">
+                @error('name')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
+            </div>
 
-        <div class="form-group">
-            <label>Descrição</label>
-            <input class="form-control @error('description') is-invalid @enderror" type="text" name="description" value="{{old('description')}}">
-            @error('description')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
-        </div>
+            <div class="form-group mt-4">
+                <label>Descrição</label>
+                <input textarea class="form-control @error('description') is-invalid @enderror"  type="text" name="description" value="{{old('description')}}">
+                @error('description')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
+            </div>
 
-        <div class="form-group">
-        <button type="submit" class="btn botao btn-primary float-right border-0">Criar Topico</button>
-        </div>
+            <div class="form-group mt-4">
+            <button type="submit" class="btn botao btn-primary float-right border-0">Criar Topico</button>
+            </div>
 
-    </form>
-
+        </form>
+    </div>
 
 
        

@@ -87,6 +87,9 @@ Route::get('/perfil', function() {
 Route::get('/topico', function() {
     return view('/Groups and Trips/group/topics/show');
 });
+Route::get('/criarTopico', function() {
+    return view('/Groups and Trips/group/topics/create');
+});
 
 Route::get('/verMensagem', function() {
     return view('user/messages/verMensagem');
