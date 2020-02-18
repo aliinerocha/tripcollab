@@ -8,17 +8,17 @@
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- Material icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Fontaweasome -->
-      <script src="https://kit.fontawesome.com/e369e6f381.js" crossorigin="anonymous"></script>
-    <!-- meu css -->
-    <link rel="stylesheet" href="css/styles.css">
+        <!-- Material icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Fontaweasome -->
+        <script src="https://kit.fontawesome.com/e369e6f381.js" crossorigin="anonymous"></script>
+        <!-- meu css -->
+    <link rel="stylesheet" href="{{url('css/styles.css')}}">
 </head>
 <body>
 <!-- NAV SUPERIOR -->
 <nav class="navbar sticky-top">
-        <a class="navbar-brand" href="/home"><img src="./img/logo branco.png" alt="logo Trip Collab"> TRIPCOLLAB</a>
+        <a class="navbar-brand" href="/home"><img src="{{url('img/logo branco.png')}}" alt="logo Trip Collab"> TRIPCOLLAB</a>
         <div class=" d-flex justify-space-between align-items-center">
             <a class="nav-link d-flex align-items-center p-1 mr-5" href="#">
                 <i class="material-icons mr-2">account_circle</i>
@@ -51,7 +51,7 @@
             <a class="nav-link" href="#">Agências de Turismo</a>
         </li>
         <li class="divider">
-            <hr/> 
+            <hr/>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Termos</a>
@@ -78,12 +78,12 @@
 
 @yield('conteudo')
 
-@if($footer === 'true')
+@if($footer ?? '' === 'true')
 <div class="nav-inferior nav fixed-bottom d-flex justify-content-around border-top" id="navInferior">
-    <a href="linhaDoTempo" class="fas fa-atlas fa-lg col-2 btnNavInferior"></a>
-    <a href="mensagens" class="far fa-comments fa-lg col-2 btnNavInferior"></a>
-    <a href="perfil" class="fas fa-home fa-lg col-2 btnNavInferior"></a>
-    <a href="comunidadesEViagens" class="fas fa-users fa-lg col-2 btnNavInferior"></a>
+    <a href="linhaDoTempo" class="fas fa-atlas fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }}"></a>
+    <a href="mensagens" class="far fa-comments fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'mensagens' ? 'ativo' : '' }}"></a>
+    <a href="perfil" class="fas fa-home fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'perfil' ? 'ativo' : '' }}"></a>
+    <a href="comunidadesEViagens" class="fas fa-users fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'comunidadesEviagens' ? 'ativo' : '' }}"></a>
 </div>
 @endif
 

@@ -39,7 +39,7 @@
             </div>
             <div>
                     <button class="btn-cadastro btn btn-primary "> <a href="/user/cadastro">Cadastre-se</a> </button>
-                    <button class="btn-cadastro btn btn-primary "> <a href="cadastro">Cadastre-se</a> </button>
+
             </div>
     </div>
 
@@ -132,7 +132,7 @@
                             <!--Title-->
                             <div class="texto d-flex justify-content-start align-items-center ">
                                 <h5 class="mr-2 mb-0">250</h5>
-                                <smaller>membros</smaller>
+                                <small>membros</small>
                             </div>
                             <!--Text-->
                             <p class="card-text">Comunidade dedicada ao compartilhamento dos melores roteiros nos parques da Disney.</p>
@@ -156,7 +156,7 @@
                             <!--Title-->
                             <div class="texto d-flex justify-content-start align-items-center ">
                                 <h5 class="mr-2 mb-0">250</h5>
-                                <smaller>membros</smaller>
+                                <small>membros</small>
                             </div>
                             <!--Text-->
                             <p class="card-text">Dicas para aproveitar ao maximo a viagem e conhecer os melhores cassinos de Vegas. </p>
@@ -179,7 +179,7 @@
                             <!--Title-->
                             <div class="texto d-flex justify-content-start align-items-center ">
                                 <h5 class="mr-2 mb-0">250</h5>
-                                <smaller>membros</smaller>
+                                <small>membros</small>
                             </div>
                             <!--Text-->
                             <p class="card-text">Comunidade dedicada a compartilhar destinos maravilhosos e pouco conhecidos.</p>
@@ -202,7 +202,7 @@
                             <!--Title-->
                             <div class="texto d-flex justify-content-start align-items-center ">
                                 <h5 class="mr-2 mb-0">250</h5>
-                                <smaller>membros</smaller>
+                                <small>membros</small>
                             </div>
                             <!--Text-->
                             <p class="card-text">Comunidade dedicada a compartilhar destinos maravilhos mais pouco conhecidos.</p>
@@ -225,7 +225,7 @@
                             <!--Title-->
                             <div class="texto d-flex justify-content-start align-items-center ">
                                 <h5 class="mr-2 mb-0">250</h5>
-                                <smaller>membros</smaller>
+                                <small>membros</small>
                             </div>
                             <!--Text-->
                             <p class="card-text">Comunidades dedicada a compartilhar dicas de viagens para grupos familiares com crianças.</p>

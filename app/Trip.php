@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trip extends Model
 {
+
+    protected $fillable = ['name','description','photo','departure','return_date','admin','visibility','foreseen_budget'];
+
     public function user() {
         return $this->belongsToMany('App\User');
     }
@@ -18,5 +21,7 @@ class Trip extends Model
         return $this->belongsToMany('App\Interest');
     }
 
-    
+    public function group() {
+        return $this->belongsTo('App\Group', 'group');
+    }
 }

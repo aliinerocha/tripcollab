@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
     Criar novo Grupo de Viagem
@@ -7,7 +7,7 @@
 @section('conteudo')
     <!-- BANNER -->
     <main class="mb-3">
-        <img src="img\ilhas_card.jpg" class="img-fluid banner-img" alt="banner">
+        <img src="{{url('.\img\ilhas_card.jpg')}}" class="img-fluid banner-img" alt="banner">
         </div>
     </main>
 
@@ -15,11 +15,11 @@
 
     <section class="bg-light pb-4 mb-3">
         <div class="container mb-4">
-            <h1>Ilhas paradisíacas</h1>
+            <h1>{{$group->name}}</h1>
         </div>
 
         <div class="container mb-4">
-            <img src="./img/group.png" style="width: 45%;height:45%">
+            <img src="{{url('./img/group.png')}}" style="width: 45%;height:45%">
             <h6 class="ml-2">458 membros</h6>
             <span class="ml-2"><a href="comunidadesEViagens" class="text-muted link-detalhes">Participar</a></span>
         </div>
@@ -30,9 +30,7 @@
             <h5>Quem somos?</h5>
 
             <div>
-                Somos uma comunidade dedicada a discutir qualquer coisa relacionada a ilhas paradisíacas e belas praias!
-                Aqui você encontrará as melhores dicas de locais para viajar, as dicas culturais e curiosidades sobre cada praia
-                e resort!
+                {{$group->description}}
             </div>
         </div>
 
@@ -51,7 +49,7 @@
                         <div class="card-header border-0 text-center">
                             <span>Cancún</span>
                         </div>
-                        <img src="./img/cancun.jpeg" class="card-img-top rounded-0"
+                        <img src="{{url('./img/cancun.jpeg')}}" class="card-img-top rounded-0"
                             style="max-height: 160px; object-fit: cover;" alt="Cancún">
                         <div class="card-body d-flex justify-content-between">
                             <div class="texto d-flex justify-content-start align-items-center ">
@@ -70,7 +68,7 @@
                         <div class="card-header border-0 text-center">
                             <span>Bora Bora</span>
                         </div>
-                        <img src="./img/borabora.jpg" class="card-img-top rounded-0"
+                        <img src="{{url('./img/borabora.jpg')}}" class="card-img-top rounded-0"
                             style="max-height: 160px; object-fit: cover;" alt="Bora Bora">
                         <div class="card-body d-flex justify-content-between">
                             <div class="texto d-flex justify-content-start align-items-center ">
@@ -89,7 +87,7 @@
                         <div class="card-header border-0 text-center">
                             <span>Havana</span>
                         </div>
-                        <img src="./img/havana.jpeg" class="card-img-top rounded-0"
+                        <img src="{{url('./img/havana.jpeg')}}" class="card-img-top rounded-0"
                             style="max-height: 160px; object-fit: cover;" alt="Havana">
                         <div class="card-body d-flex justify-content-between">
                             <div class="texto d-flex justify-content-start align-items-center ">
@@ -138,7 +136,7 @@
 
                 <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
-                        <img class="foto-perfil rounded-circle display-column" src="./img/perfil.1.jpg" alt="foto de perfil do membro">
+                        <img class="foto-perfil rounded-circle display-column" src="{{url('./img/perfil.1.jpg')}}" alt="foto de perfil do membro">
                         <div class="small">Angelina</div>
                     </div>
 
@@ -191,7 +189,7 @@
 
                  <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
-                        <img class="foto-perfil rounded-circle display-column" src="./img/perfil.4.jpg" alt="foto de perfil do membro">
+                        <img class="foto-perfil rounded-circle display-column" src="{{url('./img/perfil.4.jpg')}}" alt="foto de perfil do membro">
                         <div class="small">Fernando</div>
                     </div>
 

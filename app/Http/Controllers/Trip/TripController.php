@@ -4,9 +4,16 @@ namespace App\Http\Controllers\Trip;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Trip;
 
 class TripController extends Controller
 {
+    private $trip;
+
+    public function __construct(Trip $trip)
+    {
+        $this->trip = $trip;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +31,8 @@ class TripController extends Controller
      */
     public function create()
     {
-        //
+        $footer = 'true';
+        return view('/Groups and Trips/Trip/create', compact('footer'));
     }
 
     /**
@@ -35,7 +43,10 @@ class TripController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $store = $this->trip->create($data);
+
     }
 
     /**
@@ -44,8 +55,12 @@ class TripController extends Controller
      * @param  \App\Trip  $Trip
      * @return \Illuminate\Http\Response
      */
-    public function show(Trip $trip)
+    public function show($trip)
     {
+        $trip = $this->trip->findOrFail($trip);
+        $admin = $trip->admin()->first()->name;
+        $footer = 'true';
+        return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin'));
     }
 
     /**
@@ -54,9 +69,11 @@ class TripController extends Controller
      * @param  \App\Trip  $Trip
      * @return \Illuminate\Http\Response
      */
-    public function edit(Trip $trip)
+    public function edit($id)
     {
-        //
+        $trip = $this->trip->findOrFail($id);
+        $footer = 'true';
+        return view('/Groups and Trips/Trip/edit', compact('footer', 'trip'));
     }
 
     /**
@@ -66,9 +83,24 @@ class TripController extends Controller
      * @param  \App\Trip  $Trip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Trip $trip)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $trip = \App\Trip::find($id);
+
+        dd($trip->update($data));
+
+        /* *
+        if(!is_null($categories))
+        {
+            $product->categories()->sync($categories);
+        }* /
+        /* *
+        if($request->hasFile('photos')) {
+            $images = $this->imageUpload($request->file('photos'), 'image');
+            $product->photos()->createMany($images);
+        }; */
     }
 
     /**
@@ -77,8 +109,11 @@ class TripController extends Controller
      * @param  \App\Trip  $trip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Trip $trip)
+    public function destroy($id)
     {
-        //
+        $trip = $this->trip->find($id);
+        $trip->delete();
+
+        return redirect()->route('/home');
     }
 }
