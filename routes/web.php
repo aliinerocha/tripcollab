@@ -92,7 +92,7 @@ Route::get('/perfil', function() {
 });
 
 Route::get('/topico', function() {
-    return view('group/topico');
+    return view('/Groups and Trips/group/topics/show');
 });
 
 Route::get('/verMensagem', function() {

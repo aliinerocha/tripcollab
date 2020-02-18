@@ -19,7 +19,7 @@ class TopicController extends Controller
 
     public function index($group)
     {
-       
+       //
     }
 
     /**
@@ -29,7 +29,8 @@ class TopicController extends Controller
      */
     public function create()
     {
-        //
+        $topics = \App\Category::all(['id', 'name']);
+        return view('Group and Trips.group.create', compact('topics'));
     }
 
     /**
