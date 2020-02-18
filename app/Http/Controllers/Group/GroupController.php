@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\Group;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Group;
 use App\Interest;
-use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
+    private $group;
+
+    public function __construct(Group $group)
+    {
+        $this->group = $group;
+    }
+
     // use UploadTrait;
     // public function __construct() {
     //     $this->middleware('user.has.store')->only(['create','store']);
@@ -37,7 +44,7 @@ class GroupController extends Controller
     {
         $interests = \App\Interest::all(['id', 'name']);
 
-        $group = \App\Group::all(['id', 'name']);
+        $group = \App\Group::all(['id', 'name','description']);
         $footer = 'true';
         return view('Groups and Trips/Group/create', compact('footer','group','interests'));
     }
@@ -71,10 +78,10 @@ class GroupController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($group)
     {
-        $collection = \App\Group::find($id)->get();
-        $group = $collection[0];
+        $group = $this->group->findOrFail($group);
+        $admin = $group->admin()->first()->name;
         $footer = 'true';
         //dd($group);
         return view('/Groups and Trips/Group/show', compact('footer', 'group'));
@@ -88,8 +95,7 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        $collection = \App\Group::find($id)->get();
-        $group = $collection[0];
+        $group = $this->group->findOrFail($id);
         $footer = 'true';
         // dd($group);
         return view('/Groups and Trips/Group/edit', compact('footer', 'group'));

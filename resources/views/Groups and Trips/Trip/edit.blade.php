@@ -65,12 +65,12 @@
                         <div class="d-flex justify-content-end mt-4">
                             <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
                             <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
+                            <form action="{{route('trip.destroy',['id' => $trip->id])}}" method="POST">
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit" class="btn btn-danger">Excluir</button>
+                            </form>
                         </div>
-                        <form action="{{route('trip.destroy',['id' => $trip->id])}}" method="POST">
-                            @csrf
-                            @method("DELETE")
-                            <button type="submit" class="btn btn-danger">Excluir</button>
-                        </form>
                 </form>
             </div>
         </main>

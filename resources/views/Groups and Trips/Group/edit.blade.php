@@ -18,7 +18,7 @@
         <!-- CARD COM OS DETALHES DO GRUPO DE VIAGEM SELECIONADO -->
         <main class="bg-light pt-4 pb-4">
             <div class="row">
-                <form action="{{route('update.group', ['id' => $group->id])}}" method="POST" class="col-10 offset-1">
+                <form action="{{route('group.update', ['id' => $group->id])}}" method="POST" class="col-10 offset-1">
                 @csrf
                 @method("PUT")
                         <img src="{{url('./img/add.png')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
@@ -55,10 +55,15 @@
                             </select>
                         </div>
                         <div class="d-flex justify-content-end mt-4">
-                        <a href="/comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
-                        <a href="/comunidadesEViagens" class="btn botao">Salvar</a>
+                            <a href="/comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                            <button type="submit" href="/comunidadesEViagens" class="btn botao mr-2">Salvar</button>
+                            <form action="{{route('group.destroy',['id' => $group->id])}}" method="POST">
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit" class="btn btn-danger">Excluir</button>
+                            </form>
                         </div>
-                </form>
+                    </form>
             </div>
         </main>
 @endsection

@@ -57,13 +57,13 @@ Route::get('/profile/{id}/edit' , "User\UserController@edit")->name('user.edit')
 
 Route::get('group/create', 'Group\GroupController@create')->name('group.create');
 
-// Route::post('group/store', 'Group\GroupController@store')->name('group.store');
+Route::post('group/{id}', 'Group\GroupController@store')->name('group.store');
 
 Route::get('group/{id}/edit', 'Group\GroupController@edit')->name('group.edit');;
 
-Route::get('group/{id}/show', 'Group\GroupController@show')->name('group.show');;
+Route::get('group/{id}', 'Group\GroupController@show')->name('group.show');;
 
-Route::put('group/{id}/update', 'Group\GroupController@update')->name('group.update');
+Route::put('group/{id}', 'Group\GroupController@update')->name('group.update');
 
 Route::delete('/group/{id}', "Group\GroupController@destroy")->name('group.destroy');
 
