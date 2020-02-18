@@ -78,7 +78,7 @@
 
 @yield('conteudo')
 
-@if($footer === 'true')
+@if($footer ?? '' === 'true')
 <div class="nav-inferior nav fixed-bottom d-flex justify-content-around border-top" id="navInferior">
     <a href="linhaDoTempo" class="fas fa-atlas fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }}"></a>
     <a href="mensagens" class="far fa-comments fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'mensagens' ? 'ativo' : '' }}"></a>
