@@ -39,13 +39,18 @@ Route::get('/criarGrupoDeViagem', function() {
     return view('/Groups and Trips/Trip/create', compact('footer'));
 });
 
-Route::get('edit/{id}/viagem', ['as' => 'edit.trip', 'uses' => "Trip\TripController@edit"] );
+Route::get('trip/{id}/edit', "Trip\TripController@edit")->name('trip.edit');
 
-Route::get('show/viagem/{id}', ['as' => 'show.trip', 'uses' => "Trip\TripController@show"]);
+Route::get('trip/{id}', "Trip\TripController@show")->name('trip.show');
 
-Route::put('update/{id}/viagem', ['as' => 'update.trip', 'uses' => "Trip\TripController@update"]);
+Route::put('trip/{id}', "Trip\TripController@update")->name('trip.update');
 
-Route::get('/profile/{id}/edit' , 'User\UserController@edit');
+Route::get('/trip/create', "Trip\TripController@create")->name('trip.create');
+
+Route::delete('/trip/{id}', "Trip\TripController@destroy")->name('trip.destroy');
+
+Route::get('/profile/{id}/edit' , "User\UserController@edit")->name('user.edit');
+
 
 Route::get('/grupoComunidade', function() {
     $footer = 'true';

@@ -1,9 +1,7 @@
-
-
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
-    Criar novo Grupo de Viagem
+    Criar viagem
 @endsection
 
 @section('conteudo')
@@ -12,7 +10,7 @@
             <div class="d-flex ml-3 align-items-center">
                 <a class="link" href="comunidadesEViagens"><i class="material-icons">arrow_back</i></a>
                 <div class="container">
-                    <h5>Criar nova viagem</h5>
+                    <h5>Criar viagem</h5>
                 </div>
             </div>
         </div>
@@ -20,16 +18,18 @@
         <!-- CARD COM OS DETALHES DA VIAGEM SELECIONADA -->
         <main class="bg-light pt-4 pb-4">
             <div class="row">
-                <form method="POST" class="col-10 offset-1">
-                        <img src="./img/add.png" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
+                <form action="{{route('trip.store', ['id' => $trip->id])}}" method="POST" class="col-10 offset-1">
+                @csrf
+                        <img src="{{url('./img/add.png')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                         <div class="form-group mt-4">
                             <label for="tituloDaViagem">Titulo da viagem:</label>
-                            <input type="text" class="form-control" id="tituloDaViagem" placeholder="Insira titulo da viagem">
+                            <input name="name" type="text" class="form-control" id="tituloDaViagem" placeholder="Insira titulo da viagem" value="">
                         </div>
                         <div class="form-group mt-4">
-                            <label for="dataDaViagem">Data:</label>
-                            <input type="text" class="form-control mb-2" id="tituloDaViagem" placeholder="Insira a data de partida">
-                            <input type="text" class="form-control" id="tituloDaViagem" placeholder="Insira a data de retorno">
+                            <label for="departure">Embarque dia:</label>
+                            <input name="departure" type="date" class="form-control mb-2" placeholder="Insira a data de partida" value="">
+                            <label for="departure">Retorno dia:</label>
+                            <input name="return_date" type="date" class="form-control" placeholder="Insira a data de retorno" value="">
                         </div>
 
                         <div class="form-group mt-4">
@@ -51,19 +51,19 @@
                         -->
                         <div class="form-group mt-4">
                             <label for="investimentoPrevisto">Investimento previsto:</label>
-                            <input type="text" class="form-control mb-2" id="investimentoPrevisto" placeholder="Insira o investimento previsto">
+                            <input name="foreseen_budget" type="text" class="form-control mb-2" id="investimentoPrevisto" placeholder="Insira o investimento previsto" value="{{$trip->foreseen_budget}}">
                         </div>
                         <div class="form-group mt-4">
                             <label for="visibilidadeDoGrupo">Visivel ao público?</label>
-                            <select class="form-control" id="visibilidadeDoGrupo">
-                                <option disabled selected value="padrao">Selecione o nível de visibilidade</option>
-                                <option value="true">Sim</option>
-                                <option value="false">Não</option>
+                            <select name="visibility" class="form-control" id="visibilidadeDoGrupo">
+                                <option disabled @if($trip->visibility == null) selected @endif value="padrao">Selecione o nível de visibilidade</option>
+                                <option @if($trip->visibility == 1) selected @endif value="1">Sim</option>
+                                <option @if($trip->visibility == 0) selected @endif value="0">Não</option>
                             </select>
                         </div>
                         <div class="d-flex justify-content-end mt-4">
                         <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
-                        <a href="comunidadesEViagens" class="btn botao">Salvar</a>
+                        <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>
                 </form>
             </div>
