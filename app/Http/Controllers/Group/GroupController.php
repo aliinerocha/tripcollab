@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\Group;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Group;
 use App\Interest;
-use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
+    private $group;
+
+    public function __construct(Group $group)
+    {
+        $this->group = $group;
+    }
+
     // use UploadTrait;
     // public function __construct() {
     //     $this->middleware('user.has.store')->only(['create','store']);
@@ -37,9 +44,8 @@ class GroupController extends Controller
     {
         $interests = \App\Interest::all(['id', 'name']);
 
-        $group = \App\Group::all(['id', 'name']);
         $footer = 'true';
-        return view('Groups and Trips/Group/create', compact('footer','group','interests'));
+        return view('Groups and Trips/Group/create', compact('footer','interests'));
     }
 
     /**
@@ -48,21 +54,16 @@ class GroupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GroupRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
-
-        $groups = auth()->user()->store;
-
-        $group = $store->groups()->create($data);
+        $store = $this->group->create($data);
+        // flash('Comunidade criada com sucesso')->success();
+        return redirect()->route('group.create');
         
         // if($request->hasFile('logo')) {
         //     $data['logo'] = $this->imageUpload($request->file('logo')[0]);
         // }
-        
-        flash('Comunidade criada com sucesso')->success();
-        $footer = 'true';
-        return redirect()->route('Groups and Trips/Group/create');
     }
 
     /**
@@ -71,10 +72,10 @@ class GroupController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($group)
     {
-        $collection = \App\Group::find($id)->get();
-        $group = $collection[0];
+        $group = $this->group->findOrFail($group);
+        $admin = $group->admin()->first()->name;
         $footer = 'true';
         //dd($group);
         return view('/Groups and Trips/Group/show', compact('footer', 'group'));
@@ -88,8 +89,7 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        $collection = \App\Group::find($id)->get();
-        $group = $collection[0];
+        $group = $this->group->findOrFail($id);
         $footer = 'true';
         // dd($group);
         return view('/Groups and Trips/Group/edit', compact('footer', 'group'));
@@ -105,9 +105,7 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-
         $group = \App\Group::find($id);
-
         dd($group->update($data));
 
         /* *
@@ -130,7 +128,7 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        $group = $this->$group->find($id);
+        $group = $this->group->find($id);
         $group->delete();
 
         return redirect()->route('/home');

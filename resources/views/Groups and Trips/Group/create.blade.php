@@ -18,7 +18,7 @@
         <!-- CARD COM OS DETALHES DO GRUPO DE VIAGEM SELECIONADO -->
         <main class="bg-light pt-4 pb-4">
             <div class="row">
-                <form method="POST" class="col-10 offset-1">
+                <form action="{{route('group.store')}}" method="POST" class="col-10 offset-1">
                 @csrf
                         <img src="{{url('./img/add.png')}}"  class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                         <div class="form-group mt-4">
@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group mt-4">
                             <label for="descricaoComunidade">Descrição da Comunidade:</label>
-                            <textarea name="description"  type="text" class="form-control @error('description') is-invalid @enderror" type="text" id="descricaoComunidade" value="{{old('description')}}" placeholder="Insira a descrição da comunidade"></textarea>
+                            <textarea name="description" type="text" class="form-control @error('description') is-invalid @enderror" type="text" id="descricaoComunidade" value="{{old('description')}}" placeholder="Insira a descrição da comunidade"></textarea>
                             @error('description')
                                 <div class="invalid-feedback">
                                     {{$message}}
@@ -42,7 +42,7 @@
                         <!--  adicao do campo photo no grupo de viagem -->
                         <div class="form-group mt-4">
                             <label for="">Foto da comunidade</label>
-                            <input type="file" class="form-control-file" name="photo" multiple>
+                            <input type="hidden" class="form-control-file" name="photo" value="foto" multiple>
                         </div>  
                         <div class="form-group mt-4">
                             <label for="palavrasChave">Palavras-chave:</label>
@@ -68,9 +68,11 @@
                                 <option value="0">Não</option>
                             </select>
                         </div>
+                        <input type="hidden" name="admin" value="{{auth()->user()->id}}">
+                        <!-- <input type="hidden" name="description" value="Ahh"> -->
                         <div class="d-flex justify-content-end mt-4">
-                        <a href="/comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
-                        <a href="/comunidadesEViagens" class="btn botao">Salvar</a>
+                            <a href="/comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                            <button type="submit" href="/comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>
                 </form>
             </div>
