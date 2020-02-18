@@ -66,11 +66,11 @@
                             <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
                             <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>
-                        <form action="{{route('trip.destroy',['id' => $trip->id])}}" method="POST">
-                            @csrf
-                            @method("DELETE")
-                            <button type="submit" class="btn btn-danger">Excluir</button>
-                        </form>
+                </form>
+                <form action="{{route('trip.destroy',['id' => $trip->id])}}" method="POST">
+                    @csrf
+                    @method("DELETE")
+                    <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
             </div>
         </main>
