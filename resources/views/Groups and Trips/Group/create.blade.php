@@ -1,4 +1,4 @@
-    @extends('layouts.template')
+@extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
     Criar nova Comunidade
@@ -20,10 +20,10 @@
             <div class="row">
                 <form method="POST" class="col-10 offset-1">
                 @csrf
-                        <img src="./img/add.png" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
+                        <img src="{{url('./img/add.png')}}"  class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                         <div class="form-group mt-4">
                             <label for="tituloComunidade">Titulo da Comunidade:</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="tituloComunidade" value="{{old('name')}}" placeholder="Insira titulo da comunidade">
+                            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" type="text" id="tituloComunidade" value="{{old('name')}}" placeholder="Insira titulo da comunidade">
                             @error('name')
                                 <div class="invalid-feedback">
                                     {{$message}}
@@ -31,8 +31,8 @@
                             @enderror
                         </div>
                         <div class="form-group mt-4">
-                            <label for="descrcaoComunidade">Descrição da Comunidade:</label>
-                            <textarea type="text" class="form-control @error('description') is-invalid @enderror" type="text" name="description" id="descricaoComunidade" value="{{old('description')}}" placeholder="Insira a descrição da comunidade"></textarea>
+                            <label for="descricaoComunidade">Descrição da Comunidade:</label>
+                            <textarea name="description"  type="text" class="form-control @error('description') is-invalid @enderror" type="text" id="descricaoComunidade" value="{{old('description')}}" placeholder="Insira a descrição da comunidade"></textarea>
                             @error('description')
                                 <div class="invalid-feedback">
                                     {{$message}}
@@ -46,46 +46,31 @@
                         </div>  
                         <div class="form-group mt-4">
                             <label for="palavrasChave">Palavras-chave:</label>
+                            @foreach ($interests as $interest)
                             <div class="form-check @error('interests') is-invalid @enderror"  id="palavrasChave">
-                                
-                                    <input class="form-check-input" type="checkbox" value="{{old('interests')}}" id="interest->id">
-                                    <label class="form-check-label" for="interest->id">
-                                
+                                    <input class="form-check-input" type="checkbox" value="{{old('interests')}}" id="{{$interest->id}}">
+                                    <label class="form-check-label" for="{{$interest->id}}">
+                                        {{$interest->name}}
                                     </label>
-        
                                 @error('interests')
                                     <div class="invalid-feedback">
                                         {{$message}}
                                     </div>
                                 @enderror
                             </div>
-
-                            <!-- <select mutiple class="form-control @error('interests') is-invalid @enderror" id="palavrasChave">
-                                <option disabled selected>Selecione as palavras-chave deste grupo</option>
-                                <option>Palavra 1</option>
-                                <option>Palavra 2</option>
-                                <option>Palavra 3</option>
-                                <option>Palavra 4</option>
-                                <option>Palavra 5</option>
-                            </select>
-                            @error('interests')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                            @enderror -->
+                            @endforeach
                         </div>
                         <div class="form-group mt-4">
-                            <label for="visibilidadeDoGrupo">Visibilidade da comunidade:</label>
-                            <select class="form-control" id="visibilidadeDoGrupo">
-                                <option disabled selected value="padrao">Selecione o nível de visibilidade do Grupo</option>
-                                <option value="publico">Público</option>
-                                <option value="amigos">Amigos</option>
-                                <option value="amigosDeAmigos">Amigos de amigos</option>
+                            <label for="visibilidadeDaComunidade">Visivel ao público?</label>
+                            <select name="visibility" class="form-control" id="visibilidadeDaComunidade">
+                                <option disabled value="padrao">Selecione o nível de visibilidade</option>
+                                <option value="1">Sim</option>
+                                <option value="0">Não</option>
                             </select>
                         </div>
                         <div class="d-flex justify-content-end mt-4">
-                        <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
-                        <a href="comunidadesEViagens" class="btn botao">Salvar</a>
+                        <a href="/comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                        <a href="/comunidadesEViagens" class="btn botao">Salvar</a>
                         </div>
                 </form>
             </div>

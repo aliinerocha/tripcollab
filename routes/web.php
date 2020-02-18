@@ -26,7 +26,7 @@ Route::get('/cadastro', function() {
 });
 
 Route::get('/classificacao', function() {
-    return view('user/classificacao');
+    return view('Achievements/show');
 });
 
 Route::get('/comunidadesEViagens', function() {
@@ -36,28 +36,31 @@ Route::get('/comunidadesEViagens', function() {
 
 Route::get('/criarGrupoDeViagem', function() {
     $footer = 'true';
-    return view('/trip/criarGrupoDeViagem', compact('footer'));
+    return view('/Groups and Trips/Trip/create', compact('footer'));
 });
 
-Route::get('/definirStatus', function() {
-    $footer = 'true';
-    return view('trip/definirStatus', compact('footer'));
-});
+Route::get('edit/{id}/viagem', ['as' => 'edit.trip', 'uses' => "Trip\TripController@edit"] );
 
-Route::get('/detalhesDeViagem', function() {
-    $footer = 'true';
-    return view('trip/detalhesDeViagem', compact('footer'));
-});
+Route::get('show/viagem/{id}', ['as' => 'show.trip', 'uses' => "Trip\TripController@show"]);
 
-Route::get('/editarPerfil', function() {
-    $footer = 'true';
-    return view('user/edit', compact('footer'));
-});
+Route::put('update/{id}/viagem', ['as' => 'update.trip', 'uses' => "Trip\TripController@update"]);
 
-Route::get('/grupoComunidade', function() {
-    $footer = 'true';
-    return view('/group/grupoComunidade', compact('footer'));
-});
+Route::get('/profile/{id}/edit' , 'User\UserController@edit');
+
+// Inicio das Rotas das Comunidades
+// Route::get('index/comunidadeEViagens', 'Group\GroupController@index', 'Trip\TripController@index')->name('index');
+
+Route::get('create/comunidade', 'Group\GroupController@create')->name('create');
+
+Route::post('store/comunidade', 'Group\GroupController@store')->name('store');
+
+Route::get('edit/{id}/comunidade', ['as' => 'edit.group', 'uses' => "Group\GroupController@edit"] );
+
+Route::get('show/comunidade/{id}', ['as' => 'show.group', 'uses' => "Group\GroupController@show"]);
+
+Route::put('update/{id}/comunidade', ['as' => 'update.group', 'uses' => "Group\GroupController@update"]);
+
+// Fim das Rotas das Comunidades
 
 Route::get('/linhaDoTempo', function() {
     $footer = 'true';
@@ -97,15 +100,6 @@ Route::get('/topico', function() {
 
 Route::get('/verMensagem', function() {
     return view('user/messages/verMensagem');
-});
-
-Route::get('/criarComunidade', function () {
-    $footer = 'true';
-    return view('/Groups and Trips/group/create', compact('footer'));
-});
-Route::get('/editarComunidade', function () {
-    $footer = 'true';
-    return view('/Groups and Trips/group/edit', compact('footer'));
 });
 
 Auth::routes();
