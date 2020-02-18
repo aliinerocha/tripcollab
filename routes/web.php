@@ -25,23 +25,15 @@ Route::get('/classificacao', function() {
     return view('Achievements/show');
 });
 
-Route::get('/comunidadesEViagens', function() {
-    $footer = 'true';
-    return view('Groups and Trips/index', compact('footer'));
-});
-
-Route::get('/criarGrupoDeViagem', function() {
-    $footer = 'true';
-    return view('/Groups and Trips/Trip/create', compact('footer'));
-});
-
 Route::get('trip/{id}/edit', "Trip\TripController@edit")->name('trip.edit');
+
+Route::post('trip/store', "Trip\TripController@store")->name('trip.store');
+
+Route::get('trip/create', "Trip\TripController@create")->name('trip.create');
 
 Route::get('trip/{id}', "Trip\TripController@show")->name('trip.show');
 
 Route::put('trip/{id}', "Trip\TripController@update")->name('trip.update');
-
-Route::get('/trip/create', "Trip\TripController@create")->name('trip.create');
 
 Route::delete('/trip/{id}', "Trip\TripController@destroy")->name('trip.destroy');
 
@@ -49,7 +41,6 @@ Route::delete('/trip/{id}', "Trip\TripController@destroy")->name('trip.destroy')
 Route::get('/profile/{id}/edit' , 'User\UserController@edit')->name('user.edit');
 
 Route::put('/profile/{id}' , 'User\UserController@update')->name('update');
-
 
 // Inicio das Rotas das Comunidades
 // Route::get('index/comunidadeEViagens', 'Group\GroupController@index', 'Trip\TripController@index')->name('index');
@@ -79,7 +70,7 @@ Route::get('/login', function() {
 
 Route::get('/mensagens', function() {
     $footer = 'true';
-    return view('/user/messages/mensagens', compact('footer'));
+    return view('/user/messages/create', compact('footer'));
 });
 
 Route::get('/menu', function() {
@@ -101,7 +92,7 @@ Route::get('/perfil', function() {
 });
 
 Route::get('/topico', function() {
-    return view('group/topico');
+    return view('/Groups and Trips/Group/Topics/create');    
 });
 
 Route::get('/verMensagem', function() {
