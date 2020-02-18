@@ -18,8 +18,8 @@ class CreateTripsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('photo');
-            $table->dateTime('departure');
-            $table->dateTime('return_date');
+            $table->date('departure');
+            $table->date('return_date');
             $table->unsignedBigInteger('admin');
             $table->unsignedBigInteger('group_id'); // Adicionado posteriormente
             $table->boolean('visibility'); // Adicionado posteriormente
