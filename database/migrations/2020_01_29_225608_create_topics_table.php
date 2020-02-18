@@ -16,6 +16,7 @@ class CreateTopicsTable extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('description');
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('group_id')->references('id')->on('groups');

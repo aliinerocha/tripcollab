@@ -63,7 +63,18 @@ Route::delete('/group/{id}', "Group\GroupController@destroy")->name('group.destr
 //Inicio das Rotas dos Topicos
 
 Route::get('topic/create', 'Group\TopicController@create')->name('topic.create');
-Route::get('topic/show', 'Group\TopicController@show')->name('topic.show');
+
+Route::post('topic/store', 'Group\TopicController@store')->name('topic.store');
+
+Route::get('topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
+
+Route::get('topic/{id}/show', 'Group\TopicController@show')->name('topic.show');;
+
+Route::put('topic/{id}/update', 'Group\TopicController@update')->name('topic.update');
+
+Route::delete('/topic/{id}', "Group\TopicController@destroy")->name('topic.destroy');
+
+
 
 //Fim das Rotas dos Topicos
 
@@ -101,9 +112,9 @@ Route::get('/perfil', function() {
     return view('user/perfil', compact('footer'));
 });
 
-// Route::get('/topico', function() {
-//     return view('/Groups and Trips/group/topics/show');
-// });
+Route::get('/topico', function() {
+    return view('/Groups and Trips/group/topics/show');
+});
 
 
 

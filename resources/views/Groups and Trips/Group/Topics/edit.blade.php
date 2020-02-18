@@ -1,7 +1,7 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
-    Criar novo topico
+    Editar topico
 @endsection
 
 @section('conteudo')
@@ -10,17 +10,17 @@
     <div class="container ">    
         <div class="d-flex align-items-center mt-4">
             <hr class= "col">
-            <h2>Novo Topico</h2></span>
+            <h2>Editar Topico</h2></span>
             <hr class="col">
         </div>
     </div> 
     <div class="row">
-        <form action="{{route('topic.store')}}" method="POST" enctype="multipart/form-data" class="col-10 offset-1" >
+        <form action="{{route('topic.update', ['id' => $topic->id])}}" method="POST" class="col-10 offset-1" >
         @csrf 
-
+        @method("PUT")
             <div class="form-group mt-4" >
                 <label>Nome Topico</label>
-                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{old('name')}}">
+                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{$topic->name}}">
                 @error('name')
                     <div class="invalid-feedback">
                         {{$message}}
@@ -30,7 +30,7 @@
 
             <div class="form-group mt-4">
                 <label>Descrição</label>
-                <input textarea class="form-control @error('description') is-invalid @enderror"  type="text" name="description" value="{{old('description')}}">
+                <input textarea class="form-control @error('description') is-invalid @enderror"  type="text" name="description" value="{{$topic->description}}">
                 @error('description')
                     <div class="invalid-feedback">
                         {{$message}}
@@ -38,10 +38,17 @@
                 @enderror
             </div>
 
-            <div class="form-group mt-4">
-                <button type="submit" class="btn botao btn-primary float-right border-0">Criar Topico</button>
+            <div class="form-group d-flex justify-content-end mt-4">
+                <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                <button type="submit" href="comunidadesEViagens" class="btn botao btn-primary float-right border-0">Salvar</button>
             </div>
+            
 
+        </form>
+        <form action="{{route('topic.destroy',['id' => $topic->id])}}" method="POST">
+            @csrf
+            @method("DELETE")
+            <button type="submit" class="btn btn-danger">Excluir</button>
         </form>
     </div>
 

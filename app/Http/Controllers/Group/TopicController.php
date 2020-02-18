@@ -20,12 +20,7 @@ class TopicController extends Controller
 
     public function index($topic)
     {
-        $topics = auth()->user()->topic;
-        $topic = $topic->topics()->paginate(5);
-        
-        $footer = 'true';
-        return view('Groups and Trips/Group/Topics/show', compact('topics','footer'));
-  
+       
     }
 
     /**
@@ -48,7 +43,8 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $store = $this->topic->create($data);
     }
 
     /**
@@ -59,7 +55,11 @@ class TopicController extends Controller
      */
     public function show(Topic $topic)
     {
-        //
+        $topics = auth()->user()->topic;
+        $topic = $topic->topics()->paginate(5);        
+        $footer = 'true';
+        return view('Groups and Trips/Group/Topics/show', compact('topics','footer'));
+  
     }
 
     /**
@@ -68,9 +68,12 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function edit(Topic $topic)
+   
+    public function edit($id)
     {
-        //
+        $topic = $this->topic->findOrFail($id);
+        $footer = 'true';
+        return view('Groups and Trips/Group/Topics/edit', compact('footer', 'topic'));
     }
 
     /**
@@ -80,9 +83,13 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Topic $topic)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $topic = \App\Topic::find($id);
+
+        dd($topic->update($data));
     }
 
     /**
@@ -91,8 +98,11 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Topic $topic)
+    public function destroy($id)
     {
-        //
+        $topic = $this->topic->find($id);
+        $topic->delete();
+
+        return redirect()->route('/profile');
     }
 }
