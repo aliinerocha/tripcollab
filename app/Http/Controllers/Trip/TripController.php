@@ -4,9 +4,16 @@ namespace App\Http\Controllers\Trip;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Trip;
 
 class TripController extends Controller
 {
+    private $trip;
+
+    public function __construct(Trip $trip)
+    {
+        $this->trip = $trip;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +31,7 @@ class TripController extends Controller
      */
     public function create()
     {
-        //
+        return view('/Groups and Trips/Trip/create');
     }
 
     /**
@@ -44,13 +51,12 @@ class TripController extends Controller
      * @param  \App\Trip  $Trip
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($trip)
     {
-        $collection = \App\Trip::find($id)->get();
-        $trip = $collection[0];
+        $trip = $this->trip->findOrFail($trip);
+        $admin = $trip->admin()->first()->name;
         $footer = 'true';
-        // dd($trip);
-        return view('/Groups and Trips/Trip/show', compact('footer', 'trip'));
+        return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin'));
     }
 
     /**
@@ -61,10 +67,8 @@ class TripController extends Controller
      */
     public function edit($id)
     {
-        $collection = \App\Trip::find($id)->get();
-        $trip = $collection[0];
+        $trip = $this->trip->findOrFail($id);
         $footer = 'true';
-        // dd($trip);
         return view('/Groups and Trips/Trip/edit', compact('footer', 'trip'));
     }
 
@@ -101,8 +105,11 @@ class TripController extends Controller
      * @param  \App\Trip  $trip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Trip $trip)
+    public function destroy($id)
     {
-        //
+        $trip = $this->trip->find($id);
+        $trip->delete();
+
+        return redirect()->route('/home');
     }
 }

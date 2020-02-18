@@ -39,18 +39,35 @@ Route::get('/criarGrupoDeViagem', function() {
     return view('/Groups and Trips/Trip/create', compact('footer'));
 });
 
-Route::get('edit/{id}/viagem', ['as' => 'edit.trip', 'uses' => "Trip\TripController@edit"] );
+Route::get('trip/{id}/edit', "Trip\TripController@edit")->name('trip.edit');
 
-Route::get('show/viagem/{id}', ['as' => 'show.trip', 'uses' => "Trip\TripController@show"]);
+Route::get('trip/{id}', "Trip\TripController@show")->name('trip.show');
 
-Route::put('update/{id}/viagem', ['as' => 'update.trip', 'uses' => "Trip\TripController@update"]);
+Route::put('trip/{id}', "Trip\TripController@update")->name('trip.update');
 
-Route::get('/profile/{id}/edit' , 'User\UserController@edit');
+Route::get('/trip/create', "Trip\TripController@create")->name('trip.create');
 
-Route::get('/grupoComunidade', function() {
-    $footer = 'true';
-    return view('/group/grupoComunidade', compact('footer'));
-});
+Route::delete('/trip/{id}', "Trip\TripController@destroy")->name('trip.destroy');
+
+Route::get('/profile/{id}/edit' , "User\UserController@edit")->name('user.edit');
+
+
+// Inicio das Rotas das Comunidades
+// Route::get('index/comunidadeEViagens', 'Group\GroupController@index', 'Trip\TripController@index')->name('index');
+
+Route::get('group/create', 'Group\GroupController@create')->name('group.create');
+
+// Route::post('group/store', 'Group\GroupController@store')->name('group.store');
+
+Route::get('group/{id}/edit', 'Group\GroupController@edit')->name('group.edit');;
+
+Route::get('group/{id}/show', 'Group\GroupController@show')->name('group.show');;
+
+Route::put('group/{id}/update', 'Group\GroupController@update')->name('group.update');
+
+Route::delete('/group/{id}', "Group\GroupController@destroy")->name('group.destroy');
+
+// Fim das Rotas das Comunidades
 
 Route::get('/linhaDoTempo', function() {
     $footer = 'true';
@@ -93,15 +110,6 @@ Route::get('/criarTopico', function() {
 
 Route::get('/verMensagem', function() {
     return view('user/messages/verMensagem');
-});
-
-Route::get('/criarComunidade', function () {
-    $footer = 'true';
-    return view('/Groups and Trips/group/create', compact('footer'));
-});
-Route::get('/editarComunidade', function () {
-    $footer = 'true';
-    return view('/Groups and Trips/group/edit', compact('footer'));
 });
 
 Auth::routes();

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
+    protected $fillable = ['name','description','admin','visibility'];
+
     public function user() {
         return $this->belongsToMany('App\User');
     }
@@ -23,6 +25,6 @@ class Group extends Model
     }
 
     public function trips() {
-        return $this->belongsToMany('App\Trip');
+        return $this->hasMany('App\Trip');
     } // Adicionado posteriormente
 }
