@@ -70,7 +70,7 @@ Route::get('/login', function() {
 
 Route::get('/mensagens', function() {
     $footer = 'true';
-    return view('/user/messages/mensagens', compact('footer'));
+    return view('/user/messages/create', compact('footer'));
 });
 
 Route::get('/menu', function() {
@@ -92,7 +92,7 @@ Route::get('/perfil', function() {
 });
 
 Route::get('/topico', function() {
-    return view('group/topico');
+    return view('/Groups and Trips/Group/Topics/create');    
 });
 
 Route::get('/verMensagem', function() {
