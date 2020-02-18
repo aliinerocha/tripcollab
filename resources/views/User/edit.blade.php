@@ -7,10 +7,9 @@
 <!-- Formulário -->
 <div class="container-fluid p-0">
     <!-- Formulário de Cadastro do Usuário -->
-    <form method="POST" enctype="multipart/form-data">
-    @csrf
-    @method("PUT")
-
+    <form method="POST" action="{{route('update', ['id' => $user->id])}}">
+        @csrf
+        @method('PUT')
         <section class="usuario bg-light mb-2 px-3 py-4">
             <h5 class="nome ml-3 py-1">Cadastro do Usuário</h5>
                 <div class="form-row mx-3">
@@ -47,7 +46,7 @@
             </div>
             <div class="form-group col-12 m-3 pb-3">
                 <label for="foto_fundo">Selecione um arquivo</label>
-                <input class="form-control-file is-invalid" name="background_photo" type="file" id="foto_fundo" required>
+                <input class="form-control-file is-invalid" name="background_photo" type="file" id="foto_fundo">
             </div>
             <!-- Foto da Capa -->
 
@@ -58,7 +57,7 @@
             </div>
             <div class="form-group col-12 m-3 pb-3">
                 <label for="foto">Selecione um arquivo</label>
-                <input class="form-control-file is-invalid" name="photo" type="file" id="foto" required>
+                <input class="form-control-file is-invalid" name="photo" type="file" id="foto">
             </div>
             <!-- Foto do Usuário -->
 
@@ -67,21 +66,21 @@
                 <div class="form-row mx-3 my-3">
                     <div class="col-md-4 mb-3">
                         <label for="cidade">Cidade</label>
-                        <input name="city" type="text" class="form-control is-valid" id="cidade" placeholder="Digite a sua cidade" value="{{$user->city}}" required>
+                        <input name="city" type="text" class="form-control is-valid" id="cidade" placeholder="Digite a sua cidade" value="{{$user->city}}" >
                         <div class="valid-feedback">
                             Ok!
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="estado">Estado</label>
-                        <input type="text" class="form-control is-valid" name="state" id="estado" placeholder="Digite o seu estado" value="{{$user->state}}" required>
+                        <input type="text" class="form-control is-valid" name="state" id="estado" placeholder="Digite o seu estado" value="{{$user->state}}" >
                         <div class="valid-feedback">
                             Ok!
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="pais">País</label>
-                        <input type="text" class="form-control is-valid" name="country" id="pais" placeholder="Digite o seu país" value="{{$user->country}}" required>
+                        <input type="text" class="form-control is-valid" name="country" id="pais" placeholder="Digite o seu país" value="{{$user->country}}">
                         <div class="valid-feedback">
                             Ok!
                         </div>
@@ -97,14 +96,14 @@
 
                 <div class="col-12 my-3">
                     <label for="descricao">Descrição do usuário</label>
-                    <textarea name="descricao" id="descricao" cols="30" rows="5" class="form-control">{{$user->description}}</textarea>
+                    <textarea name="description" id="descricao" cols="30" rows="5" class="form-control" placeholder="Insira sua descrição aqui">{{$user->description}}</textarea>
                 </div>
 
                 <div class="col-12 my-3">
                     <label for="visibilidade">Visibilidade do perfil</label>
-                    <select name="public" id="visibilidade" cols="30" rows="5" class="form-control" value="{{$user->public}}">
-                        <option selected value="true">Público</option>
-                        <option value="false">Privado</option>
+                    <select name="public" class="form-control" cols="30" rows="5" id="visibilidade">
+                        <option @if($user->public == 1) selected @endif value="1">Público</option>
+                        <option @if($user->public == 0) selected @endif value="0">Privado</option>
                     </select>
                 </div>
             <!-- Dados do Usuário -->
@@ -127,7 +126,7 @@
         <section class="usuario bg-light mb-2 px-3 py-2">
             <div class="form-group mx-4">
                 <div class="form-check my-3">
-                    <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
+                    <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3">
                     <label class="form-check-label" for="invalidCheck3">
                         Concordo com Termos e Condições
                     </label>
@@ -136,7 +135,7 @@
                     </div>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <a href="aba_perfil.html" class="btn btn-secondary mt-2" style="width: 100px">Enviar</a>
+                    <button type="submit" class="btn btn-secondary mt-2" style="width: 100px">Enviar</button>
                 </div>
             </div>
         </section>

@@ -1,7 +1,7 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
-    Criar viagem
+    Editar viagem
 @endsection
 
 @section('conteudo')
@@ -10,7 +10,7 @@
             <div class="d-flex ml-3 align-items-center">
                 <a class="link" href="comunidadesEViagens"><i class="material-icons">arrow_back</i></a>
                 <div class="container">
-                    <h5>Criar viagem</h5>
+                    <h5>Editar viagem</h5>
                 </div>
             </div>
         </div>
@@ -18,18 +18,19 @@
         <!-- CARD COM OS DETALHES DA VIAGEM SELECIONADA -->
         <main class="bg-light pt-4 pb-4">
             <div class="row">
-                <form action="{{route('trip.store', ['id' => $trip->id])}}" method="POST" class="col-10 offset-1">
+                <form action="{{route('trip.update', ['id' => $trip->id])}}" method="POST" class="col-10 offset-1">
                 @csrf
+                @method("PUT")
                         <img src="{{url('./img/add.png')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                         <div class="form-group mt-4">
                             <label for="tituloDaViagem">Titulo da viagem:</label>
-                            <input name="name" type="text" class="form-control" id="tituloDaViagem" placeholder="Insira titulo da viagem" value="">
+                            <input name="name" type="text" class="form-control" id="tituloDaViagem" placeholder="Insira titulo da viagem" value="{{$trip->name}}">
                         </div>
                         <div class="form-group mt-4">
                             <label for="departure">Embarque dia:</label>
-                            <input name="departure" type="date" class="form-control mb-2" placeholder="Insira a data de partida" value="">
+                            <input name="departure" type="date" class="form-control mb-2" placeholder="Insira a data de partida" value="{{$trip->departure}}">
                             <label for="departure">Retorno dia:</label>
-                            <input name="return_date" type="date" class="form-control" placeholder="Insira a data de retorno" value="">
+                            <input name="return_date" type="date" class="form-control" placeholder="Insira a data de retorno" value="{{$trip->return_date}}">
                         </div>
 
                         <div class="form-group mt-4">
@@ -62,9 +63,14 @@
                             </select>
                         </div>
                         <div class="d-flex justify-content-end mt-4">
-                        <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
-                        <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
+                            <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                            <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>
+                        <form action="{{route('trip.destroy',['id' => $trip->id])}}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
                 </form>
             </div>
         </main>

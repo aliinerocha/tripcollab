@@ -8,17 +8,17 @@
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- Material icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Fontaweasome -->
-      <script src="https://kit.fontawesome.com/e369e6f381.js" crossorigin="anonymous"></script>
-    <!-- meu css -->
-    <link rel="stylesheet" href={{url("css/styles.css")}}>
+        <!-- Material icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Fontaweasome -->
+        <script src="https://kit.fontawesome.com/e369e6f381.js" crossorigin="anonymous"></script>
+        <!-- meu css -->
+    <link rel="stylesheet" href="{{url('css/styles.css')}}">
 </head>
 <body>
 <!-- NAV SUPERIOR -->
 <nav class="navbar sticky-top">
-        <a class="navbar-brand" href="/home"><img src={{url("./img/logo branco.png")}} alt="logo Trip Collab"> TRIPCOLLAB</a>
+        <a class="navbar-brand" href="/home"><img src="{{url('img/logo branco.png')}}" alt="logo Trip Collab"> TRIPCOLLAB</a>
         <div class=" d-flex justify-space-between align-items-center">
             <a class="nav-link d-flex align-items-center p-1 mr-5" href="#">
                 <i class="material-icons mr-2">account_circle</i>
@@ -51,7 +51,7 @@
             <a class="nav-link" href="#">Agências de Turismo</a>
         </li>
         <li class="divider">
-            <hr/> 
+            <hr/>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Termos</a>
