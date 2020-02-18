@@ -1,5 +1,4 @@
-@extends('layouts.template')
-    <link rel="stylesheet" href="../public/css/perfil.css">
+@extends('layouts.template', ['pagina' => 'perfil'])
 @section('titulo')
     Perfil
 @endsection
@@ -66,15 +65,15 @@
             </div>
 
             <!-- Lista de Amigos -->
-            <h7 class="amigo ml-3">123 amigos</h7>
+            <h6 class="amigo ml-3">123 amigos</h6>
                 <div class="col-xs-12 amigo-foto ml-3 py-4">
-                    <img src="./img/perfil.1.jpg" class="rounded-circle" style="width:90px; height: 90px"><h7 class="amigo ml-4">Amigo Amigo 1</h7>
+                    <img src="./img/perfil.1.jpg" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 1</h6>
                 </div>
                 <div class="col-xs-12 amigos-foto ml-3 py-4">
-                    <img src="./img/perfil.2.jpg" class="rounded-circle" style="width:90px; height: 90px"><h7 class="amigo ml-4">Amigo Amigo 2</h7>
+                    <img src="./img/perfil.2.jpg" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 2</h6>
                 </div>
                 <div class="col-xs-12 amigos-foto ml-3 py-4">
-                    <img src="./img/perfil.3.jpg" class="rounded-circle" style="width:90px; height: 90px"><h7 class="amigo ml-4">Amigo Amigo 3</h7>
+                    <img src="./img/perfil.3.jpg" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 3</h6>
                 </div>
         </section>
         <!-- Amigos -->
