@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers\User;
 
+Use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Requests;
-use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
-    public function edit($id)
+    public function edit($user)
     {
+        $user = User::find($user);
         $footer = 'true';
-        $collection = App\User::find($id)->get();
-        $user = $collection[0];
-        return view('user/edit', compact('footer'), compact('user'));
+        return view('User\edit', compact('footer'), compact('user'));
     }
 
     public function update(UserRequest $request, $id)

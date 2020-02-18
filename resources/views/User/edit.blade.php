@@ -7,7 +7,7 @@
 <!-- Formulário -->
 <div class="container-fluid p-0">
     <!-- Formulário de Cadastro do Usuário -->
-    <form action="{{route('profile.update', ['user' => $user->id])}}" method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
     @csrf
     @method("PUT")
 
@@ -41,29 +41,29 @@
             <h5 class="nome ml-3 pb-3">Perfil do Usuário</h5>
 
             <!-- Foto da Capa -->
-            <h7 class="capa ml-3">Foto da capa</h7>
+            <h6 class="capa ml-3">Foto da capa</h6>
             <div class="col-xs-12 capa p-0 mx-3 my-3 border">
-                <img class="rounded" src="{{asset('storage/' . $user->background_photo)}}">
+                <img class="rounded" src="{{$user->background_photo}}">
             </div>
             <div class="form-group col-12 m-3 pb-3">
-                <label for="foto">Selecione um arquivo</label>
-                <input class="form-control-file is-invalid" name="background_photo[]" type="file" id="foto" required>
+                <label for="foto_fundo">Selecione um arquivo</label>
+                <input class="form-control-file is-invalid" name="background_photo" type="file" id="foto_fundo" required>
             </div>
             <!-- Foto da Capa -->
 
             <!-- Foto do Usuário -->
-            <h7 class="foto ml-3">Foto do usuário</h7>
+            <h6 class="foto ml-3">Foto do usuário</h6>
             <div class="col-xs-12 foto p-0 mx-4 my-3">
-                <img src="{{asset('storage/' . $user->photo)}}" class="rounded-circle border" style="width:100px; height: 100px">
+                <img src="{{$user->photo}}" class="rounded-circle border" style="width:100px; height: 100px">
             </div>
             <div class="form-group col-12 m-3 pb-3">
                 <label for="foto">Selecione um arquivo</label>
-                <input class="form-control-file is-invalid" name="photo[]" type="file" id="foto" required>
+                <input class="form-control-file is-invalid" name="photo" type="file" id="foto" required>
             </div>
             <!-- Foto do Usuário -->
 
             <!-- Dados do Usuário -->
-            <h7 class="foto ml-3 my-3">Dados do usuário</h7>
+            <h6 class="foto ml-3 my-3">Dados do usuário</h6>
                 <div class="form-row mx-3 my-3">
                     <div class="col-md-4 mb-3">
                         <label for="cidade">Cidade</label>
@@ -97,14 +97,14 @@
 
                 <div class="col-12 my-3">
                     <label for="descricao">Descrição do usuário</label>
-                    <textarea name="descricao" id="descricao" cols="30" rows="5" class="form-control">{{$user->public}}</textarea>
+                    <textarea name="descricao" id="descricao" cols="30" rows="5" class="form-control">{{$user->description}}</textarea>
                 </div>
 
                 <div class="col-12 my-3">
-                    <label for="descricao">Visibilidade do perfil</label>
-                    <select name="public" id="descricao" cols="30" rows="5" class="form-control" value="{{$user->public}}">
-                        <option selected>Público</option>
-                        <option>Privado</option>
+                    <label for="visibilidade">Visibilidade do perfil</label>
+                    <select name="public" id="visibilidade" cols="30" rows="5" class="form-control" value="{{$user->public}}">
+                        <option selected value="true">Público</option>
+                        <option value="false">Privado</option>
                     </select>
                 </div>
             <!-- Dados do Usuário -->
