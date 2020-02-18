@@ -26,7 +26,7 @@ Route::get('/cadastro', function() {
 });
 
 Route::get('/classificacao', function() {
-    return view('user/classificacao');
+    return view('Achievements/show');
 });
 
 Route::get('/comunidadesEViagens', function() {
@@ -36,23 +36,16 @@ Route::get('/comunidadesEViagens', function() {
 
 Route::get('/criarGrupoDeViagem', function() {
     $footer = 'true';
-    return view('/trip/criarGrupoDeViagem', compact('footer'));
+    return view('/Groups and Trips/Trip/create', compact('footer'));
 });
 
-Route::get('/definirStatus', function() {
-    $footer = 'true';
-    return view('trip/definirStatus', compact('footer'));
-});
+Route::get('edit/{id}/viagem', ['as' => 'edit.trip', 'uses' => "Trip\TripController@edit"] );
 
-Route::get('/detalhesDeViagem', function() {
-    $footer = 'true';
-    return view('trip/detalhesDeViagem', compact('footer'));
-});
+Route::get('show/viagem/{id}', ['as' => 'show.trip', 'uses' => "Trip\TripController@show"]);
 
-Route::get('/editarPerfil', function() {
-    $footer = 'true';
-    return view('user/edit', compact('footer'));
-});
+Route::put('update/{id}/viagem', ['as' => 'update.trip', 'uses' => "Trip\TripController@update"]);
+
+Route::get('/profile/{id}/edit' , 'User\UserController@edit');
 
 Route::get('/grupoComunidade', function() {
     $footer = 'true';
