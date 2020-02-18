@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
-    protected $fillable = ['name','description','admin','visibility'];
+    protected $fillable = ['name','description','photo','admin','visibility'];
 
     public function user() {
         return $this->belongsToMany('App\User');
