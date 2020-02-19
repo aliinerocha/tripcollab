@@ -12,18 +12,42 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Fontaweasome -->
         <script src="https://kit.fontawesome.com/e369e6f381.js" crossorigin="anonymous"></script>
-        <!-- meu css -->
-    <link rel="stylesheet" href="{{url('css/styles.css')}}">
+        <!-- CSS -->
+        <link rel="stylesheet" href="{{url('css/styles.css')}}">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+        <!-- Icones -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- CSS -->
+        <link href="{{ URL::asset('css/cadastro-login.css')}}" rel="stylesheet">
+
 </head>
 <body>
 <!-- NAV SUPERIOR -->
 <nav class="navbar sticky-top">
-        <a class="navbar-brand" href="/home"><img src="{{url('img/logo branco.png')}}" alt="logo Trip Collab"> TRIPCOLLAB</a>
+        <a class="navbar-brand" href=""><img src="{{url('img/logo branco.png')}}" alt="logo Trip Collab"> TRIPCOLLAB</a>
         <div class=" d-flex justify-space-between align-items-center">
-            <a class="nav-link d-flex align-items-center p-1 mr-5" href="#">
-                <i class="material-icons mr-2">account_circle</i>
-                <span>SAIR</span>
-            </a>
+
+            @auth
+                <a class="nav-link d-flex align-items-center p-1 mr-5" href="#" onclick="document.querySelector('form.logout').submit();">
+                    <i class="material-icons mr-2">account_circle</i>
+                    <span>SAIR</span>
+                </a>
+
+                <form action="{{route('logout')}}" class="logout d-none" method="POST">
+                    @csrf
+                </form>
+
+                @elseif(Route::current()->getName() == 'login')
+
+                @else
+
+                <a class="nav-link d-flex align-items-center p-1 mr-5" href="{{route('login')}}" onclick="document.querySelector('form.logout').submit();">
+                    <i class="material-icons mr-2">account_circle</i>
+                    <span>LOGIN</span>
+                </a>
+
+            @endauth
             <div id="btnMenu">
                 <div class="bar1"></div>
                 <div class="bar2"></div>
@@ -74,7 +98,6 @@
         </li>
     </ul>
 </menu>
-
 
 @yield('conteudo')
 

@@ -88,8 +88,9 @@ class TripController extends Controller
 
         $trip = \App\Trip::find($id);
 
-        dd($trip->update($data));
+        $trip->update($data);
 
+        return redirect()->route('trip.edit', ['id' => $id]);
         /* *
         if(!is_null($categories))
         {
