@@ -54,16 +54,18 @@
                             <option @if($group->visibility == 0) selected @endif value="0">Não</option>
                         </select>
                     </div>
-                    <div class="d-flex justify-content-end mt-4">
-                        <a href="/comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
-                        <button type="submit" href="/comunidadesEViagens" class="btn botao mr-2">Salvar</button>
+                    <div class="row d-flex justify-content-end m-0">
+                            <div class="d-flex justify-content-end m-0">
+                                <a href="/comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                                <button type="submit" href="/comunidadesEViagens" class="btn botao mr-2">Salvar</button>
+                            </div>
+                </form>
+                        <form action="{{route('group.destroy',['id' => $group->id])}}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
                     </div>
-                </form>
-                <form action="{{route('group.destroy',['id' => $group->id])}}" method="POST">
-                    @csrf
-                    @method("DELETE")
-                    <button type="submit" class="btn btn-danger">Excluir</button>
-                </form>
             </div>
         </main>
 @endsection

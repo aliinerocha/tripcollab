@@ -34,6 +34,10 @@
             </div>
         </div>
 
+        <div class="d-flex mt-3">
+            <a href="{{route('group.edit',['id' => $group->id])}}" class="btn btn-info">Editar</a>
+        </div>
+
         <!-- VIAGENS REALIZADAS -->
 
         <div class="container mb-4">

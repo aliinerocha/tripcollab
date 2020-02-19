@@ -43,8 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::put('/profile/{id}' , 'User\UserController@update')->name('update');
 
-    // Inicio das Rotas das Comunidades
-    // Route::get('index/comunidadeEViagens', 'Group\GroupController@index', 'Trip\TripController@index')->name('index');
+    // Groups
 
     Route::get('group/create', 'Group\GroupController@create')->name('group.create');
 
@@ -58,9 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('/group/{id}', "Group\GroupController@destroy")->name('group.destroy');
 
-    // Fim das Rotas das Comunidades
-
-    //Inicio das Rotas dos Topicos
+    // Topics
 
     Route::get('topic/create', 'Group\TopicController@create')->name('topic.create');
 
@@ -74,7 +71,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('/topic/{id}', "Group\TopicController@destroy")->name('topic.destroy');
 
-    //Fim das Rotas dos Topicos
 });
 
 /*
