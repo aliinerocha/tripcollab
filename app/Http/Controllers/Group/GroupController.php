@@ -131,6 +131,6 @@ class GroupController extends Controller
         $group = $this->group->find($id);
         $group->delete();
 
-        return redirect()->route('/home');
+        return redirect()->route('/profile');
     }
 }

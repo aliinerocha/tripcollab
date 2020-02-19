@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TripTableSeeder::class);
         $this->call(TopicTableSeeder::class);
         $this->call(TopicMessageTableSeeder::class);
+        $this->call(MessageTableSeeder::class);
         // $this->call(NotificationTableSeeder::class);
         // $this->call(ActivityLogTableSeeder::class);      
     }
