@@ -62,6 +62,7 @@
                                 <option @if($trip->visibility == 0) selected @endif value="0">Não</option>
                             </select>
                         </div>
+<<<<<<< HEAD
                         <div class="d-flex justify-content-end mt-4">
                             <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
                             <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
@@ -75,6 +76,19 @@
                         @method("DELETE")
                     </form>
                     <a class="mr-2" href="#" onclick="document.querySelector('form.destroy-trip').submit();">Excluir</a>
+=======
+                <div class="row d-flex justify-content-end m-0">
+                            <div class="d-flex justify-content-end">
+                                <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                                <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
+                            </div>
+                    </form>
+                    <form action="{{route('trip.destroy',['id' => $trip->id])}}" method="POST">
+                        @csrf
+                        @method("DELETE")
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+>>>>>>> 759f3bc8e877e66481178024bd8964f3c2280dd7
                 </div>
             </div>
         </main>

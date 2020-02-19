@@ -37,19 +37,20 @@
                     </div>
                 @enderror
             </div>
+            <div class="row d-flex justify-content-end m-0">
+                    <div class="form-group d-flex justify-content-end">
+                        <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                        <button type="submit" href="comunidadesEViagens" class="btn botao btn-primary float-right border-0">Salvar</button>
+                    </div>
+                    
 
-            <div class="form-group d-flex justify-content-end mt-4">
-                <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
-                <button type="submit" href="comunidadesEViagens" class="btn botao btn-primary float-right border-0">Salvar</button>
+                </form>
+                <form action="{{route('topic.destroy',['id' => $topic->id])}}" method="POST">
+                    @csrf
+                    @method("DELETE")
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
             </div>
-            
-
-        </form>
-        <form action="{{route('topic.destroy',['id' => $topic->id])}}" method="POST">
-            @csrf
-            @method("DELETE")
-            <button type="submit" class="btn btn-danger">Excluir</button>
-        </form>
     </div>
 
       
