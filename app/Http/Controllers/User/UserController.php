@@ -12,7 +12,7 @@ class UserController extends Controller
     {
         $user = User::find($user);
         $footer = 'true';
-        return view('User\edit', compact('footer', 'user'));
+        return view('User/edit', compact('footer', 'user'));
     }
 
     public function update(Request $request, $id){
@@ -30,6 +30,6 @@ class UserController extends Controller
         $user->public = $data['public'];
         $user->save();
 
-        return redirect()->route('/profile');
+        dd($user->save());
     }
 }

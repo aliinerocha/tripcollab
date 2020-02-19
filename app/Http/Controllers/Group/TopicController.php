@@ -20,7 +20,7 @@ class TopicController extends Controller
 
     public function index($topic)
     {
-       
+
     }
 
     /**
@@ -56,10 +56,10 @@ class TopicController extends Controller
     public function show(Topic $topic)
     {
         $topics = auth()->user()->topic;
-        $topic = $topic->topics()->paginate(5);        
+        $topic = $topic->topicMessages()->paginate(5);
         $footer = 'true';
         return view('Groups and Trips/Group/Topics/show', compact('topics','footer'));
-  
+
     }
 
     /**
@@ -68,7 +68,7 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-   
+
     public function edit($id)
     {
         $topic = $this->topic->findOrFail($id);

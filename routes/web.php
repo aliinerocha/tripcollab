@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/profile/{id}/edit' , 'User\UserController@edit')->name('user.edit');
 
-    Route::put('/profile/{id}' , 'User\UserController@update')->name('update');
+    Route::put('/profile/{id}' , 'User\UserController@update')->name('user.update');
 
     // Groups
 

@@ -7,7 +7,7 @@
 @section('conteudo')
     <!-- BANNER -->
     <main class="mb-3">
-        <img src="{{url('.\img\ilhas_card.jpg')}}" class="img-fluid banner-img" alt="banner">
+        <img src="{{url('img/ilhas_card.jpg')}}" class="img-fluid banner-img" alt="banner">
         </div>
     </main>
 

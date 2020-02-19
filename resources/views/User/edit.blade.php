@@ -8,7 +8,7 @@
 <!-- Formulário -->
 <div class="container-fluid p-0">
     <!-- Formulário de Cadastro do Usuário -->
-    <form method="POST" action="{{route('update', ['id' => $user->id])}}">
+    <form method="POST" action="{{route('user.update', ['id' => $user->id])}}">
         @csrf
         @method('PUT')
         <section class="usuario bg-light mb-2 px-3 py-4">
