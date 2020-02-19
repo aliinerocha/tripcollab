@@ -12,7 +12,7 @@ class UserController extends Controller
     {
         $user = User::find($user);
         $footer = 'true';
-        return view('User\edit', compact('footer'), compact('user'));
+        return view('User/edit', compact('footer'), compact('user'));
     }
 
     public function update(Request $request, $id){

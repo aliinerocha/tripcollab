@@ -56,7 +56,7 @@ class TopicController extends Controller
     public function show(Topic $topic)
     {
         $topics = auth()->user()->topic;
-        $topic = $topic->topics()->paginate(5);        
+        $topic = $topic->topicMessages()->paginate(5);        
         $footer = 'true';
         return view('Groups and Trips/Group/Topics/show', compact('topics','footer'));
   
