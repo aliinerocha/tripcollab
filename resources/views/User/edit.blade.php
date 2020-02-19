@@ -1,4 +1,5 @@
 @extends('layouts.template', ['pagina' => 'perfil'])
+
 @section('titulo')
     Perfil
 @endsection

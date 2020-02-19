@@ -12,11 +12,11 @@ class UserController extends Controller
     {
         $user = User::find($user);
         $footer = 'true';
-        return view('User\edit', compact('footer'), compact('user'));
+        return view('User\edit', compact('footer', 'user'));
     }
 
     public function update(Request $request, $id){
-        
+
         $data = $request->all();
 
         $user = User::find($id);

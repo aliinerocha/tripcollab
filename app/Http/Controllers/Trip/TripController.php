@@ -45,7 +45,6 @@ class TripController extends Controller
     {
         $data = $request->all();
         $store = $this->trip->create($data);
-
     }
 
     /**

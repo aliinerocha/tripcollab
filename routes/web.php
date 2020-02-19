@@ -22,7 +22,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('trip/{id}', "Trip\TripController@show")->name('trip.show');
 
-    Route::get('trip/create', "Trip\TripController@create")->name('trip.create');
+    Route::get('trips/create', "Trip\TripController@create")->name('trip.create');
 
     Route::post('trip/store', "Trip\TripController@store")->name('trip.store');
 

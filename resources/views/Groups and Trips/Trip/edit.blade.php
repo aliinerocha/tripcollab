@@ -67,11 +67,15 @@
                             <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>
                 </form>
-                <form action="{{route('trip.destroy',['id' => $trip->id])}}" method="POST">
-                    @csrf
-                    @method("DELETE")
-                    <button type="submit" class="btn btn-danger">Excluir</button>
-                </form>
+            </div>
+            <div class="row">
+                <div class="col-10 offset-1 d-flex justify-content-end">
+                    <form action="{{route('trip.destroy',['id' => $trip->id])}}" class="destroy-trip col-10 offset-1 justify-content-end w-100" method="POST">
+                        @csrf
+                        @method("DELETE")
+                    </form>
+                    <a class="mr-2" href="#" onclick="document.querySelector('form.destroy-trip').submit();">Excluir</a>
+                </div>
             </div>
         </main>
 @endsection
