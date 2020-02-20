@@ -16,45 +16,63 @@ Route::get('/', function() {
     return view('landing', compact('footer'));
 });
 
-Route::get('/home', function() {
-    $footer = 'false';
-    return view('home', compact('footer'));
+Route::group(['middleware' => ['auth']], function () {
+
+    // Trips
+
+    Route::get('trip/{id}', "Trip\TripController@show")->name('trip.show');
+
+    Route::get('trips/create', "Trip\TripController@create")->name('trip.create');
+
+    Route::post('trip/store', "Trip\TripController@store")->name('trip.store');
+
+    Route::get('trip/{id}/edit', "Trip\TripController@edit")->name('trip.edit');
+
+    Route::put('trip/{id}', "Trip\TripController@update")->name('trip.update');
+
+    Route::delete('/trip/{id}', "Trip\TripController@destroy")->name('trip.destroy');
+
+    // User
+
+    Route::get ('/home/{id}', 'User\UserController@index')->name('user.index');
+
+    Route::get('/profile/{id}/edit' , 'User\UserController@edit')->name('user.edit');
+
+    Route::put('/profile/{id}' , 'User\UserController@update')->name('user.update');
+
+    // Groups
+
+    Route::get('group/create', 'Group\GroupController@create')->name('group.create');
+
+    Route::post('group/store', 'Group\GroupController@store')->name('group.store');
+
+    Route::get('group/{id}/edit', 'Group\GroupController@edit')->name('group.edit');;
+
+    Route::get('group/{id}', 'Group\GroupController@show')->name('group.show');;
+
+    Route::put('group/{id}', 'Group\GroupController@update')->name('group.update');
+
+    Route::delete('/group/{id}', "Group\GroupController@destroy")->name('group.destroy');
+
+    // Topics
+
+    Route::get('topic/create', 'Group\TopicController@create')->name('topic.create');
+
+    Route::post('topic/store', 'Group\TopicController@store')->name('topic.store');
+
+    Route::get('topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
+
+    Route::put('topic/{id}/update', 'Group\TopicController@update')->name('topic.update');
+
+    Route::get('topic/{id}/show', 'Group\TopicController@show')->name('topic.show');;
+
+    Route::delete('/topic/{id}', "Group\TopicController@destroy")->name('topic.destroy');
+
 });
 
-Route::get('/cadastro', function() {
-    return view('user/cadastro');
-});
-
+/*
 Route::get('/classificacao', function() {
     return view('Achievements/show');
-});
-
-Route::get('/comunidadesEViagens', function() {
-    $footer = 'true';
-    return view('Groups and Trips/index', compact('footer'));
-});
-
-Route::get('/criarGrupoDeViagem', function() {
-    $footer = 'true';
-    return view('/Groups and Trips/Trip/create', compact('footer'));
-});
-
-Route::get('trip/{id}/edit', "Trip\TripController@edit")->name('trip.edit');
-
-Route::get('trip/{id}', "Trip\TripController@show")->name('trip.show');
-
-Route::put('trip/{id}', "Trip\TripController@update")->name('trip.update');
-
-Route::get('/trip/create', "Trip\TripController@create")->name('trip.create');
-
-Route::delete('/trip/{id}', "Trip\TripController@destroy")->name('trip.destroy');
-
-Route::get('/profile/{id}/edit' , "User\UserController@edit")->name('user.edit');
-
-
-Route::get('/grupoComunidade', function() {
-    $footer = 'true';
-    return view('/group/grupoComunidade', compact('footer'));
 });
 
 Route::get('/linhaDoTempo', function() {
@@ -62,18 +80,9 @@ Route::get('/linhaDoTempo', function() {
     return view('user/linhaDoTempo', compact('footer'));
 });
 
-Route::get('/login', function() {
-    return view('user/login');
-});
-
 Route::get('/mensagens', function() {
     $footer = 'true';
-    return view('/user/messages/mensagens', compact('footer'));
-});
-
-Route::get('/menu', function() {
-    $footer = 'false';
-    return view('menu', compact('footer'));
+    return view('/user/messages/create', compact('footer'));
 });
 
 Route::get('/notificacoes', function() {
@@ -84,28 +93,9 @@ Route::get('/novaMensagem', function() {
     return view('user/messages/create');
 });
 
-Route::get('/perfil', function() {
-    $footer = 'true';
-    return view('user/perfil', compact('footer'));
-});
-
-Route::get('/topico', function() {
-    return view('group/topico');
-});
-
 Route::get('/verMensagem', function() {
     return view('user/messages/verMensagem');
 });
-
-Route::get('/criarComunidade', function () {
-    $footer = 'true';
-    return view('/Groups and Trips/group/create', compact('footer'));
-});
-Route::get('/editarComunidade', function () {
-    $footer = 'true';
-    return view('/Groups and Trips/group/edit', compact('footer'));
-});
+*/
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

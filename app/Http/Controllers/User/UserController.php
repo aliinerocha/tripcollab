@@ -2,46 +2,64 @@
 
 namespace App\Http\Controllers\User;
 
+Use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Requests;
-use App\Http\Requests\UserRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-    public function edit($id)
-    {
+    public function index($id){
+
+        $user = User::find($id);
+
         $footer = 'true';
-        $collection = App\User::find($id)->get();
-        $user = $collection[0];
-        return view('user/edit', compact('footer'), compact('user'));
+        return view('User/show', compact('footer', 'user'));
     }
 
-    public function update(UserRequest $request, $id)
-    {
+    public function edit($id){
+
+        $user = User::find($id);
+
+        $footer = 'true';
+        return view('User/edit', compact('footer', 'user'));
+    }
+
+    public function update(Request $request, $id){
+
         $data = $request->all();
 
-        $user = App\User::find($id);
+        $user = User::find($id);
 
-        if($request->hasFile('photo')) {
-            if(Storage::disk('public')->exists($user->photo)) {
-                Storage::disk('public')->delete($user->photo);
-            }
+        $user->name = $data['name'];
+        $user->city = $data['city'];
+        $user->state = $data['state'];
+        $user->country = $data['country'];
+        $user->birthday = $data['birthday'];
+        $user->description = $data['description'];
+        $user->public = $data['public'];
 
-            $data['photo'] = $this->imageUpload($request->file('photo')[0]);
+        if ($request->hasfile('background_photo')){
+            $name = $user->id.'.'.Str::kebab($user->name).'.cover';
+            $extension = $request->background_photo->extension();
+            $nameFile = "{$name}.{$extension}";
+            $data['background_photo'] = $nameFile;
+
+            $upload = $request->background_photo->storeAs('usersBackgroundPhotos', $nameFile);
         }
 
-        if($request->hasFile('background_photo')) {
-            if(Storage::disk('public')->exists($user->background_photo)) {
-                Storage::disk('public')->delete($user->background_photo);
-            }
+        if ($request->hasfile('photo')){
+            $name = $user->id.'.'.Str::kebab($user->name).'.profile';
+            $extension = $request->photo->extension();
+            $nameFile = "{$name}.{$extension}";
+            $data['photo'] = $nameFile;
 
-            $data['background_photo'] = $this->imageUpload($request->file('background_photo')[0]);
+            $upload = $request->photo->storeAs('userPhotos', $nameFile);
         }
 
-        $user->update($data);
+        $update = $user->update($data);
 
-        flash('Perfil atualizado com sucesso')->success();
-
-        return redirect()->route('home');
+        return redirect()->route('user.index', $id);
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.template', ['pagina' => 'linhaDoTempo'])
 
 @section('titulo')
-    Criar nova Comunidade
+    Timeline
 @endsection
 
 @section('conteudo')
