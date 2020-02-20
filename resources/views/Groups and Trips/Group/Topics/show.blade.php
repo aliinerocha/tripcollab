@@ -1,14 +1,14 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
-    Mostrar Topics
+    Criar nova Comunidade
 @endsection
 
 @section('conteudo')
 
     <!-- BANNER -->
     <main class="mb-3">
-        <img src="{{url('.img\ilhas_card.jpg')}}" class="img-fluid banner-img" alt="banner">
+        <img src="img\ilhas_card.jpg" class="img-fluid banner-img" alt="banner">
         </div>
     </main>
 
@@ -22,7 +22,7 @@
 
                 <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
-                        <img class="foto-perfil rounded-circle display-column" src="{{url('./img/perfil.1.jpg')}}" alt="foto de perfil do membro"> 
+                        <img class="foto-perfil rounded-circle display-column" src="./img/perfil.1.jpg" alt="foto de perfil do membro"> 
                         <div class="small">Angelina</div>
                     </div>
 
@@ -74,7 +74,7 @@
     
                  <div class="">
                     
-                        <img class="foto-perfil rounded-circle display-column mr-2" src="{{url('./img/perfil.4.jpg')}}" alt="foto de perfil do membro"> 
+                        <img class="foto-perfil rounded-circle display-column mr-2" src="./img/perfil.4.jpg" alt="foto de perfil do membro"> 
                         <b class="mb-0 pb-0">Fernando</b> Oi Angelina, as praias que mais gostei foram as brasileiras
                 </div>
 
@@ -129,7 +129,7 @@
         
                      <div class="">
                         
-                            <img class="foto-perfil rounded-circle display-column mr-2" src="{{url('./img/perfil.3.jpg')}}" alt="foto de perfil do membro"> 
+                            <img class="foto-perfil rounded-circle display-column mr-2" src="./img/perfil.3.jpg" alt="foto de perfil do membro"> 
                             <b class="mb-0 pb-0">Roberta</b> Polinésia francesa
                     </div>
     

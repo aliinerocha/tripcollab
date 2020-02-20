@@ -9,7 +9,5 @@ $factory->define(Message::class, function (Faker $faker) {
     return [
         'message' => $faker->sentence,
         'read' => $faker->boolean(50),
-        'user1_id' => factory('App\User')->create()->id,
-        'user2_id' => factory('App\User')->create()->id,
     ];
 });

@@ -12,41 +12,18 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Fontaweasome -->
         <script src="https://kit.fontawesome.com/e369e6f381.js" crossorigin="anonymous"></script>
-        <!-- Material Design Bootstrap -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
-        <!-- Icones -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- CSS -->
-        <link href="{{ URL::asset('css/cadastro-login.css')}}" rel="stylesheet">
-        <!-- CSS -->
-        <link rel="stylesheet" href="{{url('css/styles.css')}}">
+        <!-- meu css -->
+    <link rel="stylesheet" href="{{url('css/styles.css')}}">
 </head>
 <body>
 <!-- NAV SUPERIOR -->
 <nav class="navbar sticky-top">
-        <a class="navbar-brand" href=""><img src="{{url('img/logo branco.png')}}" alt="logo Trip Collab"> TRIPCOLLAB</a>
+        <a class="navbar-brand" href="/home"><img src="{{url('img/logo branco.png')}}" alt="logo Trip Collab"> TRIPCOLLAB</a>
         <div class=" d-flex justify-space-between align-items-center">
-
-            @auth
-                <a class="nav-link d-flex align-items-center p-1 mr-5" href="#" onclick="document.querySelector('form.logout').submit();">
-                    <i class="material-icons mr-2">account_circle</i>
-                    <span>SAIR</span>
-                </a>
-
-                <form action="{{route('logout')}}" class="logout d-none" method="POST">
-                    @csrf
-                </form>
-
-                @elseif(Route::current()->getName() == 'login')
-
-                @else
-
-                <a class="nav-link d-flex align-items-center p-1 mr-5" href="{{route('login')}}" onclick="document.querySelector('form.logout').submit();">
-                    <i class="material-icons mr-2">account_circle</i>
-                    <span>LOGIN</span>
-                </a>
-
-            @endauth
+            <a class="nav-link d-flex align-items-center p-1 mr-5" href="#">
+                <i class="material-icons mr-2">account_circle</i>
+                <span>SAIR</span>
+            </a>
             <div id="btnMenu">
                 <div class="bar1"></div>
                 <div class="bar2"></div>
@@ -98,9 +75,10 @@
     </ul>
 </menu>
 
+
 @yield('conteudo')
 
-@if($footer ?? '' === 'true')
+@if($footer === 'true')
 <div class="nav-inferior nav fixed-bottom d-flex justify-content-around border-top" id="navInferior">
     <a href="linhaDoTempo" class="fas fa-atlas fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }}"></a>
     <a href="mensagens" class="far fa-comments fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'mensagens' ? 'ativo' : '' }}"></a>

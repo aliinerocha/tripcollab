@@ -7,22 +7,14 @@ use Illuminate\Http\Request;
 
 class TopicMessageController extends Controller
 {
-
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct(Topic $msg)
-    {
-        $this->msg = $msg;
-    }
-
-
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -32,7 +24,7 @@ class TopicMessageController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**

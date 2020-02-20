@@ -18,7 +18,7 @@
         <!-- CARD COM OS DETALHES DA VIAGEM SELECIONADA -->
         <main class="bg-light pt-4 pb-4">
             <div class="row">
-                <form action="{{route('trip.store')}}" method="POST" class="col-10 offset-1">
+                <form action="{{route('trip.store', ['id' => $trip->id])}}" method="POST" class="col-10 offset-1">
                 @csrf
                         <img src="{{url('./img/add.png')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                         <div class="form-group mt-4">
@@ -51,22 +51,19 @@
                         -->
                         <div class="form-group mt-4">
                             <label for="investimentoPrevisto">Investimento previsto:</label>
-                            <input name="foreseen_budget" type="text" class="form-control mb-2" id="investimentoPrevisto" placeholder="Insira o investimento previsto" value="">
+                            <input name="foreseen_budget" type="text" class="form-control mb-2" id="investimentoPrevisto" placeholder="Insira o investimento previsto" value="{{$trip->foreseen_budget}}">
                         </div>
                         <div class="form-group mt-4">
                             <label for="visibilidadeDoGrupo">Visivel ao público?</label>
                             <select name="visibility" class="form-control" id="visibilidadeDoGrupo">
-                                <option disabled value="padrao">Selecione o nível de visibilidade</option>
-                                <option value="1">Sim</option>
-                                <option value="0">Não</option>
+                                <option disabled @if($trip->visibility == null) selected @endif value="padrao">Selecione o nível de visibilidade</option>
+                                <option @if($trip->visibility == 1) selected @endif value="1">Sim</option>
+                                <option @if($trip->visibility == 0) selected @endif value="0">Não</option>
                             </select>
                         </div>
-                        <input type="hidden" name="admin" value="{{auth()->user()->id}}">
-                        <input type="hidden" name="description" value="Ahh">
                         <div class="d-flex justify-content-end mt-4">
-                        <input type="hidden" name="photo" value="jpeg">
-                            <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
-                            <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
+                        <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                        <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>
                 </form>
             </div>

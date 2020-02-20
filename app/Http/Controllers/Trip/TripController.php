@@ -31,8 +31,7 @@ class TripController extends Controller
      */
     public function create()
     {
-        $footer = 'true';
-        return view('/Groups and Trips/Trip/create', compact('footer'));
+        return view('/Groups and Trips/Trip/create');
     }
 
     /**
@@ -43,8 +42,7 @@ class TripController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $store = $this->trip->create($data);
+        //
     }
 
     /**
@@ -87,9 +85,8 @@ class TripController extends Controller
 
         $trip = \App\Trip::find($id);
 
-        $trip->update($data);
+        dd($trip->update($data));
 
-        return redirect()->route('trip.edit', ['id' => $id]);
         /* *
         if(!is_null($categories))
         {

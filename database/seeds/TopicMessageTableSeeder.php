@@ -15,16 +15,15 @@ class TopicMessageTableSeeder extends Seeder
         DB::statement('SET foreign_key_checks = 0');
         DB::table('topic_messages')->truncate();
 
-        factory(\App\TopicMessage::class, 5)->create();
-        // ->each(function($topicMessage){
+        factory(\App\TopicMessage::class, 5)->create()->each(function($topicMessage){
 
-        //     // Seed para a relação com topic
-        //     $topicMessage->topic()->save()(factory(\App\Topic::class)->make());
+            // Seed para a relação com topic
+            $topicMessage->topic()->save()(factory(\App\Topic::class)->make());
 
-        //     // Seed para a relação com user
-        //     $topicMessage->user()->save()(factory(\App\User::class)->make());
+            // Seed para a relação com user
+            $topicMessage->user()->save()(factory(\App\User::class)->make());
 
-        // });
+        });
 
         DB::statement('SET foreign_key_checks = 1');
     }

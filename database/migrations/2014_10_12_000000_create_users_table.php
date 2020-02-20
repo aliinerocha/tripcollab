@@ -25,7 +25,8 @@ class CreateUsersTable extends Migration
             $table->date('birthday')->nullable();
             $table->string('photo')->nullable();
             $table->string('background_photo')->nullable();
-            $table->text('description')->nullable();
+            $table->string('description')->nullable();
+            // Verificar como deixar "TRUE" como padrão de visibilidade
             $table->boolean('public')->nullable();
             $table->rememberToken();
             $table->timestamps();

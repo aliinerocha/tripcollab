@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Group;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Topic;
 use Illuminate\Http\Request;
 
@@ -18,9 +17,9 @@ class TopicController extends Controller
         $this->topic = $topic;
     }
 
-    public function index($topic)
+    public function index($group)
     {
-
+       
     }
 
     /**
@@ -30,9 +29,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        $topics = \App\Topic::all(['id', 'name']);
-        $footer = 'true';
-        return view('Groups and Trips/Group/Topics/create', compact('topics','footer'));
+        //
     }
 
     /**
@@ -43,8 +40,7 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $store = $this->topic->create($data);
+        //
     }
 
     /**
@@ -55,11 +51,7 @@ class TopicController extends Controller
      */
     public function show(Topic $topic)
     {
-        $topics = auth()->user()->topic;
-        $topic = $topic->topicMessages()->paginate(5);
-        $footer = 'true';
-        return view('Groups and Trips/Group/Topics/show', compact('topics','footer'));
-
+        //
     }
 
     /**
@@ -68,12 +60,9 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-
-    public function edit($id)
+    public function edit(Topic $topic)
     {
-        $topic = $this->topic->findOrFail($id);
-        $footer = 'true';
-        return view('Groups and Trips/Group/Topics/edit', compact('footer', 'topic'));
+        //
     }
 
     /**
@@ -83,13 +72,9 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Topic $topic)
     {
-        $data = $request->all();
-
-        $topic = \App\Topic::find($id);
-
-        dd($topic->update($data));
+        //
     }
 
     /**
@@ -98,11 +83,8 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Topic $topic)
     {
-        $topic = $this->topic->find($id);
-        $topic->delete();
-
-        return redirect()->route('/profile');
+        //
     }
 }

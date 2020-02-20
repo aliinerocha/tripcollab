@@ -1,11 +1,29 @@
-@extends('layouts.template')
+<html lang=""pt-br>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+    <!-- Icones -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Css -->
+    <link href="{{ URL::asset('css/cadastro-login.css') }}" rel="stylesheet">
+    <title>Cadastro</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand" href="#"><img src="./img/logo.png" alt="logo TripCollab"> TRIPCOLLAB</a>
+        <a class="btn iconeNav" href="aba_home.html"><i class="icone material-icons md-light">menu</i></a>
 
-@section('titulo')
-    TripCollab
-@endsection
-
-@section('conteudo')
-   <div class="container ">
+    </nav>
+    <div class="container ">
         <section class="mt-4 mb-4">
             <h3><img class="ml-3 mr-3" src="./img/Vector.png" alt="viagem">Suas viagens começam aqui! </h3>
         </section>
@@ -62,9 +80,29 @@
                 <button type="submit" class="btn-cadastre btn btn-lg p-2 m-2 shadow-sm rounded">{{ __('Register') }}</button>
             </div>
 
-                <h5>Já tem cadastro? Faça seu <a href="{{route('login')}}">login</a> agora</h5>
+                <h5>Já tem cadastro? Faça seu <a href="/user/login">login</a> agora</h5>
 
             </form>
         </section>
     </div>
-@endsection
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
