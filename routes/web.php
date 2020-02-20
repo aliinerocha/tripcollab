@@ -34,10 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // User
 
-    Route::get ('/home', function() {
-        $footer = 'true';
-        return view ('User/show', compact('footer'));
-    });
+    Route::get ('/home/{id}', 'User\UserController@index')->name('user.index');
 
     Route::get('/profile/{id}/edit' , 'User\UserController@edit')->name('user.edit');
 

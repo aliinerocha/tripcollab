@@ -7,38 +7,37 @@
     <div class="container-fluid p-0">
         <!-- Foto da Capa -->
         <main class="col-xs-12 capa p-0">
-            <img src="./img/foto_capa.png">
+            <img src={{ asset("storage/usersBackgroundPhotos/$user->background_photo")}} alt="imagem de fundo escolhida pelo usuário">
         </main>
         <!-- Foto da Capa -->
 
         <section class="usuario bg-light mb-2 px-3 pb-4">
             <!-- Foto do Usuário -->
             <div class="col-xs-12 usuario-foto p-0">
-                <img src="./img/foto_usuario.png" class="rounded-circle" style="width:100px; height: 100px">
+                <img src={{ asset("storage/userPhotos/$user->photo")}} class="rounded-circle" style="width:100px; height: 100px">
             </div>
             <!-- Foto do Usuário -->
 
             <!-- Botões -->
             <div class="col-xs-12 usuario-botoes text-right pull-right py-3">
-                <a href="notificacoes"><i class="far fa-bell fa-lg"></i></a>
-                <a href="editarPerfil"><i class="far fa-edit fa-lg"></i></a>
+                {{-- <a href="notificacoes"><i class="far fa-bell fa-lg"></i></a> --}}
+            <a href="{{route('user.edit', ['id' => $user->id])}}"><i class="far fa-edit fa-lg"></i></a>
             </div>
             <!-- Botões -->
 
             <!-- Descrição do Usuário -->
-            <h5 class="nome ml-3 py-1 ">Nome do Usuário</h5>
+            <h5 class="nome ml-3 py-1 ">{{$user->name}}</h5>
 
             <div class="col-xs-12">
                 <div class="row usuario-local ml-3 pt-3">
                     <i class="fas fa-map-marker-alt fa-lg"></i>
-                    <h6 class="localizacao ml-2">São Paulo, SP, Brasil</h6>
+                    <h6 class="localizacao ml-2">{{$user->city}}, {{$user->state}}, {{$user->country}}</h6>
                 </div>
             </div>
 
             <div class="col-xs-12">
                 <div class="row usuario-descricao text-justify mx-3 pt-4 pb-2">
-                    Breve descrição do usuário para encontrar e ser encontrado por outros usuários da comunidade. Pode
-                    inserir dados como interesses pessoais, idiomas que fala etc.
+                    {{$user->description}}
                 </div>
             </div>
             <!-- Descrição do Usuário -->
@@ -67,13 +66,13 @@
             <!-- Lista de Amigos -->
             <h6 class="amigo ml-3">123 amigos</h6>
                 <div class="col-xs-12 amigo-foto ml-3 py-4">
-                    <img src="./img/perfil.1.jpg" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 1</h6>
+                    <img src="" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 1</h6>
                 </div>
                 <div class="col-xs-12 amigos-foto ml-3 py-4">
-                    <img src="./img/perfil.2.jpg" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 2</h6>
+                    <img src="" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 2</h6>
                 </div>
                 <div class="col-xs-12 amigos-foto ml-3 py-4">
-                    <img src="./img/perfil.3.jpg" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 3</h6>
+                    <img src="" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 3</h6>
                 </div>
         </section>
         <!-- Amigos -->

@@ -8,7 +8,7 @@
 <!-- Formulário -->
 <div class="container-fluid p-0">
     <!-- Formulário de Cadastro do Usuário -->
-    <form method="POST" action="{{route('user.update', ['id' => $user->id])}}">
+    <form method="POST" action="{{route('user.update', ['id' => $user->id])}}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <section class="usuario bg-light mb-2 px-3 py-4">
@@ -103,8 +103,8 @@
                 <div class="col-12 my-3">
                     <label for="visibilidade">Visibilidade do perfil</label>
                     <select name="public" class="form-control" cols="30" rows="5" id="visibilidade">
-                        <option @if($user->public == 1) selected @endif value="1">Público</option>
-                        <option @if($user->public == 0) selected @endif value="0">Privado</option>
+                        <option @if($user->public == 0) selected @endif value="1">Público</option>
+                        <option @if($user->public == 1) selected @endif value="0">Privado</option>
                     </select>
                 </div>
             <!-- Dados do Usuário -->
@@ -136,7 +136,7 @@
                     </div>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <button type="submit" class="btn btn-secondary mt-2" style="width: 100px">Enviar</button>
+                    <button type="submit" class="btn btn-secondary mt-2">Atualizar Perfil</button>
                 </div>
             </div>
         </section>
