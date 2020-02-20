@@ -18,12 +18,12 @@
         <!-- CARD COM OS DETALHES DA VIAGEM SELECIONADA -->
         <main class="bg-light pt-4 pb-4">
             <div class="row">
-                <form action="{{route('trip.update', ['id' => $trip->id])}}" method="POST" class="col-10 offset-1">
+                <form action="{{route('trip.update', ['id' => $trip->id])}}" method="POST" class="col-10 offset-1" enctype="multipart/form-data">
                 @csrf
                 @method("PUT")
-                        <img src="{{url('./img/add.png')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
+                        <img src="@if($trip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $trip->photo)}} @endif" class="d-block img-fluid" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                         <div class="form-group mt-4">
-                            <label for="tituloDaViagem">Titulo da viagem:</label>
+                            <label for="tituloDaViagem">Título da viagem:</label>
                             <input name="name" type="text" class="form-control" id="tituloDaViagem" placeholder="Insira titulo da viagem" value="{{$trip->name}}">
                         </div>
                         <div class="form-group mt-4">
@@ -34,22 +34,39 @@
                         </div>
 
                         <div class="form-group mt-4">
-                            <label for="palavrasChave">Palavras-chave:</label>
-                            <select mutiple class="form-control" id="palavrasChave">
-                                <option disabled selected>Selecione as palavras-chave deste grupo</option>
-                                <option>Palavra 1</option>
-                                <option>Palavra 2</option>
-                                <option>Palavra 3</option>
-                                <option>Palavra 4</option>
-                                <option>Palavra 5</option>
-                            </select>
+                            <label for="">Descrição da viagem:</label>
+                            <textarea name="description" type="text" class="form-control" id="" placeholder="Insira descrição da viagem">{{$trip->description}}</textarea>
                         </div>
-                        <!--
+
+                        <label for="">Foto ilustrativa</label>
+                        <input type="file" class="form-control-file" name="photo">
+
+                        <div class="form-group mt-4">
+                            <label for="palavrasChave">Palavras-chave:</label>
+                            @foreach ($interests as $interest)
+                            <div class="form-check @error('interests') is-invalid @enderror"  id="palavrasChave">
+                                    <input class="form-check-input" name="interests[]" type="checkbox" value="{{$interest->id}}" id="{{$interest->id}}" @if($selectedInterests->contains('interest_id', $interest->id)) checked @endif >
+                                    <label class="form-check-label" for="{{$interest->id}}">
+                                        {{$interest->name}}
+                                    </label>
+                                @error('interests')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                            @endforeach
+                        </div>
+
                         <div class="form-group mt-4">
                             <label for="vincularComunidade">Vincular à comunidade:</label>
-                            <input type="text" class="form-control mb-2" id="vincularComunidade" placeholder="Insira o nome da comunidade">
+                            <select name="group_id" type="text" class="form-control mb-2" id="vincularComunidade" placeholder="Insira o nome da comunidade">
+                            @foreach($groups as $group)
+                                <option value="{{$group->id}}" @if($trip->group_id == $group->id ) selected @endif>{{$group->name}}</option>
+                            @endforeach
+                            </select>
                         </div>
-                        -->
+
                         <div class="form-group mt-4">
                             <label for="investimentoPrevisto">Investimento previsto:</label>
                             <input name="foreseen_budget" type="text" class="form-control mb-2" id="investimentoPrevisto" placeholder="Insira o investimento previsto" value="{{$trip->foreseen_budget}}">
@@ -62,33 +79,17 @@
                                 <option @if($trip->visibility == 0) selected @endif value="0">Não</option>
                             </select>
                         </div>
-<<<<<<< HEAD
-                        <div class="d-flex justify-content-end mt-4">
-                            <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
-                            <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
-                        </div>
-                </form>
-            </div>
-            <div class="row">
-                <div class="col-10 offset-1 d-flex justify-content-end">
-                    <form action="{{route('trip.destroy',['id' => $trip->id])}}" class="destroy-trip col-10 offset-1 justify-content-end w-100" method="POST">
-                        @csrf
-                        @method("DELETE")
-                    </form>
-                    <a class="mr-2" href="#" onclick="document.querySelector('form.destroy-trip').submit();">Excluir</a>
-=======
-                <div class="row d-flex justify-content-end m-0">
+                        <div class="row d-flex justify-content-end m-0">
                             <div class="d-flex justify-content-end">
                                 <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
                                 <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
-                            </div>
+                        </div>
                     </form>
                     <form action="{{route('trip.destroy',['id' => $trip->id])}}" method="POST">
                         @csrf
                         @method("DELETE")
                         <button type="submit" class="btn btn-danger">Excluir</button>
                     </form>
->>>>>>> 759f3bc8e877e66481178024bd8964f3c2280dd7
                 </div>
             </div>
         </main>

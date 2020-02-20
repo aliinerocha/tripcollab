@@ -12,9 +12,7 @@ class Interest extends Model
 
     public function group() {
         return $this->belongsToMany('App\Group');
-    } 
-
-    
+    }
 
     public function users() {
         return $this->belongsToMany('App\User');

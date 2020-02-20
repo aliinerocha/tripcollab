@@ -21,11 +21,11 @@ class CreateTripsTable extends Migration
             $table->date('departure');
             $table->date('return_date');
             $table->unsignedBigInteger('admin');
-            // $table->unsignedBigInteger('group_id'); // Adicionado posteriormente
+            $table->unsignedBigInteger('group_id')->nullable(); // Adicionado posteriormente
             $table->boolean('visibility'); // Adicionado posteriormente
             $table->bigInteger('foreseen_budget'); // Adicionado posteriormente
             $table->foreign('admin')->references('id')->on('users');
-            // $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('group_id')->references('id')->on('groups');
             $table->timestamps();
         });
     }

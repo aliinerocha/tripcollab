@@ -29,6 +29,7 @@
                     <div class="col-11 p-0">
                     <h5 class="my-4 text-center">{{$trip->name}}</h5>
                     </div>
+                    <p class="mb-1">{{$trip->description}}</p>
                     <p class="titulo_campo mb-2">Data:</p>
                         <p class="mb-1">Partida: {{$trip->departure}}</p>
                         <p class="mb-4">Retorno: {{$trip->return_date}}</p>

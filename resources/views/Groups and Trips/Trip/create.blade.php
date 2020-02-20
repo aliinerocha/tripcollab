@@ -18,7 +18,7 @@
         <!-- CARD COM OS DETALHES DA VIAGEM SELECIONADA -->
         <main class="bg-light pt-4 pb-4">
             <div class="row">
-                <form action="{{route('trip.store')}}" method="POST" class="col-10 offset-1">
+                <form action="{{route('trip.store')}}" method="POST" class="col-10 offset-1" enctype="multipart/form-data">
                 @csrf
                         <img src="{{url('./img/add.png')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                         <div class="form-group mt-4">
@@ -33,16 +33,13 @@
                         </div>
 
                         <div class="form-group mt-4">
-                            <label for="palavrasChave">Palavras-chave:</label>
-                            <select mutiple class="form-control" id="palavrasChave">
-                                <option disabled selected>Selecione as palavras-chave deste grupo</option>
-                                <option>Palavra 1</option>
-                                <option>Palavra 2</option>
-                                <option>Palavra 3</option>
-                                <option>Palavra 4</option>
-                                <option>Palavra 5</option>
-                            </select>
+                            <label for="">Descrição da viagem:</label>
+                            <textarea name="description" type="text" class="form-control" id="" placeholder="Insira descrição da viagem"></textarea>
                         </div>
+
+                        <label for="">Foto ilustrativa</label>
+                        <input type="file" class="form-control-file" name="photo">
+
                         <!--
                         <div class="form-group mt-4">
                             <label for="vincularComunidade">Vincular à comunidade:</label>
@@ -62,9 +59,9 @@
                             </select>
                         </div>
                         <input type="hidden" name="admin" value="{{auth()->user()->id}}">
-                        <input type="hidden" name="description" value="Ahh">
+
                         <div class="d-flex justify-content-end mt-4">
-                        <input type="hidden" name="photo" value="jpeg">
+
                             <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
                             <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>

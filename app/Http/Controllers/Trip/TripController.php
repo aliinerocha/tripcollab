@@ -5,14 +5,20 @@ namespace App\Http\Controllers\Trip;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Trip;
+use App\Interest;
+use App\Group;
+use Illuminate\Support\Facades\DB;
+
 
 class TripController extends Controller
 {
     private $trip;
 
-    public function __construct(Trip $trip)
+    public function __construct(Trip $trip, Interest $interests, Group $groups)
     {
         $this->trip = $trip;
+        $this->interests = $interests;
+        $this->groups = $groups;
     }
     /**
      * Display a listing of the resource.
@@ -32,7 +38,7 @@ class TripController extends Controller
     public function create()
     {
         $footer = 'true';
-        return view('/Groups and Trips/Trip/create', compact('footer'));
+        return view('/Groups and Trips/Trip/create', compact('footer','interests'));
     }
 
     /**
@@ -44,7 +50,17 @@ class TripController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        if($request->hasFile('photo'))
+        {
+            $image = $request->file('photo');
+            $data['photo'] = $image->store('trips', 'public');
+        } else {
+            $data['photo'] = 'nophoto';
+        }
+
         $store = $this->trip->create($data);
+        return redirect()->route('trip.create');
     }
 
     /**
@@ -69,9 +85,13 @@ class TripController extends Controller
      */
     public function edit($id)
     {
+        $interests = $this->interests->all(['id', 'name']);
+        // $selectedInterests = $this->interests->trip()->where('trip_id', $id); // Não funcionou
         $trip = $this->trip->findOrFail($id);
+        $selectedInterests = DB::table('interest_trip')->where('trip_id', $id)->get();
+        $groups = $this->groups->all(['id','name']);
         $footer = 'true';
-        return view('/Groups and Trips/Trip/edit', compact('footer', 'trip'));
+        return view('/Groups and Trips/Trip/edit', compact('footer', 'trip', 'interests', 'selectedInterests', 'groups'));
     }
 
     /**
@@ -84,22 +104,22 @@ class TripController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
+        $interests = $request->get('interests', null);
+        $trip = $this->trip->find($id);
 
-        $trip = \App\Trip::find($id);
+        if($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $data['photo'] = $image->store('trips', 'public');
+        } else {
+            $data['photo'] = 'nophoto';
+        }
 
         $trip->update($data);
 
+        $trip->interest()->sync($interests);
+
         return redirect()->route('trip.edit', ['id' => $id]);
-        /* *
-        if(!is_null($categories))
-        {
-            $product->categories()->sync($categories);
-        }* /
-        /* *
-        if($request->hasFile('photos')) {
-            $images = $this->imageUpload($request->file('photos'), 'image');
-            $product->photos()->createMany($images);
-        }; */
+
     }
 
     /**

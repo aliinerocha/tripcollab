@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Trip extends Model
 {
 
-    protected $fillable = ['name','description','photo','departure','return_date','admin','visibility','foreseen_budget'];
+    protected $fillable = ['name','group_id','description','photo','departure','return_date','admin','visibility','foreseen_budget'];
 
     public function user() {
         return $this->belongsToMany('App\User');
