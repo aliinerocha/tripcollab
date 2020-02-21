@@ -18,12 +18,9 @@ class TopicController extends Controller
         $this->topic = $topic;
     }
 
-    public function index($topic)
+    public function index()
     {
-        $topics = auth()->user()->topic;
-        $topic = $topics->topics()->paginate(3);
-        $footer = 'true';
-        return view('Groups and Trips/Group/show', compact('footer', 'topic'));
+        //
     }
 
     /**
@@ -33,9 +30,8 @@ class TopicController extends Controller
      */
     public function create()
     {
-        $topics = \App\Topic::all(['id', 'name']);
         $footer = 'true';
-        return view('Groups and Trips/Group/Topics/create', compact('topics','footer'));
+        return view('Groups and Trips/Group/Topics/create', compact('footer'));
     }
 
     /**
@@ -48,6 +44,7 @@ class TopicController extends Controller
     {
         $data = $request->all();
         $store = $this->topic->create($data);
+        // falta armazenar group_id e user_id!!!
     }
 
     /**

@@ -352,3 +352,13 @@ body {
   color: #7C7C7C;
 }
 /* FIM DO CSS ABA PERFIL */
+
+/* CSS ABA TOPICOS - Mensagens */
+/* Only stick if you can fit */
+@media (min-height: 300px) {
+  .form-respostaMsg {
+    position: sticky;
+    bottom: 8vh;
+  }
+}
+/* FIM DO CSS ABA TOPICOS */

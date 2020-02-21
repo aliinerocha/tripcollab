@@ -1,7 +1,7 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
-    Mostrar Topics
+    Mostrar Fórum
 @endsection
 
 @section('conteudo')
@@ -66,7 +66,7 @@
     </div>
 
     <!-- RESPOSTA 1 -->
-
+    
     <section class="bg-light mt-2 mb-1 pb-1">
 
         <div class="col-md-8">
@@ -174,4 +174,26 @@
                 </div>
             </div>
         </section>
+<!-- Formulário de Respostas -->
+<section class="form-respostaMsg bg-light mt-2 mb-1 pb-1 pt-2 fixed-bottom">
+    <div class="col-sm-12">
+        <span class="mx-2">Respostas</span>
+        <form action="{{route('topicMessage.store')}}" method="POST">
+        @csrf
+            <div class="form-row">
+                <div class="col-sm-10 pl-2 m-0 d-flex align-items-center">
+                    <label class="m-0" for="exampleFormControlTextarea"></label>
+                    <input textarea class="form-control mr-2 @error('message') is-invalid @enderror" name="message" type="text" value="{{old('message')}}" id="exampleFormControlTextarea" rows="1">0</textarea>
+                        @error('message')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
+                </div>
+                <div class="col-sm-2 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary mb-2">Responder</button>
+                </div>
+        </form>
+    </div>
+</section>
 @endsection

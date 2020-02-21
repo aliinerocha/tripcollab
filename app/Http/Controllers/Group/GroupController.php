@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Group;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Group;
+use App\Topic;
 use App\Interest;
 
 class GroupController extends Controller

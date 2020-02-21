@@ -75,6 +75,15 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
 
+    // Topic Messages
+    
+    Route::post('topicMessage/store', 'Group\TopicMessageController@store')->name('topicMessage.store');
+
+    Route::get('topicMessage/{id}/edit', 'Group\TopicMessageController@edit')->name('topicMessage.edit');
+    
+    Route::put('topicMessage/{id}', 'Group\TopicMessageController@update')->name('topicMessage.update');
+
+    Route::delete('topicMessage/{id}', 'Group\TopicMessageController@destroy')->name('topicMessage.destroy');
 });
 
 /*

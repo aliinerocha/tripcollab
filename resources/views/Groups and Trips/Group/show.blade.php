@@ -34,8 +34,8 @@
             </div>
         </div>
 
-        <div class="d-flex mt-3">
-            <a href="{{route('group.edit',['id' => $group->id])}}" class="btn btn-info">Editar</a>
+        <div class="mx-1 my-2">
+            <a href="{{route('group.edit',['id' => $group->id])}}" class="botao btn btn-primary border-0">Editar</a>
         </div>
 
         <!-- VIAGENS REALIZADAS -->
@@ -125,7 +125,7 @@
                     </div>
                 </div>
                 <div class="mx-1 my-2">
-                    <a href="#" class="botao btn btn-primary border-0">Novo tópico</a>
+                    <a href="{{route('topic.create')}}" class="botao btn btn-primary border-0">Novo tópico</a>
                     <a href="#" class="botao btn btn-primary border-0">Ver +</a>
                 </div>
             </div>
@@ -145,13 +145,13 @@
                     </div>
 
                     <div class="d-flex flex-column w-100 ml-2">
-                        <h5 class="card-title mb-auto">Quais praias mais impressionaram vocês?</h5>
-                        <div class="w-100 small d-flex align-items-end flex-column"><span>12 de abril de 2020</span></div>
+                        <h5 class="card-title mb-auto">Momentos mais engraçados!</h5>
+                        <div class="w-100 small d-flex align-items-end flex-column"><span>1 de abril de 2020</span></div>
                     </div>
                 </div>
 
                 <div class="mt-2">
-                        Oi pessoal! Criando esse tópico para saber quais praias mais foram impressionantes em suas viagens!
+                    Vamos compartilhar nossos momentos engraçados durante as viagens!
                 </div>
 
                 <div class="d-flex w-100 mt-3 justify-content-between">
@@ -174,12 +174,11 @@
                         </span>
                     </div>
                     <div>
-                        <a href="" class="text-muted link-detalhes">
+                        <a href="{{route('topicMessage.create')}}" class="text-muted link-detalhes">
                             Responder
                         </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
