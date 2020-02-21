@@ -42,7 +42,7 @@
                         <input type="file" class="form-control-file" name="photo">
 
                         <div class="form-group mt-4">
-                            <label for="palavrasChave">Palavras-chave:</label>
+                            <label for="palavrasChave">Interesses:</label>
                             @foreach ($interests as $interest)
                             <div class="form-check @error('interests') is-invalid @enderror"  id="palavrasChave">
                                     <input class="form-check-input" name="interests[]" type="checkbox" value="{{$interest->id}}" id="{{$interest->id}}" @if($selectedInterests->contains('interest_id', $interest->id)) checked @endif >

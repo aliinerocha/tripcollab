@@ -46,7 +46,7 @@ class UserController extends Controller
             $nameFile = "{$name}.{$extension}";
             $data['background_photo'] = $nameFile;
 
-            $upload = $request->background_photo->storeAs('usersBackgroundPhotos', $nameFile);
+            $upload = $request->background_photo->storeAs('public/usersBackgroundPhotos', $nameFile);
         }
 
         if ($request->hasfile('photo')){
@@ -55,7 +55,7 @@ class UserController extends Controller
             $nameFile = "{$name}.{$extension}";
             $data['photo'] = $nameFile;
 
-            $upload = $request->photo->storeAs('userPhotos', $nameFile);
+            $upload = $request->photo->storeAs('public/userPhotos', $nameFile);
         }
 
         $update = $user->update($data);

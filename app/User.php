@@ -65,7 +65,7 @@ class User extends Authenticatable
     public function message() {
         return $this->belongsToMany('App\Message');
     }
-    
+
     public function User(){
         return $this->belongsToMany('User', 'User', 'user1_id', 'user2_id');
     }
@@ -77,7 +77,7 @@ class User extends Authenticatable
     public function topicMessages() {
         return $this->hasMany('App\TopicMessage');
     }
-   
+
     // public function activityLogs() {
     //     return $this->hasMany('App\ActivityLog');
     // }

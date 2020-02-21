@@ -22,7 +22,7 @@
             <div class="col-10 offset-1">
             <div class="d-flex mt-2 justify-content-center">
                 <div class="col-11 p-0">
-                    <img src="{{url('./img/ilha-bela.jpeg')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
+                    <img src="@if($trip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $trip->photo)}} @endif" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                 </div>
             </div>
             <div>
@@ -34,9 +34,13 @@
                         <p class="mb-1">Partida: {{$trip->departure}}</p>
                         <p class="mb-4">Retorno: {{$trip->return_date}}</p>
                     <p class="titulo_campo mb-2">Administrador:</p>
-                    <p class="mb-4">{{$admin}}</p>
-                    <!-- <p class="titulo_campo mb-2">Palavras-chave:</p>
-                    <p class="mb-4">Praia; Amigos; Conhecer gente nova</p>
+                    <p class="mb-4">{{$admin->name}}</p>
+                    <p class="titulo_campo mb-2">Interesses:</p>
+                    <p class="mb-4">
+                        @foreach($interests as $interest)
+                            {{$interest->name}}
+                        @endforeach
+                    </p>
                     <p class="titulo_campo mb-2">Vinculado à comunidade:</p>
                     <p class="mb-4">Ilhas Paradisíacas</p> -->
                     <p class="titulo_campo mb-2">Investimento Previsto:</p>
@@ -47,9 +51,24 @@
                         <img class="foto-perfil rounded-circle" src="{{url('./img/perfil.2.jpg')}}" alt="foto de perfil do membro">
                         <img class="foto-perfil rounded-circle" src="{{url('./img/perfil.3.jpg')}}" alt="foto de perfil do membro">
                     </div>
-                    <div class="d-flex mt-3">
-                        <a href="{{route('trip.edit',['id' => $trip->id])}}" class="btn btn-info">Editar</a>
-                    </div>
+
+                    @if($user->id == $trip->admin)
+                            <div class="d-flex mt-3">
+                                <a href="{{route('trip.edit',['id' => $trip->id])}}" class="btn btn-info">Editar</a>
+                            </div>
+                        @elseif(!$confirmed)
+                            <div class="d-flex mt-3">
+                                <a href="{{route('trip.confirmPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn btn-info">
+                                Confirmar presença
+                                </a>
+                            </div>
+                        @else
+                            <div class="d-flex mt-3">
+                                <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn btn-danger">
+                                Cancelar presença
+                                </a>
+                            </div>
+                    @endif
             </div>
             </div>
         </div>

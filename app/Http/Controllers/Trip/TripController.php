@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Trip;
 use App\Interest;
 use App\Group;
+use App\User;
 use Illuminate\Support\Facades\DB;
 
 
@@ -14,11 +15,12 @@ class TripController extends Controller
 {
     private $trip;
 
-    public function __construct(Trip $trip, Interest $interests, Group $groups)
+    public function __construct(Trip $trip, Interest $interests, Group $groups, User $user)
     {
         $this->trip = $trip;
         $this->interests = $interests;
         $this->groups = $groups;
+        $this->user = $user;
     }
     /**
      * Display a listing of the resource.
@@ -72,9 +74,24 @@ class TripController extends Controller
     public function show($trip)
     {
         $trip = $this->trip->findOrFail($trip);
-        $admin = $trip->admin()->first()->name;
+
+        $interests = DB::table('interest_trip')
+        ->where('trip_id', $trip->id)
+        ->join('interests','interest_trip.interest_id','=','interests.id')
+        ->get();
+
+        $admin = $trip->admin()->first(['id','name']);
+        $user = auth()->user(['id', 'name']);
+
+        $userConfirmedPresence = DB::table('trip_user')->where([
+            ['user_id', auth()->user()->id],
+            ['trip_id', $trip->id],
+        ])->get();
+
+        $confirmed = $userConfirmedPresence->count();
+
         $footer = 'true';
-        return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin'));
+        return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin', 'user', 'confirmed', 'interests'));
     }
 
     /**
@@ -110,8 +127,6 @@ class TripController extends Controller
         if($request->hasFile('photo')) {
             $image = $request->file('photo');
             $data['photo'] = $image->store('trips', 'public');
-        } else {
-            $data['photo'] = 'nophoto';
         }
 
         $trip->update($data);
@@ -134,5 +149,21 @@ class TripController extends Controller
         $trip->delete();
 
         return redirect()->route('/home');
+    }
+
+    public function confirmPresence($tripId, $userId) {
+        $trip = $this->trip->find($tripId);
+        $user = $this->user->find($userId);
+        $trip->user()->sync($user);
+
+        return redirect()->route('trip.show', ['id' => $tripId]);
+    }
+
+    public function cancelPresence($tripId, $userId) {
+        $trip = $this->trip->find($tripId);
+        $user = $this->user->find($userId);
+        $trip->user()->detach($user);
+
+        return redirect()->route('trip.show', ['id' => $tripId]);
     }
 }

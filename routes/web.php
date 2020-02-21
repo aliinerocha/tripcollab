@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('trip/create', "Trip\TripController@create")->name('trip.create');
 
+
     Route::get('trip/{id}', "Trip\TripController@show")->name('trip.show');
 
     Route::post('trip/store', "Trip\TripController@store")->name('trip.store');
@@ -31,6 +32,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('trip/{id}', "Trip\TripController@update")->name('trip.update');
 
     Route::delete('/trip/{id}', "Trip\TripController@destroy")->name('trip.destroy');
+
+    Route::get('trip/{tripId}/confirm/{userId}', 'Trip\TripController@confirmPresence')->name('trip.confirmPresence');
+
+    Route::get('trip/{tripId}/cancel/{userId}', 'Trip\TripController@cancelPresence')->name('trip.cancelPresence');
 
     // User
 
