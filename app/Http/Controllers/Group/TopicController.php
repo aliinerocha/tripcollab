@@ -20,7 +20,10 @@ class TopicController extends Controller
 
     public function index($topic)
     {
-
+        $topics = auth()->user()->topic;
+        $topic = $topics->topics()->paginate(3);
+        $footer = 'true';
+        return view('Groups and Trips/Group/show', compact('footer', 'topic'));
     }
 
     /**
@@ -53,13 +56,11 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function show(Topic $topic)
+    public function show($topic)
     {
-        $topics = auth()->user()->topic;
-        $topic = $topic->topicMessages()->paginate(5);
+        $topic = $this->topic->findOrFail($topic);
         $footer = 'true';
-        return view('Groups and Trips/Group/Topics/show', compact('topics','footer'));
-
+        return view('Groups and Trips/Group/Topics/show', compact('topic','footer'));
     }
 
     /**

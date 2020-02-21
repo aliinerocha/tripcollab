@@ -8,7 +8,7 @@
 
     <!-- BANNER -->
     <main class="mb-3">
-        <img src="{{url('.img\ilhas_card.jpg')}}" class="img-fluid banner-img" alt="banner">
+        <img src="{{url('./img/ilhas_card.jpg')}}" class="img-fluid banner-img" alt="banner">
         </div>
     </main>
 
@@ -27,13 +27,13 @@
                     </div>
 
                     <div class="d-flex flex-column w-100 ml-2">
-                        <h5 class="card-title mb-auto">Quais praias mais impressionaram vocês?</h5>
-                        <div class="w-100 small d-flex align-items-end flex-column"><span>12 de abril de 2020</span></div>
+                        <h5 class="card-title mb-auto">{{$topic->name}}</h5>
+                        <div class="w-100 small d-flex align-items-end flex-column"><span>{{$topic->created_at->format('d-m-Y')}}</span></div>
                     </div>
                 </div>
 
                 <div class="mt-2">
-                        Oi pessoal! Criando esse tópico para saber quais praias mais foram impressionantes em suas viagens!
+                        {{$topic->description}}
                 </div>
 
                 <div class="d-flex w-100 mt-3 justify-content-between">

@@ -57,21 +57,23 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::put('group/{id}', 'Group\GroupController@update')->name('group.update');
 
-    Route::delete('/group/{id}', "Group\GroupController@destroy")->name('group.destroy');
+    Route::delete('group/{id}', "Group\GroupController@destroy")->name('group.destroy');
 
     // Topics
+
+    Route::get('topic/index', 'Group\TopicController@index')->name('topic.index');
 
     Route::get('topic/create', 'Group\TopicController@create')->name('topic.create');
 
     Route::post('topic/store', 'Group\TopicController@store')->name('topic.store');
 
     Route::get('topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
+    
+    Route::get('topic/{id}', 'Group\TopicController@show')->name('topic.show');;
+    
+    Route::put('topic/{id}', 'Group\TopicController@update')->name('topic.update');
 
-    Route::put('topic/{id}/update', 'Group\TopicController@update')->name('topic.update');
-
-    Route::get('topic/{id}/show', 'Group\TopicController@show')->name('topic.show');;
-
-    Route::delete('/topic/{id}', "Group\TopicController@destroy")->name('topic.destroy');
+    Route::delete('topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
 
 });
 
