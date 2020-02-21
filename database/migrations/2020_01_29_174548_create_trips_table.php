@@ -24,8 +24,15 @@ class CreateTripsTable extends Migration
             $table->unsignedBigInteger('group_id')->nullable(); // Adicionado posteriormente
             $table->boolean('visibility'); // Adicionado posteriormente
             $table->bigInteger('foreseen_budget'); // Adicionado posteriormente
-            $table->foreign('admin')->references('id')->on('users');
-            $table->foreign('group_id')->references('id')->on('groups');
+
+            $table->foreign('admin')
+            ->references('id')
+            ->on('users');
+
+            $table->foreign('group_id')
+            ->references('id')
+            ->on('groups');
+
             $table->timestamps();
         });
     }

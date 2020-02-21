@@ -7,7 +7,7 @@
     <div class="container-fluid p-0">
         <!-- Foto da Capa -->
         <main class="col-xs-12 capa p-0">
-            <img src={{ asset("storage/usersBackgroundPhotos/$user->background_photo")}} alt="imagem de fundo escolhida pelo usuário">
+            <img src={{ asset('storage/usersBackgroundPhotos/$user->background_photo')}} alt="imagem de fundo escolhida pelo usuário">
         </main>
         <!-- Foto da Capa -->
 

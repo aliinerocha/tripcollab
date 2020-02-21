@@ -5,11 +5,19 @@ namespace App\Http\Controllers\User;
 Use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Trip;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    private $trip;
+
+    public function __construct(Trip $trip) {
+        $this->trip = $trip;
+    }
+
     public function index($id){
 
         $user = User::find($id);
@@ -61,5 +69,17 @@ class UserController extends Controller
         $update = $user->update($data);
 
         return redirect()->route('user.index', $id);
+    }
+
+    public function listGroupsAndTrips() {
+
+        $confirmedTrips = DB::table('trip_user')
+        ->where('user_id', auth()->user()->id)
+        ->join('trips','trip_user.trip_id','=','trips.id')
+        ->get();
+
+        $footer = 'true';
+
+        return view('Groups and Trips/index', compact('footer', 'confirmedTrips'));
     }
 }
