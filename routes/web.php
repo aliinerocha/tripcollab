@@ -22,7 +22,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('trip/create', "Trip\TripController@create")->name('trip.create');
 
-
     Route::get('trip/{id}', "Trip\TripController@show")->name('trip.show');
 
     Route::post('trip/store', "Trip\TripController@store")->name('trip.store');
@@ -36,6 +35,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('trip/{tripId}/confirm/{userId}', 'Trip\TripController@confirmPresence')->name('trip.confirmPresence');
 
     Route::get('trip/{tripId}/cancel/{userId}', 'Trip\TripController@cancelPresence')->name('trip.cancelPresence');
+
+    Route::get ('/groupsandtrips', 'User\UserController@listGroupsAndTrips')->name('user.listGroupsAndTrips');
 
     // User
 
@@ -68,9 +69,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('topic/store', 'Group\TopicController@store')->name('topic.store');
 
     Route::get('topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
-    
+
     Route::get('topic/{id}', 'Group\TopicController@show')->name('topic.show');;
-    
+
     Route::put('topic/{id}', 'Group\TopicController@update')->name('topic.update');
 
     Route::delete('topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');

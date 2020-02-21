@@ -80,6 +80,12 @@ class TripController extends Controller
         ->join('interests','interest_trip.interest_id','=','interests.id')
         ->get();
 
+        $confirmedMembers = DB::table('trip_user')
+        ->where('trip_id', $trip->id)
+        ->join('users','trip_user.user_id','=','users.id')
+        ->get(['user_id','name','photo']);
+
+
         $admin = $trip->admin()->first(['id','name']);
         $user = auth()->user(['id', 'name']);
 
@@ -91,7 +97,7 @@ class TripController extends Controller
         $confirmed = $userConfirmedPresence->count();
 
         $footer = 'true';
-        return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin', 'user', 'confirmed', 'interests'));
+        return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers'));
     }
 
     /**
@@ -103,11 +109,15 @@ class TripController extends Controller
     public function edit($id)
     {
         $interests = $this->interests->all(['id', 'name']);
-        // $selectedInterests = $this->interests->trip()->where('trip_id', $id); // Não funcionou
+
         $trip = $this->trip->findOrFail($id);
+
         $selectedInterests = DB::table('interest_trip')->where('trip_id', $id)->get();
+
         $groups = $this->groups->all(['id','name']);
+
         $footer = 'true';
+
         return view('/Groups and Trips/Trip/edit', compact('footer', 'trip', 'interests', 'selectedInterests', 'groups'));
     }
 
@@ -146,22 +156,33 @@ class TripController extends Controller
     public function destroy($id)
     {
         $trip = $this->trip->find($id);
+
+        $trip->interest()->detach();
+
+        $trip->user()->detach();
+
         $trip->delete();
 
         return redirect()->route('/home');
     }
 
     public function confirmPresence($tripId, $userId) {
+
         $trip = $this->trip->find($tripId);
+
         $user = $this->user->find($userId);
-        $trip->user()->sync($user);
+
+        $trip->user()->attach($user);
 
         return redirect()->route('trip.show', ['id' => $tripId]);
     }
 
     public function cancelPresence($tripId, $userId) {
+
         $trip = $this->trip->find($tripId);
+
         $user = $this->user->find($userId);
+
         $trip->user()->detach($user);
 
         return redirect()->route('trip.show', ['id' => $tripId]);

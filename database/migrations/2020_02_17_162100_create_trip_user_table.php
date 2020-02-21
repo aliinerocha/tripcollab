@@ -17,8 +17,15 @@ class CreateTripUserTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('trip_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('trip_id')->references('id')->on('trips');
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users');
+
+            $table->foreign('trip_id')
+            ->references('id')
+            ->on('trips');
+
             $table->timestamps();
         });
     }

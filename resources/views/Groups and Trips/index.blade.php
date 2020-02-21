@@ -1,7 +1,7 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
-    Comunidade
+    Comunidades e Viagens
 @endsection
 
 @section('conteudo')
@@ -95,7 +95,7 @@
 
     <section class="bg-light pt-4 pb-2">
         <div class="container mb-4">
-            <h5>Meus grupos de viagem</h5>
+            <h5>Minhas viagens</h5>
         </div>
         <div class="d-flex">
             <div class=" input-group mb-4 mr-3 col-10">
@@ -117,59 +117,43 @@
             </div>
     </section>
 
-    <!-- CARD VIAGENS 1 -->
-    <section class="bg-light mt-2 mb-1 pb-4">
-        <div class="col-md-4">
-            <img src="./img/ilha-bela.jpeg" class="card-img float-left mr-4 mt-3" alt="Ilha Bela">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <h5 class="card-title">Título da viagem</h5>
-                    <span> <i class="material-icons check">check</i></span>
-                </div>
-                <div class="card-text d-flex justify-content-start">
-                    <p class="mr-2">Destino:</p>
-                    <p>Ilha Bela</p>
-                </div>
-                <div class="card-text d-flex justify-content-start mb-3 align-items-center">
-                    <span class="mr-3 mb-0 p-0">Quem vai:</span>
-                    <div>
-                        <img class="foto-perfil rounded-circle" src="./img/perfil.1.jpg" alt="foto de perfil do membro">
-                        <img class="foto-perfil rounded-circle" src="./img/perfil.2.jpg" alt="foto de perfil do membro">
-                        <img class="foto-perfil rounded-circle" src="./img/perfil.3.jpg" alt="foto de perfil do membro">
-                    </div>
-                </div>
-            <a href="/detalhesDeViagem" class="text-muted float-right link-detalhes">ver mais detalhes</a>
-            </div>
-        </div>
-    </section>
+    @foreach($confirmedTrips as $confirmedTrip)
 
-    <!-- CARD VIAGENS 2 -->
 
-    <section class="bg-light mt-2 mb-1 pb-4">
-            <div class="col-md-4">
-                <img src="./img/nova york.jpg" class="card-img float-left mr-4 mt-3" alt="Ilha Bela">
+
+        <section class="bg-light mt-2 mb-1 pb-4 row">
+
+            <div class="col-3">
+                <img src="@if($confirmedTrip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $confirmedTrip->photo)}} @endif" class="card-img float-left mr-4 mt-3" alt="{{$confirmedTrip->name}}">
             </div>
-            <div class="col-md-8">
+
+            <div class="col-9">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h5 class="card-title">Título da viagem</h5>
-                        <span> <i class="material-icons favorite">favorite</i></span>
+                        <h5 class="card-title">{{$confirmedTrip->name}}</h5>
+                        <span> <i class="material-icons check">check</i></span>
                     </div>
+                    <!--
                     <div class="card-text d-flex justify-content-start">
                         <p class="mr-2">Destino:</p>
-                        <p>Nova York</p>
+                        <p>Ilha Bela</p>
                     </div>
+                    -->
                     <div class="card-text d-flex justify-content-start mb-3 align-items-center">
-                            <span class="mr-3 mb-0 p-0">Quem vai:</span>
-                            <div>
-                                    <img class="foto-perfil rounded-circle" src="./img/perfil.3.jpg" alt="foto de perfil do membro">
-                                    <img class="foto-perfil rounded-circle" src="./img/perfil.4.jpg" alt="foto de perfil do membro">
-                                </div>
+                        <span class="mr-3 mb-0 p-0">Quem vai:</span>
+                        <div>
+                            <img class="foto-perfil rounded-circle" src="./img/perfil.1.jpg" alt="foto de perfil do membro">
+                            <img class="foto-perfil rounded-circle" src="./img/perfil.2.jpg" alt="foto de perfil do membro">
+                            <img class="foto-perfil rounded-circle" src="./img/perfil.3.jpg" alt="foto de perfil do membro">
+                        </div>
                     </div>
-                <a href="#" class="text-muted float-right link-detalhes">ver mais detalhes</a>
+                <a href="/detalhesDeViagem" class="text-muted float-right link-detalhes">ver mais detalhes</a>
                 </div>
             </div>
         </section>
-    @endsection
+
+
+
+    @endforeach
+
+@endsection

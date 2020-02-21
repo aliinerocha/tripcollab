@@ -17,8 +17,15 @@ class CreateGroupInterestTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('interest_id');
-            $table->foreign('group_id')->references('id')->on('groups');
-            $table->foreign('interest_id')->references('id')->on('interests');
+
+            $table->foreign('group_id')
+            ->references('id')
+            ->on('groups');
+
+            $table->foreign('interest_id')
+            ->references('id')
+            ->on('interests');
+
             $table->timestamps();
         });
     }
