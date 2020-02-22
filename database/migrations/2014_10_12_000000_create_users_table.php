@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('state')->nullable();
             $table->string('country')->nullable();
             $table->date('birthday')->nullable();
-            $table->string('photo')->nullable();
-            $table->string('background_photo')->nullable();
+            $table->string('photo')->nullable()->default('nophoto');
+            $table->string('background_photo')->nullable()->default('nophoto');
             $table->text('description')->nullable();
             $table->boolean('public')->nullable();
             $table->rememberToken();

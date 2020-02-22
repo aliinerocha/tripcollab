@@ -16,7 +16,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'background_photo', 'photo'
+        'name',
+        'city',
+        'state',
+        'country',
+        'birthday',
+        'description',
+        'public',
+        'email',
+        'password',
+        'background_photo',
+        'photo'
     ];
 
     /**
@@ -62,11 +72,12 @@ class User extends Authenticatable
     public function achievements() {
         return $this->belongsToMany('App\Achievement');
     }
+
     public function message() {
         return $this->belongsToMany('App\Message');
     }
 
-    public function User(){
+    public function friendship(){
         return $this->belongsToMany('User', 'User', 'user1_id', 'user2_id');
     }
 

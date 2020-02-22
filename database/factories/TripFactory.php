@@ -10,7 +10,7 @@ $factory->define(Trip::class, function (Faker $faker) {
         'admin' => factory('App\User')->create()->id,
         'name' => $faker->name,
         'description' => $faker->sentence,
-        'photo' => $faker->imageUrl($width = 640, $height = 480),
+        'photo' => 'nophoto', //$faker->imageUrl($width = 640, $height = 480),
         'departure' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'return_date' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'visibility' => $faker->boolean(50),

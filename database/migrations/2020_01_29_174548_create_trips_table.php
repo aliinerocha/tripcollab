@@ -17,7 +17,7 @@ class CreateTripsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            $table->string('photo');
+            $table->string('photo')->default('nophoto');
             $table->date('departure');
             $table->date('return_date');
             $table->unsignedBigInteger('admin');

@@ -6,6 +6,7 @@ Use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Trip;
+use App\Friendship;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -18,12 +19,27 @@ class UserController extends Controller
         $this->trip = $trip;
     }
 
-    public function index($id){
+    public function home(){
+
+        $user = auth()->user();
+
+        $footer = 'true';
+
+        return view('/home', compact('footer','user'));
+    }
+
+    public function show($id){
 
         $user = User::find($id);
 
         $footer = 'true';
-        return view('User/show', compact('footer', 'user'));
+
+        if (auth()->user()->id == $id)
+        {
+        return view('/home', compact('footer','user'));
+        }
+
+        return view('User/show', compact('footer','user'));
     }
 
     public function edit($id){
@@ -40,20 +56,11 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-        $user->name = $data['name'];
-        $user->city = $data['city'];
-        $user->state = $data['state'];
-        $user->country = $data['country'];
-        $user->birthday = $data['birthday'];
-        $user->description = $data['description'];
-        $user->public = $data['public'];
-
         if ($request->hasfile('background_photo')){
             $name = $user->id.'.'.Str::kebab($user->name).'.cover';
             $extension = $request->background_photo->extension();
             $nameFile = "{$name}.{$extension}";
             $data['background_photo'] = $nameFile;
-
             $upload = $request->background_photo->storeAs('public/usersBackgroundPhotos', $nameFile);
         }
 
@@ -62,13 +69,12 @@ class UserController extends Controller
             $extension = $request->photo->extension();
             $nameFile = "{$name}.{$extension}";
             $data['photo'] = $nameFile;
-
             $upload = $request->photo->storeAs('public/userPhotos', $nameFile);
         }
 
         $update = $user->update($data);
 
-        return redirect()->route('user.index', $id);
+        return redirect()->route('home');
     }
 
     public function listGroupsAndTrips() {
@@ -81,5 +87,34 @@ class UserController extends Controller
         $footer = 'true';
 
         return view('Groups and Trips/index', compact('footer', 'confirmedTrips'));
+    }
+
+    public function addFriend($requestedUserID) {
+
+        $friendship = Friendship::create([
+            'requester_user_id' => auth()->user()->id,
+            'requested_user_id' => $requestedUserID
+        ]);
+
+        dd($friendship);
+    }
+
+    public function acceptFriend($requesterUserID) {
+        $friendship = Friendship::where('requester_user_id' ,$requesterUserID )
+        ->where('requested_user_id', $this->id)
+        ->first();
+
+        if($friendship)
+        {
+            $friendship->update([
+                'status' => 1
+            ]);
+
+            return $friendship;
+
+        }
+
+        return (!$friendship);
+
     }
 }

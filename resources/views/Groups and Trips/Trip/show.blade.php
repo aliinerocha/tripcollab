@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <!-- CARD COM OS DETALHES DA VIAGEM SELECIONADO -->
+    <!-- CARD COM OS DETALHES DA VIAGEM SELECIONADA -->
     <main class="bg-light pt-4 pb-4">
         <div class="row">
             <div class="col-10 offset-1">
@@ -49,8 +49,11 @@
                     <div>
 
                     @foreach($confirmedMembers as $confirmedMember)
-                        <a href="{{route('user.index', ['id' => $confirmedMember->user_id])}}">
-                            <img class="foto-perfil rounded-circle" src="{{asset("storage/userPhotos/$confirmedMember->photo")}}" alt="{{$confirmedMember->name}}">
+                        <a href="{{route('user.show', ['id' => $confirmedMember->user_id])}}">
+                            <img
+                            class="foto-perfil rounded-circle"
+                            src="@if($confirmedMember->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif"
+                            alt="{{$confirmedMember->name}}">
                         </a>
                     @endforeach
 

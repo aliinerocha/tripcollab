@@ -43,7 +43,7 @@
             <!-- Foto da Capa -->
             <h6 class="capa ml-3">Foto da capa</h6>
             <div class="col-xs-12 capa p-0 mx-3 my-3 border">
-                <img class="rounded" src="{{$user->background_photo}}">
+                <img class="rounded" src="@if($user->background_photo == 'nophoto') {{asset('./img/default_cover.jpg')}}  @else {{asset("storage/usersBackgroundPhotos/$user->background_photo")}} @endif">
             </div>
             <div class="form-group col-12 m-3 pb-3">
                 <label for="foto_fundo">Selecione um arquivo</label>
@@ -54,7 +54,7 @@
             <!-- Foto do Usuário -->
             <h6 class="foto ml-3">Foto do usuário</h6>
             <div class="col-xs-12 foto p-0 mx-4 my-3">
-                <img src="{{$user->photo}}" class="rounded-circle border" style="width:100px; height: 100px">
+                <img src="@if($user->photo == 'nophoto') {{asset('./img/icone_user.svg')}}  @else {{asset("storage/userPhotos/$user->photo")}} @endif" class="rounded-circle border" style="width:100px; height: 100px">
             </div>
             <div class="form-group col-12 m-3 pb-3">
                 <label for="foto">Selecione um arquivo</label>
