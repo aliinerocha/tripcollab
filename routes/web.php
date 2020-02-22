@@ -48,6 +48,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::put('/profile/{id}' , 'User\UserController@update')->name('user.update');
 
+    Route::delete('/profile/{id}/del', 'User\UserController@destroy')->name('user.delete');
+    
     Route::get('/profile/add/{requestedUserID}', 'User\UserController@addFriend')->name('add.friend');
 
     // Groups

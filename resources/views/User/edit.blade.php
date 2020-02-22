@@ -5,9 +5,9 @@
 @endsection
 
 @section('conteudo')
-<!-- Formulário -->
+<!-- Formulário de edição-->
 <div class="container-fluid p-0">
-    <!-- Formulário de Cadastro do Usuário -->
+    <!--  Cadastro do Usuário -->
     <form method="POST" action="{{route('user.update', ['id' => $user->id])}}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -34,9 +34,7 @@
                 </div>
         </section>
 
-        <!-- Formulário de Cadastro do Usuário -->
-
-        <!-- Formulário de Perfil do Usuário -->
+        <!--  Perfil do Usuário -->
         <section class="usuario bg-light mb-2 px-3 py-4">
             <h5 class="nome ml-3 pb-3">Perfil do Usuário</h5>
 
@@ -109,7 +107,6 @@
                 </div>
             <!-- Dados do Usuário -->
         </section>
-        <!-- Formulário de Perfil do Usuário -->
 
         <!-- Interesses -->
         <section class="usuario bg-light mb-2 px-3 pb-4">
@@ -122,7 +119,6 @@
                 </div>
             </div>
         </section>
-        <!-- Interesses -->
 
         <section class="usuario bg-light mb-2 px-3 py-2">
             <div class="form-group mx-4">
@@ -142,5 +138,17 @@
         </section>
     </form>
 </div>
-<!-- Formulário -->
+
+<!-- Formulário de exclusão-->
+<section class="usuario bg-light mb-2 px-3 py-2">
+    <form action="{{route('user.delete', $user->id)}}" method="post">
+        @csrf
+        @method('DELETE')
+        <div class="col d-flex justify-content-between">
+            <h5 class="nome pt-4 ">Excluir conta permanentemente</h5>
+            <button class="btn btn-danger" >Excluir</button>
+        </div>
+    </form>
+</section>
+
 @endsection

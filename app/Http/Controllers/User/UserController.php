@@ -117,4 +117,11 @@ class UserController extends Controller
         return (!$friendship);
 
     }
+
+    public function destroy($id){
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect('/');
+    }
 }
