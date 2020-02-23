@@ -8,7 +8,7 @@
         <!-- NAV ABA-->
         <div class="bg-light pt-4 pb-4 mb-3">
             <div class="d-flex ml-3 align-items-center">
-                <a class="link" href="comunidadesEViagens"><i class="material-icons">arrow_back</i></a>
+                <a class="link" href="{{route('group.show',['id' => $group->id])}}"><i class="material-icons">arrow_back</i></a>
                 <div class="container">
                     <h5>Editar Comunidade</h5>
                 </div>
@@ -24,27 +24,32 @@
                     <img src="{{url('./img/add.png')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                     <div class="form-group mt-4">
                         <label for="tituloComunidade">Titulo da Comunidade:</label>
-                        <input name="name" type="text" class="form-control" id="tituloComunidade" placeholder="Insira titulo da comunidade" value="{{$group->name}}">
+                        <input name="name" type="text" class="form-control" id="tituloComunidade" placeholder="Insira titulo da comunidade" value="{{$group->name}}" required>
                     </div>
                     <div class="form-group mt-4">
                         <label for="descricaoComunidade">Descrição da Comunidade:</label>
-                        <textarea name="description" type="text" class="form-control" id="descricaoComunidade" placeholder="Insira descrição da comunidade">{{$group->description}}</textarea>
+                        <textarea name="description" type="text" class="form-control" id="descricaoComunidade" placeholder="Insira descrição da comunidade" required>{{$group->description}}</textarea>
                     </div>
-                    <!--  adicao do campo photo no grupo de viagem -->
+                    <!--  Foto do grupo de viagem -->
                     <div class="form-group mt-4">
                         <label for="">Foto da comunidade</label>
-                        <input type="hidden" class="form-control-file" name="photo" value="foto" multiple>
+                        <input type="file" class="form-control-file" name="photo" value="foto" multiple>
                     </div>
                     <div class="form-group mt-4">
                         <label for="palavrasChave">Palavras-chave:</label>
-                        <select mutiple class="form-control" id="palavrasChave">
-                            <option disabled selected>Selecione as palavras-chave deste grupo</option>
-                            <option>Palavra 1</option>
-                            <option>Palavra 2</option>
-                            <option>Palavra 3</option>
-                            <option>Palavra 4</option>
-                            <option>Palavra 5</option>
-                        </select>
+                        @foreach ($interests as $interest)
+                            <div class="form-check @error('interests') is-invalid @enderror"  id="palavrasChave">
+                                    <input class="form-check-input" name="interest[]" type="checkbox" value="{{$interest->id}}" id="{{$interest->id}}" required>
+                                    <label class="form-check-label" for="{{$interest->id}}">
+                                        {{$interest->name}}
+                                    </label>
+                                @error('interests')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                        @endforeach
                     </div>
                     <div class="form-group mt-4">
                         <label for="visibilidadeDaComunidade">Visivel ao público?</label>
@@ -56,8 +61,8 @@
                     </div>
                     <div class="row d-flex justify-content-end m-0">
                             <div class="d-flex justify-content-end m-0">
-                                <a href="/comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
-                                <button type="submit" href="/comunidadesEViagens" class="btn botao mr-2">Salvar</button>
+                                <a href="{{route('group.show',['id' => $group->id])}}" class="btn botao_atencao mr-2">Cancelar</a>
+                                <button type="submit" href="#" class="btn botao mr-2">Salvar</button>
                             </div>
                 </form>
                         <form action="{{route('group.destroy',['id' => $group->id])}}" method="POST">
