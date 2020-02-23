@@ -17,7 +17,7 @@ class CreateGroupsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            $table->string('photo');
+            $table->string('photo')->default('nophoto');
             $table->unsignedBigInteger('admin');
             $table->boolean('visibility'); // Adicionado posteriormente
             $table->foreign('admin')->references('id')->on('users');

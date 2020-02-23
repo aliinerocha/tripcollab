@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('trip/store', "Trip\TripController@store")->name('trip.store');
 
-    Route::get('trip/{id}/edit', "Trip\TripController@edit")->name('trip.edit');
+    Route::get('trip/{id}/edit', "Trip\TripController@edit")->middleware('checkTrip')->name('trip.edit');
 
     Route::put('trip/{id}', "Trip\TripController@update")->name('trip.update');
 
@@ -40,11 +40,17 @@ Route::group(['middleware' => ['auth']], function () {
 
     // User
 
-    Route::get ('/home/{id}', 'User\UserController@index')->name('user.index');
+    Route::get ('/home', 'User\UserController@home')->name('home');
 
-    Route::get('/profile/{id}/edit' , 'User\UserController@edit')->name('user.edit');
+    Route::get ('/profile/{id}', 'User\UserController@show')->name('user.show');
+
+    Route::get('/profile/{id}/edit' , 'User\UserController@edit')->middleware('checkUser')->name('user.edit');
 
     Route::put('/profile/{id}' , 'User\UserController@update')->name('user.update');
+
+    Route::delete('/profile/{id}/del', 'User\UserController@destroy')->name('user.delete');
+    
+    Route::get('/profile/add/{requestedUserID}', 'User\UserController@addFriend')->name('add.friend');
 
     // Groups
 

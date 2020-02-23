@@ -5,9 +5,9 @@
 @endsection
 
 @section('conteudo')
-<!-- Formulário -->
+<!-- Formulário de edição-->
 <div class="container-fluid p-0">
-    <!-- Formulário de Cadastro do Usuário -->
+    <!--  Cadastro do Usuário -->
     <form method="POST" action="{{route('user.update', ['id' => $user->id])}}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -34,16 +34,14 @@
                 </div>
         </section>
 
-        <!-- Formulário de Cadastro do Usuário -->
-
-        <!-- Formulário de Perfil do Usuário -->
+        <!--  Perfil do Usuário -->
         <section class="usuario bg-light mb-2 px-3 py-4">
             <h5 class="nome ml-3 pb-3">Perfil do Usuário</h5>
 
             <!-- Foto da Capa -->
             <h6 class="capa ml-3">Foto da capa</h6>
             <div class="col-xs-12 capa p-0 mx-3 my-3 border">
-                <img class="rounded" src="{{$user->background_photo}}">
+                <img class="rounded" src="@if($user->background_photo == 'nophoto') {{asset('./img/default_cover.jpg')}}  @else {{asset("storage/usersBackgroundPhotos/$user->background_photo")}} @endif">
             </div>
             <div class="form-group col-12 m-3 pb-3">
                 <label for="foto_fundo">Selecione um arquivo</label>
@@ -54,7 +52,7 @@
             <!-- Foto do Usuário -->
             <h6 class="foto ml-3">Foto do usuário</h6>
             <div class="col-xs-12 foto p-0 mx-4 my-3">
-                <img src="{{$user->photo}}" class="rounded-circle border" style="width:100px; height: 100px">
+                <img src="@if($user->photo == 'nophoto') {{asset('./img/icone_user.svg')}}  @else {{asset("storage/userPhotos/$user->photo")}} @endif" class="rounded-circle border" style="width:100px; height: 100px">
             </div>
             <div class="form-group col-12 m-3 pb-3">
                 <label for="foto">Selecione um arquivo</label>
@@ -109,7 +107,6 @@
                 </div>
             <!-- Dados do Usuário -->
         </section>
-        <!-- Formulário de Perfil do Usuário -->
 
         <!-- Interesses -->
         <section class="usuario bg-light mb-2 px-3 pb-4">
@@ -122,7 +119,6 @@
                 </div>
             </div>
         </section>
-        <!-- Interesses -->
 
         <section class="usuario bg-light mb-2 px-3 py-2">
             <div class="form-group mx-4">
@@ -142,5 +138,17 @@
         </section>
     </form>
 </div>
-<!-- Formulário -->
+
+<!-- Formulário de exclusão-->
+<section class="usuario bg-light mb-2 px-3 py-2">
+    <form action="{{route('user.delete', $user->id)}}" method="post">
+        @csrf
+        @method('DELETE')
+        <div class="col d-flex justify-content-between">
+            <h5 class="nome pt-4 ">Excluir conta permanentemente</h5>
+            <button class="btn btn-danger" >Excluir</button>
+        </div>
+    </form>
+</section>
+
 @endsection

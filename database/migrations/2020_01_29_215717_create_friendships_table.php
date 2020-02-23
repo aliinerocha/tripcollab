@@ -14,11 +14,9 @@ class CreateFriendshipsTable extends Migration
     public function up()
     {
         Schema::create('friendships', function (Blueprint $table) {
-            $table->unsignedBigInteger('user1_id');
-            $table->unsignedBigInteger('user2_id');
-            $table->foreign('user1_id')->references('id')->on('users');
-            $table->foreign('user2_id')->references('id')->on('users');
-            $table->boolean('accepted');
+            $table->unsignedBigInteger('requester_user_id');
+            $table->unsignedBigInteger('resquested_user_id');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

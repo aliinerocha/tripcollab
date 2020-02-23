@@ -28,8 +28,8 @@ $factory->define(User::class, function (Faker $faker) {
         'state' => $faker->state,
         'country' => $faker->country,
         'birthday' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'photo' => $faker->imageUrl($width = 640, $height = 480),
-        'background_photo' => $faker->imageUrl($width = 640, $height = 480),
+        'photo' => 'nophoto',
+        'background_photo' => 'nophoto',
         'description' => $faker->sentence,
         'public' => $faker->boolean(50),
     ];
