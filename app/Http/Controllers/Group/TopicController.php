@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Group;
 
 use App\Http\Controllers\Controller;
 use App\Topic;
+use App\Group;
+use App\User;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
@@ -13,9 +15,10 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(Topic $topic)
+    public function __construct(Topic $topic, Group $group)
     {
         $this->topic = $topic;
+        $this->group = $group;
     }
 
     public function index()
@@ -28,10 +31,11 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
+        $group = $this->group->findOrFail($id);
         $footer = 'true';
-        return view('Groups and Trips/Group/Topics/create', compact('footer'));
+        return view('Groups and Trips/Group/Topics/create', compact('footer', 'group'));
     }
 
     /**
@@ -40,11 +44,15 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $group_id)
     {
-        $data = $request->all();
-        $store = $this->topic->create($data);
-        // falta armazenar group_id e user_id!!!
+        $topic = $request->all();
+        $group = Group::find($group_id);
+        $topic->group()->associate($group);
+
+        $store = $this->topic->create($topic);
+        
+        return redirect()->route('topic.create');
     }
 
     /**
