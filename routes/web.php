@@ -73,6 +73,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('group/{id}', "Group\GroupController@destroy")->name('group.destroy');
 
+    Route::get('group/{groupId}/confirm/{userId}', 'Group\GroupController@confirmPresence')->name('group.confirmPresence');
+
+    Route::get('group/{groupId}/cancel/{userId}', 'Group\GroupController@cancelPresence')->name('group.cancelPresence');
+
     // Topics
 
     Route::get('topic/index', 'Group\TopicController@index')->name('topic.index');
