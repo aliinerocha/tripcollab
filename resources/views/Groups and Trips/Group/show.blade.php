@@ -7,7 +7,7 @@
 @section('conteudo')
     <!-- BANNER -->
     <main class="mb-3">
-        <img src="@if ($group->photo == 'nophoto'){{url('./img/default_cover.jpg')}}@else ($group->photo)  @endif" class="img-fluid banner-img" alt="banner">
+        <img src="@if($group->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner">
         </div>
     </main>
 
@@ -19,9 +19,32 @@
         </div>
 
         <div class="container mb-4">
-            <img src="{{url('./img/group.png')}}" style="width: 45%;height:45%">
-            <h6 class="ml-2">558 membros</h6>
-            <span class="ml-2"><a href="comunidadesEViagens" class="text-muted link-detalhes">Participar</a></span>
+            <!-- <img src="{{url('./img/group.png')}}" style="width: 45%;height:45%"> -->
+
+            @foreach($confirmedMembers as $confirmedMember)
+                <a href="{{route('user.show', ['id' => $confirmedMember->user_id])}}">
+                    <img
+                    class="foto-perfil rounded-circle"
+                    src="@if($confirmedMember->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif"
+                    alt="{{$confirmedMember->name}}" style="width: 45%;height:45%">
+                </a>
+            @endforeach           
+            @if(!$confirmed)
+                    <div class="d-flex mt-3">
+                        <a href="{{route('group.confirmPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn btn-info">
+                        Participar
+                        </a>
+                    </div>
+            @else
+                    <div class="d-flex mt-3">
+                        <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn btn-danger">
+                        Cancelar participação
+                        </a>
+                    </div>
+            @endif
+            <h6 class="ml-2 mt-4"> {{$confirmed}} @if ($confirmed<=1) membro @else membros @endif </h6>
+
+            <!-- <span class="ml-2"><a href="comunidadesEViagens" class="text-muted link-detalhes">Participar</a></span> -->
         </div>
 
     <!-- NOME E MEMBROS -->
@@ -33,10 +56,11 @@
                 {{$group->description}}
             </div>
         </div>
-
+        @if($user->id == $group->admin)
         <div class="mx-1 my-2">
             <a href="{{route('group.edit',['id' => $group->id])}}" class="botao btn btn-primary border-0">Editar</a>
         </div>
+        @endif
 
         <!-- VIAGENS REALIZADAS -->
 

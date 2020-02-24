@@ -18,7 +18,7 @@
         <!-- CARD COM OS DETALHES DO GRUPO DE VIAGEM SELECIONADO -->
         <main class="bg-light pt-4 pb-4">
             <div class="row">
-                <form action="{{route('group.store')}}" method="POST" class="col-10 offset-1">
+                <form action="{{route('group.store')}}" method="POST" class="col-10 offset-1" enctype="multipart/form-data">
                 @csrf
                         <img src="{{url('./img/add.png')}}"  class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                         <div class="form-group mt-4">
@@ -41,14 +41,14 @@
                         </div>
                         <!--  Foto do grupo de viagem -->
                         <div class="form-group mt-4">
-                            <label for="">Foto da comunidade</label>
-                            <input type="file" class="form-control-file" name="photo" value="foto" multiple>
+                            <label for="customFile">Foto da comunidade</label>
+                            <input type="file" class="form-control-file" name="photo" id="customFile" multiple>
                         </div>  
                         <div class="form-group mt-4">
                             <label for="palavrasChave">Palavras-chave:</label>
                             @foreach ($interests as $interest)
                             <div class="form-check @error('interests') is-invalid @enderror"  id="palavrasChave">
-                                    <input class="form-check-input" name="interest[]" type="checkbox" value="{{$interest->id}}" id="{{$interest->id}}" required>
+                                    <input class="form-check-input" name="interest[]" type="checkbox" value="{{$interest->id}}" id="{{$interest->id}}">
                                     <label class="form-check-label" for="{{$interest->id}}">
                                         {{$interest->name}}
                                     </label>

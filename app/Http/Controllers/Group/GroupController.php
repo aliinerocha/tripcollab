@@ -23,11 +23,6 @@ class GroupController extends Controller
         $this->user = $user;
     }
 
-    // use UploadTrait;
-    // public function __construct() {
-    //     $this->middleware('user.has.store')->only(['create','store']);
-    // }
-
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +40,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        $interests = \App\Interest::all(['id', 'name']);
+        $interests = Interest::get();
 
         $footer = 'true';
         return view('Groups and Trips/Group/create', compact('footer','interests'));
@@ -71,7 +66,8 @@ class GroupController extends Controller
 
         $store = $this->group->create($data);
 
-        // $data->interests()->sync([$interests_id]); Falta parte salvar dados do checkbox 
+        $store->interest()->sync($request->interest, false);
+
         return redirect()->route('group.create');
     }
 
@@ -94,7 +90,6 @@ class GroupController extends Controller
         ->where('group_id', $group->id)
         ->join('users','group_user.user_id','=','users.id')
         ->get(['user_id','name','photo']);
-
 
         $admin = $group->admin()->first(['id','name']);
         $user = auth()->user(['id', 'name']);
@@ -123,7 +118,7 @@ class GroupController extends Controller
         $group = $this->group->findOrFail($id);
 
         $selectedInterests = DB::table('group_interest')->where('group_id', $id)->get();
-
+        // dd($selectedInterests);
         $footer = 'true';
 
         return view('/Groups and Trips/Group/edit', compact('footer','interests', 'selectedInterests', 'group'));
@@ -149,10 +144,9 @@ class GroupController extends Controller
 
         $group->update($data);
 
-        $group->interest()->sync($interests);
+        $group->interest()->sync($request->interest, false);
 
-        return redirect()->route('group.edit', ['id' => $id]);
-
+        return redirect()->route('group.show', ['id' => $id]);
     }
 
     /**
