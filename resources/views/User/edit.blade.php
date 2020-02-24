@@ -101,24 +101,33 @@
                 <div class="col-12 my-3">
                     <label for="visibilidade">Visibilidade do perfil</label>
                     <select name="public" class="form-control" cols="30" rows="5" id="visibilidade">
-                        <option @if($user->public == 0) selected @endif value="1">Público</option>
-                        <option @if($user->public == 1) selected @endif value="0">Privado</option>
+                        <option @if($user->public == 0) selected @endif value="0">Privado</option>
+                        <option @if($user->public == 1) selected @endif value="1">Público</option>
                     </select>
                 </div>
             <!-- Dados do Usuário -->
         </section>
 
         <!-- Interesses -->
-        <section class="usuario bg-light mb-2 px-3 pb-4">
-            <h5 class="nome mx-3 pt-4">Interesses</h5>
-            <div class="col-xs-12">
-                <div class="row interesses text-justify mx-3 py-2">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, ducimus. Quibusdam dignissimos
-                    reprehenderit placeat quas modi, ipsa temporibus omnis labore aspernatur, fugit officia delectus
-                    iure. Eveniet deleniti odio explicabo ipsum!
+        <section class="usuario bg-light mb-2 px-3 py-2">
+            <div class="col-12 my-3">
+                <h5 class="nome">Interesses:</h5>
+                @foreach ($interests as $interest)
+                <div class="form-check @error('interests') is-invalid @enderror"  id="palavrasChave">
+                    <input class="form-check-input" name="interests[]" type="checkbox" value="{{$interest->id}}" id="{{$interest->id}}" @if($selectedInterests->contains('interest_id', $interest->id)) checked @endif">
+                        <label class="form-check-label" for="{{$interest->id}}">
+                            {{$interest->name}}
+                        </label>
+                            @error('interests')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                            @enderror
                 </div>
+                @endforeach
             </div>
         </section>
+
 
         <section class="usuario bg-light mb-2 px-3 py-2">
             <div class="form-group mx-4">

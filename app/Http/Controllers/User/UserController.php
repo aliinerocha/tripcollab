@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Trip;
 use App\Friendship;
+use App\Interest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -14,45 +15,132 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     private $trip;
+    private $interests;
 
-    public function __construct(Trip $trip) {
+    public function __construct(Trip $trip, Interest $interests)
+    {
         $this->trip = $trip;
+        $this->interests = $interests;
     }
 
-    public function home(){
-
+    public function home()
+    {
         $user = auth()->user();
 
+        $interests = DB::table('interest_user')
+        ->where('user_id', $user->id)
+        ->join('interests','interest_user.interest_id','=','interests.id')
+        ->get();
+
+        $rawFriendList = Friendship::where('status','=', 1)
+        ->where(function ($query) {
+            $query->where('requester_user_id','=', auth()->user()->id)
+            ->orWhere('requested_user_id', auth()->user()->id);
+        });
+
+        $firstHalfFriendlist = $rawFriendList->join('users as a','friendships.requester_user_id','=', 'a.id')->get();
+
+        $secondHalfFriendlist = $rawFriendList->join('users as b','friendships.requested_user_id','=', 'b.id')->get();
+
+        $friendlist = $firstHalfFriendlist->merge($secondHalfFriendlist);
+
+        $authUser = $friendlist->search(function ($item) {
+            return $item->id == auth()->user()->id;
+        });
+
+        $friendlist->pull($authUser);
+
+        // dd($friendlist);
+
         $footer = 'true';
 
-        return view('/home', compact('footer','user'));
+        return view('/home', compact('footer','user','friendlist','interests'));
     }
 
-    public function show($id){
-
+    public function show($id)
+    {
         $user = User::find($id);
-
-        $footer = 'true';
 
         if (auth()->user()->id == $id)
         {
-        return view('/home', compact('footer','user'));
+        return redirect()->route('home');
         }
 
-        return view('User/show', compact('footer','user'));
-    }
+        $interests = DB::table('interest_user')
+        ->where('user_id', $user->id)
+        ->join('interests','interest_user.interest_id','=','interests.id')
+        ->get();
 
-    public function edit($id){
+        $friendRequestor = Friendship::where('requester_user_id', auth()->user()->id)
+        ->where('requested_user_id', $id)
+        ->first();
 
-        $user = User::find($id);
+        $friendRequested = Friendship::where('requester_user_id', $id)
+        ->where('requested_user_id', auth()->user()->id)
+        ->first();
+
+        if ($friendRequestor)
+        {
+            $friendshipExists = 1;
+            $friendship = $friendRequestor;
+        }
+        elseif ($friendRequested)
+        {
+            $friendshipExists = 1;
+            $friendship = $friendRequested;
+        }
+        else
+        {
+            $friendship = null;
+        }
+
+        $rawFriendList = Friendship::where('status','=', 1)
+        ->where(function ($query) use (&$id){
+            $query
+            ->where('requester_user_id','=', $id)
+            ->orWhere('requested_user_id','=', $id);
+        });
+
+        $firstHalfFriendlist = $rawFriendList->join('users as a','friendships.requester_user_id','=', 'a.id')->get();
+
+        $secondHalfFriendlist = $rawFriendList->join('users as b','friendships.requested_user_id','=', 'b.id')->get();
+
+        $friendlist = $firstHalfFriendlist->merge($secondHalfFriendlist);
+
+        $selectedUser = $friendlist->search(function ($item) use (&$id){
+            return $item->id == $id;
+        });
+
+        if(!$selectedUser)
+        {
+            $friendlist = collect([]);
+        } else {
+            $friendlist->pull($selectedUser);
+        }
 
         $footer = 'true';
-        return view('User/edit', compact('footer', 'user'));
+
+        return view('User/show', compact('footer','user', 'friendship', 'interests','friendlist'));
     }
 
-    public function update(Request $request, $id){
+    public function edit($id)
+    {
+        $user = User::find($id);
+
+        $interests = $this->interests->all(['id', 'name']);
+
+        $selectedInterests = DB::table('interest_user')->where('user_id', auth()->user()->id)->get();
+
+        $footer = 'true';
+        return view('User/edit', compact('footer', 'user', 'interests', 'selectedInterests'));
+    }
+
+    public function update(Request $request, $id)
+    {
 
         $data = $request->all();
+
+        $interests = $request->get('interests', null);
 
         $user = User::find($id);
 
@@ -72,12 +160,15 @@ class UserController extends Controller
             $upload = $request->photo->storeAs('public/userPhotos', $nameFile);
         }
 
-        $update = $user->update($data);
+        $user->update($data);
+
+        $user->interests()->sync($interests);
 
         return redirect()->route('home');
     }
 
-    public function listGroupsAndTrips() {
+    public function listGroupsAndTrips()
+    {
 
         $confirmedTrips = DB::table('trip_user')
         ->where('user_id', auth()->user()->id)
@@ -89,19 +180,51 @@ class UserController extends Controller
         return view('Groups and Trips/index', compact('footer', 'confirmedTrips'));
     }
 
-    public function addFriend($requestedUserID) {
+    public function friendshipAdd($requestedUserID)
+    {
 
         $friendship = Friendship::create([
             'requester_user_id' => auth()->user()->id,
             'requested_user_id' => $requestedUserID
         ]);
 
-        dd($friendship);
+        return redirect()->route('user.show',['id' => $requestedUserID]);
     }
 
-    public function acceptFriend($requesterUserID) {
-        $friendship = Friendship::where('requester_user_id' ,$requesterUserID )
-        ->where('requested_user_id', $this->id)
+    public function friendshipDelete($requestedUserID)
+    {
+        $friendRequestor = Friendship::where('requester_user_id', auth()->user()->id)
+        ->where('requested_user_id', $requestedUserID)
+        ->first();
+
+        $friendRequested = Friendship::where('requester_user_id', $requestedUserID)
+        ->where('requested_user_id', auth()->user()->id)
+        ->first();
+
+        if ($friendRequestor)
+        {
+            $friendshipExists = 1;
+            $friendship = $friendRequestor;
+            $friendship->delete();
+        }
+        elseif ($friendRequested)
+        {
+            $friendshipExists = 0;
+            $friendship = $friendRequested;
+            $friendship->delete();
+        }
+        else
+        {
+            $friendship = null;
+        }
+
+        return redirect()->route('user.show',['id' => $requestedUserID]);
+    }
+
+    public function friendshipAccept($requestedUserID)
+    {
+        $friendship = Friendship::where('requester_user_id', $requestedUserID)
+        ->where('requested_user_id', auth()->user()->id)
         ->first();
 
         if($friendship)
@@ -109,16 +232,25 @@ class UserController extends Controller
             $friendship->update([
                 'status' => 1
             ]);
-
-            return $friendship;
-
         }
 
-        return (!$friendship);
+        return redirect()->route('user.show',['id' => $requestedUserID]);
+    }
+
+    public function friendshipCancel($requestedUserID)
+    {
+        $friendship = Friendship::where('requester_user_id',auth()->user()->id)
+        ->where('requested_user_id', $requestedUserID)
+        ->first();
+
+        $friendship->delete();
+
+        return redirect()->route('user.show',['id' => $requestedUserID]);
 
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $user = User::find($id);
         $user->delete();
 

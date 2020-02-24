@@ -26,7 +26,10 @@
             <!-- Botões -->
 
             <!-- Descrição do Usuário -->
-            <h5 class="nome ml-3 py-1 ">{{$user->name}}</h5>
+            <div class="d-flex">
+                <h4 class="nome ml-3 py-1">{{$user->name}}</h4>
+                @if($user->public == 0) <i class="material-icons md-18 d-flex align-self-center mb-2 ml-1">lock</i>@endif
+            </div>
 
             <div class="col-xs-12">
                 <div class="row usuario-local ml-3 pt-3">
@@ -46,7 +49,9 @@
             <h5 class="nome mx-3 pt-4">Meus interesses</h5>
             <div class="col-xs-12">
                 <div class="row interesses text-justify mx-3 py-2">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, ducimus. Quibusdam dignissimos reprehenderit placeat quas modi, ipsa temporibus omnis labore aspernatur, fugit officia delectus iure. Eveniet deleniti odio explicabo ipsum!
+                @foreach($interests as $interest)
+                    <button type="button" class="btn btn-outline-primary mt-1 mr-1">{{$interest->name}}</button>
+                @endforeach
                 </div>
             </div>
             <!-- Interesses -->
@@ -64,16 +69,24 @@
             </div>
 
             <!-- Lista de Amigos -->
-            <h6 class="amigo ml-3">123 amigos</h6>
+            <h6 class="amigo ml-3">
+                @if($friendlist->count() == 0)
+                    Você ainda não possui amigos
+                    @elseif($friendlist->count() == 1)
+                        {{$friendlist->count()}} amigo
+                    @else
+                        {{$friendlist->count()}} amigos
+                @endif
+            </h6>
+
+            @foreach($friendlist as $friend)
                 <div class="col-xs-12 amigo-foto ml-3 py-4">
-                    <img src="" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 1</h6>
+                    <a href="{{route('user.show', ['id' => $friend->id])}}">
+                        <img alt="{{$friend->name}}" src="@if($friend->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$friend->photo")}} @endif" class="rounded-circle" style="width:90px; height: 90px">
+                    </a>
                 </div>
-                <div class="col-xs-12 amigos-foto ml-3 py-4">
-                    <img src="" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 2</h6>
-                </div>
-                <div class="col-xs-12 amigos-foto ml-3 py-4">
-                    <img src="" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 3</h6>
-                </div>
+            @endforeach
+
         </section>
         <!-- Amigos -->
     </div>

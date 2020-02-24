@@ -14,9 +14,10 @@ class CreateFriendshipsTable extends Migration
     public function up()
     {
         Schema::create('friendships', function (Blueprint $table) {
-            $table->unsignedBigInteger('requester_user_id');
-            $table->unsignedBigInteger('resquested_user_id');
-            $table->boolean('status')->default(0);
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('requester_user_id')->nullable();
+            $table->unsignedBigInteger('requested_user_id')->nullable();
+            $table->boolean('status')->default(0)->nullable();
             $table->timestamps();
         });
     }

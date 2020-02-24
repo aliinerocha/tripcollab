@@ -27,7 +27,7 @@ class CheckTrip
 
         $userID = auth()->user()->id;
 
-        if ($userID != $trip['id']) {
+        if ($userID != $trip['admin']) {
             return redirect()->route('home');
         }
 

@@ -49,8 +49,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/profile/{id}' , 'User\UserController@update')->name('user.update');
 
     Route::delete('/profile/{id}/del', 'User\UserController@destroy')->name('user.delete');
-    
-    Route::get('/profile/add/{requestedUserID}', 'User\UserController@addFriend')->name('add.friend');
+
+    Route::get('/profile/friendship/add/{requestedUserID}', 'User\UserController@friendshipAdd')->name('friendship.add');
+
+    Route::get('/profile/friendship/accept/{requestedUserID}', 'User\UserController@friendshipAccept')->name('friendship.accept');
+
+    Route::get('/profile/friendship/cancel/{requestedUserID}', 'User\UserController@friendshipCancel')->name('friendship.cancel');
+
+    Route::get('/profile/friendship/delete/{requestedUserID}', 'User\UserController@friendshipDelete')->name('friendship.delete');
+
 
     // Groups
 
@@ -83,11 +90,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
 
     // Topic Messages
-    
+
     Route::post('topicMessage/store', 'Group\TopicMessageController@store')->name('topicMessage.store');
 
     Route::get('topicMessage/{id}/edit', 'Group\TopicMessageController@edit')->name('topicMessage.edit');
-    
+
     Route::put('topicMessage/{id}', 'Group\TopicMessageController@update')->name('topicMessage.update');
 
     Route::delete('topicMessage/{id}', 'Group\TopicMessageController@destroy')->name('topicMessage.destroy');

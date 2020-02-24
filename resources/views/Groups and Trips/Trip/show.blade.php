@@ -22,7 +22,7 @@
             <div class="col-10 offset-1">
             <div class="d-flex mt-2 justify-content-center">
                 <div class="col-11 p-0">
-                    <img src="@if($trip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $trip->photo)}} @endif" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
+                    <img src="@if($trip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $trip->photo)}} @endif" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto; @if($trip->photo != 'nophoto') border-radius: 25px @endif" alt="...">
                 </div>
             </div>
             <div>
@@ -38,7 +38,7 @@
                     <p class="titulo_campo mb-2">Interesses:</p>
                     <p class="mb-4">
                         @foreach($interests as $interest)
-                            {{$interest->name}}
+                            <button type="button" class="btn btn-outline-primary mt-1">{{$interest->name}}</button>
                         @endforeach
                     </p>
                     <p class="titulo_campo mb-2">Vinculado à comunidade:</p>

@@ -19,15 +19,59 @@
             <!-- Foto do Usuário -->
 
             <!-- Botões -->
-            <div class="col-xs-12 usuario-botoes text-right pull-right py-3">
-                <a href="{{route('add.friend', ['requestedUserID' => $user->id])}}" class="btn btn-sm btn-info">Adicionar</a>
+
+
+            @if($friendship == null)
+
+            <div class="col-xs-12 text-right pull-right py-3">
+                <a href="{{route('friendship.add', ['requestedUserID' => $user->id])}}" class="btn btn-info">Adicionar</a>
             </div>
+
+            @elseif($friendship->status == 0 && $friendship->requester_user_id == auth()->user()->id)
+
+            <div class="dropdown col-xs-12 usuario-botoes text-right pull-right py-3 d-flex justify-content-end">
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Solicitação enviada
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{route('friendship.cancel', ['requestedUserID' => $user->id])}}">Cancelar solicitação</a>
+                </div>
+            </div>
+
+            @elseif($friendship->status == 0 && $friendship->requested_user_id == auth()->user()->id)
+
+            <div class="dropdown col-xs-12 usuario-botoes text-right pull-right py-3 d-flex justify-content-end">
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Solicitou sua amizade
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{route('friendship.accept', ['requestedUserID' => $user->id])}}">Aceitar</a>
+                    <a class="dropdown-item" href="{{route('friendship.delete', ['requestedUserID' => $user->id])}}">Rejeitar</a>
+                </div>
+            </div>
+
+            @else
+
+            <div class="dropdown col-xs-12 usuario-botoes text-right pull-right py-3 d-flex justify-content-end">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Amigos
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{route('friendship.delete', ['requestedUserID' => $user->id])}}">Desfazer amizade</a>
+                </div>
+            </div>
+
+            @endif
+
             <!-- Botões -->
 
             <!-- Descrição do Usuário -->
-            <h5 class="nome ml-3 py-1 ">{{$user->name}}</h5>
+            <div class="d-flex">
+                <h4 class="nome ml-3 py-1">{{$user->name}}</h4>
+                @if($user->public == 0) <i class="material-icons md-18 d-flex align-self-center mb-2 ml-1">lock</i>@endif
+            </div>
 
-            @if($user->public == 1)
+            @if($user->public == 1 || ($user->public == 0 && ($friendship && $friendship->status == 1)))
 
             <div class="col-xs-12">
                 <div class="row usuario-local ml-3 pt-3">
@@ -47,7 +91,9 @@
             <h5 class="nome mx-3 pt-4">Meus interesses</h5>
             <div class="col-xs-12">
                 <div class="row interesses text-justify mx-3 py-2">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, ducimus. Quibusdam dignissimos reprehenderit placeat quas modi, ipsa temporibus omnis labore aspernatur, fugit officia delectus iure. Eveniet deleniti odio explicabo ipsum!
+                    @foreach($interests as $interest)
+                        <button type="button" class="btn btn-outline-primary mt-1 mr-1">{{$interest->name}}</button>
+                    @endforeach
                 </div>
             </div>
             <!-- Interesses -->
@@ -65,16 +111,23 @@
                 </div>
 
                 <!-- Lista de Amigos -->
-                <h6 class="amigo ml-3">123 amigos</h6>
-                    <div class="col-xs-12 amigo-foto ml-3 py-4">
-                        <img src="" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 1</h6>
-                    </div>
-                    <div class="col-xs-12 amigos-foto ml-3 py-4">
-                        <img src="" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 2</h6>
-                    </div>
-                    <div class="col-xs-12 amigos-foto ml-3 py-4">
-                        <img src="" class="rounded-circle" style="width:90px; height: 90px"><h6 class="amigo ml-4">Amigo Amigo 3</h6>
-                    </div>
+                <h6 class="amigo ml-3">
+                @if($friendlist->count() == 0)
+                    {{$user->name}} ainda não possui amigos
+                    @elseif($friendlist->count() == 1)
+                        {{$friendlist->count()}} amigo
+                    @else
+                        {{$friendlist->count()}} amigos
+                @endif
+            </h6>
+
+            @foreach($friendlist as $friend)
+                <div class="col-xs-12 amigo-foto ml-3 py-4">
+                    <a href="{{route('user.show', ['id' => $friend->id])}}">
+                        <img alt="{{$friend->name}}" src="@if($friend->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$friend->photo")}} @endif" class="rounded-circle" style="width:90px; height: 90px">
+                    </a>
+                </div>
+            @endforeach
             </section>
             <!-- Amigos -->
             @else

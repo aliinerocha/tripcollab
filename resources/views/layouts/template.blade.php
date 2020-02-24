@@ -104,7 +104,7 @@
 <div class="nav-inferior nav fixed-bottom d-flex justify-content-around border-top" id="navInferior">
     <a href="linhaDoTempo" class="fas fa-atlas fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }}"></a>
     <a href="mensagens" class="far fa-comments fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'mensagens' ? 'ativo' : '' }}"></a>
-    <a href="perfil" class="fas fa-home fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'perfil' ? 'ativo' : '' }}"></a>
+    <a href="{{route('home')}}" class="fas fa-home fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'perfil' ? 'ativo' : '' }}"></a>
     <a href="{{route('user.listGroupsAndTrips')}}" class="fas fa-users fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'comunidadesEviagens' ? 'ativo' : '' }}"></a>
 </div>
 @endif
