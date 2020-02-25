@@ -19,14 +19,12 @@
         </div>
 
         <div class="container mb-4">
-            <!-- <img src="{{url('./img/group.png')}}" style="width: 45%;height:45%"> -->
-
             @foreach($confirmedMembers as $confirmedMember)
                 <a href="{{route('user.show', ['id' => $confirmedMember->user_id])}}">
                     <img
                     class="foto-perfil rounded-circle"
                     src="@if($confirmedMember->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif"
-                    alt="{{$confirmedMember->name}}" style="width: 45%;height:45%">
+                    alt="{{$confirmedMember->name}}">
                 </a>
             @endforeach           
             @if(!$confirmed)
@@ -149,7 +147,7 @@
                     </div>
                 </div>
                 <div class="mx-1 my-2">
-                    <a href="{{route('topic.create')}}" class="botao btn btn-primary border-0">Novo tópico</a>
+                    <a href="{{route('topic.create', ['id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a>
                     <a href="#" class="botao btn btn-primary border-0">Ver +</a>
                 </div>
             </div>
@@ -157,27 +155,27 @@
     </section>
 
     <!-- TÓPICO 1 -->
+    @foreach ($topics as $topic)
     <section class="bg-light mt-2 mb-1 pb-1">
 
         <div class="col-md-8">
             <div class="card-body px-0">
-
                 <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
                         <img class="foto-perfil rounded-circle display-column" src="{{url('./img/perfil.1.jpg')}}" alt="foto de perfil do membro">
                         <div class="small">Angelina</div>
                     </div>
-
+                    
                     <div class="d-flex flex-column w-100 ml-2">
-                        <h5 class="card-title mb-auto">Momentos mais engraçados!</h5>
-                        <div class="w-100 small d-flex align-items-end flex-column"><span>1 de abril de 2020</span></div>
+                        <h5 class="card-title mb-auto">{{$topic->name}}</h5>
+                        <div class="w-100 small d-flex align-items-end flex-column"><span>{{$topic->created_at->format('d-m-Y')}}</span></div>
                     </div>
                 </div>
 
                 <div class="mt-2">
-                    Vamos compartilhar nossos momentos engraçados durante as viagens!
+                    {{$topic->description}}
                 </div>
-
+                
                 <div class="d-flex w-100 mt-3 justify-content-between">
                     <div class="d-flex small">
                         <span class="d-flex mr-2 align-items-center">
@@ -198,7 +196,7 @@
                         </span>
                     </div>
                     <div>
-                        <a href="#" class="text-muted link-detalhes">
+                        <a href="{{route('topic.show',['id' => $topic->id])}}" class="text-muted link-detalhes stretched-link">
                             Responder
                         </a>
                     </div>
@@ -206,6 +204,7 @@
             </div>
         </div>
     </section>
+    @endforeach
 
     <!-- TÓPICO 2 -->
 

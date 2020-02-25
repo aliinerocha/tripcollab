@@ -8,19 +8,20 @@ use App\Trip;
 use App\Group;
 use App\Topic;
 use App\Interest;
-use App\ User;
+use App\User;
 use Illuminate\Support\Facades\DB;
 
 class GroupController extends Controller
 {
     private $group;
 
-    public function __construct(Group $group, Trip $trip, Interest $interests, User $user)
+    public function __construct(Group $group, Trip $trip, Interest $interests, User $user, Topic $topic)
     {
         $this->group = $group;
         $this->trip = $trip;
         $this->interests = $interests;
         $this->user = $user;
+        $this->topic = $topic;
     }
 
     /**
@@ -101,8 +102,10 @@ class GroupController extends Controller
 
         $confirmed = $userConfirmedPresence->count();
 
+        $topics = Topic::get();
+
         $footer = 'true';
-        return view('/Groups and Trips/Group/show', compact('footer', 'group', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers'));
+        return view('/Groups and Trips/Group/show', compact('footer', 'group', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers', 'topics'));
     }
 
     /**
@@ -118,7 +121,7 @@ class GroupController extends Controller
         $group = $this->group->findOrFail($id);
 
         $selectedInterests = DB::table('group_interest')->where('group_id', $id)->get();
-        // dd($selectedInterests);
+        
         $footer = 'true';
 
         return view('/Groups and Trips/Group/edit', compact('footer','interests', 'selectedInterests', 'group'));
@@ -165,7 +168,7 @@ class GroupController extends Controller
 
         $group->delete();
 
-        return redirect()->route('/home');
+        return redirect()->route('home');
     }
     
     public function confirmPresence($groupId, $userId) {
