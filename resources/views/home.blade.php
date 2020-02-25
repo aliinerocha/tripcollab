@@ -20,8 +20,9 @@
 
             <!-- Botões -->
             <div class="col-xs-12 usuario-botoes text-right pull-right py-3">
-                {{-- <a href="notificacoes"><i class="far fa-bell fa-lg"></i></a> --}}
-            <a href="{{route('user.edit', ['id' => $user->id])}}"><i class="far fa-edit fa-lg"></i></a>
+                <a href="{{route('user.edit', ['id' => $user->id])}}">
+                    <i class="far fa-edit fa-lg"></i>
+                </a>
             </div>
             <!-- Botões -->
 
