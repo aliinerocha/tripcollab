@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-Use App\User;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Trip;
@@ -11,6 +11,7 @@ use App\Interest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 
 class UserController extends Controller
 {
@@ -48,9 +49,11 @@ class UserController extends Controller
             return $item->id == auth()->user()->id;
         });
 
-        $friendlist->pull($authUser);
+        if(!$friendlist->isEmpty())
+        {
+           $friendlist->pull($authUser);
+        }
 
-        // dd($friendlist);
 
         $footer = 'true';
 
@@ -171,7 +174,21 @@ class UserController extends Controller
         $confirmedTrips = DB::table('trip_user')
         ->where('user_id', auth()->user()->id)
         ->join('trips','trip_user.trip_id','=','trips.id')
-        ->get();
+        ->get()
+        ->toArray();
+
+        foreach($confirmedTrips as $key => $trip)
+        {
+            $confirmedMembers = DB::table('trip_user')
+            ->where('trip_id', $trip['id'])
+            ->join('users','trip_user.user_id','=','users.id')
+            ->get(['user_id','name','photo'])
+            ->toArray();
+
+            $trip['confirmedMembers'] = $confirmedMembers;
+        }
+
+        dd($confirmedTrips);
 
         $footer = 'true';
 
@@ -186,6 +203,8 @@ class UserController extends Controller
             $user = User::find($id);
         }
 
+        $friendshipRequestors;
+
         $rawFriendList = Friendship::where('status','=', 1)
         ->where(function ($query) use (&$id){
             $query
@@ -193,11 +212,16 @@ class UserController extends Controller
             ->orWhere('requested_user_id','=', $id);
         });
 
-        $firstHalfFriendlist = $rawFriendList->join('users as a','friendships.requester_user_id','=', 'a.id')->get();
+        $firstHalfFriendlist = $rawFriendList
+        ->join('users as a','friendships.requester_user_id','=', 'a.id')
+        ->get();
 
-        $secondHalfFriendlist = $rawFriendList->join('users as b','friendships.requested_user_id','=', 'b.id')->get();
+        $secondHalfFriendlist = $rawFriendList
+        ->join('users as b','friendships.requested_user_id','=', 'b.id')
+        ->get();
 
-        $friendlist = $firstHalfFriendlist->merge($secondHalfFriendlist);
+        $friendlist = $firstHalfFriendlist
+        ->merge($secondHalfFriendlist);
 
         $selectedUser = $friendlist->search(function ($item) use (&$id){
             return $item->id == $id;
@@ -208,9 +232,37 @@ class UserController extends Controller
            $friendlist->pull($selectedUser);
         }
 
+        $friendRequestor = Friendship::where('requester_user_id', auth()->user()->id)
+        ->where('requested_user_id', $id)
+        ->first();
+
+        $friendRequested = Friendship::where('requester_user_id', $id)
+        ->where('requested_user_id', auth()->user()->id)
+        ->first();
+
+        if ($friendRequestor)
+        {
+            $friendship = $friendRequestor;
+        }
+        elseif ($friendRequested)
+        {
+            $friendship = $friendRequested;
+        }
+        else
+        {
+            $friendship = null;
+        }
+
+        $friendshipRequestors = Friendship::where('requested_user_id', auth()->user()->id)
+        ->where('status', 0)
+        ->join('users','friendships.requester_user_id','=', 'users.id')
+        ->get();
+
+        // dd($friendshipRequestors);
+
         $footer = 'true';
 
-        return view('User/Friendships/index', compact('user','friendlist','footer'));
+        return view('User/Friendships/index', compact('user','friendshipRequestors','friendlist','friendship','footer'));
     }
 
     public function friendshipAdd($requestedUserID)
@@ -221,7 +273,7 @@ class UserController extends Controller
             'requested_user_id' => $requestedUserID
         ]);
 
-        return redirect()->route('user.show',['id' => $requestedUserID]);
+        return redirect()->back();
     }
 
     public function friendshipDelete($requestedUserID)
@@ -251,7 +303,7 @@ class UserController extends Controller
             $friendship = null;
         }
 
-        return redirect()->route('user.show',['id' => $requestedUserID]);
+        return redirect()->back();
     }
 
     public function friendshipAccept($requestedUserID)
@@ -267,7 +319,7 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect()->route('user.show',['id' => $requestedUserID]);
+        return redirect()->back();
     }
 
     public function friendshipCancel($requestedUserID)
@@ -278,7 +330,7 @@ class UserController extends Controller
 
         $friendship->delete();
 
-        return redirect()->route('user.show',['id' => $requestedUserID]);
+        return redirect()->back();
 
     }
 

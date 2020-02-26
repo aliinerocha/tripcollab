@@ -85,8 +85,8 @@ class TripController extends Controller
         ->join('users','trip_user.user_id','=','users.id')
         ->get(['user_id','name','photo']);
 
-
         $admin = $trip->admin()->first(['id','name']);
+
         $user = auth()->user(['id', 'name']);
 
         $userConfirmedPresence = DB::table('trip_user')->where([
@@ -97,6 +97,7 @@ class TripController extends Controller
         $confirmed = $userConfirmedPresence->count();
 
         $footer = 'true';
+
         return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers'));
     }
 

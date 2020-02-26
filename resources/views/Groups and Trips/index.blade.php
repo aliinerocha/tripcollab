@@ -104,7 +104,7 @@
                     <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
                 </div>
             </div>
-            <a href="/criarGrupoDeViagem" class="p-0 m-0">
+            <a href="{{route('trip.create')}}" class="p-0 m-0">
                 <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
             </a>
         </div>
@@ -119,8 +119,6 @@
 
     @foreach($confirmedTrips as $confirmedTrip)
 
-
-
         <section class="bg-light mt-2 mb-1 pb-4 row">
 
             <div class="col-3">
@@ -128,10 +126,9 @@
             </div>
 
             <div class="col-9">
-                <div class="card-body">
+                <div class="card-body ml-2">
                     <div class="d-flex justify-content-between">
                         <h5 class="card-title">{{$confirmedTrip->name}}</h5>
-                        <span> <i class="material-icons check">check</i></span>
                     </div>
                     <!--
                     <div class="card-text d-flex justify-content-start">
@@ -147,12 +144,10 @@
                             <img class="foto-perfil rounded-circle" src="./img/perfil.3.jpg" alt="foto de perfil do membro">
                         </div>
                     </div>
-                <a href="/detalhesDeViagem" class="text-muted float-right link-detalhes">ver mais detalhes</a>
+                <a href="{{route('trip.show', ['id' => $confirmedTrip->id])}}" class="text-muted float-right link-detalhes">ver mais detalhes</a>
                 </div>
             </div>
         </section>
-
-
 
     @endforeach
 

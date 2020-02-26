@@ -62,7 +62,7 @@
         <section class="amigos bg-light px-3 py-4">
             <h5 class="nome pt-1 pb-1 ml-3">Meus amigos</h5>
             <!-- Busca -->
-            <div class=" input-group mb-3 py-3 col-10">
+            <div class=" input-group mb-3 py-3">
                 <input type="text" class="form-control border-0" placeholder='Pesquisar "Amigos"'>
                 <div class="input-group-append">
                     <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
@@ -70,23 +70,46 @@
             </div>
 
             <!-- Lista de Amigos -->
-            <h6 class="amigo ml-3">
-                @if($friendlist->count() == 0)
-                    Você ainda não possui amigos
-                    @elseif($friendlist->count() == 1)
-                        {{$friendlist->count()}} amigo
-                    @else
-                        {{$friendlist->count()}} amigos
+
+            <div class="d-flex">
+
+                <h6 class="amigo ml-3">
+                    @if($friendlist->count() == 0)
+                        Você ainda não possui amigos
+                        @elseif($friendlist->count() == 1)
+                            {{$friendlist->count()}} amigo
+                        @else
+                            {{$friendlist->count()}} amigos
+                    @endif
+                </h6>
+
+                @if(!($friendlist->count() == 0))
+
+                <h6 href="" class="ml-1">
+                    <a href="{{route('friendship.index', ['id' => $user->id])}}">(ver todos)</a>
+                </h6>
+
+                @else
+
+                <h6 href="" class="ml-1">
+                    <a href="{{route('friendship.index', ['id' => $user->id])}}">(ver lista)</a>
+                </h6>
+
                 @endif
-            </h6>
+
+            </div>
+
+            <div class="d-flex">
 
             @foreach($friendlist as $friend)
-                <div class="col-xs-12 amigo-foto ml-3 py-4">
+                <div class="ml-3 py-4">
                     <a href="{{route('user.show', ['id' => $friend->id])}}">
                         <img alt="{{$friend->name}}" src="@if($friend->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$friend->photo")}} @endif" class="rounded-circle" style="width:90px; height: 90px">
                     </a>
                 </div>
             @endforeach
+
+            </div>
 
         </section>
         <!-- Amigos -->

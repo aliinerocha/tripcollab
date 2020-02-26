@@ -24,7 +24,7 @@
 <body>
 <!-- NAV SUPERIOR -->
 <nav class="navbar sticky-top">
-        <a class="navbar-brand" href=""><img src="{{url('img/logo branco.png')}}" alt="logo Trip Collab"> TRIPCOLLAB</a>
+        <a class="navbar-brand" href="{{route('home')}}"><img src="{{url('img/logo branco.png')}}" alt="logo Trip Collab"> TRIPCOLLAB</a>
         <div class=" d-flex justify-space-between align-items-center">
 
             @auth
