@@ -61,7 +61,7 @@
                     </div>
                     <div class="row d-flex justify-content-end m-0">
                             <div class="d-flex justify-content-end m-0">
-                                <a href="{{route('group.show',['id' => $group->id])}}" class="btn botao_atencao mr-2">Cancelar</a>
+                                <a href="{{ URL::previous() }}" class="btn botao_atencao mr-2">Cancelar</a>
                                 <button type="submit" href="#" class="btn botao mr-2">Salvar</button>
                             </div>
                 </form>

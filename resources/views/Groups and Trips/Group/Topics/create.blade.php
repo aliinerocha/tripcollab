@@ -15,7 +15,7 @@ Criar Novo Tópico
     </div>
 </div> 
 <div class="row">
-    <form action="{{route('topic.store', ['id' => $group->id])}}" method="POST" enctype="multipart/form-data" class="col-10 offset-1" >
+    <form action="{{route('topic.store', ['group_id' => $group->id])}}" method="POST" enctype="multipart/form-data" class="col-10 offset-1" >
         @csrf 
         
         <div class="form-group mt-4" >
@@ -39,8 +39,12 @@ Criar Novo Tópico
         </div>
        
         <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
-        <div class="form-group mt-4">
-            <button type="submit" class="btn botao btn-primary float-right border-0">Criar Topico</button>
+        <input type="hidden" name="group_id" value="{{$group->id}}">
+        <div class="row d-flex justify-content-end m-0">
+            <div class="form-group d-flex justify-content-end">
+                <a href="{{ URL::previous() }}" class="btn botao_atencao mr-2">Cancelar</a>
+                <button type="submit" class="btn botao btn-primary float-right border-0">Criar Topico</button>
+            </div>
         </div>
         
     </form>

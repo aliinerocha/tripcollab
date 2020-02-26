@@ -39,7 +39,7 @@
             </div>
             <div class="row d-flex justify-content-end m-0">
                     <div class="form-group d-flex justify-content-end">
-                        <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                        <a href="{{ URL::previous() }}" class="btn botao_atencao mr-2">Cancelar</a>
                         <button type="submit" href="comunidadesEViagens" class="btn botao btn-primary float-right border-0 mr-2">Salvar</button>
                     </div>
                     

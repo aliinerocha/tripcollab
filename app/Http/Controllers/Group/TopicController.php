@@ -7,6 +7,7 @@ use App\Topic;
 use App\Group;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TopicController extends Controller
 {
@@ -15,15 +16,21 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(Topic $topic, Group $group)
+    public function __construct(Topic $topic, Group $group, User $user)
     {
         $this->topic = $topic;
         $this->group = $group;
+        $this->user = $user;
     }
 
-    public function index()
+    public function index($group)
     {
-        //
+        $group = $this->group->findOrFail($group);
+        $topics = DB::table('topics')
+        ->where('group_id', $group->id)
+        ->get();
+        $footer = 'true';
+        return view('Groups and Trips/Group/Topics/index', compact('footer', 'group', 'topics'));
     }
 
     /**
@@ -44,14 +51,16 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        $data = $request->all();
-        $group = Group::find($id);
-        $data->group()->associate($group);
-        $store = $this->topic->create($data);
+        $topic = new Topic();
+        $topic->user_id = auth()->user()->id;
+        $topic->group_id = $request->input('group_id');
+        $topic->name = $request->name;
+        $topic->description = $request->description;
+        $topic->save();
         
-        return redirect()->route('topic.create', [$group->slug]);
+        return redirect()->route('topic.show', $topic->id);
     }
 
     /**
@@ -63,8 +72,9 @@ class TopicController extends Controller
     public function show($topic)
     {
         $topic = $this->topic->findOrFail($topic);
+        $user = auth()->user(['id', 'name']);
         $footer = 'true';
-        return view('Groups and Trips/Group/Topics/show', compact('topic','footer'));
+        return view('Groups and Trips/Group/Topics/show', compact('topic','footer', 'user'));
     }
 
     /**

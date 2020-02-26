@@ -1,7 +1,7 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
-    Criar novo Grupo de Viagem
+    Comunidade {{$group->name}}
 @endsection
 
 @section('conteudo')
@@ -56,7 +56,7 @@
         </div>
         @if($user->id == $group->admin)
         <div class="mx-1 my-2">
-            <a href="{{route('group.edit',['id' => $group->id])}}" class="botao btn btn-primary border-0">Editar</a>
+            <a href="{{route('group.edit',['id' => $group->id] )}}" class="botao btn btn-primary border-0">Editar</a>
         </div>
         @endif
 
@@ -69,62 +69,26 @@
         <div id="comunidade-slider" class="carousel slide container" data-ride="carousel">
             <div class="carousel-inner">
 
-                <!-- CARD VIAGEM 1 -->
-                <div class="carousel-item active">
+                <!-- CARD VIAGEM -->
+                @foreach($trips as $key => $trip)
+                <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
                     <div class="card border-0" style="width: 18rem;">
                         <div class="card-header border-0 text-center">
-                            <span>Cancún</span>
+                            <span>{{$trip->name}}</span>
                         </div>
-                        <img src="{{url('./img/cancun.jpeg')}}" class="card-img-top rounded-0"
+                        <img src="@if($trip->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($trip->photo)}}@endif" class="card-img-top rounded-0"
                             style="max-height: 160px; object-fit: cover;" alt="Cancún">
-                        <div class="card-body d-flex justify-content-between">
+                        <div class="card-body d-flex justify-content-between  border-0">
                             <div class="texto d-flex justify-content-start align-items-center ">
-                                <h6 class="mr-2 mb-0">Março de 2020</h6>
+                                <h6 class="mr-2 mb-0">{{\Carbon\Carbon::parse($trip->return_date)->formatLocalized('%h de %Y')}}</h6>
                             </div>
                             <div class="botao">
-                                <a href="#" class="botao btn btn-primary float-right border-0">Histórico</a>
+                                <a href="#" class="botao btn btn-primary float-right border-0 stretched-link">Histórico</a>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- CARD VIAGEM 2 -->
-                <div class="carousel-item">
-                    <div class="card border-0" style="width: 18rem;">
-                        <div class="card-header border-0 text-center">
-                            <span>Bora Bora</span>
-                        </div>
-                        <img src="{{url('./img/borabora.jpg')}}" class="card-img-top rounded-0"
-                            style="max-height: 160px; object-fit: cover;" alt="Bora Bora">
-                        <div class="card-body d-flex justify-content-between">
-                            <div class="texto d-flex justify-content-start align-items-center ">
-                                <h6 class="mr-2 mb-0">Abril de 2020</h6>
-                            </div>
-                            <div class="botao">
-                                <a href="#" class="botao btn btn-primary float-right border-0">Histórico</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD VIAGEM 3 -->
-                <div class="carousel-item">
-                    <div class="card border-0" style="width: 18rem;">
-                        <div class="card-header border-0 text-center">
-                            <span>Havana</span>
-                        </div>
-                        <img src="{{url('./img/havana.jpeg')}}" class="card-img-top rounded-0"
-                            style="max-height: 160px; object-fit: cover;" alt="Havana">
-                        <div class="card-body d-flex justify-content-between">
-                            <div class="texto d-flex justify-content-start align-items-center ">
-                                <h6 class="mr-2 mb-0">Maio de 2020</h6>
-                            </div>
-                            <div class="botao">
-                                <a href="#" class="botao btn btn-primary float-right border-0">Histórico</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>
@@ -147,14 +111,14 @@
                     </div>
                 </div>
                 <div class="mx-1 my-2">
-                    <a href="{{route('topic.create', ['id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a>
-                    <a href="#" class="botao btn btn-primary border-0">Ver +</a>
+                    <a href="{{route('topic.create', ['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a>
+                    <a href="{{route('topic.index', ['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Ver +</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TÓPICO 1 -->
+    <!-- TÓPICOS -->
     @foreach ($topics as $topic)
     <section class="bg-light mt-2 mb-1 pb-1">
 
@@ -162,13 +126,13 @@
             <div class="card-body px-0">
                 <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
-                        <img class="foto-perfil rounded-circle display-column" src="{{url('./img/perfil.1.jpg')}}" alt="foto de perfil do membro">
-                        <div class="small">Angelina</div>
+                        <img class="foto-perfil rounded-circle display-column" src="@if($user->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro">
+                        <div class="small">{{$user->name}}</div>
                     </div>
                     
                     <div class="d-flex flex-column w-100 ml-2">
                         <h5 class="card-title mb-auto">{{$topic->name}}</h5>
-                        <div class="w-100 small d-flex align-items-end flex-column"><span>{{$topic->created_at->format('d-m-Y')}}</span></div>
+                        <div class="w-100 small d-flex align-items-end flex-column"><span>{{date('d/m/Y', strtotime($topic->created_at))}}</span></div>
                     </div>
                 </div>
 
@@ -205,57 +169,4 @@
         </div>
     </section>
     @endforeach
-
-    <!-- TÓPICO 2 -->
-
-    <section class="bg-light mt-2 mb-1 pb-1">
-
-        <div class="col-md-8">
-            <div class="card-body px-0">
-
-                 <div class="d-flex">
-                    <div class="d-flex flex-column p-0 align-items-center justify-content-end">
-                        <img class="foto-perfil rounded-circle display-column" src="{{url('./img/perfil.4.jpg')}}" alt="foto de perfil do membro">
-                        <div class="small">Fernando</div>
-                    </div>
-
-                    <div class="d-flex flex-column w-100 ml-2">
-                        <h5 class="card-title mb-auto">Momentos mais engraçados!</h5>
-                        <div class="w-100 small d-flex align-items-end flex-column">1 de abril de 2020</div>
-                        </div>
-                    </div>
-
-                    <div class="mt-2">
-                        Vamos compartilhar nossos momentos engraçados durante as viagens!
-                    </div>
-
-                    <div class="d-flex w-100 mt-3 justify-content-between">
-                            <div class="d-flex small">
-                                <span class="d-flex mr-2 align-items-center">
-                                    <i class="material-icons">
-                                        thumb_up
-                                    </i>
-                                    <span class="align-items-center">
-                                        182
-                                    </span>
-                                </span>
-                                <span class="d-flex align-items-center">
-                                    <i class="material-icons mr-1">
-                                        thumb_down
-                                    </i>
-                                    <span class="align-items-center">
-                                        6
-                                    </span>
-                                </span>
-                            </div>
-                            <div>
-                                <a href="" class="text-muted link-detalhes">
-                                    Responder
-                                </a>
-                            </div>
-                        </div>
-
-                </div>
-            </div>
-        </section>
 @endsection

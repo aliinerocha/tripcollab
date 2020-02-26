@@ -1,10 +1,20 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('titulo')
-    Mostrar Fórum
+    Tópico: {{$topic->name}}
 @endsection
 
 @section('conteudo')
+
+    <!-- NAV ABA-->
+    <div class="bg-light pt-4 pb-4 mb-3">
+        <div class="d-flex ml-3 align-items-center">
+            <a class="link" href="{{ URL::previous() }}"><i class="material-icons">arrow_back</i></a>
+            <div class="container">
+                <h5>Voltar</h5>
+            </div>
+        </div>
+    </div>
 
     <!-- BANNER -->
     <main class="mb-3">
@@ -22,13 +32,13 @@
 
                 <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
-                        <img class="foto-perfil rounded-circle display-column" src="{{url('./img/perfil.1.jpg')}}" alt="foto de perfil do membro"> 
-                        <div class="small">Angelina</div>
+                        <img class="foto-perfil rounded-circle display-column" src="@if($user->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro"> 
+                        <div class="small">{{$user->name}}</div>
                     </div>
 
                     <div class="d-flex flex-column w-100 ml-2">
                         <h5 class="card-title mb-auto">{{$topic->name}}</h5>
-                        <div class="w-100 small d-flex align-items-end flex-column"><span>{{$topic->created_at->format('d-m-Y')}}</span></div>
+                        <div class="w-100 small d-flex align-items-end flex-column"><span>{{date('d/m/Y', strtotime($topic->created_at))}}</span></div>
                     </div>
                 </div>
 

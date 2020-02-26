@@ -70,7 +70,7 @@
                         </div>
                         <input type="hidden" name="admin" value="{{auth()->user()->id}}">
                         <div class="d-flex justify-content-end mt-4">
-                            <a href="/groupsandtrips" class="btn botao_atencao mr-2">Cancelar</a>
+                            <a href="{{ URL::previous() }}" class="btn botao_atencao mr-2">Cancelar</a>
                             <button type="submit" href="#" class="btn botao">Salvar</button>
                         </div>
                 </form>

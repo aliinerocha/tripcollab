@@ -80,7 +80,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Topics
 
-    Route::get('topic/index', 'Group\TopicController@index')->name('topic.index');
+    Route::get('{group_id}/topic/index', 'Group\TopicController@index')->name('topic.index');
 
     Route::get('{group_id}/topic/create', 'Group\TopicController@create')->name('topic.create');
 

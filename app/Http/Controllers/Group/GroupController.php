@@ -102,10 +102,18 @@ class GroupController extends Controller
 
         $confirmed = $userConfirmedPresence->count();
 
-        $topics = Topic::get();
+        $trips = DB::table('trips')
+        ->where('group_id', $group->id)
+        ->where('return_date', '<', today())
+        ->get();
+
+        $topics = DB::table('topics')
+        ->where('group_id', $group->id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(3);
 
         $footer = 'true';
-        return view('/Groups and Trips/Group/show', compact('footer', 'group', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers', 'topics'));
+        return view('/Groups and Trips/Group/show', compact('footer', 'group', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers', 'topics', 'trips'));
     }
 
     /**
@@ -143,6 +151,8 @@ class GroupController extends Controller
         if($request->hasFile('photo')) {
             $image = $request->file('photo');
             $data['photo'] = $image->store('groups', 'public');
+        } else {
+            $data['photo'] = 'nophoto';
         }
 
         $group->update($data);
