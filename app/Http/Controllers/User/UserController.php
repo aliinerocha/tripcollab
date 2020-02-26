@@ -63,7 +63,7 @@ class UserController extends Controller
 
         if (auth()->user()->id == $id)
         {
-        return redirect()->route('home');
+            return redirect()->route('home');
         }
 
         $interests = DB::table('interest_user')
@@ -111,11 +111,9 @@ class UserController extends Controller
             return $item->id == $id;
         });
 
-        if(!$selectedUser)
+        if(!$friendlist->isEmpty())
         {
-            $friendlist = collect([]);
-        } else {
-            $friendlist->pull($selectedUser);
+           $friendlist->pull($selectedUser);
         }
 
         $footer = 'true';
@@ -178,6 +176,41 @@ class UserController extends Controller
         $footer = 'true';
 
         return view('Groups and Trips/index', compact('footer', 'confirmedTrips'));
+    }
+
+    public function friendshipIndex($id)
+    {
+        if (auth()->user()->id == $id) {
+            $user = auth()->user();
+        } else {
+            $user = User::find($id);
+        }
+
+        $rawFriendList = Friendship::where('status','=', 1)
+        ->where(function ($query) use (&$id){
+            $query
+            ->where('requester_user_id','=', $id)
+            ->orWhere('requested_user_id','=', $id);
+        });
+
+        $firstHalfFriendlist = $rawFriendList->join('users as a','friendships.requester_user_id','=', 'a.id')->get();
+
+        $secondHalfFriendlist = $rawFriendList->join('users as b','friendships.requested_user_id','=', 'b.id')->get();
+
+        $friendlist = $firstHalfFriendlist->merge($secondHalfFriendlist);
+
+        $selectedUser = $friendlist->search(function ($item) use (&$id){
+            return $item->id == $id;
+        });
+
+        if(!$friendlist->isEmpty())
+        {
+           $friendlist->pull($selectedUser);
+        }
+
+        $footer = 'true';
+
+        return view('User/Friendships/index', compact('user','friendlist','footer'));
     }
 
     public function friendshipAdd($requestedUserID)

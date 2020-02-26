@@ -48,16 +48,17 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::put('/profile/{id}' , 'User\UserController@update')->name('user.update');
 
-    Route::delete('/profile/{id}/del', 'User\UserController@destroy')->name('user.delete');
+    Route::delete('/profile/{id}/delete', 'User\UserController@destroy')->name('user.delete');
 
     Route::get('/profile/friendship/add/{requestedUserID}', 'User\UserController@friendshipAdd')->name('friendship.add');
 
-    Route::get('/profile/friendship/accept/{requestedUserID}', 'User\UserController@friendshipAccept')->name('friendship.accept');
+    Route::get('/profile/friendship/{requestedUserID}/accept', 'User\UserController@friendshipAccept')->name('friendship.accept');
 
     Route::get('/profile/friendship/cancel/{requestedUserID}', 'User\UserController@friendshipCancel')->name('friendship.cancel');
 
-    Route::get('/profile/friendship/delete/{requestedUserID}', 'User\UserController@friendshipDelete')->name('friendship.delete');
+    Route::get('/profile/friendship/{requestedUserID}/delete', 'User\UserController@friendshipDelete')->name('friendship.delete');
 
+    Route::get('/profile/friendship/index/{id}', 'User\UserController@friendshipIndex')->name('friendship.index');
 
     // Groups
 
