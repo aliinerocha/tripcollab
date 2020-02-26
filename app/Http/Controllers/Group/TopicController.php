@@ -44,15 +44,14 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $group_id)
+    public function store(Request $request, $id)
     {
-        $topic = $request->all();
-        $group = Group::find($group_id);
-        $topic->group()->associate($group);
-
-        $store = $this->topic->create($topic);
+        $data = $request->all();
+        $group = Group::find($id);
+        $data->group()->associate($group);
+        $store = $this->topic->create($data);
         
-        return redirect()->route('topic.create');
+        return redirect()->route('topic.create', [$group->slug]);
     }
 
     /**

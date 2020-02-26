@@ -81,9 +81,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('topic/index', 'Group\TopicController@index')->name('topic.index');
 
-    Route::get('{id}/topic/create', 'Group\TopicController@create')->name('topic.create');
+    Route::get('{group_id}/topic/create', 'Group\TopicController@create')->name('topic.create');
 
-    Route::post('{id}/topic/store', 'Group\TopicController@store')->name('topic.store');
+    Route::post('{group_id}/topic/store', 'Group\TopicController@store')->name('topic.store');
 
     Route::get('topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
 
