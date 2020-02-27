@@ -8,6 +8,7 @@ use App\Topic;
 use App\User;
 use App\TopicMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TopicMessageController extends Controller
 {
@@ -18,9 +19,12 @@ class TopicMessageController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct(Topic $topicMessage)
+    public function __construct(TopicMessage $topicMessage, Topic $topic, Group $group, User $user)
     {
         $this->topicMessage = $topicMessage;
+        $this->topic = $topic;
+        $this->group = $group;
+        $this->user = $user;
     }
 
 
@@ -45,13 +49,16 @@ class TopicMessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $data = $request->all();
-        $store = $this->topicMessage->create($data);
-        // Falta a relação com topic_id e user_id!!!
-        // flash('Comunidade criada com sucesso')->success();
-        return redirect()->route('topic.show');
+        $topic = $this->topic->findOrFail($id);
+        $topicMessage = new TopicMessage();
+        $topicMessage->user_id = auth()->user()->id;
+        $topicMessage->topic_id = $request->input('topic_id');
+        $topicMessage->message = $request->message;
+        $topicMessage->save();
+
+        return redirect()->route('topic.show', [$topic->group_id, $topic->id]);
     }
 
     /**
@@ -60,7 +67,7 @@ class TopicMessageController extends Controller
      * @param  \App\TopicMessage  $topicMessage
      * @return \Illuminate\Http\Response
      */
-    public function show($topicMessage)
+    public function show($topicMessage, $topic_id)
     {
         //
     }
@@ -71,12 +78,9 @@ class TopicMessageController extends Controller
      * @param  \App\TopicMessage  $topicMessage
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $topic_id)
     {
-        $topicMessage = $this->topicMessage->findOrFail($id);
-        $footer = 'true';
-        // dd($topicMessage);
-        return view('/Groups and Trips/Group/show', compact('footer', 'topicMessage'));
+        // 
     }
 
     /**
@@ -86,11 +90,9 @@ class TopicMessageController extends Controller
      * @param  \App\TopicMessage  $topicMessage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $topic_id)
     {
-        $data = $request->all();
-        $topicMessage = \App\TopicMessage::find($id);
-        dd($topicMessage->update($data));
+        //
     }
 
     /**
@@ -99,11 +101,12 @@ class TopicMessageController extends Controller
      * @param  \App\TopicMessage  $topicMessage
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($topic, $id)
     {
+        $topic = $this->topic->findOrFail($id);
         $topicMessage = $this->topicMessage->find($id);
         $topicMessage->delete();
-
-        return redirect()->route('group.show');
+        
+        return redirect()->route('topic.show', [$topic->group_id, $topic->id]);
     }
 }

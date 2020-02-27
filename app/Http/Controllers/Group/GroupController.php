@@ -96,20 +96,22 @@ class GroupController extends Controller
         $user = auth()->user(['id', 'name']);
 
         $userConfirmedPresence = DB::table('group_user')->where([
-            ['user_id', auth()->user()->id],
-            ['group_id', $group->id],
+        ['user_id', auth()->user()->id],
+        ['group_id', $group->id],
         ])->get();
-
+            
         $confirmed = $userConfirmedPresence->count();
-
+        
         $trips = DB::table('trips')
         ->where('group_id', $group->id)
         ->where('return_date', '<', today())
         ->get();
-
+        
         $topics = DB::table('topics')
         ->where('group_id', $group->id)
-        ->orderBy('created_at', 'desc')
+        ->join('users', 'topics.user_id', '=', 'users.id')
+        ->select('topics.id','topics.name as topicName','topics.description','topics.created_at','users.name as userName','users.photo')
+        ->orderBy('topics.created_at', 'desc')
         ->paginate(3);
 
         $footer = 'true';

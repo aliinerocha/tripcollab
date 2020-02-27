@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Group;
 
 use App\Http\Controllers\Controller;
 use App\Topic;
+use App\TopicMessage;
 use App\Group;
 use App\User;
 use Illuminate\Http\Request;
@@ -16,11 +17,12 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(Topic $topic, Group $group, User $user)
+    public function __construct(Topic $topic, Group $group, User $user, TopicMessage $topicMessage)
     {
         $this->topic = $topic;
         $this->group = $group;
         $this->user = $user;
+        $this->topicMessage = $topicMessage;
     }
 
     public function index($group)
@@ -28,6 +30,9 @@ class TopicController extends Controller
         $group = $this->group->findOrFail($group);
         $topics = DB::table('topics')
         ->where('group_id', $group->id)
+        ->join('users', 'topics.user_id', '=', 'users.id')
+        ->select('users.id','users.name as userName','users.photo','topics.id','topics.name as topicName','topics.description' ,'topics.created_at')
+        ->orderBy('topics.created_at', 'desc')
         ->get();
         $footer = 'true';
         return view('Groups and Trips/Group/Topics/index', compact('footer', 'group', 'topics'));
@@ -60,7 +65,7 @@ class TopicController extends Controller
         $topic->description = $request->description;
         $topic->save();
         
-        return redirect()->route('topic.show', $topic->id);
+        return redirect()->route('topic.index', [$topic->group_id]);
     }
 
     /**
@@ -69,12 +74,29 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function show($topic)
+    public function show($group, $topic)
     {
         $topic = $this->topic->findOrFail($topic);
+
+        $topicShow = DB::table('topics')
+        ->where('topics.id', $topic->id)
+        ->join('users', 'topics.user_id', '=', 'users.id')
+        ->select('users.id','users.name as userName','users.photo', 'topics.user_id')
+        ->get();
+
         $user = auth()->user(['id', 'name']);
+        
+        $topicMessages = DB::table('topic_messages')
+        ->where('topic_id', $topic->id)
+        ->join('users', 'topic_messages.user_id', '=', 'users.id')
+        ->select('users.id','users.name','users.photo','topic_messages.id','topic_messages.message','topic_messages.created_at', 'topic_messages.user_id')
+        ->orderBy('topic_messages.created_at', 'desc')
+        ->get();
+
+        $answer = $topicMessages->count();
+        
         $footer = 'true';
-        return view('Groups and Trips/Group/Topics/show', compact('topic','footer', 'user'));
+        return view('Groups and Trips/Group/Topics/show', compact('topic','footer', 'topicMessages', 'topicShow', 'user', 'answer'));
     }
 
     /**
@@ -84,7 +106,7 @@ class TopicController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit($id)
+    public function edit($group_id,$id)
     {
         $topic = $this->topic->findOrFail($id);
         $footer = 'true';
@@ -98,13 +120,15 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $group_id, $id)
     {
         $data = $request->all();
 
         $topic = \App\Topic::find($id);
 
-        dd($topic->update($data));
+        $topic->update($data);
+
+        return redirect()->route('topic.show', [$topic->group_id, $topic->id]);
     }
 
     /**
@@ -113,11 +137,11 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($group_id, $id)
     {
         $topic = $this->topic->find($id);
         $topic->delete();
 
-        return redirect()->route('/profile');
+        return redirect()->route('topic.index', [$topic->group_id, $topic->id]);
     }
 }

@@ -86,23 +86,19 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('{group_id}/topic/store', 'Group\TopicController@store')->name('topic.store');
 
-    Route::get('topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
+    Route::get('{group_id}/topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
 
-    Route::get('topic/{id}', 'Group\TopicController@show')->name('topic.show');;
+    Route::get('{group_id}/topic/{id}', 'Group\TopicController@show')->name('topic.show');
 
-    Route::put('topic/{id}', 'Group\TopicController@update')->name('topic.update');
+    Route::put('{group_id}/topic/{id}', 'Group\TopicController@update')->name('topic.update');
 
-    Route::delete('topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
+    Route::delete('{group_id}/topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
 
     // Topic Messages
 
-    Route::post('topicMessage/store', 'Group\TopicMessageController@store')->name('topicMessage.store');
+    Route::post('{topic_id}/topicMessage/store', 'Group\TopicMessageController@store')->name('topicMessage.store');
 
-    Route::get('topicMessage/{id}/edit', 'Group\TopicMessageController@edit')->name('topicMessage.edit');
-
-    Route::put('topicMessage/{id}', 'Group\TopicMessageController@update')->name('topicMessage.update');
-
-    Route::delete('topicMessage/{id}', 'Group\TopicMessageController@destroy')->name('topicMessage.destroy');
+    Route::delete('{topic_id}/topicMessage/{id}', 'Group\TopicMessageController@destroy')->name('topicMessage.destroy');
 });
 
 /*

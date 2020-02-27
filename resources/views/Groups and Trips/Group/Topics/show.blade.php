@@ -9,7 +9,7 @@
     <!-- NAV ABA-->
     <div class="bg-light pt-4 pb-4 mb-3">
         <div class="d-flex ml-3 align-items-center">
-            <a class="link" href="{{ URL::previous() }}"><i class="material-icons">arrow_back</i></a>
+            <a class="link" href="{{route('topic.index',['group_id' => $topic->group_id])}}"><i class="material-icons">arrow_back</i></a>
             <div class="container">
                 <h5>Voltar</h5>
             </div>
@@ -32,8 +32,10 @@
 
                 <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
-                        <img class="foto-perfil rounded-circle display-column" src="@if($user->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro"> 
-                        <div class="small">{{$user->name}}</div>
+                    @foreach ($topicShow as $key)
+                        <img class="foto-perfil rounded-circle display-column" src="@if($key->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro" alt="foto de perfil do membro"> 
+                        <div class="small">{{$key->userName}}</div>
+                    @endforeach
                     </div>
 
                     <div class="d-flex flex-column w-100 ml-2">
@@ -45,25 +47,31 @@
                 <div class="mt-2">
                         {{$topic->description}}
                 </div>
-
+    
                 <div class="d-flex w-100 mt-3 justify-content-between">
                     <div class="d-flex">
                         <span class="d-flex mr-1"><i class="material-icons">thumb_up</i><span>142</span></span>
                         <span class="d-flex mr-1"><i class="material-icons mr-1">thumb_down</i><span>2</span></span>
                     </div>
-
+                    
                     <span class="d-flex mr-2">
                         
-                            <i class="material-icons mr-1">chat</i>
-                            <span class="justify-content-center">2 respostas</span>
-
+                        <i class="material-icons mr-1">chat</i>
+                        <span class="justify-content-center">{{$answer}} @if ($answer<=1) resposta @else respostas @endif</span>
+                        
                     </span>
-
+                    
                     <div>
                         <a href="" class="text-muted link-detalhes">Responder</a>
                     </div>
                 </div>
-
+                
+                @if($user->id == $topic->user_id)
+                    <div class="mx-1 my-2">
+                        <a href="{{route('topic.edit',['group_id' => $topic->group_id ,'id' => $topic->id] )}}" class="botao btn btn-primary border-0">Editar</a>
+                    </div>
+                @endif
+                
             </div>
         </div>
     </section>
@@ -74,18 +82,16 @@
         <span>Respostas</span>
         <span>Classificar</span>
     </div>
-
-    <!-- RESPOSTA 1 -->
     
+    @foreach ($topicMessages as $topicMessage)
     <section class="bg-light mt-2 mb-1 pb-1">
 
         <div class="col-md-8">
             <div class="card-body px-0">
-    
                  <div class="">
                     
-                        <img class="foto-perfil rounded-circle display-column mr-2" src="{{url('./img/perfil.4.jpg')}}" alt="foto de perfil do membro"> 
-                        <b class="mb-0 pb-0">Fernando</b> Oi Angelina, as praias que mais gostei foram as brasileiras
+                        <img class="foto-perfil rounded-circle display-column mr-2" src="@if($topicMessage->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro"> 
+                        <b class="mb-0 pb-0">{{$topicMessage->name}}</b> {{$topicMessage->message}}
                 </div>
 
                 <div class="d-flex w-100 mt-3 justify-content-between small">
@@ -109,101 +115,58 @@
                     </div>
 
                     <div class="w-100 d-flex ml-3 justify-content-around">
-                        <span>12 de abril de 2020</span>
+                        <span>{{\Carbon\Carbon::parse($topicMessage->created_at)->formatLocalized('%d de %B de %Y')}}</span>
 
-                        <span class="d-flex mr-2">
+                        <!-- <span class="d-flex mr-2">
                         
                             <i class="material-icons mr-1">chat</i>
                             <span class="justify-content-center">12 respostas</span>
 
-                        </span>
+                        </span> -->
                         
                     </div>
-                    <div>
+                    <!-- <div>
                         <a href="" class="text-muted link-detalhes">
                             Responder
                         </a>
 
-                    </div>
+                    </div> -->
+                    @if($user->id == $topicMessage->user_id)
+                        <form action="{{route('topicMessage.destroy',['topic_id' => $topic->id ,'id' => $topicMessage->id])}}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>            
+                    @endif
                 </div>
             </div>
         </div>
     </section>
+    @endforeach
 
-    <!-- RESPOSTA 2 -->
-
-    <section class="bg-light mt-2 mb-1 pb-1">
-
-            <div class="col-md-8">
-                <div class="card-body px-0">
-        
-                     <div class="">
-                        
-                            <img class="foto-perfil rounded-circle display-column mr-2" src="{{url('./img/perfil.3.jpg')}}" alt="foto de perfil do membro"> 
-                            <b class="mb-0 pb-0">Roberta</b> Polinésia francesa
+    <!-- Formulário de Respostas -->
+    <section class="form-respostaMsg bg-light mt-2 mb-1 pb-1 pt-2 fixed-bottom">
+        <div class="col-sm-12">
+            <span class="mx-2">Envie sua Resposta</span>
+            <form action="{{route('topicMessage.store',['topic_id' => $topic->id])}}" method="POST" enctype="multipart/form-data">
+            @csrf
+                <div class="form-row">
+                    <div class="col-sm-10 pl-2 m-0 d-flex align-items-center">
+                        <label class="m-0" for="exampleFormControlTextarea"></label>
+                        <input textarea class="form-control mr-2 @error('message') is-invalid @enderror" name="message" type="text" value="{{old('message')}}" id="exampleFormControlTextarea" rows="1" required></textarea>
+                            @error('message')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                            @enderror
                     </div>
-    
-                    <div class="d-flex w-100 mt-3 justify-content-between small">
-                        <div class="d-flex">
-                            <span class="d-flex mr-2">
-                                <i class="material-icons mr-1">
-                                    thumb_up
-                                </i>
-                                <span class="align-self-center">
-                                    98
-                                </span>
-                            </span>
-                            <span class="d-flex">
-                                <i class="material-icons mr-1">
-                                    thumb_down
-                                </i>
-                                <span class="align-self-center">
-                                    12
-                                </span>
-                            </span>
-                        </div>
-    
-                        <div class="w-100 d-flex ml-3 justify-content-around">
-                            <span>25 de abril de 2020</span>
-    
-                            <span class="d-flex mr-2">
-                            
-                                <i class="material-icons mr-1">chat</i>
-                                <span class="justify-content-center">8 respostas</span>
-    
-                            </span>
-                            
-                        </div>
-                        <div>
-                            <a href="" class="text-muted link-detalhes">
-                                Responder
-                            </a>
-    
-                        </div>
+                    <div class="col-sm-2 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary mb-2 mt-2">Responder</button>
                     </div>
-                </div>
-            </div>
-        </section>
-<!-- Formulário de Respostas -->
-<section class="form-respostaMsg bg-light mt-2 mb-1 pb-1 pt-2 fixed-bottom">
-    <div class="col-sm-12">
-        <span class="mx-2">Respostas</span>
-        <form action="{{route('topicMessage.store')}}" method="POST">
-        @csrf
-            <div class="form-row">
-                <div class="col-sm-10 pl-2 m-0 d-flex align-items-center">
-                    <label class="m-0" for="exampleFormControlTextarea"></label>
-                    <input textarea class="form-control mr-2 @error('message') is-invalid @enderror" name="message" type="text" value="{{old('message')}}" id="exampleFormControlTextarea" rows="1">0</textarea>
-                        @error('message')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                        @enderror
-                </div>
-                <div class="col-sm-2 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary mb-2">Responder</button>
-                </div>
-        </form>
-    </div>
-</section>
+            </form>
+            <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+            <input type="hidden" name="topic_id" value="{{$topic->id}}">
+            <input type="hidden" name="group_id" value="{{$topic->group_id}}">
+        </div>
+    </section>
 @endsection

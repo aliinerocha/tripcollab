@@ -42,7 +42,6 @@
             @endif
             <h6 class="ml-2 mt-4"> {{$confirmed}} @if ($confirmed<=1) membro @else membros @endif </h6>
 
-            <!-- <span class="ml-2"><a href="comunidadesEViagens" class="text-muted link-detalhes">Participar</a></span> -->
         </div>
 
     <!-- NOME E MEMBROS -->
@@ -53,6 +52,14 @@
             <div>
                 {{$group->description}}
             </div>
+        </div>
+        <div class="container mb-4">
+            <h5>Palavras-chave</h5>
+            @foreach ($interests as $interest)
+            <div>
+                {{$interest->name}}
+            </div>
+            @endforeach
         </div>
         @if($user->id == $group->admin)
         <div class="mx-1 my-2">
@@ -126,12 +133,12 @@
             <div class="card-body px-0">
                 <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
-                        <img class="foto-perfil rounded-circle display-column" src="@if($user->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro">
-                        <div class="small">{{$user->name}}</div>
+                        <img class="foto-perfil rounded-circle display-column" src="@if($topic->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro">
+                        <div class="small">{{$topic->userName}}</div>
                     </div>
                     
                     <div class="d-flex flex-column w-100 ml-2">
-                        <h5 class="card-title mb-auto">{{$topic->name}}</h5>
+                        <h5 class="card-title mb-auto">{{$topic->topicName}}</h5>
                         <div class="w-100 small d-flex align-items-end flex-column"><span>{{date('d/m/Y', strtotime($topic->created_at))}}</span></div>
                     </div>
                 </div>
@@ -160,7 +167,7 @@
                         </span>
                     </div>
                     <div>
-                        <a href="{{route('topic.show',['id' => $topic->id])}}" class="text-muted link-detalhes stretched-link">
+                        <a href="{{route('topic.show',['group_id' => $group->id ,'id' => $topic->id])}}" class="text-muted link-detalhes stretched-link">
                             Responder
                         </a>
                     </div>
