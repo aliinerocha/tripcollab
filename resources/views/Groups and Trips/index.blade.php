@@ -25,31 +25,33 @@
                 <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
             </div>
         </div>
-        <a href="/criarComunidade" class="p-0 m-0">
+        <a href="{{route('group.create')}}" class="p-0 m-0">
             <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
         </a>
     </div>
         <div id="comunidade-slider" class="carousel slide container" data-ride="carousel">
                 <div class="carousel-inner">
                 <!-- CARD COMUNIDADES 1 -->
-                <div class="carousel-item active">
+
+                @foreach($confirmedGroups as $key => $group)
+                <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
                         <div class="card border-0" style="width: 18rem;">
                             <div class="card-header border-0 text-center">
-                                <span>Sonhos na Disney</span>
+                                <span>{{$group->name}}</span>
                             </div>
-                            <img src="./img/disney_card.jpg" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Disney">
+                            <img src="@if($group->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Foto do Grupo">
                             <div class="card-body d-flex justify-content-between">
                                 <div class="texto d-flex justify-content-start align-items-center ">
-                                    <h5 class="mr-2 mb-0">250</h5>
-                                    <small>membros</small>
+                                    <h5 class="mr-2 mb-0">{{$group->confirmedMembers}}</h5>
+                                    <small>@if ($group->confirmedMembers<=1) membro @else membros @endif</small>
                                 </div>
                                 <div class="botao">
-                                    <a href="grupoComunidade" class="botao btn btn-primary float-right border-0">Visitar</a>
+                                    <a href="{{route('group.show', ['id' => $group->id])}}" class="botao btn btn-primary float-right border-0">Visitar</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                @endforeach
                     <!-- CARD COMUNIDADE 2 -->
                     <div class="carousel-item">
                             <div class="card border-0" style="width: 18rem;">

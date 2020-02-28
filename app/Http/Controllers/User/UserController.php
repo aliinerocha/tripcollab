@@ -170,6 +170,22 @@ class UserController extends Controller
 
     public function listGroupsAndTrips()
     {
+        $confirmedGroups = DB::table('group_user')
+        ->where('user_id', auth()->user()->id)
+        ->join('groups','group_user.group_id','=','groups.id')
+        ->get()
+        ->toArray();
+
+        foreach($confirmedGroups as $key => $group)
+        {
+            $confirmedMembers = DB::table('group_user')
+            ->where('group_id', $group->id)
+            ->join('users','group_user.user_id','=','users.id')
+            ->get(['user_id','name','photo'])
+            ->toArray();
+
+            $group->confirmedMembers = $confirmedMembers;
+        }
 
         $confirmedTrips = DB::table('trip_user')
         ->where('user_id', auth()->user()->id)
@@ -189,10 +205,11 @@ class UserController extends Controller
         }
 
         dd($confirmedTrips);
+        // dd($confirmedGroups);
 
         $footer = 'true';
 
-        return view('Groups and Trips/index', compact('footer', 'confirmedTrips'));
+        return view('Groups and Trips/index', compact('footer', 'confirmedTrips', ['confirmedGroups'=>$confirmedGroups]));
     }
 
     public function friendshipIndex($id)

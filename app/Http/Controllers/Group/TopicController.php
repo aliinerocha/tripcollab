@@ -144,4 +144,23 @@ class TopicController extends Controller
 
         return redirect()->route('topic.index', [$topic->group_id, $topic->id]);
     }
+
+    public function search(Request $request, $groupId)
+    {
+        $group = $this->group->find($groupId);
+        
+        $search = $request->input('search');
+        $topicSearchs = DB::table('topics')
+        ->where('name','LIKE','%'.$search.'%')
+        ->orWhere('description','LIKE','%'.$search.'%')
+        ->select('topics.name','topics.description')
+        ->get();
+
+        $topicCount = $topicSearchs->count();
+        // dd($topicCount);
+
+        return redirect()->route('group.show', $groupId)
+        ->with('topicSearchs', $topicSearchs)
+        ->with('topicCount', $topicCount);
+    }
 }
