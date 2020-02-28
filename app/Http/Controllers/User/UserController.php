@@ -194,7 +194,7 @@ class UserController extends Controller
 
         $footer = 'true';
 
-        return view('Groups and Trips/index', compact('footer', 'confirmedTrips', ['confirmedGroups'=>$confirmedGroups]));
+        return view('Groups and Trips/index', compact('footer', 'confirmedTrips', 'confirmedGroups'));
     }
 
     public function friendshipIndex($id)

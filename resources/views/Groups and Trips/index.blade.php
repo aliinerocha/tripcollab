@@ -33,17 +33,19 @@
                 <div class="carousel-inner">
                 <!-- CARD COMUNIDADES 1 -->
 
-                @foreach($confirmedGroups as $key => $group)
+                @foreach($confirmedGroups as $key => $groups)
                 <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
                         <div class="card border-0" style="width: 18rem;">
                             <div class="card-header border-0 text-center">
-                                <span>{{$group->name}}</span>
+                                <span>{{$groups->name}}</span>
                             </div>
-                            <img src="@if($group->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Foto do Grupo">
+                            <img src="@if($groups->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($groups->photo)}}@endif" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Foto do Grupo">
                             <div class="card-body d-flex justify-content-between">
                                 <div class="texto d-flex justify-content-start align-items-center ">
+                            @foreach($groups['confirmedMembers'] as $group)
                                     <h5 class="mr-2 mb-0">{{$group->confirmedMembers}}</h5>
                                     <small>@if ($group->confirmedMembers<=1) membro @else membros @endif</small>
+                            @endforeach
                                 </div>
                                 <div class="botao">
                                     <a href="{{route('group.show', ['id' => $group->id])}}" class="botao btn btn-primary float-right border-0">Visitar</a>
