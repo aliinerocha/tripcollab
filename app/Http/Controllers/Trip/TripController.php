@@ -85,7 +85,14 @@ class TripController extends Controller
         ->join('users','trip_user.user_id','=','users.id')
         ->get(['user_id','name','photo']);
 
-        $admin = $trip->admin()->first(['id','name']);
+        $admin = $trip->admin()->first(['id','name','photo']);
+
+        if(!($trip->group_id == null))
+        {
+            $group = $trip->group()->first(['id','name']);
+        } else {
+            $group = null;
+        }
 
         $user = auth()->user(['id', 'name']);
 
@@ -98,7 +105,7 @@ class TripController extends Controller
 
         $footer = 'true';
 
-        return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers'));
+        return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers', 'group'));
     }
 
     /**

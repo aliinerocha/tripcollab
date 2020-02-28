@@ -190,22 +190,7 @@ class UserController extends Controller
         $confirmedTrips = DB::table('trip_user')
         ->where('user_id', auth()->user()->id)
         ->join('trips','trip_user.trip_id','=','trips.id')
-        ->get()
-        ->toArray();
-
-        foreach($confirmedTrips as $key => $trip)
-        {
-            $confirmedMembers = DB::table('trip_user')
-            ->where('trip_id', $trip['id'])
-            ->join('users','trip_user.user_id','=','users.id')
-            ->get(['user_id','name','photo'])
-            ->toArray();
-
-            $trip['confirmedMembers'] = $confirmedMembers;
-        }
-
-        dd($confirmedTrips);
-        // dd($confirmedGroups);
+        ->get();
 
         $footer = 'true';
 
