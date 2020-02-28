@@ -34,7 +34,18 @@
                         <p class="mb-1">Partida: {{date('d/m/Y', strtotime($trip->departure))}}</p>
                         <p class="mb-4">Retorno: {{date('d/m/Y', strtotime($trip->return_date))}}</p>
                     <p class="titulo_campo mb-2">Administrador:</p>
-                    <p class="mb-4">{{$admin->name}}</p>
+                    <p class="mb-4">
+
+                    <a href="{{route('user.show', ['id' => $admin->id])}}">
+                        <img
+                        class="foto-perfil rounded-circle"
+                        src="@if($admin->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$admin->photo")}} @endif"
+                        alt="{{$admin->name}}">
+                    </a>
+
+                    <a href="{{route('user.show', ['id' => $admin->id])}}">{{$admin->name}}</a>
+
+                    </p>
                     <p class="titulo_campo mb-2">Interesses:</p>
                     <p class="mb-4">
                         @foreach($interests as $interest)
@@ -42,7 +53,13 @@
                         @endforeach
                     </p>
                     <p class="titulo_campo mb-2">Vinculado à comunidade:</p>
-                    <p class="mb-4">Ilhas Paradisíacas</p>
+                    <p class="mb-4">
+                    @if($group == null)
+                    Nenhuma comunidade selecionada
+                    @else
+                    <a href="{{route('group.show', ['id' => $trip->group_id])}}">{{$group->name}}</a>
+                    @endif
+                    </p>
                     <p class="titulo_campo mb-2">Investimento previsto por participante:</p>
                     <p class="mb-4">R$ {{$trip->foreseen_budget}}</p>
                     <p class="titulo_campo mt-4">Membros confirmados:</p>
