@@ -12,8 +12,7 @@
 */
 
 Route::get('/', function() {
-    $footer = 'false';
-    return view('landing', compact('footer'));
+    return view('landing');
 });
 
 Route::group(['middleware' => ['auth']], function () {

@@ -1,4 +1,4 @@
-@extends('layouts.template', ['pagina' => 'perfil'])
+@extends('layouts.template', ['pagina' => 'perfil'], ['footer' => 'true'])
 @section('titulo')
 
 @endsection

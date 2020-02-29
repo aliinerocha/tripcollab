@@ -26,6 +26,13 @@
 <nav class="navbar sticky-top">
         <a class="navbar-brand" href="{{route('home')}}"><img src="{{url('img/logo branco.png')}}" alt="logo Trip Collab"> TRIPCOLLAB</a>
         <div class=" d-flex justify-space-between align-items-center">
+            
+            <div class="itensMenu d-none d-md-inline-block">
+            <a href="linhaDoTempo" class="{{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }} mr-5">SCRAPBOOK</a>
+            <a href="mensagens" class="{{ isset($pagina) && $pagina == 'mensagens' ? 'ativo' : '' }} mr-5">CHAT</a>
+            <a href="{{route('home')}}" class="{{ isset($pagina) && $pagina == 'perfil' ? 'ativo' : '' }} mr-5">PERFIL</a>
+            <a href="{{route('user.listGroupsAndTrips')}}" class="{{ isset($pagina) && $pagina == 'comunidadesEviagens' ? 'ativo' : '' }} mr-5">COMUNIDADE</a>
+            </div>
 
             @auth
                 <a class="nav-link d-flex align-items-center p-1 mr-5" href="#" onclick="document.querySelector('form.logout').submit();">
@@ -47,6 +54,7 @@
                 </a>
 
             @endauth
+
             <div id="btnMenu">
                 <div class="bar1"></div>
                 <div class="bar2"></div>
@@ -100,8 +108,8 @@
 
 @yield('conteudo')
 
-@if($footer ?? '' === 'true')
-<div class="nav-inferior nav fixed-bottom d-flex justify-content-around border-top" id="navInferior">
+@if (isset  ($footer) && $footer == 'true')
+<div class="nav-inferior nav fixed-bottom d-flex justify-content-around border-top d-md-none" id="navInferior">
     <a href="linhaDoTempo" class="fas fa-atlas fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }}"></a>
     <a href="mensagens" class="far fa-comments fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'mensagens' ? 'ativo' : '' }}"></a>
     <a href="{{route('home')}}" class="fas fa-home fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'perfil' ? 'ativo' : '' }}"></a>
