@@ -54,10 +54,7 @@ class UserController extends Controller
            $friendlist->pull($authUser);
         }
 
-
-        $footer = 'true';
-
-        return view('/home', compact('footer','user','friendlist','interests'));
+        return view('/home', compact('user','friendlist','interests'));
     }
 
     public function show($id)
@@ -193,9 +190,7 @@ class UserController extends Controller
         ->join('trips','trip_user.trip_id','=','trips.id')
         ->get();
 
-        $footer = 'true';
-
-        return view('Groups and Trips/index', compact('footer', 'confirmedTrips', 'confirmedGroups'));
+        return view('Groups and Trips/index', compact( 'confirmedTrips', 'confirmedGroups'));
     }
 
     public function friendshipIndex($id)

@@ -52,15 +52,25 @@
             </div>
         </div>
         <div class="container mb-4">
-            <h5>Palavras-chave</h5>
-            @foreach ($interests as $interest)
-            <div>
-                {{$interest->name}}
+            <h5 class="nome mx-3 pt-4">Interesses da Comunidade</h5>
+            <div class="col-xs-12">
+                <div class="row interesses text-justify mx-3 py-2">
+                    @if($interests->count() == 0 )
+                        {{$user->name}} ainda não informou nenhum interesse
+                    @endif
+                </div>
             </div>
-            @endforeach
+            <div class="col-xs-12">
+                <div class="row interesses text-justify mx-3 py-2">
+                    @foreach($interests as $interest)
+                        <button type="button" class="btn btn-outline-primary mt-1 mr-1">{{$interest->name}}</button>
+                    @endforeach
+                </div>
+            </div>
         </div>
+
         @if($user->id == $group->admin)
-        <div class="mx-1 my-2">
+        <div class="mx-1 mt-2 mb-4">
             <a href="{{route('group.edit',['id' => $group->id] )}}" class="botao btn btn-primary border-0">Editar</a>
         </div>
         @endif
@@ -76,7 +86,7 @@
 
                 <!-- CARD VIAGEM -->
                 @foreach($trips as $key => $trip)
-                <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                <div class="carousel-item m-0 {{$key == 0 ? 'active' : '' }}">
                     <div class="card border-0" style="width: 18rem;">
                         <div class="card-header border-0 text-center">
                             <span>{{$trip->name}}</span>
@@ -109,7 +119,7 @@
     <!-- BUSCA DOS TÓPICOS -->
         <div>
             <div>
-                <form action="{{route('topic.search', ['groupId' => $group->id])}}" method="POST">
+                <!-- <form action="{{route('topic.search', ['groupId' => $group->id])}}" method="POST">
                 <div class="input-group mx-1">
                     {{ csrf_field() }}
                         <input type="text" class="form-control border-0" placeholder="Buscar" name="search" required>
@@ -121,14 +131,14 @@
                                 </button>
                             </div>
                 </div>
-                </form>
+                </form> -->
                 <div class="mx-1 my-3">
                     <a href="{{route('topic.create', ['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a>
                     <a href="{{route('topic.index', ['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Ver +</a>
                 </div>
             </div>
         </div>
-
+<!-- 
         @if(!empty(session()->get('topicCount')))
         <div class="container mb-2">
             <h5>Os resultados da sua busca são</h5>    
@@ -159,8 +169,8 @@
         </section>
         @else 
             Nenhum resultado encontrado. Por favor, tente novamente.
-        @endif
-    </section>
+        @endif-->
+    </section> 
 
     <!-- TÓPICOS -->
     @foreach ($topics as $topic)
@@ -185,6 +195,7 @@
                 </div>
                 
                 <div class="d-flex w-100 mt-3 justify-content-between">
+                    
                     <div class="d-flex small">
                         <span class="d-flex mr-2 align-items-center">
                             <i class="material-icons">
@@ -203,7 +214,11 @@
                             </span>
                         </span>
                     </div>
-                    <div>
+                    <span class="d-flex mr-2">
+                        <i class="material-icons mr-1">chat</i>
+                        <span class="justify-content-center">{{$topic->answer}} @if ($topic->answer<=1) resposta @else respostas @endif</span>  
+                    </span>
+                <div>
                         <a href="{{route('topic.show',['group_id' => $group->id ,'id' => $topic->id])}}" class="text-muted link-detalhes stretched-link">
                             Responder
                         </a>

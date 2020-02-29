@@ -1,4 +1,8 @@
-@extends('layouts.template', ['pagina' => 'linhaDoTempo'])
+@extends('layouts.template', ['pagina' => 'linhaDoTempo'], ['footer' => 'true'])
+
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesScrapbook.css')}}">
+@endsection
 
 @section('titulo')
     Classificação
@@ -101,16 +105,4 @@
             </div>
         </div>
     </div>
-
-    <!-- NAV INFERIOR -->
-    <div class="nav-inferior nav fixed-bottom d-flex justify-content-around border-top">
-
-      <a href="./Linha do tempo e classificação/aba_linhadotempo.html" class="fas fa-atlas fa-lg col-2 ativo"></a>
-      <a href="#" class="far fa-comments fa-lg col-2"></a>
-      <a href="../aba_perfil.html" class="fas fa-home fa-lg col-2"></a>
-      <a href="../aba_comunidade.html" class="fas fa-users fa-lg col-2"></a>
-      <a href="#" class="fas fa-search fa-lg col-2"></a>
-</div>
-</body>
-
-</html>
+    @endsection

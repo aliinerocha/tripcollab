@@ -1,4 +1,8 @@
-@extends('layouts.template', ['pagina' => 'linhaDoTempo'])
+@extends('layouts.template', ['pagina' => 'linhaDoTempo'], ['footer' => 'true'])
+
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesScrapbook.css')}}">
+@endsection
 
 @section('titulo')
     Timeline
