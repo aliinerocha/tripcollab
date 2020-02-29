@@ -38,6 +38,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get ('/groupsandtrips', 'User\UserController@listGroupsAndTrips')->name('user.listGroupsAndTrips');
 
+    Route::get('/trip/{id}/members', 'Trip\TripController@tripMembersIndex')->name('trip.membersIndex');
+
+
     // User
 
     Route::get ('/home', 'User\UserController@home')->name('home');
@@ -58,7 +61,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/profile/friendship/{requestedUserID}/delete', 'User\UserController@friendshipDelete')->name('friendship.delete');
 
-    Route::get('/profile/friendship/index/{id}', 'User\UserController@friendshipIndex')->name('friendship.index');
+    Route::get('/profile/{id}/friendship/index/', 'User\UserController@friendshipIndex')->name('friendship.index');
 
     // Groups
 
@@ -79,25 +82,25 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('group/{groupId}/cancel/{userId}', 'Group\GroupController@cancelPresence')->name('group.cancelPresence');
 
     // Topics
-    
+
     Route::get('{group_id}/topic/index', 'Group\TopicController@index')->name('topic.index');
-    
+
     Route::get('{group_id}/topic/create', 'Group\TopicController@create')->name('topic.create');
-    
+
     Route::post('{group_id}/topic/store', 'Group\TopicController@store')->name('topic.store');
-    
+
     Route::any('{groupId}/topic/search', 'Group\TopicController@search')->name('topic.search');
-    
+
     Route::get('{group_id}/topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
-    
+
     Route::get('{group_id}/topic/{id}', 'Group\TopicController@show')->name('topic.show');
-    
+
     Route::put('{group_id}/topic/{id}', 'Group\TopicController@update')->name('topic.update');
-    
+
     Route::delete('{group_id}/topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
 
     // Topic Messages
-    
+
     Route::post('{topic_id}/topicMessage/store', 'Group\TopicMessageController@store')->name('topicMessage.store');
 
     Route::delete('{topic_id}/topicMessage/{id}', 'Group\TopicMessageController@destroy')->name('topicMessage.destroy');

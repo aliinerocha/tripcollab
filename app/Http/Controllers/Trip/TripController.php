@@ -82,6 +82,7 @@ class TripController extends Controller
 
         $confirmedMembers = DB::table('trip_user')
         ->where('trip_id', $trip->id)
+        ->where('status', 1)
         ->join('users','trip_user.user_id','=','users.id')
         ->get(['user_id','name','photo']);
 
@@ -96,16 +97,14 @@ class TripController extends Controller
 
         $user = auth()->user(['id', 'name']);
 
-        $userConfirmedPresence = DB::table('trip_user')->where([
+        $userStatus = DB::table('trip_user')->where([
             ['user_id', auth()->user()->id],
-            ['trip_id', $trip->id],
-        ])->get();
-
-        $confirmed = $userConfirmedPresence->count();
+            ['trip_id', $trip->id]
+        ])->first();
 
         $footer = 'true';
 
-        return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers', 'group'));
+        return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin', 'user', 'userStatus', 'interests', 'confirmedMembers', 'group'));
     }
 
     /**
@@ -182,6 +181,16 @@ class TripController extends Controller
 
         $trip->user()->attach($user);
 
+        if($trip->visibility == 1)
+        {
+            $tripStatusAutoAccept =DB::table('trip_user')
+            ->where('user_id', $user->id)
+            ->where('trip_id', $trip->id)
+            ->update([
+                'status' => 1,
+            ]);
+        }
+
         return redirect()->route('trip.show', ['id' => $tripId]);
     }
 
@@ -194,5 +203,12 @@ class TripController extends Controller
         $trip->user()->detach($user);
 
         return redirect()->route('trip.show', ['id' => $tripId]);
+    }
+
+    public function tripMembersIndex ($tripId) {
+
+        $trip = $this->trip->find($tripId);
+
+        return view('/Groups and Trips/Trip/index', compact('trip'));
     }
 }

@@ -26,6 +26,8 @@ class CreateTripUserTable extends Migration
             ->references('id')
             ->on('trips');
 
+            $table->boolean('status')->default(0);
+
             $table->timestamps();
         });
     }

@@ -182,7 +182,7 @@ class UserController extends Controller
             ->where('group_id', $group->id)
             ->join('users','group_user.user_id','=','users.id')
             ->get(['user_id']);
-            
+
             $members = $confirmedMembers->count();
 
             $group->members = $members;
@@ -260,8 +260,6 @@ class UserController extends Controller
         ->where('status', 0)
         ->join('users','friendships.requester_user_id','=', 'users.id')
         ->get();
-
-        // dd($friendshipRequestors);
 
         $footer = 'true';
 
