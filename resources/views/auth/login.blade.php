@@ -9,7 +9,7 @@
     <div class="container">
         <section class="mt-4 mb-4">
             <img class="ml-3 mr-3" src="./img/viajando.png" alt="pessoa com mala">
-            <h3 class="text-center">Bem-vindo Novamente </h3>
+            <h3 class="text-center">Bem-vindo Novamente</h3>
 
             <form form method="POST" action="{{ route('login') }}">
                 @csrf
@@ -31,7 +31,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        <small id="emailHelp" class="form-text text-muted text-right">Esqueceu sua senha?</small>
+                        <small id="emailHelp" class="form-text text-muted text-right"> <a href="{{ route('password.request') }}">Esqueceu sua senha? </a> </small>
                     </div>
                 </div>
                 <div class="align-self-center">
