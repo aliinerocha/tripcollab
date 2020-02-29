@@ -135,7 +135,7 @@
                         <p class="mr-2">Destino:</p>
                         <p>Ilha Bela</p>
                     </div>
-                    -->
+
                     <div class="card-text d-flex justify-content-start mb-3 align-items-center">
                         <span class="mr-3 mb-0 p-0">Quem vai:</span>
                         <div>
@@ -144,7 +144,8 @@
                             <img class="foto-perfil rounded-circle" src="./img/perfil.3.jpg" alt="foto de perfil do membro">
                         </div>
                     </div>
-                <a href="{{route('trip.show', ['id' => $confirmedTrip->id])}}" class="text-muted float-right link-detalhes">ver mais detalhes</a>
+                    -->
+                <a href="{{route('trip.show', ['id' => $confirmedTrip->id])}}" class="stretched-link text-muted float-right link-detalhes">ver mais detalhes</a>
                 </div>
             </div>
         </section>
