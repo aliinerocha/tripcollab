@@ -9,7 +9,6 @@
     <main class="mb-3">
             <img src="img\test03.jpg" class="img-fluid banner-img" alt="banner">
             <h3 class="titulo ml-3">Para onde você <br> quer ir hoje?</h3>
-        </div>
     </main>
 
     <!-- COMUNIDADES -->
@@ -18,81 +17,41 @@
         <div class="container mb-4">
             <h5>Minhas comunidades</h5>
         </div>
-    <div class="d-flex">
-        <div class=" input-group mb-4 mr-3 col-10">
-            <input type="text" class="form-control border-0" placeholder="Buscar">
-            <div class="input-group-append">
-                <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
+        <div class="d-flex">
+            <div class=" input-group mb-4 mr-3 col-10">
+                <input type="text" class="form-control border-0" placeholder="Buscar">
+                <div class="input-group-append">
+                    <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
+                </div>
             </div>
+            <a href="{{route('group.create')}}" class="p-0 m-0">
+                <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
+            </a>
         </div>
-        <a href="{{route('group.create')}}" class="p-0 m-0">
-            <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
-        </a>
-    </div>
         <div id="comunidade-slider" class="carousel slide container" data-ride="carousel">
                 <div class="carousel-inner">
                 <!-- CARD COMUNIDADES 1 -->
-
-                @foreach($confirmedGroups as $key => $groups)
+                @foreach($confirmedGroups as $key => $group)
                 <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
-                        <div class="card border-0" style="width: 18rem;">
-                            <div class="card-header border-0 text-center">
-                                <span>{{$groups->name}}</span>
+                    <div class="card border-0" style="width: 18rem;">
+                        <div class="card-header border-0 text-center">
+                            <span>{{$group->name}}</span>
+                        </div>
+                        <img src="@if($group->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Foto do Grupo">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="texto d-flex justify-content-start align-items-center ">
+                                <h5 class="mr-2 mb-0">{{$group->members}}</h5>
+                                <small>@if ($group->members<=1) membro @else membros @endif</small>
                             </div>
-                            <img src="@if($groups->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($groups->photo)}}@endif" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Foto do Grupo">
-                            <div class="card-body d-flex justify-content-between">
-                                <div class="texto d-flex justify-content-start align-items-center ">
-                            @foreach($groups['confirmedMembers'] as $group)
-                                    <h5 class="mr-2 mb-0">{{$group->confirmedMembers}}</h5>
-                                    <small>@if ($group->confirmedMembers<=1) membro @else membros @endif</small>
-                            @endforeach
-                                </div>
-                                <div class="botao">
-                                    <a href="{{route('group.show', ['id' => $group->id])}}" class="botao btn btn-primary float-right border-0">Visitar</a>
-                                </div>
+                            <div class="botao">
+                                <a href="{{route('group.show', ['id' => $group->id])}}" class="botao btn btn-primary float-right border-0 stretched-link">Visitar</a>
                             </div>
                         </div>
                     </div>
+                </div>
                 @endforeach
-                    <!-- CARD COMUNIDADE 2 -->
-                    <div class="carousel-item">
-                            <div class="card border-0" style="width: 18rem;">
-                                <div class="card-header border-0 text-center">
-                                    <span>Curtindo em Vegas</span>
-                                </div>
-                                <img src="./img/vegas_card.jpg" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Las Vegas">
-                                <div class="card-body d-flex justify-content-between">
-                                    <div class="texto d-flex justify-content-start align-items-center ">
-                                        <h5 class="mr-2 mb-0">180</h5>
-                                        <small>membros</small>
-                                    </div>
-                                    <div class="botao">
-                                        <a href="#" class="botao btn btn-primary float-right border-0">Visitar</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CARD COMUNIDADE 3 -->
-                        <div class="carousel-item">
-                                <div class="card border-0" style="width: 18rem;">
-                                    <div class="card-header border-0 text-center">
-                                        <span>Ilhas Paradisíacas</span>
-                                    </div>
-                                    <img src="./img/ilhas_card.jpg" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Ilhas paradisíacas">
-                                    <div class="card-body d-flex justify-content-between">
-                                        <div class="texto d-flex justify-content-start align-items-center ">
-                                            <h5 class="mr-2 mb-0">130</h5>
-                                            <small>membros</small>
-                                        </div>
-                                        <div class="botao">
-                                            <a href="#" class="botao btn btn-primary float-right border-0">Visitar</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                </div>
-                </div>
+            </div>
+        </div>
     </section>
 
     <!-- MINHAS VIAGENS -->

@@ -8,7 +8,6 @@
     <!-- BANNER -->
     <main class="mb-3">
         <img src="@if($group->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner">
-        </div>
     </main>
 
     <!-- NOME E MEMBROS -->
@@ -41,7 +40,6 @@
                     </div>
             @endif
             <h6 class="ml-2 mt-4"> {{$confirmed}} @if ($confirmed<=1) membro @else membros @endif </h6>
-
         </div>
 
     <!-- NOME E MEMBROS -->
@@ -90,7 +88,7 @@
                                 <h6 class="mr-2 mb-0">{{\Carbon\Carbon::parse($trip->return_date)->formatLocalized('%h de %Y')}}</h6>
                             </div>
                             <div class="botao">
-                                <a href="#" class="botao btn btn-primary float-right border-0 stretched-link">Histórico</a>
+                                <a href="{{route('trip.show', ['id' => $trip->id])}}" class="botao btn btn-primary float-right border-0 stretched-link">Histórico</a>
                             </div>
                         </div>
                     </div>

@@ -181,10 +181,11 @@ class UserController extends Controller
             $confirmedMembers = DB::table('group_user')
             ->where('group_id', $group->id)
             ->join('users','group_user.user_id','=','users.id')
-            ->get(['user_id','name','photo'])
-            ->toArray();
+            ->get(['user_id']);
+            
+            $members = $confirmedMembers->count();
 
-            $group->confirmedMembers = $confirmedMembers;
+            $group->members = $members;
         }
 
         $confirmedTrips = DB::table('trip_user')
