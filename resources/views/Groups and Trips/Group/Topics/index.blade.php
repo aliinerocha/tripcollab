@@ -7,9 +7,9 @@
 @section('conteudo')
 
    <!-- NAV ABA-->
-   <div class="bg-light pt-4 pb-4 mb-3">
+   <div class="bg-light pt-4 pb-4 mb-3 card">
         <div class="d-flex ml-3 align-items-center">
-            <a class="link" href="{{route('group.show', ['id' => $group->id])}}"><i class="material-icons">arrow_back</i></a>
+            <a class="stretched-link" href="{{route('group.show', ['id' => $group->id])}}"><i class="material-icons">arrow_back</i></a>
             <div class="container">
                 <h5>Voltar para Comunidade</h5>
             </div>
@@ -30,17 +30,16 @@
         <div class="container mb-4">
             <h5>Tópicos da Comunidade: {{$group->name}}</h5>
         </div>
-        <div class="input-group mx-1">
+        <!-- <div class="input-group mx-1">
             <input type="text" class="form-control border-0" placeholder="Buscar">
             <div class="input-group-append">
                 <span class="input-group-text border-0">
                     <i class="material-icons">search</i>
                 </span>
             </div>
-        </div>
+        </div> -->
         <div class="mx-1 my-2">
             <a href="{{route('topic.create', ['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a>
-
         </div>
     </section>
 
@@ -85,6 +84,10 @@
                             </span>
                         </span>
                     </div>
+                    <span class="d-flex mr-2">
+                        <i class="material-icons mr-1">chat</i>
+                        <span class="justify-content-center">{{$topic->answer}} @if ($topic->answer<=1) resposta @else respostas @endif</span>  
+                    </span>
                     <div>
                         <a href="{{route('topic.show',['group_id' => $group->id ,'id' => $topic->id])}}" class="text-muted link-detalhes stretched-link">
                             Responder

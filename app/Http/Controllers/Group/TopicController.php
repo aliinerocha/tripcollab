@@ -34,6 +34,19 @@ class TopicController extends Controller
         ->select('users.id','users.name as userName','users.photo','topics.id','topics.name as topicName','topics.description' ,'topics.created_at')
         ->orderBy('topics.created_at', 'desc')
         ->get();
+        
+        foreach($topics as $key => $tpc)
+        {
+            $topicMessages = DB::table('topic_messages')
+            ->where('topic_id', $tpc->id)
+            ->join('users', 'topic_messages.user_id', '=', 'users.id')
+            ->get('topic_id');
+            
+            $answer = $topicMessages->count();
+            
+            $tpc->answer = $answer;
+        }
+        
         $footer = 'true';
         return view('Groups and Trips/Group/Topics/index', compact('footer', 'group', 'topics'));
     }

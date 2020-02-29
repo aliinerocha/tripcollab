@@ -113,6 +113,18 @@ class GroupController extends Controller
         ->select('topics.id','topics.name as topicName','topics.description','topics.created_at','users.name as userName','users.photo')
         ->orderBy('topics.created_at', 'desc')
         ->paginate(3);
+        
+        foreach($topics as $key => $tpc)
+        {
+            $topicMessages = DB::table('topic_messages')
+            ->where('topic_id', $tpc->id)
+            ->join('users', 'topic_messages.user_id', '=', 'users.id')
+            ->get('topic_id');
+            
+            $answer = $topicMessages->count();
+            
+            $tpc->answer = $answer;
+        }
 
         $footer = 'true';
         return view('/Groups and Trips/Group/show', compact('footer', 'group', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers', 'topics', 'trips'));

@@ -7,11 +7,11 @@
 @section('conteudo')
 
     <!-- NAV ABA-->
-    <div class="bg-light pt-4 pb-4 mb-3">
+    <div class="bg-light pt-4 pb-4 mb-3 card">
         <div class="d-flex ml-3 align-items-center">
-            <a class="link" href="{{route('topic.index',['group_id' => $topic->group_id])}}"><i class="material-icons">arrow_back</i></a>
+            <a class="stretched-link" href="{{route('group.show', ['id' => $topic->group_id])}}"><i class="material-icons">arrow_back</i></a>
             <div class="container">
-                <h5>Voltar</h5>
+                <h5>Voltar para Comunidade</h5>
             </div>
         </div>
     </div>
