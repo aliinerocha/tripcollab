@@ -8,7 +8,6 @@
     <!-- BANNER -->
     <main class="mb-3">
         <img src="@if($group->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner">
-        </div>
     </main>
 
     <!-- NOME E MEMBROS -->
@@ -41,7 +40,6 @@
                     </div>
             @endif
             <h6 class="ml-2 mt-4"> {{$confirmed}} @if ($confirmed<=1) membro @else membros @endif </h6>
-
         </div>
 
     <!-- NOME E MEMBROS -->
@@ -90,7 +88,7 @@
                                 <h6 class="mr-2 mb-0">{{\Carbon\Carbon::parse($trip->return_date)->formatLocalized('%h de %Y')}}</h6>
                             </div>
                             <div class="botao">
-                                <a href="#" class="botao btn btn-primary float-right border-0 stretched-link">Histórico</a>
+                                <a href="{{route('trip.show', ['id' => $trip->id])}}" class="botao btn btn-primary float-right border-0 stretched-link">Histórico</a>
                             </div>
                         </div>
                     </div>
@@ -107,22 +105,61 @@
         <div class="container mb-4">
             <h5>Fórum</h5>
         </div>
+        
+    <!-- BUSCA DOS TÓPICOS -->
         <div>
             <div>
+                <form action="{{route('topic.search', ['groupId' => $group->id])}}" method="POST">
                 <div class="input-group mx-1">
-                    <input type="text" class="form-control border-0" placeholder="Buscar">
-                    <div class="input-group-append">
-                        <span class="input-group-text border-0">
-                            <i class="material-icons">search</i>
-                        </span>
-                    </div>
+                    {{ csrf_field() }}
+                        <input type="text" class="form-control border-0" placeholder="Buscar" name="search" required>
+                            <div class="input-group-append">
+                                <button class="submit border-0" >
+                                    <span class="input-group-text border-0">
+                                        <i class="material-icons">search</i>
+                                    </span>
+                                </button>
+                            </div>
                 </div>
-                <div class="mx-1 my-2">
+                </form>
+                <div class="mx-1 my-3">
                     <a href="{{route('topic.create', ['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a>
                     <a href="{{route('topic.index', ['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Ver +</a>
                 </div>
             </div>
         </div>
+
+        @if(!empty(session()->get('topicCount')))
+        <div class="container mb-2">
+            <h5>Os resultados da sua busca são</h5>    
+        </div>
+        <section class="bg-light mt-2 mb-1 pb-1">
+            <div class="col-md-8">
+                <div class="card-body px-0">
+                    <div class="d-flex">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Descrição do Tópico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(session()->get('topicSearchs') as $key) 
+                            <tr>
+                                <td>{{$key->name}}</td>
+                                <td>{{$key->description}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @else 
+            Nenhum resultado encontrado. Por favor, tente novamente.
+        @endif
     </section>
 
     <!-- TÓPICOS -->
@@ -135,8 +172,8 @@
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
                         <img class="foto-perfil rounded-circle display-column" src="@if($topic->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro">
                         <div class="small">{{$topic->userName}}</div>
-                    </div>
-                    
+                </div>
+
                     <div class="d-flex flex-column w-100 ml-2">
                         <h5 class="card-title mb-auto">{{$topic->topicName}}</h5>
                         <div class="w-100 small d-flex align-items-end flex-column"><span>{{date('d/m/Y', strtotime($topic->created_at))}}</span></div>

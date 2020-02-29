@@ -103,10 +103,10 @@ class TopicMessageController extends Controller
      */
     public function destroy($topic, $id)
     {
-        $topic = $this->topic->findOrFail($id);
+        $topic = $this->topic->findOrFail($topic);
         $topicMessage = $this->topicMessage->find($id);
         $topicMessage->delete();
-        
+
         return redirect()->route('topic.show', [$topic->group_id, $topic->id]);
     }
 }
