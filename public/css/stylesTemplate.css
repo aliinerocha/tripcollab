@@ -1,0 +1,109 @@
+*:focus {
+    box-shadow: 0 0 0 0.1rem #0A3A66 !important;
+}
+
+
+body {
+    height: 100%;
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    padding-bottom: 7vh;
+    overflow-x: hidden;
+}
+
+/* INICIO DO CSS APLICADO SOMENTE A ABA_MENU */
+#menu {
+  position: fixed;
+  display: none; 
+  max-width: 100%;
+  height: 100%; 
+  top: 5vh;
+  background-color: #ffffff;
+  z-index: 1; 
+}
+
+#btnMenu {
+  cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 30px;
+  height: 3px;
+  background-color:#ffffff;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* girando a barra 1 */
+.change .bar1 {
+  transform: rotate(-45deg) translate(-5px, 5px) ;
+}
+
+/* escondendo a barra 2*/
+.change .bar2 {
+  opacity: 0;
+}
+
+/* girando a barra 3 */
+.change .bar3 {
+  transform: rotate(45deg) translate(-8px, -8px) ;
+}
+
+.nav-item a {
+  color: #121212;
+}
+
+.iconeNav:hover {
+  color: #ffffff;
+}
+
+/* FIM DO CSS APLICADO SOMENTE A ABA_MENU */
+
+/* CSS NAV SUPERIOR  */
+
+.navbar-brand > img {
+  width: 25px;
+  margin-right: 5px;
+}
+
+.navbar {
+  background-color: #1d6ab0;
+}
+
+.navbar a {
+  color: #ffffff;
+}
+
+.navbar-brand {
+    margin: 0;
+}
+
+/* CSS NAV INFERIOR */
+.nav-inferior {
+    background-color: #ffffff;
+    height: 7vh;
+  }
+  .nav-inferior a {
+    text-decoration: none;
+    color: #7C7C7C;
+    padding: 25px;
+  }
+  
+  .ativo {
+    border-top: solid #1d6ab0 3px;
+  }
+    
+  
+  /* CSS DESKTOP */
+  @media (min-width: 768px) {
+    /* CSS NAV INFERIOR */
+    .ativo {
+      border-bottom: solid #ffffff 2px;
+    }
+    .itensMenu a:hover {
+      border-bottom: solid #ffffff 2px;
+      text-decoration: none;
+    }
+    /* CSS  */
+  }

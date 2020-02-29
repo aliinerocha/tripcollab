@@ -366,6 +366,7 @@ body {
 
 /* CSS DESKTOP */
 @media (min-width: 768px) {
+  /* CSS NAV INFERIOR */
   .ativo {
     border-bottom: solid #ffffff 2px;
   }
@@ -373,4 +374,5 @@ body {
     border-bottom: solid #ffffff 2px;
     text-decoration: none;
   }
+  /* CSS  */
 }
