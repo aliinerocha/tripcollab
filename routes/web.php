@@ -12,8 +12,7 @@
 */
 
 Route::get('/', function() {
-    $footer = 'false';
-    return view('landing', compact('footer'));
+    return view('landing');
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -103,32 +102,31 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('{topic_id}/topicMessage/{id}', 'Group\TopicMessageController@destroy')->name('topicMessage.destroy');
 });
 
-/*
-Route::get('/classificacao', function() {
-    return view('Achievements/show');
-});
 
-Route::get('/linhaDoTempo', function() {
-    $footer = 'true';
-    return view('user/linhaDoTempo', compact('footer'));
-});
+// Route::get('/classificacao', function() {
+//     return view('Achievements/show');
+// });
 
-Route::get('/mensagens', function() {
-    $footer = 'true';
-    return view('/user/messages/create', compact('footer'));
-});
+// Route::get('/linhaDoTempo', function() {
+//     return view('Timeline/show');
+// });
 
-Route::get('/notificacoes', function() {
-    return view('user/notificacoes');
-});
+// Route::get('/mensagens', function() {
+//     $footer = 'true';
+//     return view('/user/messages/create', compact('footer'));
+// });
 
-Route::get('/novaMensagem', function() {
-    return view('user/messages/create');
-});
+// Route::get('/notificacoes', function() {
+//     return view('user/notificacoes');
+// });
 
-Route::get('/verMensagem', function() {
-    return view('user/messages/verMensagem');
-});
-*/
+// Route::get('/novaMensagem', function() {
+//     return view('user/messages/create');
+// });
+
+// Route::get('/verMensagem', function() {
+//     return view('user/messages/index');
+// });
+
 
 Auth::routes();

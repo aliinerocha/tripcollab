@@ -1,0 +1,77 @@
+/* CSS BANNER */
+
+.banner-img {
+  object-fit: cover;
+  width: 100vw;
+  height: 20vh;
+}
+
+.titulo {
+  position: absolute;
+  margin-top: -15vh;
+}
+
+/* CSS COMUNIDADE */
+
+.input-group-text {
+  background-color: #ffffff;
+}
+
+.card-header {
+  background-color: #1d6ab0;
+  color: #ffffff;
+}
+
+.card .btn {
+  background-color: #1d6ab0;
+  color: #ffffff;
+}
+
+#comunidade-slider {
+  margin-left: 18vw;
+}
+
+/* CSS CARD VIAGEM */
+
+.filtro .btn {
+  background-color: #1d6ab0;
+  color: #ffffff;
+  border-color: #064c8c;
+}
+
+.filtro .btn:focus {
+  background-color: #0a3a66;
+  color: #ffffff;
+}
+
+.filtro .btn:active {
+  background-color: #1d6ab0;
+  color: #ffffff;
+}
+
+.link-detalhes {
+  text-decoration: underline;
+}
+
+.check {
+  color: #1db954;
+}
+
+.favorite {
+  color: #f54b5e;
+}
+
+.card-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.foto-perfil {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+}
+
+
+  

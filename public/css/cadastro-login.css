@@ -1,9 +1,4 @@
-body {
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-    font-family: "Roboto", sans-serif;
-}
+
 /* inicio de estilos NAV */
 .navbar {
     background-color: #1D6AB0;

@@ -1,4 +1,8 @@
-@extends('layout.template')
+@extends('layouts.template', ['pagina' => 'mensagens'], ['footer' => 'true'])
+
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesChat.css')}}">
+@endsection
 
 @section('titulo')
     Criar nova Comunidade

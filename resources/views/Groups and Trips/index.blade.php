@@ -1,4 +1,8 @@
-@extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
+@extends('layouts.template', ['pagina' => 'comunidadesEviagens'], ['footer' => 'true'])
+
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
+@endsection
 
 @section('titulo')
     Comunidades e Viagens
@@ -17,17 +21,10 @@
         <div class="container mb-4">
             <h5>Minhas comunidades</h5>
         </div>
-        <div class="d-flex">
-            <div class=" input-group mb-4 mr-3 col-10">
-                <input type="text" class="form-control border-0" placeholder="Buscar">
-                <div class="input-group-append">
-                    <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
-                </div>
-            </div>
-            <a href="{{route('group.create')}}" class="p-0 m-0">
-                <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
-            </a>
-        </div>
+        <a href="{{route('group.create')}}" class="d-flex align-items-center btnGroupsAndTrips">
+            <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
+            Criar nova comunidade
+        </a>
         <div id="comunidade-slider" class="carousel slide container" data-ride="carousel">
                 <div class="carousel-inner">
                 <!-- CARD COMUNIDADES 1 -->
@@ -60,13 +57,13 @@
         <div class="container mb-4">
             <h5>Minhas viagens</h5>
         </div>
-        <div class="d-flex">
+        {{-- <div class="d-flex">
             <div class=" input-group mb-4 mr-3 col-10">
                 <input type="text" class="form-control border-0" placeholder="Buscar">
                 <div class="input-group-append">
                     <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
                 </div>
-            </div>
+            </div> --}}
             <a href="{{route('trip.create')}}" class="p-0 m-0">
                 <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
             </a>
