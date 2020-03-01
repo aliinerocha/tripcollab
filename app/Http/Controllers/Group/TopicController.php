@@ -7,6 +7,7 @@ use App\Topic;
 use App\TopicMessage;
 use App\Group;
 use App\User;
+use App\LikeTopic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,30 +26,13 @@ class TopicController extends Controller
         $this->topicMessage = $topicMessage;
     }
 
-    public function index($group)
+    public function index($id)
     {
-        $group = $this->group->findOrFail($group);
-        $topics = DB::table('topics')
-        ->where('group_id', $group->id)
-        ->join('users', 'topics.user_id', '=', 'users.id')
-        ->select('users.id','users.name as userName','users.photo','topics.id','topics.name as topicName','topics.description' ,'topics.created_at')
-        ->orderBy('topics.created_at', 'desc')
-        ->get();
-        
-        foreach($topics as $key => $tpc)
-        {
-            $topicMessages = DB::table('topic_messages')
-            ->where('topic_id', $tpc->id)
-            ->join('users', 'topic_messages.user_id', '=', 'users.id')
-            ->get('topic_id');
-            
-            $answer = $topicMessages->count();
-            
-            $tpc->answer = $answer;
-        }
-        
+        $group = $this->group->findOrFail($id);
+        $topics = Topic::where('group_id',$group->id)->orderBy('topics.created_at', 'desc')->get();
+        $user = auth()->user(['id', 'name']);
         $footer = 'true';
-        return view('Groups and Trips/Group/Topics/index', compact('footer', 'group', 'topics'));
+        return view('Groups and Trips/Group/Topics/index', compact('footer', 'group', 'topics', 'user'));
     }
 
     /**
@@ -78,7 +62,7 @@ class TopicController extends Controller
         $topic->description = $request->description;
         $topic->save();
         
-        return redirect()->route('topic.index', [$topic->group_id]);
+        return redirect()->route('topic.index', $topic->group_id);
     }
 
     /**
@@ -87,29 +71,14 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function show($group, $topic)
+    public function show($id)
     {
-        $topic = $this->topic->findOrFail($topic);
-
-        $topicShow = DB::table('topics')
-        ->where('topics.id', $topic->id)
-        ->join('users', 'topics.user_id', '=', 'users.id')
-        ->select('users.id','users.name as userName','users.photo', 'topics.user_id')
-        ->get();
-
+        $topic = $this->topic->findOrFail($id);
         $user = auth()->user(['id', 'name']);
-        
-        $topicMessages = DB::table('topic_messages')
-        ->where('topic_id', $topic->id)
-        ->join('users', 'topic_messages.user_id', '=', 'users.id')
-        ->select('users.id','users.name','users.photo','topic_messages.id','topic_messages.message','topic_messages.created_at', 'topic_messages.user_id')
-        ->orderBy('topic_messages.created_at', 'desc')
-        ->get();
-
-        $answer = $topicMessages->count();
+        $topicMessages = TopicMessage::where('topic_id',$topic->id)->orderBy('topic_messages.created_at', 'desc')->get();
         
         $footer = 'true';
-        return view('Groups and Trips/Group/Topics/show', compact('topic','footer', 'topicMessages', 'topicShow', 'user', 'answer'));
+        return view('Groups and Trips/Group/Topics/show', compact('topic','footer', 'user', 'topicMessages'));
     }
 
     /**
@@ -119,7 +88,7 @@ class TopicController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit($group_id,$id)
+    public function edit($id)
     {
         $topic = $this->topic->findOrFail($id);
         $footer = 'true';
@@ -133,7 +102,7 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $group_id, $id)
+    public function update(Request $request, $id)
     {
         $data = $request->all();
 
@@ -141,7 +110,7 @@ class TopicController extends Controller
 
         $topic->update($data);
 
-        return redirect()->route('topic.show', [$topic->group_id, $topic->id]);
+        return redirect()->route('topic.show', $topic->id);
     }
 
     /**
@@ -150,12 +119,12 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function destroy($group_id, $id)
+    public function destroy($id)
     {
         $topic = $this->topic->find($id);
         $topic->delete();
 
-        return redirect()->route('topic.index', [$topic->group_id, $topic->id]);
+        return redirect()->route('topic.index', $topic->id);
     }
 
     public function search(Request $request, $groupId)
@@ -175,5 +144,54 @@ class TopicController extends Controller
         return redirect()->route('group.show', $groupId)
         ->with('topicSearchs', $topicSearchs)
         ->with('topicCount', $topicCount);
+    }
+
+    public function likeTopic($id)
+    {       
+        $topic = Topic::find($id);
+        $user = auth()->user(['id', 'name']);
+        $likeTopic = LikeTopic::where('topic_id', $topic->id)->where('user_id', $user->id)->first();
+
+        if ($likeTopic == null){
+            $likeTopic = new LikeTopic();
+            $likeTopic->user_id = auth()->user()->id;
+            $likeTopic->topic_id = $topic->id;
+            $likeTopic->like_topic = 1;
+            $likeTopic->save();
+        } else {
+            if ($likeTopic = LikeTopic::where('topic_id', $topic->id)->where('user_id', $user->id)->where('like_topic',1)->first())
+            {
+                $likeTopic->delete();
+            } else {
+                $dislikeTopic = LikeTopic::where('topic_id', $topic->id)->where('user_id', $user->id)->update(array('like_topic' => '1'));
+            }
+        }
+        
+        return redirect()->route('topic.show', $topic->id);
+    }
+
+    public function dislikeTopic($id)
+    {       
+        $topic = Topic::find($id);
+        $user = auth()->user(['id', 'name']);
+        $dislikeTopic = LikeTopic::where('topic_id', $topic->id)->where('user_id', $user->id)->first();
+
+        if ($dislikeTopic == null)
+        {
+            $dislikeTopic = new LikeTopic();
+            $dislikeTopic->user_id = auth()->user()->id;
+            $dislikeTopic->topic_id = $topic->id;
+            $dislikeTopic->like_topic = 0;
+            $dislikeTopic->save();
+        } else {
+            if ($dislikeTopic = LikeTopic::where('topic_id', $topic->id)->where('user_id', $user->id)->where('like_topic',0)->first())
+            {
+                $dislikeTopic->delete();
+            } else {
+                $dislikeTopic = LikeTopic::where('topic_id', $topic->id)->where('user_id', $user->id)->update(array('like_topic' => '0'));
+            }
+        }
+
+        return redirect()->route('topic.show', $topic->id);
     }
 }

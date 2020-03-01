@@ -89,6 +89,16 @@ class User extends Authenticatable
         return $this->hasMany('App\TopicMessage');
     }
 
+    public function likeTopics()
+    {
+        return $this->hasMany('App\LikeTopic');
+    }
+
+    public function likeTopicMessages()
+    {
+        return $this->hasMany('App\LikeTopicMessage');
+    }
+
     // public function activityLogs() {
     //     return $this->hasMany('App\ActivityLog');
     // }

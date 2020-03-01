@@ -6,9 +6,9 @@
 
 @section('conteudo')
         <!-- NAV ABA-->
-        <div class="bg-light pt-4 pb-4 mb-3">
+        <div class="bg-light pt-4 pb-4 mb-3 card">
             <div class="d-flex ml-3 align-items-center">
-                <a class="link" href="/groupsandtrips"><i class="material-icons">arrow_back</i></a>
+                <a class="stretched-link" href="/groupsandtrips"><i class="material-icons">arrow_back</i></a>
                 <div class="container">
                     <h5>Criar nova Comunidade</h5>
                 </div>
@@ -70,7 +70,7 @@
                         </div>
                         <input type="hidden" name="admin" value="{{auth()->user()->id}}">
                         <div class="d-flex justify-content-end mt-4">
-                            <a href="{{ URL::previous() }}" class="btn botao_atencao mr-2">Cancelar</a>
+                            <a href="{{route('user.listGroupsAndTrips')}}" class="btn botao_atencao mr-2">Cancelar</a>
                             <button type="submit" href="#" class="btn botao">Salvar</button>
                         </div>
                 </form>

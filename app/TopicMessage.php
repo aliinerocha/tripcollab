@@ -13,4 +13,9 @@ class TopicMessage extends Model
     public function user() {
         return $this->belongsTo('App\User');
     }
+
+    public function likeTopicMessages()
+    {
+        return $this->hasMany('App\LikeTopicMessage');
+    }
 }

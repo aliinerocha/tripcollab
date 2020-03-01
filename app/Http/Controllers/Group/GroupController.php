@@ -81,53 +81,15 @@ class GroupController extends Controller
     public function show($group)
     {
         $group = $this->group->findOrFail($group);
-        
-        $interests = DB::table('group_interest')
-        ->where('group_id', $group->id)
-        ->join('interests','group_interest.interest_id','=','interests.id')
-        ->get();
-
-        $confirmedMembers = DB::table('group_user')
-        ->where('group_id', $group->id)
-        ->join('users','group_user.user_id','=','users.id')
-        ->get(['user_id','name','photo']);
-
         $admin = $group->admin()->first(['id','name']);
         $user = auth()->user(['id', 'name']);
+  
+        $confirmed = $group->user()->count();
 
-        $userConfirmedPresence = DB::table('group_user')->where([
-        ['user_id', auth()->user()->id],
-        ['group_id', $group->id],
-        ])->get();
-            
-        $confirmed = $userConfirmedPresence->count();
+        $topics = Topic::where('group_id', $group->id)->orderBy('topics.created_at', 'desc')->paginate(3);
         
-        $trips = DB::table('trips')
-        ->where('group_id', $group->id)
-        ->where('return_date', '<', today())
-        ->get();
-        
-        $topics = DB::table('topics')
-        ->where('group_id', $group->id)
-        ->join('users', 'topics.user_id', '=', 'users.id')
-        ->select('topics.id','topics.name as topicName','topics.description','topics.created_at','users.name as userName','users.photo')
-        ->orderBy('topics.created_at', 'desc')
-        ->paginate(3);
-        
-        foreach($topics as $key => $tpc)
-        {
-            $topicMessages = DB::table('topic_messages')
-            ->where('topic_id', $tpc->id)
-            ->join('users', 'topic_messages.user_id', '=', 'users.id')
-            ->get('topic_id');
-            
-            $answer = $topicMessages->count();
-            
-            $tpc->answer = $answer;
-        }
-
         $footer = 'true';
-        return view('/Groups and Trips/Group/show', compact('footer', 'group', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers', 'topics', 'trips'));
+        return view('/Groups and Trips/Group/show', compact('footer', 'group', 'admin', 'user','topics', 'confirmed'));
     }
 
     /**

@@ -81,24 +81,31 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('group/{groupId}/cancel/{userId}', 'Group\GroupController@cancelPresence')->name('group.cancelPresence');
 
     // Topics
-
+    
     Route::get('{group_id}/topic/index', 'Group\TopicController@index')->name('topic.index');
-
+    
     Route::get('{group_id}/topic/create', 'Group\TopicController@create')->name('topic.create');
-
+    
     Route::post('{group_id}/topic/store', 'Group\TopicController@store')->name('topic.store');
-
+    
+    Route::get('topicLike/{id}', 'Group\TopicController@likeTopic')->name('topic.like');
+    
+    Route::get('topicDislike/{id}', 'Group\TopicController@dislikeTopic')->name('topic.dislike');
+    
+    Route::get('topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
+    
+    Route::put('topic/{id}', 'Group\TopicController@update')->name('topic.update');
+    
+    Route::delete('topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
+    
     Route::any('{groupId}/topic/search', 'Group\TopicController@search')->name('topic.search');
-
-    Route::get('{group_id}/topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
-
-    Route::get('{group_id}/topic/{id}', 'Group\TopicController@show')->name('topic.show');
-
-    Route::put('{group_id}/topic/{id}', 'Group\TopicController@update')->name('topic.update');
-
-    Route::delete('{group_id}/topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
-
+    
+    Route::get('topic/{id}', 'Group\TopicController@show')->name('topic.show');
     // Topic Messages
+
+    Route::get('topicMessageLike/{id}', 'Group\TopicMessageController@likeTopicMessage')->name('topicMessage.like');
+    
+    Route::get('topicMessageDislike/{id}', 'Group\TopicMessageController@dislikeTopicMessage')->name('topicMessage.dislike');
 
     Route::post('{topic_id}/topicMessage/store', 'Group\TopicMessageController@store')->name('topicMessage.store');
 

@@ -18,12 +18,12 @@
         </div>
 
         <div class="container mb-4">
-            @foreach($confirmedMembers as $confirmedMember)
-                <a href="{{route('user.show', ['id' => $confirmedMember->user_id])}}">
+            @foreach($group->user as $member)
+                <a href="{{route('user.show', ['id' => $member->id])}}">
                     <img
                     class="foto-perfil rounded-circle"
-                    src="@if($confirmedMember->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif"
-                    alt="{{$confirmedMember->name}}">
+                    src="@if($member->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif"
+                    alt="{{$member->name}}">
                 </a>
             @endforeach           
             @if(!$confirmed)
@@ -55,14 +55,14 @@
             <h5 class="nome mx-3 pt-4">Interesses da Comunidade</h5>
             <div class="col-xs-12">
                 <div class="row interesses text-justify mx-3 py-2">
-                    @if($interests->count() == 0 )
-                        {{$user->name}} ainda não informou nenhum interesse
+                    @if($group->interest->count() == 0 )
+                        A comunidade {{$group->name}} ainda não informou nenhum interesse.
                     @endif
                 </div>
             </div>
             <div class="col-xs-12">
                 <div class="row interesses text-justify mx-3 py-2">
-                    @foreach($interests as $interest)
+                    @foreach($group->interest as $interest)
                         <button type="button" class="btn btn-outline-primary mt-1 mr-1">{{$interest->name}}</button>
                     @endforeach
                 </div>
@@ -85,7 +85,7 @@
             <div class="carousel-inner">
 
                 <!-- CARD VIAGEM -->
-                @foreach($trips as $key => $trip)
+                @foreach($group->trips as $key => $trip)
                 <div class="carousel-item m-0 {{$key == 0 ? 'active' : '' }}">
                     <div class="card border-0" style="width: 18rem;">
                         <div class="card-header border-0 text-center">
@@ -180,12 +180,12 @@
             <div class="card-body px-0">
                 <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
-                        <img class="foto-perfil rounded-circle display-column" src="@if($topic->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro">
-                        <div class="small">{{$topic->userName}}</div>
+                        <img class="foto-perfil rounded-circle display-column" src="@if($topic->user->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro">
+                        <div class="small">{{$topic->user->name}}</div>
                 </div>
 
                     <div class="d-flex flex-column w-100 ml-2">
-                        <h5 class="card-title mb-auto">{{$topic->topicName}}</h5>
+                        <h5 class="card-title mb-auto">{{$topic->name}}</h5>
                         <div class="w-100 small d-flex align-items-end flex-column"><span>{{date('d/m/Y', strtotime($topic->created_at))}}</span></div>
                     </div>
                 </div>
@@ -198,28 +198,20 @@
                     
                     <div class="d-flex small">
                         <span class="d-flex mr-2 align-items-center">
-                            <i class="material-icons">
-                                thumb_up
-                            </i>
-                            <span class="align-items-center">
-                                142
-                            </span>
+                            <i class="material-icons">thumb_up</i>
+                            <span>{{$topic->likeTopics()->where('like_topic',1)->count()}}</span>
                         </span>
                         <span class="d-flex align-items-center">
-                            <i class="material-icons mr-1">
-                                thumb_down
-                            </i>
-                            <span class="align-items-center">
-                                2
-                            </span>
+                            <i class="material-icons mr-1">thumb_down</i>
+                            <span>{{$topic->likeTopics()->where('like_topic',0)->count()}}</span>
                         </span>
                     </div>
                     <span class="d-flex mr-2">
                         <i class="material-icons mr-1">chat</i>
-                        <span class="justify-content-center">{{$topic->answer}} @if ($topic->answer<=1) resposta @else respostas @endif</span>  
+                        <span class="justify-content-center">{{$topic->topicMessages()->count()}} @if ($topic->topicMessages()->count()<=1) resposta @else respostas @endif</span>  
                     </span>
                 <div>
-                        <a href="{{route('topic.show',['group_id' => $group->id ,'id' => $topic->id])}}" class="text-muted link-detalhes stretched-link">
+                        <a href="{{route('topic.show',['id' => $topic->id])}}" class="text-muted link-detalhes stretched-link">
                             Responder
                         </a>
                     </div>

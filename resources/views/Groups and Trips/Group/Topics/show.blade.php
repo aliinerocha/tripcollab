@@ -32,10 +32,8 @@
 
                 <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
-                    @foreach ($topicShow as $key)
-                        <img class="foto-perfil rounded-circle display-column" src="@if($key->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro" alt="foto de perfil do membro"> 
-                        <div class="small">{{$key->userName}}</div>
-                    @endforeach
+                        <img class="foto-perfil rounded-circle display-column" src="@if($topic->user->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro {{$topic->user->name}}"> 
+                        <div class="small">{{$topic->user->name}}</div>
                     </div>
 
                     <div class="d-flex flex-column w-100 ml-2">
@@ -50,14 +48,24 @@
     
                 <div class="d-flex w-100 mt-3 justify-content-between">
                     <div class="d-flex">
-                        <span class="d-flex mr-1"><i class="material-icons">thumb_up</i><span>142</span></span>
-                        <span class="d-flex mr-1"><i class="material-icons mr-1">thumb_down</i><span>2</span></span>
+                        <span class="d-flex mr-1">
+                            <a href="{{route('topic.like',['id' => $topic->id])}}">
+                                <i class="material-icons">thumb_up</i>
+                            </a>
+                            <span>{{$topic->likeTopics()->where('like_topic',1)->count()}}</span>
+                        </span>
+                        <span class="d-flex mr-1">
+                            <a href="{{route('topic.dislike',['id' => $topic->id])}}">
+                                <i class="material-icons mr-1">thumb_down</i>
+                            </a>
+                            <span>{{$topic->likeTopics()->where('like_topic',0)->count()}}</span>
+                        </span>
                     </div>
                     
                     <span class="d-flex mr-2">
                         
                         <i class="material-icons mr-1">chat</i>
-                        <span class="justify-content-center">{{$answer}} @if ($answer<=1) resposta @else respostas @endif</span>
+                        <span class="justify-content-center">{{$topic->topicMessages()->count()}} @if ($topic->topicMessages()->count()<=1) resposta @else respostas @endif</span>
                         
                     </span>
                     
@@ -68,7 +76,7 @@
                 
                 @if($user->id == $topic->user_id)
                     <div class="mx-1 my-2">
-                        <a href="{{route('topic.edit',['group_id' => $topic->group_id ,'id' => $topic->id] )}}" class="botao btn btn-primary border-0">Editar</a>
+                        <a href="{{route('topic.edit',['id' => $topic->id] )}}" class="botao btn btn-primary border-0">Editar</a>
                     </div>
                 @endif
                 
@@ -90,27 +98,23 @@
             <div class="card-body px-0">
                  <div class="">
                     
-                        <img class="foto-perfil rounded-circle display-column mr-2" src="@if($topicMessage->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro"> 
-                        <b class="mb-0 pb-0">{{$topicMessage->name}}</b> {{$topicMessage->message}}
+                        <img class="foto-perfil rounded-circle display-column mr-2" src="@if($topicMessage->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro {{$topicMessage->user->name}}"> 
+                        <b class="mb-0 pb-0">{{$topicMessage->user->name}}</b> {{$topicMessage->message}}
                 </div>
 
                 <div class="d-flex w-100 mt-3 justify-content-between small">
                     <div class="d-flex">
                         <span class="d-flex mr-2">
-                            <i class="material-icons">
-                                thumb_up
-                            </i>
-                            <span class="align-self-center">
-                                186
-                            </span>
+                            <a href="{{route('topicMessage.like',['id' => $topicMessage->id])}}">
+                                <i class="material-icons">thumb_up</i>
+                            </a>
+                            <span>{{$topicMessage->likeTopicMessages()->where('like_topic_message',1)->count()}}</span>
                         </span>
                         <span class="d-flex">
-                            <i class="material-icons mr-1">
-                                thumb_down
-                            </i>
-                            <span class="align-self-center">
-                                22
-                            </span>
+                            <a href="{{route('topicMessage.dislike',['id' => $topicMessage->id])}}">
+                                <i class="material-icons mr-1">thumb_down</i>
+                            </a>
+                            <span>{{$topicMessage->likeTopicMessages()->where('like_topic_message',0)->count()}}</span>
                         </span>
                     </div>
 
