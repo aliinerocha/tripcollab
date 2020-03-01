@@ -33,11 +33,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('trip/{tripId}/confirm/{userId}', 'Trip\TripController@confirmPresence')->name('trip.confirmPresence');
 
+    Route::get('trip/{tripId}/accept/{userId}', 'Trip\TripController@acceptPresence')->name('trip.acceptPresence');
+
     Route::get('trip/{tripId}/cancel/{userId}', 'Trip\TripController@cancelPresence')->name('trip.cancelPresence');
 
-    Route::get ('/groupsandtrips', 'User\UserController@listGroupsAndTrips')->name('user.listGroupsAndTrips');
-
     Route::get('/trip/{id}/members', 'Trip\TripController@tripMembersIndex')->name('trip.membersIndex');
+
+    Route::get ('/groupsandtrips', 'User\UserController@listGroupsAndTrips')->name('user.listGroupsAndTrips');
 
 
     // User
