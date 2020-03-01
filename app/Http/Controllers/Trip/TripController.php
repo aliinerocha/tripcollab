@@ -170,7 +170,7 @@ class TripController extends Controller
 
         $trip->delete();
 
-        return redirect()->route('/home');
+        return redirect()->route('home');
     }
 
     public function confirmPresence($tripId, $userId) {
@@ -194,6 +194,23 @@ class TripController extends Controller
         return redirect()->route('trip.show', ['id' => $tripId]);
     }
 
+    public function acceptPresence($tripId, $userId) {
+
+        $trip = $this->trip->find($tripId);
+
+        $user = $this->user->find($userId);
+
+        $memberAccept =DB::table('trip_user')
+            ->where('user_id', $user->id)
+            ->where('trip_id', $trip->id)
+            ->update([
+                'status' => 1,
+            ]);
+
+        return redirect()->back();
+
+    }
+
     public function cancelPresence($tripId, $userId) {
 
         $trip = $this->trip->find($tripId);
@@ -202,13 +219,26 @@ class TripController extends Controller
 
         $trip->user()->detach($user);
 
-        return redirect()->route('trip.show', ['id' => $tripId]);
+        return redirect()->back();
     }
 
     public function tripMembersIndex ($tripId) {
 
         $trip = $this->trip->find($tripId);
+        $user = auth()->user();
 
-        return view('/Groups and Trips/Trip/index', compact('trip'));
+        $tripMembers = DB::table('trip_user')
+        ->where('trip_id', $trip->id)
+        ->where('status', 1)
+        ->join('users','trip_user.user_id','=','users.id')
+        ->get();
+
+        $tripMembersRequests = DB::table('trip_user')
+        ->where('trip_id', $trip->id)
+        ->where('status', 0)
+        ->join('users','trip_user.user_id','=','users.id')
+        ->get();
+
+        return view('/Groups and Trips/Trip/index', compact('trip','user','tripMembers', 'tripMembersRequests'));
     }
 }
