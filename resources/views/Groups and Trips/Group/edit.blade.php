@@ -13,10 +13,8 @@
         <!-- NAV ABA-->
         <div class="bg-light pt-4 pb-4 mb-3">
             <div class="d-flex ml-3 align-items-center">
-                <a class="link" href="{{route('group.show',['id' => $group->id])}}"><i class="material-icons">arrow_back</i></a>
-                <div class="container">
-                    <h5>Editar Comunidade</h5>
-                </div>
+                <a class="link" href="{{route('group.show',['id' => $group->id])}}"><i class="material-icons mr-3 back">arrow_back</i></a>
+                <h5>Editar Comunidade</h5>
             </div>
         </div>
 
@@ -78,7 +76,7 @@
                             @csrf
                             @method("DELETE")
                             <div class="d-flex align-items-center justify-content-between justify-content-md-end pt-3 col-10 offset-1">
-                                <u class="pr-3">Excluir comunidade permanentemente</u>
+                                <span class="pr-3">Excluir comunidade permanentemente</span>
                                 <button type="submit" class="btn btn-secondary">Excluir</button>
                             </div>
                         </form>

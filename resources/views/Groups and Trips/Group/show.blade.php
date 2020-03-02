@@ -9,15 +9,18 @@
 @endsection
 
 @section('conteudo')
+<div class="containerDesktop">
+
     <!-- BANNER -->
-    <main class="mb-3">
-        <img src="@if($group->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner">
+    <main class=" mb-3">
+        {{-- <img src="@if($group->photo == 'nophoto') {{url('/img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner"> --}}
+        <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
     </main>
 
     <!-- NOME E MEMBROS -->
 
-        <section class="bg-light pb-4 mb-3">
-            <div class="container mb-4">
+        <section class="bg-light pb-4 mb-3 pt-4">
+            <div class="ml-4 my-md-0 mr-4 mb-4">
                 <h1>{{$group->name}}</h1>
             </div>
 
@@ -52,14 +55,14 @@
 
     @else
 
-            <div class="container mb-4">            
-                <h5>Quem somos?</h5>
+            <div class="ml-4 my-md-0 mr-4 mb-4">            
+                <h5>Descrição da comunidade:</h5>
                 <div>
                     {{$group->description}}
                 </div>
             </div>
 
-            <div class="container mb-4">  
+            <div class="ml-4 my-md-0 mr-4 mb-4 pt-4">  
                 <h5>Administrador:</h5>
                 <p class="mb-4">
                     <a href="{{route('user.show', ['id' => $admin->id])}}">
@@ -72,21 +75,18 @@
                 </p>
             </div>
 
-            <div class="container mb-4">
-                <h5>Interesses da Comunidade</h5>
-                <div class="col-xs-12">
-                    <div class="row interesses text-justify mx-3 py-2">
-                        @if($group->interest->count() == 0 )
-                            A comunidade {{$group->name}} ainda não informou nenhum interesse.
-                        @endif
-                    </div>
+            <div class="ml-4 my-md-0 mr-4 mb-4 pt-4">
+                <h5>Interesses da Comunidade:</h5>
+                <div class=" interesses text-justify  py-2">
+                    @if($group->interest->count() == 0 )
+                        A comunidade {{$group->name}} ainda não informou nenhum interesse.
+                    @endif
                 </div>
-                <div class="col-xs-12">
-                    <div class="row interesses text-justify mx-3 py-2">
-                        @foreach($group->interest as $interest)
-                            <button type="button" class="btn btn-outline-primary mt-1 mr-1">{{$interest->name}}</button>
-                        @endforeach
-                    </div>
+
+                <div class="interesses text-justify py-2">
+                    @foreach($group->interest as $interest)
+                        <button type="button" class="btn btn-outline-primary mt-1 mr-1">{{$interest->name}}</button>
+                    @endforeach
                 </div>
             </div>
 
@@ -96,7 +96,7 @@
             </div>
             @endif
 
-            <div class="container mb-4">
+            <div class="ml-4 my-md-0 mr-3 mb-4">
                 <h5>Membros:</h5>
                 @foreach($group->user as $member)
                     <a href="{{route('user.show', ['id' => $member->id])}}">
@@ -109,7 +109,7 @@
 
                 @if(!$userStatus && $group->visibility == 1)
                         <div class="d-flex mt-3">
-                            <a href="{{route('group.confirmPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn btn-info">
+                            <a href="{{route('group.confirmPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn botao">
                             Participar
                             </a>
                         </div>
@@ -126,8 +126,8 @@
 
             <!-- VIAGENS REALIZADAS -->
 
-            <div class="container mb-4">
-                <h5>Viagens realizadas</h5>
+            <div class="ml-4 ml-md-0 mb-4 pt-4">
+                <h5>Viagens realizadas:</h5>
             </div>
 
             <div id="comunidade-slider" class="carousel slide container" data-ride="carousel">
@@ -160,13 +160,10 @@
 
         <!-- FÓRUM -->
 
-        <section class="bg-light pt-2 pb-2">
-            <div class="container mb-4">
-                <h5>Fórum</h5>
-            </div>
-            
+        <section class="bg-light pt-2 pb-2">       
         <!-- BUSCA DOS TÓPICOS -->
-            <div>
+            <div class="ml-4 ml-md-0 mb-2">
+                <h5 class="mb-3 mt-3">Fórum</h5>
                 <div>
                     <!-- <form action="{{route('topic.search', ['groupId' => $group->id])}}" method="POST">
                     <div class="input-group mx-1">
@@ -181,9 +178,41 @@
                                 </div>
                     </div>
                     </form> -->
-                    <div class="mx-1 my-3">
-                        <a href="{{route('topic.create', ['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a>
-                        <a href="{{route('topic.index', ['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Ver +</a>
+                    <div>
+                        <h5 class="pt-4">Criar Novo Topico</h5>
+                            <form action="{{route('topic.store', ['group_id' => $group->id])}}" method="POST" enctype="multipart/form-data" class="my-md-0 mr-4">
+                                @csrf 
+                                
+                                <div class="form-group mt-4" >
+                                    <label>Nome do Tópico</label>
+                                    <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{old('name')}}" placeholder="Insira o nome do Tópico" required>
+                                    @error('name')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                                
+                                <div class="form-group mt-4">
+                                    <label>Descrição</label>
+                                    <textarea class="form-control @error('description') is-invalid @enderror"  type="text" name="description" value="{{old('description')}}" rows="3" placeholder="Insira a descrição do Tópico" required></textarea>
+                                    @error('description')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                            
+                                <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                                <input type="hidden" name="group_id" value="{{$group->id}}">
+                                <div class="row d-flex justify-content-end m-0">
+                                    <div class="form-group d-flex justify-content-end">
+                                        <button type="submit" class="btn botao btn-primary float-right border-0">Criar Topico</button>
+                                    </div>
+                                </div> 
+                            </form>
+                    
+                                            {{-- <a href="{{route('topic.create', ['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a> --}}
                     </div>
                 </div>
             </div>
@@ -222,11 +251,9 @@
         </section> 
 
         <!-- TÓPICOS -->
-        @foreach ($topics as $topic)
-        <section class="bg-light mt-2 mb-1 pb-1">
-
-            <div class="col-md-8">
-                <div class="card-body px-0">
+        @foreach ( $topics as $topic)
+        <section class="bg-light mt-2 mb-1 pb-4 ">
+                <div class="card-body mb-4">
                     <div class="d-flex">
                         <div class="d-flex flex-column p-0 align-items-center justify-content-end">
                             <img class="foto-perfil rounded-circle display-column" src="@if($topic->user->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro">
@@ -259,15 +286,21 @@
                             <i class="material-icons mr-1">chat</i>
                             <span class="justify-content-center">{{$topic->topicMessages()->count()}} @if ($topic->topicMessages()->count()<=1) resposta @else respostas @endif</span>  
                         </span>
-                    <div>
+                        <div>
                             <a href="{{route('topic.show',['id' => $topic->id])}}" class="text-muted link-detalhes stretched-link">
                                 Responder
                             </a>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
+
+            @if ($group->topic()->count()>3)
+            <a href="{{route('topic.index', ['group_id' => $group->id])}}" class="botao btn btn-primary float-right mt-3 mr-3 mr-md-0">Ver todos</a> 
+            @endif
+
+        @endif
         </section>
-        @endforeach
-    @endif
+</div>
 @endsection
+
