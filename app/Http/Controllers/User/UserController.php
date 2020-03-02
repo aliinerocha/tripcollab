@@ -54,6 +54,24 @@ class UserController extends Controller
            $friendlist->pull($authUser);
         }
 
+        // Dados notificações:
+
+            // $friendRequestor = Friendship::where('requester_user_id', auth()->user()->id)
+            // ->where('requested_user_id', $id)
+            // ->first();
+
+            // $groupMembersRequests = DB::table('group_user')
+            // ->where('group_id', $group->id)
+            // ->where('status', 0)
+            // ->join('users','group_user.user_id','=','users.id')
+            // ->get();
+
+            // $tripMembersRequests = DB::table('trip_user')
+            // ->where('trip_id', $trip->id)
+            // ->where('status', 0)
+            // ->join('users','trip_user.user_id','=','users.id')
+            // ->get();
+
         return view('/home', compact('user','friendlist','interests'));
     }
 
