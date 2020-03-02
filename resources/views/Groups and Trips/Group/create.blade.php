@@ -6,18 +6,11 @@
 
 @section('conteudo')
         <!-- NAV ABA-->
-<<<<<<< HEAD
     <div class="containerDesktop">
 
         <div class="bg-light pt-4 pb-4 mb-3 barraMenu">
             <div class="d-flex ml-3 align-items-center">
                 <a class="link" href="/groupsandtrips"><i class="material-icons back mr-3">arrow_back</i></a>
-=======
-        <div class="bg-light pt-4 pb-4 mb-3 card">
-            <div class="d-flex ml-3 align-items-center">
-                <a class="stretched-link" href="/groupsandtrips"><i class="material-icons">arrow_back</i></a>
-                <div class="container">
->>>>>>> 35a4c3640a07a08f85d91db402b67bc9434bcebb
                     <h5>Criar nova Comunidade</h5>
             </div>
         </div>

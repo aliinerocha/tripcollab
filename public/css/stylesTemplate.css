@@ -8,6 +8,7 @@ body {
     box-sizing: border-box;
     margin:0;
     padding:0;
+    padding-bottom: 7vh;
     overflow-x: hidden;
 }
 

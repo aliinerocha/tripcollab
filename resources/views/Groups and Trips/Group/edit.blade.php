@@ -1,11 +1,8 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
-<<<<<<< HEAD
 
 @section('css')
 <link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
 @endsection
-=======
->>>>>>> 35a4c3640a07a08f85d91db402b67bc9434bcebb
 
 @section('titulo')
     Editar Comunidade
