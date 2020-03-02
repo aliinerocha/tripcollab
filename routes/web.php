@@ -17,6 +17,12 @@ Route::get('/', function() {
 
 Route::group(['middleware' => ['auth']], function () {
 
+    // Search
+
+    Route::get('search', function () {
+        return view('Search/index');
+    });
+
     // Trips
 
     Route::get('trip/create', "Trip\TripController@create")->name('trip.create');
@@ -87,31 +93,31 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/group/{id}/members', 'Group\GroupController@groupMembersIndex')->name('group.membersIndex');
 
     // Topics
-    
+
     Route::get('{group_id}/topic/index', 'Group\TopicController@index')->name('topic.index');
-    
+
     Route::get('{group_id}/topic/create', 'Group\TopicController@create')->name('topic.create');
-    
+
     Route::post('{group_id}/topic/store', 'Group\TopicController@store')->name('topic.store');
-    
+
     Route::get('topicLike/{id}', 'Group\TopicController@likeTopic')->name('topic.like');
-    
+
     Route::get('topicDislike/{id}', 'Group\TopicController@dislikeTopic')->name('topic.dislike');
-    
+
     Route::get('topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
-    
+
     Route::put('topic/{id}', 'Group\TopicController@update')->name('topic.update');
-    
+
     Route::delete('topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
-    
+
     Route::any('{groupId}/topic/search', 'Group\TopicController@search')->name('topic.search');
-    
+
     Route::get('topic/{id}', 'Group\TopicController@show')->name('topic.show');
 
     // Topic Messages
 
     Route::get('topicMessageLike/{id}', 'Group\TopicMessageController@likeTopicMessage')->name('topicMessage.like');
-    
+
     Route::get('topicMessageDislike/{id}', 'Group\TopicMessageController@dislikeTopicMessage')->name('topicMessage.dislike');
 
     Route::post('{topic_id}/topicMessage/store', 'Group\TopicMessageController@store')->name('topicMessage.store');

@@ -53,6 +53,8 @@ class TripController extends Controller
     {
         $data = $request->all();
 
+        $user = auth()->user();
+
         if($request->hasFile('photo'))
         {
             $image = $request->file('photo');
@@ -61,7 +63,15 @@ class TripController extends Controller
             $data['photo'] = 'nophoto';
         }
 
-        $store = $this->trip->create($data);
+        $trip = $this->trip->create($data);
+
+        $trip->user()->attach($user);
+
+        $update = DB::table('trip_user')
+        ->where('user_id', auth()->user()->id)
+        ->where('trip_id', $trip->id)
+        ->update(['status' => '1']);
+
         return redirect()->route('trip.create');
     }
 
