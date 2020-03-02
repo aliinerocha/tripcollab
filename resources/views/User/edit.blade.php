@@ -6,6 +6,7 @@
 
 @section('conteudo')
 <!-- Formulário de edição-->
+<div class="containerDesktop">
 <div class="container-fluid p-0">
     <!--  Cadastro do Usuário -->
     <form method="POST" action="{{route('user.update', ['id' => $user->id])}}" enctype="multipart/form-data">
@@ -131,7 +132,7 @@
 
         <section class="usuario bg-light mb-2 px-3 py-2">
             <div class="form-group mx-4">
-                <div class="form-check my-3">
+                <!--<div class="form-check my-3">
                     <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3">
                     <label class="form-check-label" for="invalidCheck3">
                         Concordo com Termos e Condições
@@ -139,7 +140,7 @@
                     <div class="invalid-feedback">
                         Por favor, selecione antes de enviar.
                     </div>
-                </div>
+                </div>-->
                 <div class="col d-flex justify-content-center">
                     <button type="submit" class="btn btn-secondary mt-2">Atualizar Perfil</button>
                 </div>
@@ -153,11 +154,16 @@
     <form action="{{route('user.delete', $user->id)}}" method="post">
         @csrf
         @method('DELETE')
-        <div class="col d-flex justify-content-between">
+        <!--<div class="col d-flex justify-content-between">
             <h5 class="nome pt-4 ">Excluir conta permanentemente</h5>
             <button class="btn btn-danger" >Excluir</button>
+        </div>-->
+        <div class="d-flex align-items-center justify-content-between justify-content-md-end pt-3 col-10 offset-1">
+            <u class="pr-3">Excluir comunidade permanentemente</u>
+            <button type="submit" class="btn btn-secondary">Excluir</button>
         </div>
     </form>
 </section>
+</div>
 
 @endsection
