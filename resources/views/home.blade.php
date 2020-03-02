@@ -9,6 +9,7 @@
 @endsection
 
 @section('conteudo')
+    
     <div class="container-fluid p-0">
         <!-- Foto da Capa -->
         <main class="col-xs-12 capa p-0">
