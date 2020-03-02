@@ -28,7 +28,7 @@
         <a class="navbar-brand" href="{{route('landing')}}"><img src="{{url('img/logo branco.png')}}" alt="logo Trip Collab"> TRIPCOLLAB</a>
         <div class=" d-flex justify-space-between align-items-center">
 
-            @auth  
+            @auth
             <div class="itensMenu d-none d-md-inline-block">
             <a href="linhaDoTempo" class="{{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }} mr-5">SCRAPBOOK</a>
             <a href="mensagens" class="{{ isset($pagina) && $pagina == 'mensagens' ? 'ativo' : '' }} mr-5">CHAT</a>
@@ -112,7 +112,7 @@
 @auth
 <div class="nav-inferior nav fixed-bottom d-flex justify-content-around border-top d-md-none" id="navInferior">
     <a href="linhaDoTempo" class="fas fa-atlas fa-lg  {{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }}"></a>
-    <a href="mensagens" class="far fa-comments fa-lg {{ isset($pagina) && $pagina == 'mensagens' ? 'ativo' : '' }}"></a>
+    <a href="#" class="fas fa-search fa-lg {{ isset($pagina) && $pagina == 'mensagens' ? 'ativo' : '' }}"></a>
     <a href="{{route('home')}}" class="fas fa-home fa-lg  {{ isset($pagina) && $pagina == 'perfil' ? 'ativo' : '' }}"></a>
     <a href="{{route('user.listGroupsAndTrips')}}" class="fas fa-users fa-lg  {{ isset($pagina) && $pagina == 'comunidadesEviagens' ? 'ativo' : '' }}"></a>
 </div>

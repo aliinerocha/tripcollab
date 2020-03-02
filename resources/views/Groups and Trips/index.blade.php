@@ -83,6 +83,7 @@
                 <button type="button" class="btn btn-secondary border-top-0 border-bottom-0 filtro">Confirmadas</button>
                 <button type="button" class="btn btn-secondary border-top-0 border-bottom-0 border-right-0 filtro">Quero ir</button>
             </div>
+        </div>
     </section>
 
     @foreach($confirmedTrips as $confirmedTrip)
