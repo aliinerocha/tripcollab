@@ -22,7 +22,7 @@ h3 {
 }
 /* inicio de estilos section 2 */
 .btn-logar {
-    background-color: #B9B9B9;
+    background-color: red;
     color: white;
     font-style: normal;
     font-size: 14px;
@@ -42,6 +42,7 @@ h3 {
     color: #ACACAC;
     background-color: white;  
 }
+
 h5 {
     font-style: normal;
     font-weight: 500;
@@ -54,6 +55,17 @@ h5 {
 
 .div-form {
     font-size: 12px;
+}
+
+/* CSS DESKTOP */
+@media (min-width: 768px) {
+    body {
+      background-color: red;
+    }
+    .containerDesktop {
+      max-width: 60vw;
+      margin: auto;
+    }
 }
 
 
