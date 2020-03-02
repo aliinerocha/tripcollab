@@ -1,4 +1,4 @@
-@extends('layouts.template', ['pagina' => 'comunidadesEviagens'], ['footer' => 'true'])
+@extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('css')
 <link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
@@ -11,20 +11,28 @@
 @section('conteudo')
     <!-- BANNER -->
     <main class="mb-3">
-            <img src="img\test03.jpg" class="img-fluid banner-img" alt="banner">
+            <img src="img/groupsAndTripsBannerDesktop.jpg" class="img-fluid banner-img" alt="banner">
             <h3 class="titulo ml-3">Para onde você <br> quer ir hoje?</h3>
     </main>
 
     <!-- COMUNIDADES -->
 
     <section class="bg-light pt-4 pb-4 mb-3">
-        <div class="container mb-4">
+        <div class="ml-3 mb-4">
             <h5>Minhas comunidades</h5>
         </div>
-        <a href="{{route('group.create')}}" class="d-flex align-items-center btnGroupsAndTrips">
-            <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
-            Criar nova comunidade
+        {{-- <div class="d-flex">
+            <div class=" input-group mb-4 mr-3 col-10">
+                <input type="text" class="form-control border-0" placeholder="Buscar">
+                <div class="input-group-append">
+                    <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
+            </div>
+        </div> --}}
+        <a href="{{route('group.create')}}" class="d-flex align-items-center justify-content-around btnGroupsAndTrips ml-3 p-2">
+            <span>Criar nova comunidade</span>
+            <i class="material-icons" style=" font-size: 30px">add</i>
         </a>
+
         <div id="comunidade-slider" class="carousel slide container" data-ride="carousel">
                 <div class="carousel-inner">
                 <!-- CARD COMUNIDADES 1 -->
@@ -54,7 +62,7 @@
     <!-- MINHAS VIAGENS -->
 
     <section class="bg-light pt-4 pb-2">
-        <div class="container mb-4">
+        <div class="ml-3 mb-4">
             <h5>Minhas viagens</h5>
         </div>
         {{-- <div class="d-flex">
@@ -64,11 +72,11 @@
                     <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
                 </div>
             </div> --}}
-            <a href="{{route('trip.create')}}" class="p-0 m-0">
-                <i class="material-icons" style="color:#CFCFCF; font-size: 40px;">add_box</i>
+            <a href="{{route('trip.create')}}" class="d-flex align-items-center justify-content-between btnGroupsAndTrips ml-3 p-2">
+                <span>Criar nova viagem</span>
+                <i class="material-icons" style=" font-size: 30px">add</i>
             </a>
-        </div>
-        <div class="container mt-4 pb-2">
+        <div class="ml-3 mt-4 pb-2">
             <h6>Visualizar: </h6>
             <div class="btn-group mt-2 filtro" role="group" aria-label="Botões para filtrar visualizações de viagens">
                 <button type="button" class="btn btn-secondary border-top-0 border-left-0 border-bottom-0 filtro">Todas</button>

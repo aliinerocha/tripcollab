@@ -13,7 +13,7 @@
 
 Route::get('/', function() {
     return view('landing');
-});
+}) ->name('landing');
 
 Route::group(['middleware' => ['auth']], function () {
 

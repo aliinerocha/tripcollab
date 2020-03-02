@@ -43,8 +43,7 @@ class GroupController extends Controller
     {
         $interests = Interest::get();
 
-        $footer = 'true';
-        return view('Groups and Trips/Group/create', compact('footer','interests'));
+        return view('Groups and Trips/Group/create', compact('interests'));
     }
 
     /**
@@ -114,8 +113,8 @@ class GroupController extends Controller
         ->orderBy('topics.created_at', 'desc')
         ->paginate(3);
 
-        $footer = 'true';
-        return view('/Groups and Trips/Group/show', compact('footer', 'group', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers', 'topics', 'trips'));
+
+        return view('/Groups and Trips/Group/show', compact( 'group', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers', 'topics', 'trips'));
     }
 
     /**
@@ -132,9 +131,8 @@ class GroupController extends Controller
 
         $selectedInterests = DB::table('group_interest')->where('group_id', $id)->get();
         
-        $footer = 'true';
 
-        return view('/Groups and Trips/Group/edit', compact('footer','interests', 'selectedInterests', 'group'));
+        return view('/Groups and Trips/Group/edit', compact('interests', 'selectedInterests', 'group'));
     }
 
     /**

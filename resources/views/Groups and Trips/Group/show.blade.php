@@ -1,5 +1,9 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
+@endsection
+
 @section('titulo')
     Comunidade {{$group->name}}
 @endsection

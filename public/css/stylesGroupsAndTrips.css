@@ -13,8 +13,17 @@
 
 /* CSS COMUNIDADE */
 
-.input-group-text {
+.btnGroupsAndTrips {
+  color:  gray;
+  max-width: 225px;
   background-color: #ffffff;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+}
+
+.btnGroupsAndTrips:hover {
+  text-decoration:none;
+  color: gray;
 }
 
 .card-header {
@@ -73,5 +82,48 @@
   object-fit: cover;
 }
 
+/* CSS aba_criarGruposDeViagem */
+.botao {
+  background-color: #1d6ab0;
+  color: #ffffff;
+  border-color: #064c8c;
+}
+.botao:hover {
+  background-color: #1d6ab0;
+  color: #ffffff;
+  border-color: #064c8c;
+}
 
+.botao_atencao {
+  background-color: #CC293B;
+  color:#ffffff;
+  border-color: #A61121;
+}
+
+.botao_atencao:hover {
+  background-color: #CC293B;
+  color:#ffffff;
+  border-color: #A61121;
+}
+
+.back {
+  color: black
+}
+
+  /* CSS DESKTOP */
+  @media (min-width: 768px) {
+    body {
+      background-color:#f9f9f9;
+    }
+    .containerDesktop {
+      max-width: 60vw;
+      margin: auto;
+    }
+    .barraMenu{
+      margin-left: 70px;
+    }
+    .banner-img {
+      height: 25vh;
+    }
+  }
   

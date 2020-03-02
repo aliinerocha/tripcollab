@@ -1,21 +1,21 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
-@section('titulo')
-    Criar nova Comunidade
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
 @endsection
 
 @section('conteudo')
         <!-- NAV ABA-->
-        <div class="bg-light pt-4 pb-4 mb-3">
+    <div class="containerDesktop">
+
+        <div class="bg-light pt-4 pb-4 mb-3 barraMenu">
             <div class="d-flex ml-3 align-items-center">
-                <a class="link" href="/groupsandtrips"><i class="material-icons">arrow_back</i></a>
-                <div class="container">
+                <a class="link" href="/groupsandtrips"><i class="material-icons back mr-3">arrow_back</i></a>
                     <h5>Criar nova Comunidade</h5>
-                </div>
             </div>
         </div>
 
-        <!-- CARD COM OS DETALHES DO GRUPO DE VIAGEM SELECIONADO -->
+        <!-- CARD COM OS DETALHES DO GRUPO  -->
         <main class="bg-light pt-4 pb-4">
             <div class="row">
                 <form action="{{route('group.store')}}" method="POST" class="col-10 offset-1" enctype="multipart/form-data">
@@ -76,4 +76,5 @@
                 </form>
             </div>
         </main>
+    </div>
 @endsection

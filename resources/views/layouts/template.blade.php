@@ -25,7 +25,7 @@
 <body>
 <!-- NAV SUPERIOR -->
 <nav class="navbar sticky-top">
-        <a class="navbar-brand" href="{{route('home')}}"><img src="{{url('img/logo branco.png')}}" alt="logo Trip Collab"> TRIPCOLLAB</a>
+        <a class="navbar-brand" href="{{route('landing')}}"><img src="{{url('img/logo branco.png')}}" alt="logo Trip Collab"> TRIPCOLLAB</a>
         <div class=" d-flex justify-space-between align-items-center">
 
             @auth  
@@ -67,7 +67,7 @@
 <!-- MENU -->
 <menu class="container" id="menu">
     <ul class="navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item active pt-2">
             <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
@@ -109,14 +109,14 @@
 
 @yield('conteudo')
 
-@if (isset  ($footer) && $footer == 'true')
+@auth
 <div class="nav-inferior nav fixed-bottom d-flex justify-content-around border-top d-md-none" id="navInferior">
-    <a href="linhaDoTempo" class="fas fa-atlas fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }}"></a>
-    <a href="mensagens" class="far fa-comments fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'mensagens' ? 'ativo' : '' }}"></a>
-    <a href="{{route('home')}}" class="fas fa-home fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'perfil' ? 'ativo' : '' }}"></a>
-    <a href="{{route('user.listGroupsAndTrips')}}" class="fas fa-users fa-lg col-2 btnNavInferior {{ isset($pagina) && $pagina == 'comunidadesEviagens' ? 'ativo' : '' }}"></a>
+    <a href="linhaDoTempo" class="fas fa-atlas fa-lg  {{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }}"></a>
+    <a href="mensagens" class="far fa-comments fa-lg {{ isset($pagina) && $pagina == 'mensagens' ? 'ativo' : '' }}"></a>
+    <a href="{{route('home')}}" class="fas fa-home fa-lg  {{ isset($pagina) && $pagina == 'perfil' ? 'ativo' : '' }}"></a>
+    <a href="{{route('user.listGroupsAndTrips')}}" class="fas fa-users fa-lg  {{ isset($pagina) && $pagina == 'comunidadesEviagens' ? 'ativo' : '' }}"></a>
 </div>
-@endif
+@endauth
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

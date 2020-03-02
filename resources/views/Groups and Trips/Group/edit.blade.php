@@ -1,10 +1,15 @@
-@extends('layouts.template')
+@extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
+
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
+@endsection
 
 @section('titulo')
     Editar Comunidade
 @endsection
 
 @section('conteudo')
+    <div class="containerDesktop">
         <!-- NAV ABA-->
         <div class="bg-light pt-4 pb-4 mb-3">
             <div class="d-flex ml-3 align-items-center">
@@ -15,7 +20,7 @@
             </div>
         </div>
 
-        <!-- CARD COM OS DETALHES DO GRUPO DE VIAGEM SELECIONADO -->
+        <!-- CARD COM OS DETALHES DO GRUPO-->
         <main class="bg-light pt-4 pb-4">
             <div class="row">
                 <form action="{{route('group.update', ['id' => $group->id])}}" method="POST" class="col-10 offset-1">
@@ -59,18 +64,24 @@
                             <option @if($group->visibility == 0) selected @endif value="0">Não</option>
                         </select>
                     </div>
-                    <div class="row d-flex justify-content-end m-0">
+                    <div class="row d-flex justify-content-end m-0 pb-5">
                             <div class="d-flex justify-content-end m-0">
                                 <a href="{{ URL::previous() }}" class="btn botao_atencao mr-2">Cancelar</a>
                                 <button type="submit" href="#" class="btn botao mr-2">Salvar</button>
                             </div>
+                    </div>
                 </form>
+            </div>
+        </main>
+                <div class="mt-3 py-4 bg-light">
                         <form action="{{route('group.destroy',['id' => $group->id])}}" method="POST">
                             @csrf
                             @method("DELETE")
-                            <button type="submit" class="btn btn-danger">Excluir</button>
+                            <div class="d-flex align-items-center justify-content-between justify-content-md-end pt-3 col-10 offset-1">
+                                <u class="pr-3">Excluir comunidade permanentemente</u>
+                                <button type="submit" class="btn btn-secondary">Excluir</button>
+                            </div>
                         </form>
-                    </div>
-            </div>
-        </main>
+                </div>
+    </div>
 @endsection
