@@ -7,6 +7,7 @@ use App\Group;
 use App\Topic;
 use App\User;
 use App\TopicMessage;
+use App\LikeTopicMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,7 +31,7 @@ class TopicMessageController extends Controller
 
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -58,7 +59,7 @@ class TopicMessageController extends Controller
         $topicMessage->message = $request->message;
         $topicMessage->save();
 
-        return redirect()->route('topic.show', [$topic->group_id, $topic->id]);
+        return redirect()->route('topic.show', $topic->id);
     }
 
     /**
@@ -78,7 +79,7 @@ class TopicMessageController extends Controller
      * @param  \App\TopicMessage  $topicMessage
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, $topic_id)
+    public function edit($id)
     {
         // 
     }
@@ -90,7 +91,7 @@ class TopicMessageController extends Controller
      * @param  \App\TopicMessage  $topicMessage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $topic_id)
+    public function update(Request $request)
     {
         //
     }
@@ -105,8 +106,58 @@ class TopicMessageController extends Controller
     {
         $topic = $this->topic->findOrFail($topic);
         $topicMessage = $this->topicMessage->find($id);
+        $topicMessage->likeTopicMessages()->delete();
         $topicMessage->delete();
 
-        return redirect()->route('topic.show', [$topic->group_id, $topic->id]);
+        return redirect()->route('topic.show', $topic->id);
+    }
+
+    public function likeTopicMessage($id)
+    {       
+        $topicMessage = TopicMessage::find($id);
+        $user = auth()->user(['id', 'name']);
+        $likeTopicMessage = LikeTopicMessage::where('topic_message_id', $topicMessage->id)->where('user_id', $user->id)->first();
+
+        if ($likeTopicMessage == null){
+            $likeTopicMessage = new LikeTopicMessage();
+            $likeTopicMessage->user_id = auth()->user()->id;
+            $likeTopicMessage->topic_message_id = $topicMessage->id;
+            $likeTopicMessage->like_topic_message = 1;
+            $likeTopicMessage->save();
+        } else {
+            if ($likeTopicMessage = LikeTopicMessage::where('topic_message_id', $topicMessage->id)->where('user_id', $user->id)->where('like_topic_message',1)->first())
+            {
+                $likeTopicMessage->delete();
+            } else {
+                $dislikeTopicMessage = LikeTopicMessage::where('topic_message_id', $topicMessage->id)->where('user_id', $user->id)->update(array('like_topic_message' => '1'));
+            }
+        }
+        
+        return redirect()->route('topic.show', $topicMessage->topic_id);
+    }
+
+    public function dislikeTopicMessage($id)
+    {       
+        $topicMessage = TopicMessage::find($id);
+        $user = auth()->user(['id', 'name']);
+        $dislikeTopicMessage = LikeTopicMessage::where('topic_message_id', $topicMessage->id)->where('user_id', $user->id)->first();
+
+        if ($dislikeTopicMessage == null)
+        {
+            $dislikeTopicMessage = new LikeTopicMessage();
+            $dislikeTopicMessage->user_id = auth()->user()->id;
+            $dislikeTopicMessage->topic_message_id = $topicMessage->id;
+            $dislikeTopicMessage->like_topic_message = 0;
+            $dislikeTopicMessage->save();
+        } else {
+            if ($dislikeTopicMessage = LikeTopicMessage::where('topic_message_id', $topicMessage->id)->where('user_id', $user->id)->where('like_topic_message',0)->first())
+            {
+                $dislikeTopicMessage->delete();
+            } else {
+                $dislikeTopicMessage = LikeTopicMessage::where('topic_message_id', $topicMessage->id)->where('user_id', $user->id)->update(array('like_topic_message' => '0'));
+            }
+        }
+
+        return redirect()->route('topic.show', $topicMessage->topic_id);
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Topic extends Model
 {
     protected $fillable = ['name','description'];
+
     public function group() {
         return $this->belongsTo('App\Group');
     }
@@ -19,4 +20,8 @@ class Topic extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function likeTopics()
+    {
+        return $this->hasMany('App\LikeTopic');
+    }
 }

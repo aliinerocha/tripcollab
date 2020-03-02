@@ -33,9 +33,14 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('trip/{tripId}/confirm/{userId}', 'Trip\TripController@confirmPresence')->name('trip.confirmPresence');
 
+    Route::get('trip/{tripId}/accept/{userId}', 'Trip\TripController@acceptPresence')->name('trip.acceptPresence');
+
     Route::get('trip/{tripId}/cancel/{userId}', 'Trip\TripController@cancelPresence')->name('trip.cancelPresence');
 
+    Route::get('/trip/{id}/members', 'Trip\TripController@tripMembersIndex')->name('trip.membersIndex');
+
     Route::get ('/groupsandtrips', 'User\UserController@listGroupsAndTrips')->name('user.listGroupsAndTrips');
+
 
     // User
 
@@ -57,7 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/profile/friendship/{requestedUserID}/delete', 'User\UserController@friendshipDelete')->name('friendship.delete');
 
-    Route::get('/profile/friendship/index/{id}', 'User\UserController@friendshipIndex')->name('friendship.index');
+    Route::get('/profile/{id}/friendship/index/', 'User\UserController@friendshipIndex')->name('friendship.index');
 
     // Groups
 
@@ -75,7 +80,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('group/{groupId}/confirm/{userId}', 'Group\GroupController@confirmPresence')->name('group.confirmPresence');
 
+    Route::get('group/{groupId}/accept/{userId}', 'Group\GroupController@acceptPresence')->name('group.acceptPresence');
+
     Route::get('group/{groupId}/cancel/{userId}', 'Group\GroupController@cancelPresence')->name('group.cancelPresence');
+
+    Route::get('/group/{id}/members', 'Group\GroupController@groupMembersIndex')->name('group.membersIndex');
 
     // Topics
     
@@ -85,18 +94,26 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::post('{group_id}/topic/store', 'Group\TopicController@store')->name('topic.store');
     
+    Route::get('topicLike/{id}', 'Group\TopicController@likeTopic')->name('topic.like');
+    
+    Route::get('topicDislike/{id}', 'Group\TopicController@dislikeTopic')->name('topic.dislike');
+    
+    Route::get('topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
+    
+    Route::put('topic/{id}', 'Group\TopicController@update')->name('topic.update');
+    
+    Route::delete('topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
+    
     Route::any('{groupId}/topic/search', 'Group\TopicController@search')->name('topic.search');
     
-    Route::get('{group_id}/topic/{id}/edit', 'Group\TopicController@edit')->name('topic.edit');
-    
-    Route::get('{group_id}/topic/{id}', 'Group\TopicController@show')->name('topic.show');
-    
-    Route::put('{group_id}/topic/{id}', 'Group\TopicController@update')->name('topic.update');
-    
-    Route::delete('{group_id}/topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
+    Route::get('topic/{id}', 'Group\TopicController@show')->name('topic.show');
 
     // Topic Messages
+
+    Route::get('topicMessageLike/{id}', 'Group\TopicMessageController@likeTopicMessage')->name('topicMessage.like');
     
+    Route::get('topicMessageDislike/{id}', 'Group\TopicMessageController@dislikeTopicMessage')->name('topicMessage.dislike');
+
     Route::post('{topic_id}/topicMessage/store', 'Group\TopicMessageController@store')->name('topicMessage.store');
 
     Route::delete('{topic_id}/topicMessage/{id}', 'Group\TopicMessageController@destroy')->name('topicMessage.destroy');

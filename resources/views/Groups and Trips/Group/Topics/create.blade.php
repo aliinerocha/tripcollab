@@ -42,7 +42,7 @@ Criar Novo Tópico
         <input type="hidden" name="group_id" value="{{$group->id}}">
         <div class="row d-flex justify-content-end m-0">
             <div class="form-group d-flex justify-content-end">
-                <a href="{{ URL::previous() }}" class="btn botao_atencao mr-2">Cancelar</a>
+                <a href="{{route('group.show', ['id' => $group->id])}}" class="btn botao_atencao mr-2">Cancelar</a>
                 <button type="submit" class="btn botao btn-primary float-right border-0">Criar Topico</button>
             </div>
         </div>

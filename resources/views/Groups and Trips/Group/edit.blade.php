@@ -1,8 +1,11 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
+<<<<<<< HEAD
 
 @section('css')
 <link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
 @endsection
+=======
+>>>>>>> 35a4c3640a07a08f85d91db402b67bc9434bcebb
 
 @section('titulo')
     Editar Comunidade
@@ -66,7 +69,7 @@
                     </div>
                     <div class="row d-flex justify-content-end m-0 pb-5">
                             <div class="d-flex justify-content-end m-0">
-                                <a href="{{ URL::previous() }}" class="btn botao_atencao mr-2">Cancelar</a>
+                                <a href="{{route('group.show', ['id' => $group->id])}}" class="btn botao_atencao mr-2">Cancelar</a>
                                 <button type="submit" href="#" class="btn botao mr-2">Salvar</button>
                             </div>
                     </div>

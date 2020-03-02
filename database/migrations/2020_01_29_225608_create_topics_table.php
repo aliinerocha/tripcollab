@@ -19,7 +19,7 @@ class CreateTopicsTable extends Migration
             $table->string('description');
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

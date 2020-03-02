@@ -67,6 +67,11 @@ class GroupController extends Controller
         $store = $this->group->create($data);
 
         $store->interest()->sync($request->interest, false);
+        $store->user()->sync(auth()->user()->id, false);
+        $store = DB::table('group_user')
+        ->where('user_id', auth()->user()->id)
+        ->where('group_id', $store->id)
+        ->update(['status' => '1',]);
 
         return redirect()->route('group.create');
     }
@@ -80,41 +85,27 @@ class GroupController extends Controller
     public function show($group)
     {
         $group = $this->group->findOrFail($group);
-        
-        $interests = DB::table('group_interest')
-        ->where('group_id', $group->id)
-        ->join('interests','group_interest.interest_id','=','interests.id')
-        ->get();
 
-        $confirmedMembers = DB::table('group_user')
-        ->where('group_id', $group->id)
-        ->join('users','group_user.user_id','=','users.id')
-        ->get(['user_id','name','photo']);
-
-        $admin = $group->admin()->first(['id','name']);
         $user = auth()->user(['id', 'name']);
+  
+        $confirmed = $group->user()->count();
 
-        $userConfirmedPresence = DB::table('group_user')->where([
-        ['user_id', auth()->user()->id],
-        ['group_id', $group->id],
-        ])->get();
-            
-        $confirmed = $userConfirmedPresence->count();
+        $topics = Topic::where('group_id', $group->id)->orderBy('topics.created_at', 'desc')->paginate(3);
         
-        $trips = DB::table('trips')
-        ->where('group_id', $group->id)
-        ->where('return_date', '<', today())
-        ->get();
-        
-        $topics = DB::table('topics')
-        ->where('group_id', $group->id)
-        ->join('users', 'topics.user_id', '=', 'users.id')
-        ->select('topics.id','topics.name as topicName','topics.description','topics.created_at','users.name as userName','users.photo')
-        ->orderBy('topics.created_at', 'desc')
-        ->paginate(3);
+        $admin = $group->admin()->first(['id','name','photo']);
 
+        $userStatus = DB::table('group_user')->where([
+            ['user_id', auth()->user()->id],
+            ['group_id', $group->id]
+        ])->first();
+
+<<<<<<< HEAD
 
         return view('/Groups and Trips/Group/show', compact( 'group', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers', 'topics', 'trips'));
+=======
+        $footer = 'true';
+        return view('/Groups and Trips/Group/show', compact('footer', 'group', 'admin', 'user','topics', 'confirmed', 'userStatus'));
+>>>>>>> 35a4c3640a07a08f85d91db402b67bc9434bcebb
     }
 
     /**
@@ -172,8 +163,10 @@ class GroupController extends Controller
     {
         $group = $this->group->find($id);
 
-        $group->interest()->detach();
+        $group->topic()->delete();
+        $group->trips()->delete();
 
+        $group->interest()->detach();
         $group->user()->detach();
 
         $group->delete();
@@ -189,7 +182,33 @@ class GroupController extends Controller
 
         $group->user()->attach($user);
 
+        if($group->visibility == 1)
+        {
+            $groupStatusAutoAccept =DB::table('group_user')
+            ->where('user_id', $user->id)
+            ->where('group_id', $group->id)
+            ->update([
+                'status' => 1,
+            ]);
+        }
+
         return redirect()->route('group.show', ['id' => $groupId]);
+    }
+
+    public function acceptPresence($groupId, $userId)
+    {
+        $group = $this->group->find($groupId);
+
+        $user = $this->user->find($userId);
+
+        $memberAccept =DB::table('group_user')
+            ->where('user_id', $user->id)
+            ->where('group_id', $group->id)
+            ->update([
+                'status' => 1,
+            ]);
+
+        return redirect()->back();
     }
 
     public function cancelPresence($groupId, $userId) {
@@ -201,5 +220,25 @@ class GroupController extends Controller
         $group->user()->detach($user);
 
         return redirect()->route('group.show', ['id' => $groupId]);
+    }
+
+    public function groupMembersIndex ($groupId) {
+
+        $group = $this->group->find($groupId);
+        $user = auth()->user();
+
+        $groupMembers = DB::table('group_user')
+        ->where('group_id', $group->id)
+        ->where('status', 1)
+        ->join('users','group_user.user_id','=','users.id')
+        ->get();
+
+        $groupMembersRequests = DB::table('group_user')
+        ->where('group_id', $group->id)
+        ->where('status', 0)
+        ->join('users','group_user.user_id','=','users.id')
+        ->get();
+
+        return view('/Groups and Trips/Group/index', compact('group','user','groupMembers', 'groupMembersRequests'));
     }
 }
