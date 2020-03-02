@@ -80,7 +80,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('group/{groupId}/confirm/{userId}', 'Group\GroupController@confirmPresence')->name('group.confirmPresence');
 
+    Route::get('group/{groupId}/accept/{userId}', 'Group\GroupController@acceptPresence')->name('group.acceptPresence');
+
     Route::get('group/{groupId}/cancel/{userId}', 'Group\GroupController@cancelPresence')->name('group.cancelPresence');
+
+    Route::get('/group/{id}/members', 'Group\GroupController@groupMembersIndex')->name('group.membersIndex');
 
     // Topics
     
@@ -103,6 +107,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::any('{groupId}/topic/search', 'Group\TopicController@search')->name('topic.search');
     
     Route::get('topic/{id}', 'Group\TopicController@show')->name('topic.show');
+
     // Topic Messages
 
     Route::get('topicMessageLike/{id}', 'Group\TopicMessageController@likeTopicMessage')->name('topicMessage.like');
