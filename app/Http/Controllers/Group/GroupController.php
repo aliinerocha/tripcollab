@@ -99,13 +99,7 @@ class GroupController extends Controller
             ['group_id', $group->id]
         ])->first();
 
-<<<<<<< HEAD
-
-        return view('/Groups and Trips/Group/show', compact( 'group', 'admin', 'user', 'confirmed', 'interests', 'confirmedMembers', 'topics', 'trips'));
-=======
-        $footer = 'true';
-        return view('/Groups and Trips/Group/show', compact('footer', 'group', 'admin', 'user','topics', 'confirmed', 'userStatus'));
->>>>>>> 35a4c3640a07a08f85d91db402b67bc9434bcebb
+        return view('/Groups and Trips/Group/show', compact('group', 'admin', 'user','topics', 'confirmed', 'userStatus'));
     }
 
     /**
