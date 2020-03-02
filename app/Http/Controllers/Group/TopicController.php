@@ -122,9 +122,12 @@ class TopicController extends Controller
     public function destroy($id)
     {
         $topic = $this->topic->find($id);
+        $topic->topicMessages()->delete();
+        $topic->likeTopics()->delete();
+        $group_id = $topic->group->id;
         $topic->delete();
 
-        return redirect()->route('topic.index', $topic->id);
+        return redirect()->route('topic.index', $group_id);
     }
 
     public function search(Request $request, $groupId)

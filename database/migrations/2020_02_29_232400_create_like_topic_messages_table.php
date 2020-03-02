@@ -18,7 +18,7 @@ class CreateLikeTopicMessagesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('topic_message_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('topic_message_id')->references('id')->on('topic_messages');
+            $table->foreign('topic_message_id')->references('id')->on('topic_messages')->onDelete('cascade');
             $table->boolean('like_topic_message');
             $table->timestamps();
         });

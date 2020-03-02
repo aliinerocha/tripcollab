@@ -68,6 +68,11 @@ class GroupController extends Controller
         $store = $this->group->create($data);
 
         $store->interest()->sync($request->interest, false);
+        $store->user()->sync(auth()->user()->id, false);
+        $store = DB::table('group_user')
+        ->where('user_id', auth()->user()->id)
+        ->where('group_id', $store->id)
+        ->update(['status' => '1',]);
 
         return redirect()->route('group.create');
     }
@@ -155,8 +160,10 @@ class GroupController extends Controller
     {
         $group = $this->group->find($id);
 
-        $group->interest()->detach();
+        $group->topic()->delete();
+        $group->trips()->delete();
 
+        $group->interest()->detach();
         $group->user()->detach();
 
         $group->delete();

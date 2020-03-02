@@ -106,6 +106,7 @@ class TopicMessageController extends Controller
     {
         $topic = $this->topic->findOrFail($topic);
         $topicMessage = $this->topicMessage->find($id);
+        $topicMessage->likeTopicMessages()->delete();
         $topicMessage->delete();
 
         return redirect()->route('topic.show', $topic->id);
