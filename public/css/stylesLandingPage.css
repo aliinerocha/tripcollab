@@ -1,11 +1,9 @@
-
-
 /* banner img */
-.banner-img img{
+.banner-img img {
     object-fit: cover;
-    width: 100%;
+    width: 100vw;
+    height: 20vh;
 }
-
 
 .titulo {
     position: absolute;
@@ -13,79 +11,72 @@
     letter-spacing: -1px;
     font-size: 1rem;
     background-image: linear-gradient(161deg, rgba(0, 0, 0, 0.3) 0%, transparent 100%);
-    color: #ffffff;
- 
+    color: #ffffff; 
 }
 
-.btn-cadastro{
+.btn-cadastro {
     position: relative;
-    /* background-color: #1D6AB0; */
     background-color: #1d6ab0;
-    top: -90px;
-    left: 150px;
+    top: -100px;
+    left: 40px;
     border: 0;
 }
-.btn-cadastro a{
+
+.btn-cadastro a {
     color: #ffffff;
     font-size: 1rem;
 }
+
 /* conteudo */
-.conteudo{
+.conteudo {
     letter-spacing: -1px;
     font-size: 1rem;
 }
 
 /* carrousel Cards grupos populares */
-section.grupos-populares{
+section.grupos-populares {
     background-image: url("../../img/home/mapa.png");
     background-size: cover;
-
 }
-.card-header{
+
+.card-header {
     background-color: #1d6ab0;
     color: #ffffff;
 }
 
-.card>img{  
+.card>img {  
     object-fit: cover;
     width: 100%;
-    height: 38vh;
-    
+    height: 38vh;    
 }
 
-
 /* redes sociais */
-
-.redes-sociais{
+.redes-sociais {
     background-color: #1d6ab0;
 }
 
-
-
-
 /* RESPONSIVE banner img */
 
-@media (max-width: 767px) {
-     /* RESPONSIVE banner img  */
+@media (max-width: 768px) {    
     .banner-img img {
         height: 35vh;
     }
     .titulo{      
-        width: 85%;
-        height: 20vh;
-        margin-top: -30vh;
-        margin-left: 5vh;
+        width: 80%;
+        height: 10vh;
+        margin-top: -35vh;
+        margin-right: 5vh;
         letter-spacing: -1px;
     }
-    .btn-cadastro{
-        margin-left: 5vh;
-        margin-top: 5vh;    
+    .btn-cadastro{        
+        margin-right: 4vh;
+        margin-top: 4vh;    
     }
     .grupo-slide {
-        margin-left: 13vw;
+        margin-right: 13vw;
       }
 }
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1025px) {
     /* RESPONSIVE banner img */
     .banner-img img{
         height: 50vh;
@@ -95,11 +86,11 @@ section.grupos-populares{
         width: 70%;
         height: 20vh;
         margin-top: -45vh;
-        margin-left: 25vh;
+        margin-right: 25vh;
         letter-spacing: -1px;
     }
     .btn-cadastro{
-        margin-left: 45vh;
+        margin-right: 45vh;
         size: 3rem;
     }
 
@@ -116,12 +107,13 @@ section.grupos-populares{
       
         width: 70%;
         height: 20vh;
-        margin-top: -45vh;
-        margin-left: 40vh;
+        margin-top: -60vh;
+        margin-right: 80vh;
         letter-spacing: -1px;
     }
     .btn-cadastro{
-        margin-left: 70vh;
+        margin-right: 100vh;
+        margin-top: -60vh;
         size: 3rem;
     }
 }
