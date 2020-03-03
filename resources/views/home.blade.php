@@ -9,6 +9,7 @@
 @endsection
 
 @section('conteudo')
+    
     <div class="container-fluid p-0">
         <!-- Foto da Capa -->
         <main class="col-xs-12 capa p-0">
@@ -25,9 +26,29 @@
 
             <!-- Botões -->
             <div class="col-xs-12 usuario-botoes text-right pull-right py-3">
-                <a href="{{route('user.edit', ['id' => $user->id])}}">
-                    <i class="far fa-edit fa-lg"></i>
-                </a>
+                <div class="row d-flex align-items-center">
+                    <div class="dropdown col-11">
+
+                        <button class="btn btn-link border border-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="#" class="notification">
+                            <i class="fas fa-bell fa-lg"></i>
+                            <span class="badge">3</span>
+                        </a>
+
+                        </button>
+                        <div class="dropdown-menu">
+                            <span class="dropdown-item-text">Dropdown item text</span>
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                            <a href="{{route('user.edit', ['id' => $user->id])}}">
+                                <i class="far fa-edit fa-lg"></i>
+                            </a>
+                    </div>
+                </div>
             </div>
             <!-- Botões -->
 

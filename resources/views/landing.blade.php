@@ -16,40 +16,34 @@
 
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner banner-img">
-            <div class="carousel-item active ">
+            <div class="carousel-item active">
                 <img src="./img/home/banner3.jpg" class="img-fluid d-block w-100" alt="Responsive image">
             </div>
-            <div class="carousel-item ">
-                <img src="./img/test03.jpg"  class="img-fluid d-block w-100" alt="Responsive image">
+            <div class="carousel-item">
+                <img src="./img/test03.jpg" class="img-fluid d-block w-100" alt="Responsive image">
             </div>
             <div class="carousel-item">
-                <img src="./img/home/banner2.jpg"  class="img-fluid d-block w-100" alt="Responsive image">
-            </div>
-            </div>
+                <img src="./img/home/banner2.jpg" class="img-fluid d-block w-100" alt="Responsive image">
+            </div>     
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="carousel-control-prev-icon"></span>            
             </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <a class="carousel-control-next" href="#carouselExampleControls" data-slide="next">
+            <span class="carousel-control-next-icon"></span>            
             </a>
+        </div>
     </div>
 
     <div class="over-hit over-banner">
-            <div class="titulo">
-                <h3 class="ml-4">Queremos viver momentos memoráveis com você!<br><br>
-                        <strong class="subtitulo ml-5 mb-0">Bora viajar juntos?</strong></h3>
-            </div>
-            <div>
-                    <button class="btn-cadastro btn btn-primary "> <a href="/user/cadastro">Cadastre-se</a> </button>
-
-            </div>
-    </div>
+        <div class="titulo">
+            <h3 class="ml-4">Queremos viver momentos memoráveis com você!<br>
+                <strong class="subtitulo ml-2 mb-0">Bora viajar juntos?</strong>
+            </h3>
+        </div>
+        <button class="btn-cadastro btn btn-primary"><a href="/register">Cadastre-se</a></button>       
+    </div>      
 
 </main>
-
-
 
 <!-- Conteudo -->
 
@@ -105,7 +99,6 @@
         <hr>
     </div>
 </div>
-
 
 <!-- GRUPOS MAIS POPULARES -->
 <section class="grupos-populares bg-light pt-4 pb-4 mb-3">
@@ -253,7 +246,6 @@
 </section>
 
 <!-- Carousel CARDS grupos mais populares -->
-
 
 <!-- facebook instan twiter-->
 

@@ -30,7 +30,11 @@
                         <h5 class="my-4 text-center">{{$trip->name}}</h5>
                     </div>
 
-                @if(($trip->visibility == 0 && $userStatus && $userStatus->status == 0) || ($trip->visibility == 0 && !$userStatus))
+                @if(
+                    ($trip->visibility == 0 && $userStatus && $userStatus->status == 0)
+                    ||
+                    ($trip->visibility == 0 && !$userStatus)
+                    )
 
                 <div class="d-flex justify-content-center">Esta viagem não é aberta ao público</div>
 

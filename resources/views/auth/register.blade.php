@@ -9,25 +9,27 @@
 @endsection
 
 @section('conteudo')
-   <div class="container ">
+    <div class="containerDesktop">
+    <div class="container">
         <section class="mt-4 mb-4">
-            <h3><img class="ml-3 mr-3" src="./img/Vector.png" alt="viagem">Suas viagens começam aqui! </h3>
+            <h3 class="text-center"><img class="ml-3 mr-3" src="./img/Vector.png" alt="viagem">Suas viagens começam aqui! </h3>
         </section>
 
         <section class="box">
 
-            <button type="button" class=" btn-logar btn btn-block shadow-sm p-2 m-1 mb-2 rounded"><a class="fb-ic mr-3" role="button"><i class="fab fa-lg fa-facebook-f"></i></a>Cadastre-se com Facebook</button>
+            <button type="button" class="btn-logar btn btn-block shadow-sm p-2 m-1 mb-2 rounded"><a class="fb-ic mr-3" role="button"><i class="fab fa-lg fa-facebook-f"></i></a>Cadastre-se com Facebook</button>
             <button type= "button" class="btn-logar btn btn-block shadow-sm p-2 m-1 rounded"><a class="gplus-ic mr-3" role="button"><i class="fab fa-lg fa-google-plus-g"></i></a>Cadastre-se com Google</button>
-
-
-            <div class="d-flex align-items-center mt-4">
+            
+            <!--<div class="d-flex align-items-center mt-4">
                 <hr class= "col-3">
-                <span class="col-6 div-form">ou preencha o formulário abaixo</span>
-                <hr class="col-3">
-            </div>
+                <span class="col-6 text-center p-0 div-form">ou preencha o formulário abaixo</span>
+                <hr class="col-2 m-0">
+            </div>-->
+
+            <h6 class="text-center mt-4 mb-2" style="color: #1D6AB0">ou preencha o formulário abaixo</h6>
 
             <form method="POST" action="{{ route('register') }}">
-                @csrf
+                @csrf 
                 <div class="form-group">
                     <label for="name"><!--{{ __('Name') }}--></label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Nome">
@@ -63,12 +65,13 @@
                     <label class="form-check-label" for="exampleCheck1">Concordo com os <a href="#">termos e condições.</a></label>
                 </div>
                 <div class="d-flex justify-content-center mb-2">
-                <button type="submit" class="btn-cadastre btn btn-lg p-2 m-2 shadow-sm rounded">{{ __('Register') }}</button>
+                <button type="submit" class="btn-cadastre btn btn-light shadow-sm rounded w-100">{{ __('Register') }}</button>
             </div>
 
-                <h5>Já tem cadastro? Faça seu <a href="{{route('login')}}">login</a> agora</h5>
+                <h6>Já tem cadastro? Faça seu <a href="{{route('login')}}">login</a> agora</h6>
 
             </form>
         </section>
+    </div>
     </div>
 @endsection
