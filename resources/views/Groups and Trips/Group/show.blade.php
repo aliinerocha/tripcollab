@@ -20,7 +20,7 @@
     <!-- NOME E MEMBROS -->
 
         <section class="bg-light pb-4 mb-3 pt-4">
-            <div class="ml-4 my-md-0 mr-4 mb-4">
+            <div class="ml-4 ml-md-0 mr-4 mb-4">
                 <h1>{{$group->name}}</h1>
             </div>
 
@@ -55,14 +55,14 @@
 
     @else
 
-            <div class="ml-4 my-md-0 mr-4 mb-4">            
+            <div class="ml-4 ml-md-0 mr-4 mb-4">            
                 <h5>Descrição da comunidade:</h5>
                 <div>
                     {{$group->description}}
                 </div>
             </div>
 
-            <div class="ml-4 my-md-0 mr-4 mb-4 pt-4">  
+            <div class="ml-4 ml-md-0 mr-4 mb-4 pt-4">  
                 <h5>Administrador:</h5>
                 <p class="mb-4">
                     <a href="{{route('user.show', ['id' => $admin->id])}}">
@@ -75,7 +75,7 @@
                 </p>
             </div>
 
-            <div class="ml-4 my-md-0 mr-4 mb-4 pt-4">
+            <div class="ml-4 ml-md-0 mr-4 mb-4 pt-4">
                 <h5>Interesses da Comunidade:</h5>
                 <div class=" interesses text-justify  py-2">
                     @if($group->interest->count() == 0 )
@@ -96,7 +96,7 @@
             </div>
             @endif
 
-            <div class="ml-4 my-md-0 mr-3 mb-4">
+            <div class="ml-4 ml-md-0 mr-3 mb-4">
                 <h5>Membros:</h5>
                 @foreach($group->user as $member)
                     <a href="{{route('user.show', ['id' => $member->id])}}">
@@ -253,7 +253,7 @@
         <!-- TÓPICOS -->
         @foreach ( $topics as $topic)
         <section class="bg-light mt-2 mb-1 pb-4 ">
-                <div class="card-body mb-4">
+                <div class="card-body mb-4 card bg-light border-0">
                     <div class="d-flex">
                         <div class="d-flex flex-column p-0 align-items-center justify-content-end">
                             <img class="foto-perfil rounded-circle display-column" src="@if($topic->user->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro">
