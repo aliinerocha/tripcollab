@@ -11,9 +11,9 @@
 @section('conteudo')
     <div class="containerDesktop">
         <!-- NAV ABA-->
-        <div class="bg-light pt-4 pb-4 mb-3">
+        <div class="bg-light pt-4 pb-4 mb-3 card">
             <div class="d-flex ml-3 align-items-center">
-                <a class="link" href="{{route('group.show',['id' => $group->id])}}"><i class="material-icons mr-3 back">arrow_back</i></a>
+                <a  href="{{route('group.show',['id' => $group->id])}}"><i class="material-icons mr-3 back stretched-link">arrow_back</i></a>
                 <h5>Editar Comunidade</h5>
             </div>
         </div>

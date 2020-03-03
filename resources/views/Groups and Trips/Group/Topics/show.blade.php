@@ -1,5 +1,9 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
+@endsection
+
 @section('titulo')
     Tópico: {{$topic->name}}
 @endsection
@@ -9,7 +13,7 @@
     <!-- NAV ABA-->
     <div class="bg-light pt-4 pb-4 mb-3 card">
         <div class="d-flex ml-3 align-items-center">
-            <a class="stretched-link" href="{{route('group.show', ['id' => $topic->group_id])}}"><i class="material-icons">arrow_back</i></a>
+            <a  href="{{route('group.show', ['id' => $topic->group_id])}}"><i class="material-icons back mr-3 stretched-link">arrow_back</i></a>
             <div class="container">
                 <h5>Voltar para Comunidade</h5>
             </div>

@@ -1,5 +1,9 @@
 @extends('layouts.template')
 
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesProfile.css')}}">
+@endsection
+
 @section('titulo')
     TripCollab
 @endsection
