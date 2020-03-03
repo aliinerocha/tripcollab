@@ -56,23 +56,65 @@ class UserController extends Controller
 
         // Dados notificações:
 
-            // $friendRequestor = Friendship::where('requester_user_id', auth()->user()->id)
-            // ->where('requested_user_id', $id)
-            // ->first();
+            $friendRequests = Friendship::where('requested_user_id', auth()->user()->id)
+            ->get();
+            $countFriendRequest = $friendRequests->count();
 
-            // $groupMembersRequests = DB::table('group_user')
-            // ->where('group_id', $group->id)
-            // ->where('status', 0)
-            // ->join('users','group_user.user_id','=','users.id')
-            // ->get();
+            $groupMembersRequests = DB::table('groups')
+            ->where('admin', auth()->user()->id)
+            ->get()
+            ->toArray();
 
-            // $tripMembersRequests = DB::table('trip_user')
-            // ->where('trip_id', $trip->id)
-            // ->where('status', 0)
-            // ->join('users','trip_user.user_id','=','users.id')
-            // ->get();
+            foreach($groupMembersRequests as $key => $group)
+            {
+                $groupMemberRequest = DB::table('group_user')
+                ->where('groups.id', $group->id)
+                ->where('status','0')
+                ->join('groups','group_user.group_id','=','groups.id')
+                ->select('groups.id','groups.name')
+                ->get(['group_id','group_name']);
 
-        return view('/home', compact('user','friendlist','interests'));
+                $countGroupRequest = $groupMemberRequest->count();
+                
+                $group->countGroupRequest = $countGroupRequest;
+            }
+            
+            $GMRequests = DB::table('group_user')
+            ->where('status','0')
+            ->join('groups','group_user.group_id','=','groups.id')
+            ->where('admin', auth()->user()->id)
+            ->get('group_id');
+            $totalGR = $GMRequests->count();
+
+            $tripMembersRequests = DB::table('trips')
+            ->where('admin', auth()->user()->id)
+            ->get()
+            ->toArray();
+
+            foreach($tripMembersRequests as $key => $trip)
+            {
+                $tripMemberRequest = DB::table('trip_user')
+                ->where('status', 0)
+                ->where('trips.id', $trip->id)
+                ->join('trips','trip_user.trip_id','trips.id')
+                ->select('trips.id','trips.name')
+                ->get(['trip_id','trip_name']);
+
+                $countTripRequest = $tripMemberRequest->count();
+                
+                $trip->countTripRequest = $countTripRequest;
+            }
+
+            $TMRequests = DB::table('trip_user')
+            ->where('status','0')
+            ->join('trips','trip_user.trip_id','=','trips.id')
+            ->where('admin', auth()->user()->id)
+            ->get('trip_id');
+            $totalTR = $TMRequests->count();
+
+            $totalRequest = $countFriendRequest + $totalGR + $totalTR;
+
+        return view('/home', compact('user','friendlist','interests', 'totalRequest', 'totalGR', 'totalTR', 'countFriendRequest', 'groupMembersRequests', 'countGroupRequest', 'tripMembersRequests', 'countTripRequest'));
     }
 
     public function show($id)
