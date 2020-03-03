@@ -93,6 +93,25 @@
             <div>
                 @if(isset($users))
 
+                    <div class="py-2">
+
+                        @if($users->count() == 0)
+
+                            Nenhum resultado encontrado
+
+                        @elseif($users->count() == 1)
+
+
+                            {{$users->total()}} resultado encontrado
+
+                        @else
+
+                            {{$users->total()}} resultados encontrados
+
+                        @endif
+
+                    </div>
+
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -123,11 +142,31 @@
                         </tbody>
                     </table>
 
-                    {{$users->links()}}
+                    {{$users->onEachSide(1)->links()}}
 
                 @endif
 
                 @if(isset($groups))
+
+
+                    <div class="py-2">
+
+                        @if($groups->count() == 0)
+
+                            Nenhum resultado encontrado
+
+                        @elseif($groups->count() == 1)
+
+
+                            {{$groups->total()}} resultado encontrado
+
+                        @else
+
+                            {{$groups->total()}} resultados encontrados
+
+                        @endif
+
+                    </div>
 
                     <table class="table table-striped">
                             <thead>
@@ -155,11 +194,30 @@
                             </tbody>
                     </table>
 
-                    {{$groups->links()}}
+                    {{$groups->onEachSide(1)->links()}}
 
                 @endif
 
                 @if(isset($trips))
+
+                    <div class="py-2">
+
+                        @if($trips->count() == 0)
+
+                            Nenhum resultado encontrado
+
+                        @elseif($trips->count() == 1)
+
+
+                            {{$trips->total()}} resultado encontrado
+
+                        @else
+
+                            {{$trips->total()}} resultados encontrados
+
+                        @endif
+
+                    </div>
 
                     <table class="table table-striped">
                             <thead>
@@ -187,7 +245,7 @@
                             </tbody>
                     </table>
 
-                    {{$trips->links()}}
+                    {{$trips->onEachSide(1)->links()}}
 
                 @endif
 

@@ -62,7 +62,7 @@
 
                         <div class="d-flex justify-content-end mt-4">
 
-                            <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                            <a href="{{route('user.listGroupsAndTrips')}}" class="btn botao_atencao mr-2">Cancelar</a>
                             <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>
                 </form>
