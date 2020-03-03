@@ -123,6 +123,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('{topic_id}/topicMessage/store', 'Group\TopicMessageController@store')->name('topicMessage.store');
 
     Route::delete('{topic_id}/topicMessage/{id}', 'Group\TopicMessageController@destroy')->name('topicMessage.destroy');
+
+    // Search
+
+    Route::get('search/', 'Search\SearchController@show')->name('search.show');
+
+    Route::get('search/users/', 'Search\SearchController@searchUsers')->name('search.users.index');
+
+    Route::get('search/groups/', 'Search\SearchController@searchGroups')->name('search.groups.index');
+
+    Route::get('search/trips/', 'Search\SearchController@searchTrips')->name('search.trips.index');
 });
 
 
@@ -151,5 +161,6 @@ Route::group(['middleware' => ['auth']], function () {
 //     return view('user/messages/index');
 // });
 
-
 Auth::routes();
+
+

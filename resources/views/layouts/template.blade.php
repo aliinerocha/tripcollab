@@ -112,7 +112,7 @@
 @auth
 <div class="nav-inferior nav fixed-bottom d-flex justify-content-around border-top d-md-none" id="navInferior">
     <a href="linhaDoTempo" class="fas fa-atlas fa-lg  {{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }}"></a>
-    <a href="#" class="fas fa-search fa-lg {{ isset($pagina) && $pagina == 'mensagens' ? 'ativo' : '' }}"></a>
+    <a href="#" class="fas fa-search fa-lg {{ isset($pagina) && $pagina == 'busca' ? 'ativo' : '' }}"></a>
     <a href="{{route('home')}}" class="fas fa-home fa-lg  {{ isset($pagina) && $pagina == 'perfil' ? 'ativo' : '' }}"></a>
     <a href="{{route('user.listGroupsAndTrips')}}" class="fas fa-users fa-lg  {{ isset($pagina) && $pagina == 'comunidadesEviagens' ? 'ativo' : '' }}"></a>
 </div>
