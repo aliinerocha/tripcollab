@@ -39,7 +39,7 @@
             </div>
         </div> -->
         <div class="mx-1 my-2">
-            <a href="{{route('topic.create',['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a>
+            <a href="" class="botao btn btn-primary border-0">Novo tópico</a>
         </div>
     </section>
 

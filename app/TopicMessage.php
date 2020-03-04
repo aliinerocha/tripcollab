@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TopicMessage extends Model
 {
+    protected $fillable = ['message'];
+
     public function topic() {
         return $this->belongsTo('App\Topic');
     }
