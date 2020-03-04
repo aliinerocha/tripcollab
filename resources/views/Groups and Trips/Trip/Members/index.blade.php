@@ -1,5 +1,9 @@
 @extends('layouts.template', ['pagina' => 'perfil'])
 
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
+@endsection
+
 @section('titulo')
     Participantes da viagem
 @endsection
@@ -106,6 +110,7 @@
                 </thead>
                 <tbody>
                 @foreach($tripMembers as $member)
+                    @if($member->id != auth()->user()->id)
                     <tr>
                         <td>
 
@@ -124,8 +129,8 @@
                         </td>
 
                         @if($user->id == $trip->admin)
-                        <td class="d-flex">
-                            <div class="d-flex mt-3">
+                        <td>
+                            <div class="d-flex">
                                 <a
                                 href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $member->id])}}"
                                 class="btn btn-danger">
@@ -136,6 +141,7 @@
                         @endif
 
                     </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>

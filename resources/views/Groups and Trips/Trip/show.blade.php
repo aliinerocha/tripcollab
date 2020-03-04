@@ -1,7 +1,7 @@
 
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
-ection('css')
+@section('css')
 <link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
 @endsection
 
@@ -169,7 +169,7 @@ ection('css')
             </div>
         </div>
     </main>
-    
+
 </div>
 
 @endsection
