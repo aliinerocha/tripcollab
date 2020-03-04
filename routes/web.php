@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/profile/{id}/edit' , 'User\UserController@edit')->middleware('checkUser')->name('user.edit');
 
-    Route::get('profile/{id}/trips/index', "Trip\TripController@index")->name('user.trips.index');
+    Route::get('profile/trips/index', "Trip\TripController@index")->name('user.trips.index');
 
     Route::get('profile/{id}/groups/index', "Group\GroupController@index")->name('user.groups.index');
 
@@ -140,7 +140,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     // linha do tempo
-    
+
     Route::get('/linhaDoTempo', function() {
         return view('Timeline/show');
     });

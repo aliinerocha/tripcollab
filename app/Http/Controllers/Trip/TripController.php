@@ -27,7 +27,7 @@ class TripController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($trip)
+    public function index()
     {
         $user = auth()->user();
 

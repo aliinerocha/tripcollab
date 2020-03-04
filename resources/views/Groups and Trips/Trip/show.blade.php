@@ -1,4 +1,3 @@
-
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('css')

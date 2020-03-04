@@ -113,7 +113,7 @@
                 </thead>
                 <tbody>
                 @foreach($tripMembers as $member)
-                    @if($member->id == $trip->admin)
+                    @if($member->id != $trip->admin)
                         <tr>
                             <td>
 
