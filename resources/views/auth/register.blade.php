@@ -21,11 +21,9 @@
             
                 <button type="button" class="btn-logar btn btn-block shadow-sm p-2 m-1 mb-2 rounded"><a class="fb-ic mr-3" role="button"><i class="fab fa-lg fa-facebook-f"></i></a>Cadastre-se com Facebook</button>
                 <button type= "button" class="btn-logar btn btn-block shadow-sm p-2 m-1 rounded"><a class="gplus-ic mr-3" role="button"><i class="fab fa-lg fa-google-plus-g"></i></a>Cadastre-se com Google</button>
-            
-                <div class="separador">
-                    <div class="tex">ou preencha o formulário abaixo</div>              
-                </div>
-                           
+                            
+                <span class="separador">ou preencha o formulário abaixo</span>                                           
+                                           
                 <form method="POST" action="{{ route('register') }}">
                     @csrf 
                     <div class="form-group">

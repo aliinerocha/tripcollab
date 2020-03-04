@@ -183,7 +183,7 @@
                                         <a href="{{route('group.show', ['id' => $group->id])}}">
                                             <img
                                             class="foto-perfil rounded-circle"
-                                            src="@if($group->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$group->photo")}} @endif"
+                                            src="@if($group->photo == 'nophoto') {{asset('./img/add.png')}} @else {{asset("storage/userPhotos/$group->photo")}} @endif"
                                             alt="{{$group->name}}">
                                         </a>
 
@@ -234,7 +234,7 @@
                                         <a href="{{route('trip.show', ['id' => $trip->id])}}">
                                             <img
                                             class="foto-perfil rounded-circle"
-                                            src="@if($trip->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$trip->photo")}} @endif"
+                                            src="@if($trip->photo == 'nophoto') {{asset('./img/add.png')}} @else {{asset("storage/userPhotos/$trip->photo")}} @endif"
                                             alt="{{$trip->name}}">
                                         </a>
 

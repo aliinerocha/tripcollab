@@ -5,7 +5,7 @@
 @endsection
 
 @section('titulo')
-    Editar Viagem
+    Editar viagem
 @endsection
 
 @section('conteudo')
@@ -14,7 +14,7 @@
         <!-- NAV ABA-->
         <div class="bg-light pt-4 pb-4 mb-3">
             <div class="d-flex ml-3 align-items-center">
-                <a class="link" href="comunidadesEViagens"><i class="material-icons">arrow_back</i></a>
+                <a class="link" href="{{route('user.listGroupsAndTrips')}}"><i class="material-icons">arrow_back</i></a>
                 <div class="container">
                     <h5>Editar viagem</h5>
                 </div>
@@ -25,8 +25,9 @@
         <main class="bg-light pt-4 pb-4">
             <div class="row">
                 <form action="{{route('trip.update', ['id' => $trip->id])}}" method="POST" class="col-10 offset-1" enctype="multipart/form-data">
-                @csrf
-                @method("PUT")
+                    @csrf
+                    @method("PUT")
+                    @include('flash::message')
                         <img src="@if($trip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $trip->photo)}} @endif" class="d-block img-fluid" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                         <div class="form-group mt-4">
                             <label for="tituloDaViagem">Título da viagem:</label>
@@ -90,8 +91,8 @@
                                 <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
                                 <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>
-                    </form>
-                   
+                </form>
+
                 <!-- </div> -->
             </div>
         </main>
@@ -103,7 +104,7 @@
                         <span class="pr-3">Excluir viagem</span>
                         <button type="submit" class="btn btn-danger">Excluir</button>
                     </div>
-                    
+
                 </form>
-            </div>   
+            </div>
 @endsection

@@ -9,6 +9,7 @@ use App\Interest;
 use App\Group;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use \Carbon\Carbon;
 
 
 class TripController extends Controller
@@ -27,7 +28,7 @@ class TripController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($trip)
+    public function index()
     {
         $user = auth()->user();
 
@@ -88,7 +89,11 @@ class TripController extends Controller
         ->where('trip_id', $trip->id)
         ->update(['status' => '1']);
 
-        return redirect()->route('trip.create');
+        $id = $trip->id;
+
+        flash("Viagem criada com sucesso")->success();
+
+        return redirect()->route('trip.show', compact('id'));
     }
 
     /**
@@ -128,8 +133,6 @@ class TripController extends Controller
             ['trip_id', $trip->id]
         ])->first();
 
-        $footer = 'true';
-
         return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin', 'user', 'userStatus', 'interests', 'confirmedMembers', 'group'));
     }
 
@@ -148,8 +151,6 @@ class TripController extends Controller
         $selectedInterests = DB::table('interest_trip')->where('trip_id', $id)->get();
 
         $groups = $this->groups->all(['id','name']);
-
-        $footer = 'true';
 
         return view('/Groups and Trips/Trip/edit', compact('footer', 'trip', 'interests', 'selectedInterests', 'groups'));
     }
@@ -176,8 +177,9 @@ class TripController extends Controller
 
         $trip->interest()->sync($interests);
 
-        return redirect()->route('trip.edit', ['id' => $id]);
+        flash("Viagem editada com sucesso")->success();
 
+        return redirect()->route('trip.edit', ['id' => $id]);
     }
 
     /**
@@ -196,7 +198,11 @@ class TripController extends Controller
 
         $trip->delete();
 
-        return redirect()->route('home');
+        $id = auth()->user()->id;
+
+        flash('Viagem excluída com sucesso');
+
+        return redirect()->route('user.trips.index', compact('id'));
     }
 
     public function confirmPresence($tripId, $userId) {
@@ -266,5 +272,50 @@ class TripController extends Controller
         ->get();
 
         return view('/Groups and Trips/Trip/Members/index', compact('trip','user','tripMembers', 'tripMembersRequests'));
+    }
+
+    public function timeline () {
+
+        // $user = auth()->user();
+
+        // $trips = DB::table('trips')
+        // ->whereDate('return_date', '<=', Carbon::today()->toDateString())
+        // ->join('trips','trip_user.trip_id','=','trips.id')
+        // ->where('user_id', auth()->user()->id)
+        // ->select()
+        // ->get()
+        // ->toArray();
+
+        // // $trips = DB::table('trip_user')
+        // // ->where('user_id', auth()->user()->id)
+        // // ->get()
+        // // ->toArray();
+        // dd($trips);
+        
+        // if($trips !== [])
+        // {
+        //     $trips = $trips;
+            
+        //     foreach($trips as $key => $trip)
+        //     {
+        //         $tripMembers = DB::table('trip_user')
+        //         ->where('trip_id', $trip->id)
+        //         ->where('status', 1)
+        //         ->join('users','trip_user.user_id','=','users.id')
+        //         ->select('users.id','users.name', 'users.photo')
+        //         ->get(['users.id as userId','users.name as userName', 'users.photo as userPhoto']);
+                
+        //         $countTripMembers = $tripMembers->count();
+                
+        //         $trip->countTripMembers = $countTripMembers;
+        //     }
+        // } else 
+        // { 
+        //     $trips = 0;
+        //     $tripMembers = 0;
+        // }
+        // , compact('user', 'trips', 'tripMembers', 'countTripMembers')
+             
+        return view('/Timeline/show');
     }
 }

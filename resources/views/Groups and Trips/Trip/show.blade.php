@@ -1,4 +1,3 @@
-
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('css')
@@ -26,6 +25,7 @@
     <main class="bg-light pt-4 pb-4">
         <div class="row">
             <div class="col-10 offset-1">
+            @include('flash::message')
                 <div class="d-flex mt-2 justify-content-center">
                     <div class="col-11 p-0">
                         <img src="@if($trip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $trip->photo)}} @endif" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto; @if($trip->photo != 'nophoto') border-radius: 25px @endif" alt="...">
@@ -99,6 +99,7 @@
                     </p>
                     <p class="titulo_campo mt-4">
                         Membros confirmados:
+                        <a href="{{route('trip.membersIndex', ['id' => $trip->id])}}">(Ver todos)</a>
                     </p>
 
                     <div>
