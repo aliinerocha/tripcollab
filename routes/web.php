@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get ('groupsandtrips', 'User\UserController@listGroupsAndTrips')->name('user.listGroupsAndTrips');
 
+    Route::get('timeline', 'Trip\TripController@timeline')->name('trip.timeline');
 
     // User
 
@@ -138,12 +139,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('search/trips/', 'Search\SearchController@searchTrips')->name('search.trips.index');
 
-
-    // linha do tempo
-    
-    Route::get('/linhaDoTempo', function() {
-        return view('Timeline/show');
-    });
     // Achievements
     Route::get('/classificacao', function() {
         return view('Achievements/show');

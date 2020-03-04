@@ -36,23 +36,7 @@ scrapbook-navbar
 
 <div class="timeline">
     <div class="entries">
-        <div class="entry">
-            <h3 class="title">Título da viagem</h3>
-            <div class="body">
-                <p>Destino: Campos do Jordão</p>
-                <p>Grupo</p>
-                <img class="img-fluid" src="../img/group.png" alt="">
-                <p>Investimento</p>
-                <p>$$$</p>
-                <p>Avaliação</p>
-                <div class="avaliacao">
-                    <i class="material-icons">star_border</i>
-                    <i class="material-icons">star_border</i>
-                    <i class="material-icons">star_border</i>
-                    <i class="material-icons">star_border</i>
-                </div>
-            </div>
-        </div>
+        
         <div class="entry">
             <h3 class="title">Título da viagem</h3>
             <div class="body">
