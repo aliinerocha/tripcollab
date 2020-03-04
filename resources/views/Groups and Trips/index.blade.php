@@ -28,10 +28,15 @@
                     <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
             </div>
         </div> --}}
-        <a href="{{route('group.create')}}" class="d-flex align-items-center justify-content-around btnGroupsAndTrips ml-3 p-2">
-            <span>Criar nova comunidade</span>
-            <i class="material-icons" style=" font-size: 30px">add</i>
-        </a>
+        <div class="d-flex mb-4">
+            <a href="{{route('group.create')}}" class="d-flex align-items-center justify-content-around btnGroupsAndTrips ml-3 p-2">
+                <span>Criar nova comunidade</span>
+                <i class="material-icons" style=" font-size: 30px">add</i>
+            </a>
+            <a href="{{route('user.groups.index', ['id' => auth()->user()->id])}}" class="d-flex align-items-center justify-content-between btnGroupsAndTrips ml-3 p-2">
+                <span>Ver todas</span>
+            </a>
+        </div>
 
         <div id="comunidade-slider" class="carousel slide container" data-ride="carousel">
                 <div class="carousel-inner">

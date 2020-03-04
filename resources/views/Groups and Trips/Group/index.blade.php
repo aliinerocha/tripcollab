@@ -5,75 +5,61 @@
 @endsection
 
 @section('titulo')
-    Membros da Comunidade
+    Minhas comunidades
 @endsection
 
 @section('conteudo')
 
-<div class="containerDesktop">
-    <!-- NAV ABA-->
-    <div class="pt-4 pb-4 card menu-voltar">
-        <a  href="{{route('group.show',['id' => $group->id])}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
-            <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
-            <h5>{{$group->name}}</h5>
-        </a>
-    </div>
-
-<main class="bg-light pt-4 pb-4 mx-3 mx-md-0">
-    <div class="row">
-        <div class="col-12">
-            {{-- <div class="d-flex mt-2 justify-content-center">
-                <div class="col-11 p-0">
-                    <img src="@if($group->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $group->photo)}} @endif" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto; @if($group->photo != 'nophoto') border-radius: 25px @endif" alt="...">
-                </div>
+<div class="bg-light pt-4 pb-4 mb-3 card">
+        <div class="d-flex ml-3 align-items-center">
+            <a class="stretched-link" href="{{ route('user.listGroupsAndTrips') }}"><i class="material-icons">arrow_back</i></a>
+            <div class="container">
+                <h5>Minhas comunidades</h5>
             </div>
-            <div>
-                <div class="col-11 p-0">
-                    <h5 class="my-4 text-center">{{$group->name}}</h5>
-                </div>
-            </div> --}}
+        </div>
+</div>
 
-        <div>
+<main class="bg-light pt-4 pb-4">
+    <div class="row">
+        <div class="col-10 offset-1">
 
-            @if(!($groupMembersRequests->count()) == 0 && $user->id == $group->admin)
+            @if($admin->count() != 0)
 
-            Solicitações para participar da comunidade
+            Comunidades administradas por você
 
-                <table class="table table-striped  mt-3">
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th >Foto</th>
-                            <th >Nome</th>
-                            <th >Ações</th>
+                            <th>Foto</th>
+                            <th>Comunidade</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($groupMembersRequests as $member)
+                    @foreach($admin as $group)
                         <tr>
                             <td>
 
-                            <a href="{{route('user.show', ['id' => $member->id])}}">
-                                <img class="foto-perfil rounded-circle"src="@if($member->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$member->photo")}} @endif"alt="{{$member->name}}"></a>
+                            <a href="{{route('group.show', ['id' => $group->id])}}">
+                                    <img
+                                    class="foto-perfil rounded-circle"
+                                    src="@if($group->photo == 'nophoto') {{asset('./img/add.png')}} @else {{asset('storage/' . $group->photo)}} @endif"
+                                    alt="{{$group->name}}">
+                                </a>
                             </td>
 
                             <td>
-                                <a href="{{route('user.show', ['id' => $member->id])}}">{{$member->name}}</a>
+                                <a href="{{route('group.show', ['id' => $group->id])}}">
+                                    {{$group->name}}
+                                </a>
                             </td>
 
-                            <td class="d-flex dropdown td_acao">
-                                <button class="btn btn-sm btn-info flex-grow-1 dropdown-toggle"
-                                id="dropdownMenuButton"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
-                                Solicitou participar da comunidade
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="{{route('group.acceptPresence', ['groupId' => $group->id, 'userId' => $member->id])}}">
-                                        Aceitar
-                                    </a>
-                                    <a class="dropdown-item" href="{{route('group.cancelPresence', ['groupId' => $group->id, 'userId' => $member->id])}}">
-                                        Rejeitar
+                            <td class="d-flex">
+                                <div class="d-flex">
+                                    <a
+                                    href="{{route('group.edit',['id' => $group->id])}}"
+                                    class="btn btn-info">
+                                    Editar
                                     </a>
                                 </div>
                             </td>
@@ -85,44 +71,78 @@
 
             @endif
 
-            @if($groupMembers->count() == 0)
+            @if($groups->count() == 0)
 
-            Ainda não há membros para essa comunidade.
+            Você ainda não participa de nenhuma comunidade
 
             @else
 
-            @if($groupMembers->count() == 1) Existe @else Existem @endif {{$groupMembers->count()}} @if($groupMembers->count() <= 1) membro confirmado @else membros confirmados @endif nessa comunidade.
+            @if($groups->count() - $admin->count() == 1)
 
-            <table class="table table-striped mt-3">
+                {{$groups->count() - $admin->count()}} comunidade listada
+
+            @else
+
+                {{$groups->count() - $admin->count()}} comunidades listadas
+
+            @endif
+
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th >Foto</th>
-                        <th >Nome</th>
-                        @if($user->id == $group->admin)
-                        <th >Ações</th>
-                        @endif
+                        <th>Foto</th>
+                        <th>Comunidade</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($groupMembers as $member)
+                @foreach($groups as $group)
+                    @if($group->admin != $user->id)
                     <tr>
                         <td>
 
-                        <a href="{{route('user.show', ['id' => $member->id])}}">
-                                <img class="foto-perfil rounded-circle" src="@if($member->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$member->photo")}} @endif" alt="{{$member->name}}"></a>
+                        <a href="{{route('group.show', ['id' => $group->id])}}">
+                                <img
+                                class="foto-perfil rounded-circle"
+                                src="@if($group->photo == 'nophoto') {{asset('./img/add.png')}} @else {{asset('storage/' . $group->photo)}} @endif"
+                                alt="{{$group->name}}">
+                            </a>
                         </td>
 
-                        <td >
-                            <a href="{{route('user.show', ['id' => $member->id])}}">{{$member->name}}</a>
+                        <td>
+                            <a href="{{route('group.show', ['id' => $group->id])}}">
+                                {{$group->name}}
+                            </a>
                         </td>
 
-                        @if($user->id == $group->admin)
-                        <td class="td_acao">
-                                <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $member->id])}}"class="btn btn-danger">Excluir membro</a>
-                        </td>
+                        <td class="d-flex">
+
+                        @if($group->status == 0)
+                            <div class="btn-group dropup">
+                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Solicitação enviada
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}">
+                                    Cancelar solicitação
+                                    </a>
+                                </div>
+                            </div>
+
+                        @elseif($group->status == 1)
+
+                            <div class="d-flex">
+                                <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn btn-danger">
+                                    Cancelar presença
+                                </a>
+                            </div>
+
                         @endif
 
+                        </td>
+
                     </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>
@@ -133,5 +153,5 @@
         </div>
     </div>
 </main>
-</div>
+
 @endsection
