@@ -1,10 +1,16 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
+@endsection
+
 @section('titulo')
-    Editar viagem
+    Editar Viagem
 @endsection
 
 @section('conteudo')
+
+    <div class="containerDesktop">
         <!-- NAV ABA-->
         <div class="bg-light pt-4 pb-4 mb-3">
             <div class="d-flex ml-3 align-items-center">
@@ -85,12 +91,19 @@
                                 <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>
                     </form>
-                    <form action="{{route('trip.destroy',['id' => $trip->id])}}" method="POST">
-                        @csrf
-                        @method("DELETE")
-                        <button type="submit" class="btn btn-danger">Excluir</button>
-                    </form>
-                </div>
+                   
+                <!-- </div> -->
             </div>
         </main>
+            <div class="mt-3 py-4 bg-light">
+                <form action="{{route('trip.destroy',['id' => $trip->id])}}" method="POST">
+                    @csrf
+                    @method("DELETE")
+                    <div class="d-flex align-items-center justify-content-between justify-content-md-end pt-3 col-10 offset-1">
+                        <span class="pr-3">Excluir viagem</span>
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </div>
+                    
+                </form>
+            </div>   
 @endsection

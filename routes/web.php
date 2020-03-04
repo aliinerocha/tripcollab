@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::put('trip/{id}', "Trip\TripController@update")->name('trip.update');
 
-    Route::delete('/trip/{id}', "Trip\TripController@destroy")->name('trip.destroy');
+    Route::delete('trip/{id}', "Trip\TripController@destroy")->name('trip.destroy');
 
     Route::get('trip/{tripId}/confirm/{userId}', 'Trip\TripController@confirmPresence')->name('trip.confirmPresence');
 
@@ -43,9 +43,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('trip/{tripId}/cancel/{userId}', 'Trip\TripController@cancelPresence')->name('trip.cancelPresence');
 
-    Route::get('/trip/{id}/members', 'Trip\TripController@tripMembersIndex')->name('trip.membersIndex');
+    Route::get('trip/{id}/members', 'Trip\TripController@tripMembersIndex')->name('trip.membersIndex');
 
-    Route::get ('/groupsandtrips', 'User\UserController@listGroupsAndTrips')->name('user.listGroupsAndTrips');
+    Route::get ('groupsandtrips', 'User\UserController@listGroupsAndTrips')->name('user.listGroupsAndTrips');
 
 
     // User
@@ -55,6 +55,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get ('/profile/{id}', 'User\UserController@show')->name('user.show');
 
     Route::get('/profile/{id}/edit' , 'User\UserController@edit')->middleware('checkUser')->name('user.edit');
+
+    Route::get('profile/{id}/trips/index', "Trip\TripController@index")->name('user.trips.index');
 
     Route::put('/profile/{id}' , 'User\UserController@update')->name('user.update');
 
@@ -96,8 +98,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('{group_id}/topic/index', 'Group\TopicController@index')->name('topic.index');
 
-    Route::get('{group_id}/topic/create', 'Group\TopicController@create')->name('topic.create');
-
     Route::post('{group_id}/topic/store', 'Group\TopicController@store')->name('topic.store');
 
     Route::get('topicLike/{id}', 'Group\TopicController@likeTopic')->name('topic.like');
@@ -110,8 +110,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
 
-    Route::any('{groupId}/topic/search', 'Group\TopicController@search')->name('topic.search');
-
     Route::get('topic/{id}', 'Group\TopicController@show')->name('topic.show');
 
     // Topic Messages
@@ -122,16 +120,40 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('{topic_id}/topicMessage/store', 'Group\TopicMessageController@store')->name('topicMessage.store');
 
+    Route::get('topicMessage/{id}/edit', 'Group\TopicMessageController@edit')->name('topicMessage.edit');
+
+    Route::put('topicMessage/{id}', 'Group\TopicMessageController@update')->name('topicMessage.update');
+
     Route::delete('{topic_id}/topicMessage/{id}', 'Group\TopicMessageController@destroy')->name('topicMessage.destroy');
+
+    // Search
+
+    Route::get('search/', 'Search\SearchController@show')->name('search.show');
+
+    Route::get('search/users/', 'Search\SearchController@searchUsers')->name('search.users.index');
+
+    Route::get('search/groups/', 'Search\SearchController@searchGroups')->name('search.groups.index');
+
+    Route::get('search/trips/', 'Search\SearchController@searchTrips')->name('search.trips.index');
+
+
+    // linha do tempo
+    
+    Route::get('/linhaDoTempo', function() {
+        return view('Timeline/show');
+    });
+    // Achievements
+    Route::get('/classificacao', function() {
+        return view('Achievements/show');
+    });
+
+
 });
+
 
 
 // Route::get('/classificacao', function() {
 //     return view('Achievements/show');
-// });
-
-// Route::get('/linhaDoTempo', function() {
-//     return view('Timeline/show');
 // });
 
 // Route::get('/mensagens', function() {
@@ -151,5 +173,6 @@ Route::group(['middleware' => ['auth']], function () {
 //     return view('user/messages/index');
 // });
 
-
 Auth::routes();
+
+

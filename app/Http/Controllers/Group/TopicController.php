@@ -42,9 +42,7 @@ class TopicController extends Controller
      */
     public function create($id)
     {
-        $group = $this->group->findOrFail($id);
-        $footer = 'true';
-        return view('Groups and Trips/Group/Topics/create', compact('footer', 'group'));
+        // 
     }
 
     /**
@@ -62,7 +60,7 @@ class TopicController extends Controller
         $topic->description = $request->description;
         $topic->save();
         
-        return redirect()->route('topic.index', $topic->group_id);
+        return redirect()->route('group.show', $topic->group_id);
     }
 
     /**
@@ -128,25 +126,6 @@ class TopicController extends Controller
         $topic->delete();
 
         return redirect()->route('topic.index', $group_id);
-    }
-
-    public function search(Request $request, $groupId)
-    {
-        $group = $this->group->find($groupId);
-        
-        $search = $request->input('search');
-        $topicSearchs = DB::table('topics')
-        ->where('name','LIKE','%'.$search.'%')
-        ->orWhere('description','LIKE','%'.$search.'%')
-        ->select('topics.name','topics.description')
-        ->get();
-
-        $topicCount = $topicSearchs->count();
-        // dd($topicCount);
-
-        return redirect()->route('group.show', $groupId)
-        ->with('topicSearchs', $topicSearchs)
-        ->with('topicCount', $topicCount);
     }
 
     public function likeTopic($id)

@@ -27,25 +27,42 @@
             <!-- Botões -->
             <div class="col-xs-12 usuario-botoes text-right pull-right py-3">
                 <div class="row d-flex align-items-center">
-                    <div class="dropdown col-11">
-
-                        <button class="btn btn-link border border-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <a href="#" class="notification">
-                            <i class="fas fa-bell fa-lg"></i>
-                            <span class="badge">3</span>
-                        </a>
-
+                    <div class="dropdown col-11 p-0 pr-2">
+                        <button class="btn btn-link px-1" data-display="static" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a href="#" class="notification px-2">
+                                <i class="fas fa-bell fa-lg"></i><span class="badge">{{$totalRequest}}</span>
+                            </a>
                         </button>
-                        <div class="dropdown-menu">
-                            <span class="dropdown-item-text">Dropdown item text</span>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                        @if( $totalRequest !== 0 )
+                            <div class="dropdown-menu dropdown-menu-right overflow-auto pt-3">
+                                @if( $countFriendRequest !== 0 )
+                                    <span class="dropdown-item-text text-muted font-weight-bold h6 py-1"> @if ($countFriendRequest <= 1) Notificação @else Notificações @endif de Amizade </span>
+                                    <a class="dropdown-item h6 py-1" href="{{route('friendship.index', ['id' => $user->id])}}"> Há {{$countFriendRequest}} @if ($countFriendRequest <= 1) solicitação de amizade pendente @else solicitações de amizade pendentes @endif </a>
+                                @endif
+                                @if( $totalTR !== 0 ) 
+                                    <hr>
+                                    <span class="dropdown-item-text text-muted font-weight-bold h6 py-1"> @if ($countTripRequest <= 1) Notificação @else Notificações @endif de Viagem </span>
+                                    @foreach( $tripMembersRequests as $key => $trip )
+                                        @if( $trip->countTripRequest !== 0 ) 
+                                            <a class="dropdown-item h6 py-1" href="{{route('trip.membersIndex', ['id' => $trip->id])}}"> Há {{$trip->countTripRequest}} @if ($trip->countTripRequest <= 1) solicitação pendente @else solicitações pendentes @endif para participar de <br> {{$trip->name}} </a>
+                                        @endif
+                                    @endforeach
+                                @endif
+                                @if( $totalGR !== 0 )
+                                    <hr>
+                                    <span class="dropdown-item-text text-muted font-weight-bold h6 py-1"> @if ($countGroupRequest <= 1) Notificação @else Notificações @endif de Comunidade </span>
+                                    @foreach( $groupMembersRequests as $key => $group )
+                                        @if( $group->countGroupRequest !== 0 )
+                                            <a class="dropdown-item h6 py-1" href="{{route('group.membersIndex', ['id' => $group->id])}}"> Há {{$group->countGroupRequest}} @if ($group->countGroupRequest <=1) solicitação pendente @else solicitações pendentes @endif para participar de <br> {{$group->name}} </a>
+                                        @endif
+                                    @endforeach 
+                                @endif
+                            </div>
+                        @endif
                     </div>
-                    <div class="col-1">
+                    <div class="col-1 p-0 pr-2">
                             <a href="{{route('user.edit', ['id' => $user->id])}}">
-                                <i class="far fa-edit fa-lg"></i>
+                                <i class="far fa-edit fa-lg mr-2"></i>
                             </a>
                     </div>
                 </div>

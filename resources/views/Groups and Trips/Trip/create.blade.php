@@ -1,10 +1,17 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
+@endsection
+
 @section('titulo')
     Criar viagem
 @endsection
 
 @section('conteudo')
+
+    <div class="containerDesktop">
+    
         <!-- NAV ABA-->
         <div class="bg-light pt-4 pb-4 mb-3">
             <div class="d-flex ml-3 align-items-center">
@@ -62,10 +69,12 @@
 
                         <div class="d-flex justify-content-end mt-4">
 
-                            <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                            <a href="{{route('user.listGroupsAndTrips')}}" class="btn botao_atencao mr-2">Cancelar</a>
                             <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>
                 </form>
             </div>
         </main>
+    
+    </div> 
 @endsection

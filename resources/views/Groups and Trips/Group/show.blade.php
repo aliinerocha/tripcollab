@@ -166,25 +166,10 @@
         </section>
 
         <!-- FÓRUM -->
-
-        <section class="bg-light pt-2 pb-2">       
-        <!-- BUSCA DOS TÓPICOS -->
+        <section class="bg-light pt-2 pb-2">
             <div class="ml-4 ml-md-0 mb-2">
                 <h5 class="mb-3 mt-3">Fórum</h5>
                 <div>
-                    <!-- <form action="{{route('topic.search', ['groupId' => $group->id])}}" method="POST">
-                    <div class="input-group mx-1">
-                        {{ csrf_field() }}
-                            <input type="text" class="form-control border-0" placeholder="Buscar" name="search" required>
-                                <div class="input-group-append">
-                                    <button class="submit border-0" >
-                                        <span class="input-group-text border-0">
-                                            <i class="material-icons">search</i>
-                                        </span>
-                                    </button>
-                                </div>
-                    </div>
-                    </form> -->
                     <div>
                         <h5 class="pt-4">Criar Novo Topico</h5>
                             <form action="{{route('topic.store', ['group_id' => $group->id])}}" method="POST" enctype="multipart/form-data" class="my-md-0 mr-4">
@@ -223,38 +208,6 @@
                     </div>
                 </div>
             </div>
-    <!-- 
-            @if(!empty(session()->get('topicCount')))
-            <div class="container mb-2">
-                <h5>Os resultados da sua busca são</h5>    
-            </div>
-            <section class="bg-light mt-2 mb-1 pb-1">
-                <div class="col-md-8">
-                    <div class="card-body px-0">
-                        <div class="d-flex">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Descrição do Tópico</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach(session()->get('topicSearchs') as $key) 
-                                <tr>
-                                    <td>{{$key->name}}</td>
-                                    <td>{{$key->description}}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            @else 
-                Nenhum resultado encontrado. Por favor, tente novamente.
-            @endif-->
         </section> 
 
         <!-- TÓPICOS -->

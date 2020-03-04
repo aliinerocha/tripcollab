@@ -41,7 +41,7 @@
 
                 </div>
     
-                <div class="d-flex w-100 mt-3 justify-content-between">
+                <div class="d-flex w-100 mt-3 justify-content-between align-items-center">
                     <div class="d-flex">
                         <span class=" mr-3">
                             <a href="{{route('topic.like',['id' => $topic->id])}}">
@@ -62,20 +62,49 @@
                         <i class="material-icons mr-1">chat</i>
                         <span class="justify-content-center">{{$topic->topicMessages()->count()}} @if ($topic->topicMessages()->count()<=1) resposta @else respostas @endif</span>
                         
-                    </span> --}}
-                    
-                    {{-- <div>
-                        <a href="" class="text-muted link-detalhes">Responder</a>
-                    </div> --}}
-                </div> 
+                    </span>
+
+                    @if($user->id == $topic->user_id)
+                        <div class="mx-1 my-2">
+                            <a href="{{route('topic.edit',['id' => $topic->id] )}}" class="botao btn btn-primary border-0">Editar</a>
+                        </div>
+                    @endif
+                </div>
                 
-                {{-- @if($user->id == $topic->user_id)
-                    <div class="mx-1 my-2">
-                        <a href="{{route('topic.edit',['id' => $topic->id] )}}" class="botao btn btn-primary border-0">Editar</a>
-                    </div>
-                @endif --}}
                 
             </div>
+        </div>
+    </section>
+
+    <!-- Formulário de Respostas -->
+    <section class="bg-light mt-2 mb-1 pb-1 pt-2">
+        <div class="col-sm-12">
+            <span class="mx-2">@if (isset($topicMessageForm)) Edite @else Envie @endif sua Resposta</span>
+            @if (isset($topicMessageForm))
+                <form action="{{route('topicMessage.update',['id' => $topicMessageForm->id])}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method("PUT")
+            @else
+                <form action="{{route('topicMessage.store',['topic_id' => $topic->id])}}" method="POST" enctype="multipart/form-data">
+                @csrf
+            @endif
+                <div class="form-row">
+                    <div class="col-sm-10 pl-2 m-0 d-flex align-items-center">
+                        <label class="m-0" for="exampleFormControlTextarea"></label>
+                        <textarea class="form-control mr-2 @error('message') is-invalid @enderror" rows="2" name="message" type="text" id="exampleFormControlTextarea" required>@if (isset($topicMessageForm->message)) {{$topicMessageForm->message}} @else {{old('message')}} @endif</textarea>
+                            @error('message')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                    </div>
+                    <div class="col-sm-2 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary mb-2 mt-2">@if (isset($topicMessageForm)) Enviar @else Responder @endif</button>
+                    </div>
+            </form>
+            <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+            <input type="hidden" name="topic_id" value="{{$topic->id}}">
+            <input type="hidden" name="group_id" value="{{$topic->group_id}}">
         </div>
     </section>
 
@@ -114,27 +143,15 @@
                     </div>
 
                     <div class="w-100 d-flex ml-3 justify-content-around">
-                        <span>{{\Carbon\Carbon::parse($topicMessage->created_at)->formatLocalized('%d de %B de %Y')}}</span>
-
-                        <!-- <span class="d-flex mr-2">
-                        
-                            <i class="material-icons mr-1">chat</i>
-                            <span class="justify-content-center">12 respostas</span>
-
-                        </span> -->
-                        
+                        <span>{{date('d/m/Y', strtotime($topicMessage->created_at))}}</span>  
                     </div>
-                    <!-- <div>
-                        <a href="" class="text-muted link-detalhes">
-                            Responder
-                        </a>
 
-                    </div> -->
                     @if($user->id == $topicMessage->user_id)
+                        <a href="{{route('topicMessage.edit',['id' => $topicMessage->id])}}" class="btn btn-primary"><i class="fas fa-edit p-0"></i></a>
                         <form action="{{route('topicMessage.destroy',['topic_id' => $topic->id ,'id' => $topicMessage->id])}}" method="POST">
                             @csrf
                             @method("DELETE")
-                            <button type="submit" class="btn btn-danger">Excluir</button>
+                            <button type="submit" class="btn btn-danger ml-1"><i class="fas fa-trash-alt"></i></button>
                         </form>            
                     @endif
                 </div>
