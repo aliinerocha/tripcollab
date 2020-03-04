@@ -40,7 +40,7 @@
 
             @auth
             <div class="itensMenu d-none d-md-inline-block">
-            <a href="linhaDoTempo" class="{{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }} mr-5">SCRAPBOOK</a>
+            <a href="{{route('trip.timeline')}}" class="{{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }} mr-5">SCRAPBOOK</a>
             <a href="{{route('search.users.index')}}" class="{{ isset($pagina) && $pagina == 'busca' ? 'ativo' : '' }} mr-5">BUSCA</a>
             <a href="{{route('home')}}" class="{{ isset($pagina) && $pagina == 'perfil' ? 'ativo' : '' }} mr-5">PERFIL</a>
             <a href="{{route('user.listGroupsAndTrips')}}" class="{{ isset($pagina) && $pagina == 'comunidadesEviagens' ? 'ativo' : '' }} mr-5">COMUNIDADE</a>
@@ -121,7 +121,7 @@
 
 @auth
 <div class="nav-inferior nav fixed-bottom d-flex justify-content-around border-top d-md-none" id="navInferior">
-    <a href="linhaDoTempo" class="fas fa-atlas fa-lg  {{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }}"></a>
+    <a href="{{route('trip.timeline')}}" class="fas fa-atlas fa-lg  {{ isset($pagina) && $pagina == 'linhaDoTempo' ? 'ativo' : '' }}"></a>
     <a href="{{route('search.users.index')}}" class="fas fa-search fa-lg {{ isset($pagina) && $pagina == 'busca' ? 'ativo' : '' }}"></a>
     <a href="{{route('home')}}" class="fas fa-home fa-lg  {{ isset($pagina) && $pagina == 'perfil' ? 'ativo' : '' }}"></a>
     <a href="{{route('user.listGroupsAndTrips')}}" class="fas fa-users fa-lg  {{ isset($pagina) && $pagina == 'comunidadesEviagens' ? 'ativo' : '' }}"></a>

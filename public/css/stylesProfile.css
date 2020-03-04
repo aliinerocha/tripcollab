@@ -43,6 +43,9 @@
       max-width: 60vw;
       margin: auto;
     }
+    .capa img {
+      height: 25vh;
+    }
   }
 
   
