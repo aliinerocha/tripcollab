@@ -106,8 +106,18 @@
   border-color: #A61121;
 }
 
-.back {
-  color: black
+.menu-voltar a {
+  color: black;
+}
+
+.menu-voltar a:hover {
+  text-decoration: none;
+}
+
+.menu-voltar{
+  background-color: #f7f7f7;
+  color: black;
+  border: none;
 }
 
   /* CSS DESKTOP */

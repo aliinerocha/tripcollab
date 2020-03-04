@@ -67,7 +67,7 @@
 <!-- MENU -->
 <menu class="container" id="menu">
     <ul class="navbar-nav">
-        <li class="nav-item active pt-2">
+        <li class="nav-item active pt-4">
             <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">

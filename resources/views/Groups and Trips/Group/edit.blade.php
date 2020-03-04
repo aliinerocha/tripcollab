@@ -11,12 +11,12 @@
 @section('conteudo')
     <div class="containerDesktop">
         <!-- NAV ABA-->
-        <div class="bg-light pt-4 pb-4 mb-3 card">
-            <div class="d-flex ml-3 align-items-center">
-                <a  href="{{route('group.show',['id' => $group->id])}}"><i class="material-icons mr-3 back stretched-link">arrow_back</i></a>
-                <h5>Editar Comunidade</h5>
-            </div>
-        </div>
+        <div class="pt-4 pb-4 card menu-voltar">
+            <a  href="{{route('group.show',['id' => $group->id])}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
+                <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+                <h5>Voltar</h5>
+            </a>
+    </div>
 
         <!-- CARD COM OS DETALHES DO GRUPO-->
         <main class="bg-light pt-4 pb-4">

@@ -10,6 +10,13 @@
 
 @section('conteudo')
 <div class="containerDesktop">
+        <!-- NAV ABA-->
+    <div class="pt-4 pb-4 card menu-voltar">
+            <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
+                <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+                <h5>Voltar</h5>
+            </a>
+    </div>
 
     <!-- BANNER -->
     <main class=" mb-3">
@@ -20,8 +27,14 @@
     <!-- NOME E MEMBROS -->
 
         <section class="bg-light pb-4 mb-3 pt-4">
-            <div class="ml-4 ml-md-0 mr-4 mb-4">
+
+            <div class="ml-4 ml-md-0  mb-4 d-flex justify-content-between align-items-center mr-3">
                 <h1>{{$group->name}}</h1>
+                @if($user->id == $group->admin)
+                <a href="{{route('group.edit', ['id' => $group->id])}}">
+                    <i class="far fa-edit fa-lg" style="color:  #7C7C7C"></i>
+                </a>
+            @endif
             </div>
 
     @if(($group->visibility == 0 && $userStatus && $userStatus->status == 0) || ($group->visibility == 0 && !$userStatus))
@@ -90,12 +103,6 @@
                 </div>
             </div>
 
-            @if($user->id == $group->admin)
-            <div class="mx-1 mt-2 mb-4">
-                <a href="{{route('group.edit',['id' => $group->id] )}}" class="botao btn btn-primary border-0">Editar</a>
-            </div>
-            @endif
-
             <div class="ml-4 ml-md-0 mr-3 mb-4">
                 <h5>Membros:</h5>
                 @foreach($group->user as $member)
@@ -113,7 +120,7 @@
                             Participar
                             </a>
                         </div>
-                @elseif($userStatus && $userStatus->status == 1)
+                @elseif($userStatus && $userStatus->status == 1 && $user->id != $group->admin)
                         <div class="d-flex mt-3">
                             <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn btn-danger">
                             Cancelar participação
