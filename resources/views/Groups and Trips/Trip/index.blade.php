@@ -23,6 +23,8 @@
     <div class="row">
         <div class="col-10 offset-1">
 
+        @include('flash::message')
+
             @if($admin->count() != 0)
 
             Viagens administradas por você
@@ -54,7 +56,7 @@
                                 </a>
                             </td>
 
-                            <td class="d-flex">
+                            <td>
                                 <div class="d-flex">
                                     <a
                                     href="{{route('trip.edit',['id' => $trip->id])}}"
@@ -115,30 +117,29 @@
                             </a>
                         </td>
 
-                        <td class="d-flex">
-
-                        @if($trip->status == 0)
-                            <div class="btn-group dropup">
-                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Solicitação enviada
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}">
-                                    Cancelar solicitação
-                                    </a>
-                                </div>
-                            </div>
-
-                        @elseif($trip->status == 1)
-
+                        <td>
                             <div class="d-flex">
-                                <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn btn-danger">
-                                    Cancelar presença
-                                </a>
+                                @if($trip->status == 0)
+                                    <div class="btn-group dropup">
+                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Solicitação enviada
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}">
+                                            Cancelar solicitação
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                @elseif($trip->status == 1)
+
+                                    <div class="d-flex">
+                                        <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn btn-danger">
+                                            Cancelar presença
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
-
-                        @endif
-
                         </td>
 
                     </tr>
