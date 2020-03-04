@@ -8,17 +8,17 @@
         <!-- NAV ABA-->
     <div class="containerDesktop">
 
-        <div class="bg-light pt-4 pb-4 mb-3 barraMenu card">
-            <div class="d-flex ml-3 align-items-center">
-                <a class="link" href="/groupsandtrips"><i class="material-icons back mr-3 stretched-link">arrow_back</i></a>
-                <h5>Criar nova Comunidade</h5>
-            </div>
+        <div class="pt-4 pb-4 card menu-voltar">
+            <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
+                <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+                <h5>Criar nova comunidade</h5>
+            </a>
         </div>
 
         <!-- CARD COM OS DETALHES DO GRUPO  -->
         <main class="bg-light pt-4 pb-4">
-            <div class="row">
-                <form action="{{route('group.store')}}" method="POST" class="col-10 offset-1" enctype="multipart/form-data">
+
+                <form action="{{route('group.store')}}" method="POST" class="col-12" enctype="multipart/form-data">
                 @csrf
                         <img src="{{url('./img/add.png')}}"  class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                         <div class="form-group mt-4">
@@ -74,7 +74,7 @@
                             <button type="submit" href="#" class="btn botao">Salvar</button>
                         </div>
                 </form>
-            </div>
+
         </main>
     </div>
 @endsection

@@ -17,7 +17,7 @@
 
     <!-- COMUNIDADES -->
 
-    <section class="bg-light pt-4 pb-4 mb-3 container">
+    <section class="bg-light pt-4 pb-4 mb-3 ">
         <div class="ml-3 mb-4">
             <h5>Minhas comunidades</h5>
         </div>
@@ -32,12 +32,15 @@
             <span>Criar nova comunidade</span>
             <i class="material-icons" style=" font-size: 30px">add</i>
         </a>
+        <a href="{{route('user.trips.index', ['id' => auth()->user()->id])}}" class="btn botao ml-3 p-2 mt-4">
+            <span>Ver todas</span>
+        </a>
 
-        <div id="comunidade-slider" class="carousel slide container" data-ride="carousel">
-                <div class="carousel-inner">
+        <div id="comunidade-slider d-md-none" class="carousel slide mt-4" data-ride="carousel">
+            <div class="carousel-inner d-md-none">
                 <!-- CARD COMUNIDADES 1 -->
                 @foreach($confirmedGroups as $key => $group)
-                <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                <div class="carousel-item {{$key == 0 ? 'active' : '' }}" style="text-align: -webkit-center;"> 
                     <div class="card border-0" style="width: 18rem;">
                         <div class="card-header border-0 text-center">
                             <span>{{$group->name}}</span>
@@ -56,28 +59,54 @@
                 </div>
                 @endforeach
             </div>
+            {{-- <a class="carousel-control-prev " href="#comunidade-slider" role="button" data-slide="prev">
+                <i class="material-icons"  style=" font-size: 40px; color: black"> keyboard_arrow_left </i>     
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="" role="button" data-slide="next">
+                <i class="material-icons"  style=" font-size: 40px; color: black"> keyboard_arrow_right </i>           
+                <span class="sr-only">Next</span>
+              </a> --}}
+        </div>
+
+        <div class="d-none d-md-flex pl-4">
+                <!-- CARD COMUNIDADES 1 -->
+                @foreach($confirmedGroups as $key => $group)
+                    <div class="card border-0 ml-3" style="width: 18rem;">
+                        <div class="card-header border-0 text-center">
+                            <span>{{$group->name}}</span>
+                        </div>
+                        <img src="@if($group->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Foto do Grupo">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="texto d-flex justify-content-start align-items-center ">
+                                <h5 class="mr-2 mb-0">{{$group->members}}</h5>
+                                <small>@if ($group->members<=1) membro @else membros @endif</small>
+                            </div>
+                            <div class="botao">
+                                <a href="{{route('group.show', ['id' => $group->id])}}" class="botao btn btn-primary float-right border-0 stretched-link">Visitar</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
         </div>
     </section>
 
     <!-- MINHAS VIAGENS -->
 
-    <section class="bg-light pb-3 container">
+    <section class="bg-light pb-3 pt-3">
         <div class="ml-3 mb-4">
             <h5>Minhas viagens</h5>
         </div>
-        <div class="d-flex">
-            <a href="{{route('trip.create')}}" class="d-flex align-items-center justify-content-between btnGroupsAndTrips ml-3 p-2">
-                <span>Criar nova viagem</span>
-                <i class="material-icons" style=" font-size: 30px">add</i>
-            </a>
-            <a href="{{route('user.trips.index', ['id' => auth()->user()->id])}}" class="d-flex align-items-center justify-content-between btnGroupsAndTrips ml-3 p-2">
-                <span>Ver todas</span>
-            </a>
-        </div>
+        <a href="{{route('trip.create')}}" class="d-flex align-items-center justify-content-between btnGroupsAndTrips ml-3 p-2">
+            <span>Criar nova viagem</span>
+            <i class="material-icons" style=" font-size: 30px">add</i>
+        </a>
+        <a href="{{route('user.trips.index', ['id' => auth()->user()->id])}}" class="btn botao ml-3 p-2 mt-4" >
+            <span>Ver todas</span>
+        </a>
     </section>
 
-    <div class="container">
-
+    <div class="">
     @foreach($confirmedTrips as $confirmedTrip)
 
         <div class="card mb-3 ml-3">
@@ -94,9 +123,7 @@
                 </div>
             </div>
         </div>
-
     @endforeach
-
     </div>
 
 @endsection
