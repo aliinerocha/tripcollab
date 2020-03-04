@@ -105,25 +105,20 @@
             <span>Ver todas</span>
         </a>
     </section>
-
-    <div class="">
-    @foreach($confirmedTrips as $confirmedTrip)
-
-        <div class="card mb-3 ml-3">
-            <div class="row no-gutters m-1">
-                <div class="col-md-2">
-                    <img src="@if($confirmedTrip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $confirmedTrip->photo)}} @endif" class="img-fluid img-thumbnail" alt="...">
+    {{-- CARD VIAGENS --}}
+        @foreach($confirmedTrips as $confirmedTrip)
+        <div class="bg-light pb-3 pt-3 mt-2 d-flex">
+                <img src="@if($confirmedTrip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $confirmedTrip->photo)}} @endif" alt="..." style="max-width: 150px" class="ml-3">
+                <div class="ml-3">
+                        <h5 class="card-title">{{$confirmedTrip->name}}                        
+                             @if(auth()->user()->id == $confirmedTrip->admin) 
+                            <p class="badge badge-pill badge-primary card-text text-right">Administrador</p>
+                         @endif </h5>
+                    <p class="card-text ">{{$confirmedTrip->description}}</p>
+                    <p class="card-text text-right" style="text-decoration:underline"><a href="{{route('trip.show', ['id' => $confirmedTrip->id])}}">Ver detalhes</a></p>
                 </div>
-                <div class="col-md-10">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$confirmedTrip->name}} @if(auth()->user()->id == $confirmedTrip->admin) <span class="badge badge-pill badge-primary">Administrador</span> @endif </h5>
-                        <p class="card-text">{{$confirmedTrip->description}}</p>
-                        <p class="card-text"><small class="text-muted"><a href="{{route('trip.show', ['id' => $confirmedTrip->id])}}">Ver detalhes</a></small></p>
-                    </div>
-                </div>
-            </div>
         </div>
-    @endforeach
-    </div>
+        @endforeach
+</div>
 
 @endsection
