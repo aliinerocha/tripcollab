@@ -16,7 +16,7 @@
                 <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
                 <h5>{{$group->name}}</h5>
             </a>
-    </div>
+        </div>
 
         <!-- CARD COM OS DETALHES DO GRUPO-->
         <main class="bg-light pt-4 pb-4">

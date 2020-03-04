@@ -280,7 +280,7 @@
                     <div class="d-flex w-100 mt-3 justify-content-between">
                         
                         <div class="d-flex small">
-                            <span class="d-flex mr-2 align-items-center">
+                            <span class="d-flex mr-3 align-items-center">
                                 <i class="material-icons">thumb_up</i>
                                 <span>{{$topic->likeTopics()->where('like_topic',1)->count()}}</span>
                             </span>
