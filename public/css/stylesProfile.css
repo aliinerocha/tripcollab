@@ -24,6 +24,14 @@
   .usuario-local i {
     color: #7C7C7C;
   }
+
+  .botao {
+    background-color: #1d6ab0;
+    color: #ffffff;
+    border-color: #064c8c;
+  }
+
+
   /* FIM DO CSS ABA PERFIL */
 
   /* CSS DESKTOP */
