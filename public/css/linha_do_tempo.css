@@ -74,12 +74,14 @@ body .entries .entry:nth-child(2n) .title.big::before {
 
 
 /* CSS DESKTOP */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   
   .classificacao {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
      
   }
   
-}
+} */
+

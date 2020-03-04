@@ -68,7 +68,7 @@ class UserController extends Controller
             if($groupMembersRequests !== [])
             {
                 $groupMembersRequests = $groupMembersRequests;
-                
+
                 foreach($groupMembersRequests as $key => $group)
                 {
                     $groupMemberRequest = DB::table('group_user')
@@ -77,24 +77,24 @@ class UserController extends Controller
                     ->join('groups','group_user.group_id','=','groups.id')
                     ->select('groups.id','groups.name')
                     ->get(['group_id','group_name']);
-    
+
                     $countGroupRequest = $groupMemberRequest->count();
-                    
+
                     $group->countGroupRequest = $countGroupRequest;
                 }
-            } else 
-            { 
+            } else
+            {
                 $groupMembersRequests = 0;
                 $countGroupRequest = 0;
             }
-            
+
             $GMRequests = DB::table('group_user')
             ->where('status','0')
             ->join('groups','group_user.group_id','=','groups.id')
             ->where('admin', auth()->user()->id)
             ->get('group_id');
             $totalGR = $GMRequests->count();
-            
+
             $tripMembersRequests = DB::table('trips')
             ->where('admin', auth()->user()->id)
             ->get()
@@ -117,8 +117,8 @@ class UserController extends Controller
 
                     $trip->countTripRequest = $countTripRequest;
                 }
-            } else 
-            { 
+            } else
+            {
                 $tripMembersRequests = 0;
                 $countTripRequest = 0;
             }
@@ -266,7 +266,7 @@ class UserController extends Controller
         $confirmedTrips = DB::table('trip_user')
         ->where('user_id', auth()->user()->id)
         ->join('trips','trip_user.trip_id','=','trips.id')
-        ->get();
+        ->paginate(3);
 
         return view('Groups and Trips/index', compact( 'confirmedTrips', 'confirmedGroups'));
     }

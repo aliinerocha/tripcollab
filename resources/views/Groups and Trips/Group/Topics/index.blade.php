@@ -25,7 +25,7 @@
 
     <!-- FÓRUM -->
 
-    {{-- <section class="bg-light pt-2 pb-2 mx-3 mx-md-0">
+{{-- <section class="bg-light pt-2 pb-2 mx-3 mx-md-0">
         <div>
             <h5 class="pt-4">Criar Novo Topico</h5>
                 <form action="{{route('topic.store', ['group_id' => $group->id])}}" method="POST" enctype="multipart/form-data" class="my-md-0 mr-4">
@@ -67,16 +67,20 @@
                     <i class="material-icons">search</i>
                 </span>
             </div>
-        </div>
-         <div class="mx-1 my-2">
+</section> --}}
+         {{-- <div class="mx-1 my-2">
             <a href="{{route('topic.create',['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a>
+        </div> --}}
+<section class="bg-light pt-3 pb-3 p-md-0 mb-2">
+        <div class="input-group ml-3 mr-3 m-md-0">
+            <input type="text" class="form-control border-0" placeholder="Buscar">
+            <span class="input-group-text border-0 mr-3 m-md-0"><i class="material-icons">search</i></span>
         </div>
-    </section> --}}
+</section>
 
-    <!-- TÓPICOS -->
-    @foreach ( $topics as $topic)
-    <section class="bg-light mt-2 mb-2">
-            <div class="card-body mb-4 card bg-light border-0">
+</section>
+        @foreach ($topics as $topic)
+        <div class="card-body mb-4 card bg-light border-0">
                 <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
                         <img class="foto-perfil rounded-circle display-column" src="@if($topic->user->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro">
@@ -116,7 +120,7 @@
                     </div>
                 </div>
             </div>
+            @endforeach
         </section>
-        @endforeach
     </div>
 @endsection

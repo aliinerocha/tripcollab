@@ -89,7 +89,11 @@ class TripController extends Controller
         ->where('trip_id', $trip->id)
         ->update(['status' => '1']);
 
-        return redirect()->route('trip.create');
+        $id = $trip->id;
+
+        flash("Viagem criada com sucesso")->success();
+
+        return redirect()->route('trip.show', compact('id'));
     }
 
     /**
@@ -129,8 +133,6 @@ class TripController extends Controller
             ['trip_id', $trip->id]
         ])->first();
 
-        $footer = 'true';
-
         return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin', 'user', 'userStatus', 'interests', 'confirmedMembers', 'group'));
     }
 
@@ -149,8 +151,6 @@ class TripController extends Controller
         $selectedInterests = DB::table('interest_trip')->where('trip_id', $id)->get();
 
         $groups = $this->groups->all(['id','name']);
-
-        $footer = 'true';
 
         return view('/Groups and Trips/Trip/edit', compact('footer', 'trip', 'interests', 'selectedInterests', 'groups'));
     }
@@ -177,8 +177,9 @@ class TripController extends Controller
 
         $trip->interest()->sync($interests);
 
-        return redirect()->route('trip.edit', ['id' => $id]);
+        flash("Viagem editada com sucesso")->success();
 
+        return redirect()->route('trip.edit', ['id' => $id]);
     }
 
     /**
@@ -197,7 +198,11 @@ class TripController extends Controller
 
         $trip->delete();
 
-        return redirect()->route('home');
+        $id = auth()->user()->id;
+
+        flash('Viagem excluída com sucesso');
+
+        return redirect()->route('user.trips.index', compact('id'));
     }
 
     public function confirmPresence($tripId, $userId) {
