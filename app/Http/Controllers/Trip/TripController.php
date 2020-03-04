@@ -9,6 +9,7 @@ use App\Interest;
 use App\Group;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use \Carbon\Carbon;
 
 
 class TripController extends Controller
@@ -271,5 +272,50 @@ class TripController extends Controller
         ->get();
 
         return view('/Groups and Trips/Trip/Members/index', compact('trip','user','tripMembers', 'tripMembersRequests'));
+    }
+
+    public function timeline () {
+
+        // $user = auth()->user();
+
+        // $trips = DB::table('trips')
+        // ->whereDate('return_date', '<=', Carbon::today()->toDateString())
+        // ->join('trips','trip_user.trip_id','=','trips.id')
+        // ->where('user_id', auth()->user()->id)
+        // ->select()
+        // ->get()
+        // ->toArray();
+
+        // // $trips = DB::table('trip_user')
+        // // ->where('user_id', auth()->user()->id)
+        // // ->get()
+        // // ->toArray();
+        // dd($trips);
+        
+        // if($trips !== [])
+        // {
+        //     $trips = $trips;
+            
+        //     foreach($trips as $key => $trip)
+        //     {
+        //         $tripMembers = DB::table('trip_user')
+        //         ->where('trip_id', $trip->id)
+        //         ->where('status', 1)
+        //         ->join('users','trip_user.user_id','=','users.id')
+        //         ->select('users.id','users.name', 'users.photo')
+        //         ->get(['users.id as userId','users.name as userName', 'users.photo as userPhoto']);
+                
+        //         $countTripMembers = $tripMembers->count();
+                
+        //         $trip->countTripMembers = $countTripMembers;
+        //     }
+        // } else 
+        // { 
+        //     $trips = 0;
+        //     $tripMembers = 0;
+        // }
+        // , compact('user', 'trips', 'tripMembers', 'countTripMembers')
+             
+        return view('/Timeline/show');
     }
 }
