@@ -89,6 +89,10 @@ section.grupos-populares {
         margin-right: 25vh;
         letter-spacing: -1px;
     }
+    .subtitulo-viajar{
+        margin-top: 40vh;
+        
+    }
     .btn-cadastro{
         margin-right: 45vh;
         size: 3rem;
@@ -98,23 +102,30 @@ section.grupos-populares {
 @media (min-width: 1025px) {
     /* RESPONSIVE banner img */
     .banner-img img {
-        height: 80vh;
+        height: 40vh;
+        margin-bottom: 20vh;;
     }
     .over-banner{
         margin-top: -15vh;
+        width: 100%;
     }
     .titulo{
       
-        width: 70%;
-        height: 20vh;
-        margin-top: -60vh;
+        width: 100%;
+        height: 30vh;
+        margin-top: -40vh;
         margin-right: 80vh;
-        letter-spacing: -1px;
+        letter-spacing: 1px;
+    }
+    .subtitulo-viajar{
+        margin-top: 40vh;
+        
     }
     .btn-cadastro{
         margin-right: 100vh;
-        margin-top: -60vh;
-        size: 3rem;
+        margin-left: 20vh;
+        margin-top: -20vh;
+        size: 5rem;
     }
 }
 
