@@ -29,9 +29,20 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($group)
     {
-        //
+        $user = auth()->user();
+
+        $admin = DB::table('groups')
+        ->where('admin', auth()->user()->id)
+        ->get();
+
+        $groups = DB::table('group_user')
+        ->where('user_id', auth()->user()->id)
+        ->join('groups','group_user.group_id','=','groups.id')
+        ->get();
+
+        return view('/Groups and Trips/Group/index', compact('admin','groups','user'));
     }
 
     /**

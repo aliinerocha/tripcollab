@@ -64,8 +64,9 @@
         </div>
       </div>
     </div>
-    <div class="w-100 mt-3 classificacao" class="other-achievements">
-        <div class="d-flex achievement-row">
+    <!-- class="other-achievements" -->
+    <div class="w-100 mt-3 classificacao row " class="other-achievements"> 
+        <div class="d-flex achievement-row col-lg sm-4 m-5">
           <div
           class="
           d-flex
@@ -82,18 +83,18 @@
             <span class="achievement-description">Descrição de como adquirir</span><br>
           </div>
         </div>
-        <div class="d-flex achievement-row">
+        <div class="d-flex achievement-row col-lg sm-4 m-5">
           <div class="d-flex justify-content-center align-items-center unactive-achievement">
               <i class="material-icons md-48">
                 beach_access
               </i>
           </div>
-          <div class="ml-3 d-flex flex-column w-100">
+          <div class="ml-3 d-flex flex-column w-100 col-6">
             <span>Prêmio 2</span>
             <span class="achievement-description">Descrição de como adquirir</span><br>
           </div>
         </div>
-        <div class="d-flex achievement-row">
+        <div class="d-flex achievement-row col-lg sm-4 m-5">
           <div class="d-flex justify-content-center align-items-center unactive-achievement">
               <i class="material-icons md-48">
                 restaurant

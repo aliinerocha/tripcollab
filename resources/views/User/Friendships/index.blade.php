@@ -1,5 +1,10 @@
 @extends('layouts.template', ['pagina' => 'perfil'])
 
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
+@endsection
+
+
 @section('titulo')
     Amigos
 @endsection
@@ -88,11 +93,13 @@
                             </td>
                             <td>{{$requestor->name}}</td>
 
-                            <td class="d-flex dropdown">
-                                <button class="btn btn-sm btn-info flex-grow-1 dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Solicitou sua amizade</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="{{route('friendship.accept', ['requestedUserID' => $requestor->id])}}">Aceitar</a>
-                                    <a class="dropdown-item" href="{{route('friendship.delete', ['requestedUserID' => $requestor->id])}}">Rejeitar</a>
+                            <td class="dropdown">
+                                <div class="d-flex">
+                                    <button class="btn btn-sm btn-info flex-grow-1 dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Solicitou sua amizade</button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="{{route('friendship.accept', ['requestedUserID' => $requestor->id])}}">Aceitar</a>
+                                        <a class="dropdown-item" href="{{route('friendship.delete', ['requestedUserID' => $requestor->id])}}">Rejeitar</a>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -142,8 +149,10 @@
                         <td>{{$friend->name}}</td>
 
                         @if($user->id == auth()->user()->id)
-                        <td class="d-flex">
-                            <a href="{{route('friendship.delete', ['requestedUserID' => $friend->id])}}" class="btn btn-sm btn-danger w-100">Desfazer amizade</a>
+                        <td>
+                            <div class="d-flex">
+                                <a href="{{route('friendship.delete', ['requestedUserID' => $friend->id])}}" class="btn btn-sm btn-danger w-100">Desfazer amizade</a>
+                            </div>
                         </td>
                         @endif
                     </tr>

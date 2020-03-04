@@ -37,10 +37,10 @@
     <div class="over-hit over-banner">
         <div class="titulo">
             <h3 class="ml-4">Queremos viver momentos memoráveis com você!<br>
-                <strong class="subtitulo ml-2 mb-0">Bora viajar juntos?</strong>
+                <strong class="subtitulo-viajar ml-2 mb-0">Bora viajar juntos?</strong>
             </h3>
         </div>
-        <button class="btn-cadastro btn btn-primary"><a href="/register">Cadastre-se</a></button>       
+        <button class="btn-cadastro btn btn-primary"><a href="/register">CADASTRE-SE</a></button>       
     </div>      
 
 </main>

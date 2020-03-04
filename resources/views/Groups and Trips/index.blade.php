@@ -32,7 +32,7 @@
             <span>Criar nova comunidade</span>
             <i class="material-icons" style=" font-size: 30px">add</i>
         </a>
-        <a href="{{route('user.trips.index', ['id' => auth()->user()->id])}}" class="btn botao ml-3 p-2 mt-4">
+        <a href="{{route('user.groups.index', ['id' => auth()->user()->id])}}" class="btn botao ml-3 p-2 mt-4">
             <span>Ver todas</span>
         </a>
 

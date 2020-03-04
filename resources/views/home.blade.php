@@ -9,7 +9,8 @@
 @endsection
 
 @section('conteudo')
-    
+
+<div class="containerDesktop">    
     <div class="container-fluid p-0">
         <!-- Foto da Capa -->
         <main class="col-xs-12 capa p-0">
@@ -144,17 +145,18 @@
 
             <div class="d-flex">
 
-            @foreach($friendlist as $friend)
+                @foreach($friendlist as $friend)
                 <div class="ml-3 py-4">
                     <a href="{{route('user.show', ['id' => $friend->id])}}">
                         <img alt="{{$friend->name}}" src="@if($friend->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$friend->photo")}} @endif" class="rounded-circle" style="width:90px; height: 90px">
                     </a>
                 </div>
-            @endforeach
+                @endforeach
 
             </div>
 
         </section>
         <!-- Amigos -->
     </div>
+</div>
 @endsection

@@ -58,6 +58,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('profile/{id}/trips/index', "Trip\TripController@index")->name('user.trips.index');
 
+    Route::get('profile/{id}/groups/index', "Group\GroupController@index")->name('user.groups.index');
+
     Route::put('/profile/{id}' , 'User\UserController@update')->name('user.update');
 
     Route::delete('/profile/{id}/delete', 'User\UserController@destroy')->name('user.delete');
