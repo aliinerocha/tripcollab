@@ -133,15 +133,25 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('search/groups/', 'Search\SearchController@searchGroups')->name('search.groups.index');
 
     Route::get('search/trips/', 'Search\SearchController@searchTrips')->name('search.trips.index');
+
+
+    // linha do tempo
+    
+    Route::get('/linhaDoTempo', function() {
+        return view('Timeline/show');
+    });
+    // Achievements
+    Route::get('/classificacao', function() {
+        return view('Achievements/show');
+    });
+
+
 });
+
 
 
 // Route::get('/classificacao', function() {
 //     return view('Achievements/show');
-// });
-
-// Route::get('/linhaDoTempo', function() {
-//     return view('Timeline/show');
 // });
 
 // Route::get('/mensagens', function() {

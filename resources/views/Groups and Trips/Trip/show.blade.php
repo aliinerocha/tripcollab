@@ -1,11 +1,17 @@
 
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
+ection('css')
+<link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
+@endsection
+
 @section('titulo')
     Detalhes da viagem
 @endsection
 
 @section('conteudo')
+<div class="containerDesktop">
+
     <!-- NAV ABA-->
     <div class="bg-light pt-4 pb-4 mb-3">
         <div class="d-flex ml-3 align-items-center">
@@ -163,4 +169,7 @@
             </div>
         </div>
     </main>
+    
+</div>
+
 @endsection

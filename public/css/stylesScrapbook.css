@@ -157,3 +157,32 @@
     width: 100px;
     height: 100px;
 }
+
+
+/* CSS DESKTOP */
+@media (min-width: 768px) {
+    body {
+        background-color:#f9f9f9;
+    }
+    .containerDesktop {
+        max-width: 60vw;
+        margin: auto;
+    }
+    .banner-img {
+        object-fit: cover;
+        width: 100vw;
+        height: 20vh;
+    }
+
+}
+
+@media (min-width: 1025px) {
+    
+    .banner-img {
+        object-fit: cover;
+        width: 100%;
+        height: 35vh;
+    }
+}
+
+  

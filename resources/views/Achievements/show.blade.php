@@ -64,7 +64,7 @@
         </div>
       </div>
     </div>
-    <div class="w-100 mt-3" class="other-achievements">
+    <div class="w-100 mt-3 classificacao" class="other-achievements">
         <div class="d-flex achievement-row">
           <div
           class="

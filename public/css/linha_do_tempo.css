@@ -71,3 +71,15 @@ body .entries .entry:nth-child(2n) .title::before {
 body .entries .entry:nth-child(2n) .title.big::before {
   transform: translate(-8px, -50%);
 }
+
+
+/* CSS DESKTOP */
+@media (min-width: 768px) {
+  
+  .classificacao {
+      display: flex;
+      flex-direction: column;
+     
+  }
+  
+}
