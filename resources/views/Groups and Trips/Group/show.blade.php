@@ -258,7 +258,6 @@
             @if ($group->topic()->count()>3)
             <a href="{{route('topic.index', ['group_id' => $group->id])}}" class="botao btn btn-primary float-right mt-3 mr-3 mr-md-0">Ver todos</a> 
             @endif
-
         @endif
         </section>
 </div>

@@ -25,7 +25,7 @@
 
     <!-- FÓRUM -->
 
-    {{-- <section class="bg-light pt-2 pb-2 mx-3 mx-md-0">
+<section class="bg-light pt-2 pb-2 mx-3 mx-md-0">
         <div>
             <h5 class="pt-4">Criar Novo Topico</h5>
                 <form action="{{route('topic.store', ['group_id' => $group->id])}}" method="POST" enctype="multipart/form-data" class="my-md-0 mr-4">
@@ -67,15 +67,9 @@
                     <i class="material-icons">search</i>
                 </span>
             </div>
-        </div>
-         <div class="mx-1 my-2">
+         {{-- <div class="mx-1 my-2">
             <a href="{{route('topic.create',['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a>
-        </div>
-    </section> --}}
-
-    <!-- TÓPICOS -->
-    @foreach ( $topics as $topic)
-    <section class="bg-light mt-2 mb-2">
+        </div> --}}
             <div class="card-body mb-4 card bg-light border-0">
                 <div class="d-flex">
                     <div class="d-flex flex-column p-0 align-items-center justify-content-end">
@@ -117,6 +111,5 @@
                 </div>
             </div>
         </section>
-        @endforeach
     </div>
 @endsection

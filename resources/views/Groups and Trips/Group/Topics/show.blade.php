@@ -40,7 +40,6 @@
                     </div>
 
                 </div>
-    
                 <div class="d-flex w-100 mt-3 justify-content-between align-items-center">
                     <div class="d-flex">
                         <span class=" mr-3">
@@ -56,6 +55,7 @@
                             <span>{{$topic->likeTopics()->where('like_topic',0)->count()}}</span>
                         </span>
                     </div>
+    </section>
                     
                     {{-- <span class="d-flex mr-2">
                         
@@ -74,7 +74,6 @@
                 
             </div>
         </div>
-    </section>
 
     <!-- Formulário de Respostas -->
     <section class="bg-light mt-2 mb-1 pb-1 pt-2">
@@ -120,10 +119,10 @@
 
         <div class="col-12">
             <div class="card-body px-0">
-                 <div class="">
-                    
+                 <div>
                         <img class="foto-perfil rounded-circle display-column mr-2" src="@if($topic->user->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif"  alt="foto de perfil do membro {{$topicMessage->user->name}}"> 
                         <b class="mb-0 pb-0">{{$topicMessage->user->name}}</b> 
+                        <small class="float-right">{{date('d/m/Y', strtotime($topicMessage->created_at))}}</small>  
                 </div>
                 <div class="mt-2">{{$topicMessage->message}}</div>
                 <div class="d-flex w-100 mt-3 justify-content-between small">
@@ -142,18 +141,16 @@
                         </span>
                     </div>
 
-                    <div class="w-100 d-flex ml-3 justify-content-around">
-                        <span>{{date('d/m/Y', strtotime($topicMessage->created_at))}}</span>  
-                    </div>
-
+                    <div class="d-flex">
                     @if($user->id == $topicMessage->user_id)
-                        <a href="{{route('topicMessage.edit',['id' => $topicMessage->id])}}" class="btn btn-primary"><i class="fas fa-edit p-0"></i></a>
+                        <a href="{{route('topicMessage.edit',['id' => $topicMessage->id])}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                         <form action="{{route('topicMessage.destroy',['topic_id' => $topic->id ,'id' => $topicMessage->id])}}" method="POST">
                             @csrf
                             @method("DELETE")
                             <button type="submit" class="btn btn-danger ml-1"><i class="fas fa-trash-alt"></i></button>
                         </form>            
                     @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -161,11 +158,10 @@
     @endforeach
 
     <!-- Formulário de Respostas -->
-    <section class="bg-light mt-2 mb-3 pb-3 pt-2">
-            <span class="ml-3 ml-md-0">Envie sua Resposta</span>
+    <section class="bg-light mt-2 mb-5 pb-5 pt-2 fixed-bottom col-md-7 m-md-auto">
+            <span>Envie sua Resposta</span>
             <form action="{{route('topicMessage.store',['topic_id' => $topic->id])}}" method="POST" enctype="multipart/form-data" class="mt-2">
             @csrf
-                <div class="form-row col-12">
                         <label class="m-0" for="exampleFormControlTextarea"></label>
                         <input textarea class="form-control @error('message') is-invalid @enderror" name="message" type="text" value="{{old('message')}}" id="exampleFormControlTextarea" rows="1" required></textarea>
                             @error('message')
@@ -173,8 +169,7 @@
                                     {{$message}}
                                 </div>
                             @enderror
-                        <button type="submit" class="btn btn-primary mt-4">Responder</button>
-                </div>
+                        <button type="submit" class="btn btn-primary mt-4 float-right">Responder</button>
             </form>
             <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
             <input type="hidden" name="topic_id" value="{{$topic->id}}">
