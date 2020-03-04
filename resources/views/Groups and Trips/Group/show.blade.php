@@ -14,7 +14,7 @@
     <div class="pt-4 pb-4 card menu-voltar">
             <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
                 <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
-                <h5>Voltar</h5>
+                <h5>Minhas Comunidades</h5>
             </a>
     </div>
 
@@ -37,33 +37,31 @@
             @endif
             </div>
 
-    @if(($group->visibility == 0 && $userStatus && $userStatus->status == 0) || ($group->visibility == 0 && !$userStatus))
+            <div class="d-flex flex-column">
+                @if(($group->visibility == 0 && $userStatus && $userStatus->status == 0) || ($group->visibility == 0 && !$userStatus))
 
-        <div class="d-flex justify-content-center">Esta comunidade não é aberta ao público</div>
+                <span class="ml-3 ml-md-0 mr-3">Esta comunidade não é aberta ao público</span>
 
-        @if(!$userStatus && $group->visibility == 0)
+                <div class="ml-3 mt-3 ml-md-0">
+                @if(!$userStatus && $group->visibility == 0)
 
-            <div class="btn-group">
-                <div>
-                    <a href="{{route('group.confirmPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn btn-info">
-                        Solicitar participação
-                    </a>
+                        <a href="{{route('group.confirmPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn botao">
+                            Solicitar participação
+                        </a>
+
+                        @elseif($userStatus && $userStatus->status == 0)
+            
+                        <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}" type="button" class="btn botao_atencao">
+                            Cancelar solicitação
+                        </a>
                 </div>
             </div>
 
-        @elseif($userStatus && $userStatus->status == 0)
-            
-            <div class="btn-group dropup">
-                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Solicitação enviada
-                </button>
-                <div class="dropdown-menu">
+                {{-- <div class="dropdown-menu ">
                     <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}">
                     Cancelar solicitação
                     </a>
-                </div>
-            </div>
-
+                </div> --}}
         @endif
 
     @else
@@ -88,23 +86,27 @@
                 </p>
             </div>
 
-            <div class="ml-4 ml-md-0 mr-4 mb-4 pt-4">
+            <div class="ml-4 ml-md-0 mr-4 mb-4 py-4">
                 <h5>Interesses da Comunidade:</h5>
-                <div class=" interesses text-justify  py-2">
+                <div class=" interesses text-justify">
                     @if($group->interest->count() == 0 )
                         A comunidade {{$group->name}} ainda não informou nenhum interesse.
                     @endif
                 </div>
 
-                <div class="interesses text-justify py-2">
+                <div class="interesses text-justify">
                     @foreach($group->interest as $interest)
-                        <button type="button" class="btn btn-outline-primary mt-1 mr-1">{{$interest->name}}</button>
+                        <button type="button" class="btn btn_interesses mt-1 mr-1">{{$interest->name}}</button>
                     @endforeach
                 </div>
             </div>
 
-            <div class="ml-4 ml-md-0 mr-3 mb-4">
+            <div class="ml-4 ml-md-0 mr-3 py-4">
                 <h5>Membros:</h5>
+                <div class="d-flex align-items-center mb-3">
+                <h6 > {{$confirmed}} @if ($confirmed<=1) membro @else membros @endif </h6>
+                <u><a href="" class=" ml-3 ">Ver todos</a></u>
+                </div>
                 @foreach($group->user as $member)
                     <a href="{{route('user.show', ['id' => $member->id])}}">
                         <img
@@ -127,13 +129,11 @@
                             </a>
                         </div>
                 @endif
-
-                <h6 class="ml-2 mt-4"> {{$confirmed}} @if ($confirmed<=1) membro @else membros @endif </h6>
             </div>
 
             <!-- VIAGENS REALIZADAS -->
 
-            <div class="ml-4 ml-md-0 mb-4 pt-4">
+            <div class="ml-4 ml-md-0 mb-4 py-4">
                 <h5>Viagens realizadas:</h5>
             </div>
 

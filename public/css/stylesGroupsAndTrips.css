@@ -120,6 +120,50 @@
   border: none;
 }
 
+td {
+  width: 80px;
+}
+
+td a{
+  color: black;
+  align-self: center;
+  vertical-align: -webkit-baseline-middle;
+}
+
+td a:hover{
+  color: black;
+  text-decoration: none;
+}
+
+
+.td_acao{
+  width: 200px;
+}
+
+a{
+  color: black;
+
+}
+
+a:hover{
+  color: black;
+  text-decoration: none;
+}
+
+
+.btn_interesses {
+  background-color: #f7f7f7;
+  color: #1d6ab0;
+  border-color: #1d6ab0;
+}
+
+.btn_interesses:hover {
+  background-color: #f7f7f7;
+  color: #1d6ab0;
+  border-color: #1d6ab0;
+  cursor: unset;
+}
+
   /* CSS DESKTOP */
   @media (min-width: 768px) {
     body {

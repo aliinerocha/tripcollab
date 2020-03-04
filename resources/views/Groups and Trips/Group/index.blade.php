@@ -1,24 +1,28 @@
 @extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
+@endsection
+
 @section('titulo')
     Membros da Comunidade
 @endsection
 
 @section('conteudo')
 
-<div class="bg-light pt-4 pb-4 mb-3">
-        <div class="d-flex ml-3 align-items-center">
-            <a class="link" href="{{ URL::previous() }}"><i class="material-icons">arrow_back</i></a>
-            <div class="container">
-                <h5>Minhas comunidades</h5>
-            </div>
-        </div>
-</div>
+<div class="containerDesktop">
+    <!-- NAV ABA-->
+    <div class="pt-4 pb-4 card menu-voltar">
+        <a  href="{{route('group.show',['id' => $group->id])}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
+            <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+            <h5>{{$group->name}}</h5>
+        </a>
+    </div>
 
-<main class="bg-light pt-4 pb-4">
+<main class="bg-light pt-4 pb-4 mx-3 mx-md-0">
     <div class="row">
-        <div class="col-10 offset-1">
-            <div class="d-flex mt-2 justify-content-center">
+        <div class="col-12">
+            {{-- <div class="d-flex mt-2 justify-content-center">
                 <div class="col-11 p-0">
                     <img src="@if($group->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $group->photo)}} @endif" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto; @if($group->photo != 'nophoto') border-radius: 25px @endif" alt="...">
                 </div>
@@ -27,19 +31,20 @@
                 <div class="col-11 p-0">
                     <h5 class="my-4 text-center">{{$group->name}}</h5>
                 </div>
-            </div>
-            <div>
+            </div> --}}
+
+        <div>
 
             @if(!($groupMembersRequests->count()) == 0 && $user->id == $group->admin)
 
             Solicitações para participar da comunidade
 
-                <table class="table table-striped">
+                <table class="table table-striped  mt-3">
                     <thead>
                         <tr>
-                            <th>Foto</th>
-                            <th>Nome</th>
-                            <th>Ações</th>
+                            <th >Foto</th>
+                            <th >Nome</th>
+                            <th >Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,20 +53,14 @@
                             <td>
 
                             <a href="{{route('user.show', ['id' => $member->id])}}">
-                                    <img
-                                    class="foto-perfil rounded-circle"
-                                    src="@if($member->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$member->photo")}} @endif"
-                                    alt="{{$member->name}}">
-                                </a>
+                                <img class="foto-perfil rounded-circle"src="@if($member->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$member->photo")}} @endif"alt="{{$member->name}}"></a>
                             </td>
 
                             <td>
-                                <a href="{{route('user.show', ['id' => $member->id])}}">
-                                    {{$member->name}}
-                                </a>
+                                <a href="{{route('user.show', ['id' => $member->id])}}">{{$member->name}}</a>
                             </td>
 
-                            <td class="d-flex dropdown">
+                            <td class="d-flex dropdown td_acao">
                                 <button class="btn btn-sm btn-info flex-grow-1 dropdown-toggle"
                                 id="dropdownMenuButton"
                                 data-toggle="dropdown"
@@ -94,13 +93,13 @@
 
             @if($groupMembers->count() == 1) Existe @else Existem @endif {{$groupMembers->count()}} @if($groupMembers->count() <= 1) membro confirmado @else membros confirmados @endif nessa comunidade.
 
-            <table class="table table-striped">
+            <table class="table table-striped mt-3">
                 <thead>
                     <tr>
-                        <th>Foto</th>
-                        <th>Nome</th>
+                        <th >Foto</th>
+                        <th >Nome</th>
                         @if($user->id == $group->admin)
-                        <th>Ações</th>
+                        <th >Ações</th>
                         @endif
                     </tr>
                 </thead>
@@ -110,28 +109,16 @@
                         <td>
 
                         <a href="{{route('user.show', ['id' => $member->id])}}">
-                                <img
-                                class="foto-perfil rounded-circle"
-                                src="@if($member->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$member->photo")}} @endif"
-                                alt="{{$member->name}}">
-                            </a>
+                                <img class="foto-perfil rounded-circle" src="@if($member->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$member->photo")}} @endif" alt="{{$member->name}}"></a>
                         </td>
 
-                        <td>
-                            <a href="{{route('user.show', ['id' => $member->id])}}">
-                                {{$member->name}}
-                            </a>
+                        <td >
+                            <a href="{{route('user.show', ['id' => $member->id])}}">{{$member->name}}</a>
                         </td>
 
                         @if($user->id == $group->admin)
-                        <td class="d-flex">
-                            <div class="d-flex mt-3">
-                                <a
-                                href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $member->id])}}"
-                                class="btn btn-danger">
-                                Cancelar a participação deste usuário
-                                </a>
-                            </div>
+                        <td class="td_acao">
+                                <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $member->id])}}"class="btn btn-danger">Excluir membro</a>
                         </td>
                         @endif
 
@@ -146,5 +133,5 @@
         </div>
     </div>
 </main>
-
+</div>
 @endsection
