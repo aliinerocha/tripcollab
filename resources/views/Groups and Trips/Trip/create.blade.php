@@ -11,7 +11,7 @@
 @section('conteudo')
 
     <div class="containerDesktop">
-    
+
         <!-- NAV ABA-->
         <div class="bg-light pt-4 pb-4 mb-3">
             <div class="d-flex ml-3 align-items-center">
@@ -57,6 +57,24 @@
                             <label for="investimentoPrevisto">Investimento previsto:</label>
                             <input name="foreseen_budget" type="text" class="form-control mb-2" id="investimentoPrevisto" placeholder="Insira o investimento previsto" value="">
                         </div>
+
+                        <div class="form-group mt-4">
+                            <label for="palavrasChave">Palavras-chave:</label>
+                            @foreach ($interests as $interest)
+                            <div class="form-check @error('interests') is-invalid @enderror"  id="palavrasChave">
+                                    <input class="form-check-input" name="interest[]" type="checkbox" value="{{$interest->id}}" id="{{$interest->id}}">
+                                    <label class="form-check-label" for="{{$interest->id}}">
+                                        {{$interest->name}}
+                                    </label>
+                                @error('interests')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                            @endforeach
+                        </div>
+
                         <div class="form-group mt-4">
                             <label for="visibilidadeDoGrupo">Visivel ao público?</label>
                             <select name="visibility" class="form-control" id="visibilidadeDoGrupo">
@@ -75,6 +93,6 @@
                 </form>
             </div>
         </main>
-    
-    </div> 
+
+    </div>
 @endsection

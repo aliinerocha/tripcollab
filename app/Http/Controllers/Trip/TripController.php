@@ -51,6 +51,9 @@ class TripController extends Controller
     public function create()
     {
         $footer = 'true';
+
+        $interests = Interest::get();
+
         return view('/Groups and Trips/Trip/create', compact('footer','interests'));
     }
 
@@ -77,6 +80,8 @@ class TripController extends Controller
         $trip = $this->trip->create($data);
 
         $trip->user()->attach($user);
+
+        $trip->interest()->sync($request->interest, false);
 
         $update = DB::table('trip_user')
         ->where('user_id', auth()->user()->id)
