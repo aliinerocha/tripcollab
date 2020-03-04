@@ -96,8 +96,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('{group_id}/topic/index', 'Group\TopicController@index')->name('topic.index');
 
-    Route::get('{group_id}/topic/create', 'Group\TopicController@create')->name('topic.create');
-
     Route::post('{group_id}/topic/store', 'Group\TopicController@store')->name('topic.store');
 
     Route::get('topicLike/{id}', 'Group\TopicController@likeTopic')->name('topic.like');
@@ -110,8 +108,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('topic/{id}', 'Group\TopicController@destroy')->name('topic.destroy');
 
-    Route::any('{groupId}/topic/search', 'Group\TopicController@search')->name('topic.search');
-
     Route::get('topic/{id}', 'Group\TopicController@show')->name('topic.show');
 
     // Topic Messages
@@ -121,6 +117,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('topicMessageDislike/{id}', 'Group\TopicMessageController@dislikeTopicMessage')->name('topicMessage.dislike');
 
     Route::post('{topic_id}/topicMessage/store', 'Group\TopicMessageController@store')->name('topicMessage.store');
+
+    Route::get('topicMessage/{id}/edit', 'Group\TopicMessageController@edit')->name('topicMessage.edit');
+
+    Route::put('topicMessage/{id}', 'Group\TopicMessageController@update')->name('topicMessage.update');
 
     Route::delete('{topic_id}/topicMessage/{id}', 'Group\TopicMessageController@destroy')->name('topicMessage.destroy');
 });

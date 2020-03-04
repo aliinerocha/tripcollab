@@ -81,7 +81,13 @@ class TopicMessageController extends Controller
      */
     public function edit($id)
     {
-        // 
+        $topicMessageForm = $this->topicMessage->findOrFail($id);
+
+        $topic = Topic::find($topicMessageForm->topic_id);
+        $user = auth()->user(['id', 'name']);
+        $topicMessages = TopicMessage::where('topic_id',$topic->id)->orderBy('topic_messages.created_at', 'desc')->get();
+
+        return view('Groups and Trips/Group/Topics/show', compact('topicMessageForm', 'topic', 'user', 'topicMessages'));
     }
 
     /**
@@ -91,9 +97,15 @@ class TopicMessageController extends Controller
      * @param  \App\TopicMessage  $topicMessage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $topicMessage = \App\TopicMessage::find($id);
+
+        $topicMessage->update($data);
+
+        return redirect()->route('topic.show', $topicMessage->topic_id);
     }
 
     /**
