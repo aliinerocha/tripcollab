@@ -65,19 +65,12 @@ h5 {
 }
 
 .separador {
-    position: relative;    
-    border: 1px solid #F7F7F7;   
-    color:#d6cfcf;
+    display: block;
+    color: #ACACAC;
     text-align: center;
-    margin-top: 15px;
-    width: 100%;
-    height: 1px; 
 }
 
-.text {    
-    z-index: 3; 
-    background-color: #fff;   
-}
+
 
 /* CSS DESKTOP */
 @media (min-width: 768px) {
