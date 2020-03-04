@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::put('trip/{id}', "Trip\TripController@update")->name('trip.update');
 
-    Route::delete('/trip/{id}', "Trip\TripController@destroy")->name('trip.destroy');
+    Route::delete('trip/{id}', "Trip\TripController@destroy")->name('trip.destroy');
 
     Route::get('trip/{tripId}/confirm/{userId}', 'Trip\TripController@confirmPresence')->name('trip.confirmPresence');
 
@@ -43,9 +43,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('trip/{tripId}/cancel/{userId}', 'Trip\TripController@cancelPresence')->name('trip.cancelPresence');
 
-    Route::get('/trip/{id}/members', 'Trip\TripController@tripMembersIndex')->name('trip.membersIndex');
+    Route::get('trip/{id}/members', 'Trip\TripController@tripMembersIndex')->name('trip.membersIndex');
 
-    Route::get ('/groupsandtrips', 'User\UserController@listGroupsAndTrips')->name('user.listGroupsAndTrips');
+    Route::get ('groupsandtrips', 'User\UserController@listGroupsAndTrips')->name('user.listGroupsAndTrips');
 
 
     // User
@@ -55,6 +55,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get ('/profile/{id}', 'User\UserController@show')->name('user.show');
 
     Route::get('/profile/{id}/edit' , 'User\UserController@edit')->middleware('checkUser')->name('user.edit');
+
+    Route::get('profile/{id}/trips/index', "Trip\TripController@index")->name('user.trips.index');
 
     Route::put('/profile/{id}' , 'User\UserController@update')->name('user.update');
 

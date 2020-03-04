@@ -1,7 +1,11 @@
 @extends('layouts.template', ['pagina' => 'perfil'])
 
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
+@endsection
+
 @section('titulo')
-    Participantes da viagem
+    Minhas viagens
 @endsection
 
 @section('conteudo')
@@ -18,63 +22,44 @@
 <main class="bg-light pt-4 pb-4">
     <div class="row">
         <div class="col-10 offset-1">
-            <div class="d-flex mt-2 justify-content-center">
-                <div class="col-11 p-0">
-                    <img src="@if($trip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $trip->photo)}} @endif" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto; @if($trip->photo != 'nophoto') border-radius: 25px @endif" alt="...">
-                </div>
-            </div>
-            <div>
-                <div class="col-11 p-0">
-                    <h5 class="my-4 text-center">{{$trip->name}}</h5>
-                </div>
-            </div>
-            <div>
 
-            @if(!($tripMembersRequests->count()) == 0 && $user->id == $trip->admin)
+            @if($admin->count() != 0)
 
-            Solicitações para participar da viagem
+            Viagens administradas por você
 
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Foto</th>
-                            <th>Nome</th>
+                            <th>Viagem</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($tripMembersRequests as $member)
+                    @foreach($admin as $trip)
                         <tr>
                             <td>
 
-                            <a href="{{route('user.show', ['id' => $member->id])}}">
+                            <a href="{{route('trip.show', ['id' => $trip->id])}}">
                                     <img
                                     class="foto-perfil rounded-circle"
-                                    src="@if($member->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$member->photo")}} @endif"
-                                    alt="{{$member->name}}">
+                                    src="@if($trip->photo == 'nophoto') {{asset('./img/add.png')}} @else {{asset('storage/' . $trip->photo)}} @endif"
+                                    alt="{{$trip->name}}">
                                 </a>
                             </td>
 
                             <td>
-                                <a href="{{route('user.show', ['id' => $member->id])}}">
-                                    {{$member->name}}
+                                <a href="{{route('trip.show', ['id' => $trip->id])}}">
+                                    {{$trip->name}}
                                 </a>
                             </td>
 
-                            <td class="d-flex dropdown">
-                                <button class="btn btn-sm btn-info flex-grow-1 dropdown-toggle"
-                                id="dropdownMenuButton"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
-                                Solicitou participar da viagem
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="{{route('trip.acceptPresence', ['tripId' => $trip->id, 'userId' => $member->id])}}">
-                                        Aceitar
-                                    </a>
-                                    <a class="dropdown-item" href="{{route('trip.cancelPresence', ['tripId' => $trip->id, 'userId' => $member->id])}}">
-                                        Rejeitar
+                            <td class="d-flex">
+                                <div class="d-flex">
+                                    <a
+                                    href="{{route('trip.edit',['id' => $trip->id])}}"
+                                    class="btn btn-info">
+                                    Editar
                                     </a>
                                 </div>
                             </td>
@@ -86,56 +71,78 @@
 
             @endif
 
-            @if($tripMembers->count() == 0)
+            @if($trips->count() == 0)
 
-            Ainda não há membros para essa viagem
+            Você ainda não participa de nenhuma viagem
 
             @else
 
-            Existem {{$tripMembers->count()}} membros confirmados nessa viagem
+            @if($trips->count() - $admin->count() == 1)
+
+                {{$trips->count() - $admin->count()}} viagem listada
+
+            @else
+
+                {{$trips->count() - $admin->count()}} viagens listadas
+
+            @endif
 
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Foto</th>
-                        <th>Nome</th>
-                        @if($user->id == $trip->admin)
+                        <th>Viagem</th>
                         <th>Ações</th>
-                        @endif
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($tripMembers as $member)
+                @foreach($trips as $trip)
+                    @if($trip->admin != $user->id)
                     <tr>
                         <td>
 
-                        <a href="{{route('user.show', ['id' => $member->id])}}">
+                        <a href="{{route('trip.show', ['id' => $trip->id])}}">
                                 <img
                                 class="foto-perfil rounded-circle"
-                                src="@if($member->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$member->photo")}} @endif"
-                                alt="{{$member->name}}">
+                                src="@if($trip->photo == 'nophoto') {{asset('./img/add.png')}} @else {{asset('storage/' . $trip->photo)}} @endif"
+                                alt="{{$trip->name}}">
                             </a>
                         </td>
 
                         <td>
-                            <a href="{{route('user.show', ['id' => $member->id])}}">
-                                {{$member->name}}
+                            <a href="{{route('trip.show', ['id' => $trip->id])}}">
+                                {{$trip->name}}
                             </a>
                         </td>
 
-                        @if($user->id == $trip->admin)
                         <td class="d-flex">
-                            <div class="d-flex mt-3">
-                                <a
-                                href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $member->id])}}"
-                                class="btn btn-danger">
-                                Cancelar a participação deste usuário
+
+                        @if($trip->status == 0)
+                            <div class="btn-group dropup">
+                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Solicitação enviada
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}">
+                                    Cancelar solicitação
+                                    </a>
+                                </div>
+                            </div>
+
+                        @elseif($trip->status == 1)
+
+                            <div class="d-flex">
+                                <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn btn-danger">
+                                    Cancelar presença
                                 </a>
                             </div>
-                        </td>
+
                         @endif
 
+                        </td>
+
                     </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>

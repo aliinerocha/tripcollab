@@ -27,9 +27,20 @@ class TripController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($trip)
     {
-        //
+        $user = auth()->user();
+
+        $admin = DB::table('trips')
+        ->where('admin', auth()->user()->id)
+        ->get();
+
+        $trips = DB::table('trip_user')
+        ->where('user_id', auth()->user()->id)
+        ->join('trips','trip_user.trip_id','=','trips.id')
+        ->get();
+
+        return view('/Groups and Trips/Trip/index', compact('admin','trips','user'));
     }
 
     /**
@@ -249,6 +260,6 @@ class TripController extends Controller
         ->join('users','trip_user.user_id','=','users.id')
         ->get();
 
-        return view('/Groups and Trips/Trip/index', compact('trip','user','tripMembers', 'tripMembersRequests'));
+        return view('/Groups and Trips/Trip/Members/index', compact('trip','user','tripMembers', 'tripMembersRequests'));
     }
 }
