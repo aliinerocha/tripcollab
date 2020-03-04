@@ -65,18 +65,27 @@ class UserController extends Controller
             ->get()
             ->toArray();
 
-            foreach($groupMembersRequests as $key => $group)
+            if($groupMembersRequests !== [])
             {
-                $groupMemberRequest = DB::table('group_user')
-                ->where('groups.id', $group->id)
-                ->where('status','0')
-                ->join('groups','group_user.group_id','=','groups.id')
-                ->select('groups.id','groups.name')
-                ->get(['group_id','group_name']);
-
-                $countGroupRequest = $groupMemberRequest->count();
+                $groupMembersRequests = $groupMembersRequests;
                 
-                $group->countGroupRequest = $countGroupRequest;
+                foreach($groupMembersRequests as $key => $group)
+                {
+                    $groupMemberRequest = DB::table('group_user')
+                    ->where('groups.id', $group->id)
+                    ->where('status','0')
+                    ->join('groups','group_user.group_id','=','groups.id')
+                    ->select('groups.id','groups.name')
+                    ->get(['group_id','group_name']);
+    
+                    $countGroupRequest = $groupMemberRequest->count();
+                    
+                    $group->countGroupRequest = $countGroupRequest;
+                }
+            } else 
+            { 
+                $groupMembersRequests = 0;
+                $countGroupRequest = 0;
             }
             
             $GMRequests = DB::table('group_user')
@@ -85,24 +94,33 @@ class UserController extends Controller
             ->where('admin', auth()->user()->id)
             ->get('group_id');
             $totalGR = $GMRequests->count();
-
+            
             $tripMembersRequests = DB::table('trips')
             ->where('admin', auth()->user()->id)
             ->get()
             ->toArray();
 
-            foreach($tripMembersRequests as $key => $trip)
+            if($tripMembersRequests !== [])
             {
-                $tripMemberRequest = DB::table('trip_user')
-                ->where('status', 0)
-                ->where('trips.id', $trip->id)
-                ->join('trips','trip_user.trip_id','trips.id')
-                ->select('trips.id','trips.name')
-                ->get(['trip_id','trip_name']);
+                $tripMembersRequests = $tripMembersRequests;
 
-                $countTripRequest = $tripMemberRequest->count();
-                
-                $trip->countTripRequest = $countTripRequest;
+                foreach($tripMembersRequests as $key => $trip)
+                {
+                    $tripMemberRequest = DB::table('trip_user')
+                    ->where('status', 0)
+                    ->where('trips.id', $trip->id)
+                    ->join('trips','trip_user.trip_id','trips.id')
+                    ->select('trips.id','trips.name')
+                    ->get(['trip_id','trip_name']);
+
+                    $countTripRequest = $tripMemberRequest->count();
+
+                    $trip->countTripRequest = $countTripRequest;
+                }
+            } else 
+            { 
+                $tripMembersRequests = 0;
+                $countTripRequest = 0;
             }
 
             $TMRequests = DB::table('trip_user')
