@@ -13,15 +13,16 @@
 
 <!-- BANNER -->
 <main>
-    {{-- <img src="@if($group->photo == 'nophoto') {{url('/img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner"> --}}
-    <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
+    <img src="@if($group->photo == 'nophoto') {{url('/img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner">
 </main>
 <div class="containerDesktop">
-    <div class="pt-4 pb-4 mb-2 card menu-voltar">
-        <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
-            <i class="material-icons mr-3 back stretched-link">arrow_back</i>
-            <h5>Minhas Comunidades</h5>
-        </a>
+
+        <!-- NAV ABA-->
+    <div class="pt-4 pb-4 card menu-voltar">
+            <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
+                <i class="material-icons mr-3 back stretched-link">arrow_back</i>
+                <h5>Minhas Comunidades</h5>
+            </a>
     </div>
     <!-- NOME E MEMBROS -->
 

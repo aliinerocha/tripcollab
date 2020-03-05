@@ -9,9 +9,12 @@
 @endsection
 
 @section('conteudo')
+<main>
+    <img src="@if($group->photo == 'nophoto') {{url('/img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner">
+</main>
     <div class="containerDesktop">
         <!-- NAV ABA-->
-        <div class="pt-4 pb-4 mb-2 card menu-voltar">
+        <div class="pt-4 pb-4 mb-2 card bg-light menu-voltar">
             <a  href="{{route('group.show',['id' => $group->id])}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
                 <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
                 <h5>{{$group->name}}</h5>
@@ -23,7 +26,7 @@
                 <form action="{{route('group.update', ['id' => $group->id])}}" method="POST" class="col-12 ">
                 @csrf
                 @method("PUT")
-                    <img src="{{url('./img/add.png')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
+                    {{-- <img src="{{url('./img/add.png')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="..."> --}}
                     <div class="form-group mt-4">
                         <label for="tituloComunidade">Titulo da Comunidade:</label>
                         <input name="name" type="text" class="form-control" id="tituloComunidade" placeholder="Insira titulo da comunidade" value="{{$group->name}}" required>

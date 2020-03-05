@@ -9,18 +9,21 @@
 @endsection
 
 @section('conteudo')
+<main>
+    <img src="@if($group->photo == 'nophoto') {{url('/img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner">
+</main>
 
 <div class="containerDesktop">
-<div class="pt-4 pb-4 mb-2 card menu-voltar">
+<div class="pt-4 pb-4 mb-2 card bg-light menu-voltar">
     <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
         <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
         <h5>Minhas Comunidades</h5>
     </a>
 </div>
 
-<main class="bg-light pt-4 pb-4">
+<section class="bg-light pt-4 pb-4">
 
-        <div class="col-12 ml-3 mr-3 m-md-0">
+        <div class="col-12 m-md-0">
 
             @include('flash::message')
 
@@ -67,10 +70,14 @@
                     </tbody>
                 </table>
             @endif
+        </div>
+    </section>
 
+<section class="bg-light pt-4 pb-4 mt-2">
+         <div class="col-12 m-md-0">
             @if($groups->count() == 0)
 
-            Você ainda não participa de nenhuma comunidade
+            <span>Você ainda não participa de nenhuma comunidade</  span>
 
             @else
 
@@ -144,12 +151,12 @@
                         @endforeach
                         </tbody>
                     </table>
-                @else
-                    Você não participa de outras comunidades
-                @endif
+                @else 
+                    Você inda não participa de outras comunidades
+                @endif    
             @endif
-            </div>
-</main>
+        </div>
+    </section>
 </div>
 
 @endsection
