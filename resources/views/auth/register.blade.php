@@ -11,10 +11,10 @@
 @section('conteudo')
     <div class="containerDesktop">
 
-        <div class="container">
+        <div class="container col-8">
 
             <section class="mt-4 mb-4">
-                <h3 class="text-center"><img class="ml-3 mr-3" src="./img/Vector.png" alt="viagem">Suas viagens começam aqui! </h3>
+                <h3 class="text-center"><img class="ml-3 mr-3" src="./img/Vector.png" alt="viagem">Suas viagens começam aqui!</h3>
             </section>
         
             <section class="box">

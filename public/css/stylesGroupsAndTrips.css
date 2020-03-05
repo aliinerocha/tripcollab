@@ -6,6 +6,17 @@
   height: 20vh;
 }
 
+.capa img {
+  padding: 0;
+  height: 25vh;
+  object-fit: cover;
+  width: 100%;
+}
+.usuario-foto {
+  position: absolute;
+  margin-top:-50px;
+}
+
 .titulo {
   position: absolute;
   margin-top: -15vh;

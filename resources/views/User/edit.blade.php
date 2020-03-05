@@ -13,8 +13,7 @@
 <!-- Formulário de edição-->
 <div class="containerDesktop">
     <div class="container-fluid p-0">
-    <!--  Cadastro do Usuário -->
-
+        <!--  Cadastro do Usuário -->
         <form method="POST" action="{{route('user.update', ['id' => $user->id])}}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -38,12 +37,7 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="form-row mx-3">
-                    <button type="">Alterar Senha</button>
-                </div>
-            </section>
-
+            </section>           
             <!--  Perfil do Usuário -->
             <section class="usuario bg-light mb-2 px-3 py-4">
                 <h5 class="nome ml-3 pb-3">Perfil do Usuário</h5>
@@ -58,7 +52,6 @@
                     <label for="foto_fundo">Selecione um arquivo</label>
                     <input class="form-control-file is-invalid" name="background_photo" type="file" id="foto_fundo">
                 </div>
-                <!-- Foto da Capa -->
 
                 <!-- Foto do Usuário -->
                 <h6 class="foto ml-3">Foto do usuário</h6>
@@ -69,8 +62,7 @@
                 <div class="form-group col-12 m-3 pb-3">
                     <label for="foto">Selecione um arquivo</label>
                     <input class="form-control-file is-invalid" name="photo" type="file" id="foto">
-                </div>
-                <!-- Foto do Usuário -->
+                </div> 
 
                 <!-- Dados do Usuário -->
                 <h6 class="foto ml-3 my-3">Dados do usuário</h6>
@@ -106,8 +98,7 @@
                             Ok!
                         </div>
                     </div>
-                    <!-- </div> -->
-
+                    
                     <div class="col-12 my-3">
                         <label for="descricao">Descrição do usuário</label>
                         <textarea name="description" id="descricao" cols="30" rows="5" class="form-control" placeholder="Insira sua descrição aqui">{{$user->description}}</textarea>
@@ -121,13 +112,12 @@
                         </select>
                     </div>
                 </div>
-                <!-- Dados do Usuário -->
             </section>
 
             <!-- Interesses -->
             <section class="usuario bg-light mb-2 px-3 py-2">
-                <div class="col-12 my-3">
                 <h5 class="nome">Interesses:</h5>
+                <div class="col-12 my-3">
                     @foreach ($interests as $interest)
                     <div class="form-check @error('interests') is-invalid @enderror"  id="palavrasChave">
                         <input class="form-check-input" name="interests[]" type="checkbox" value="{{$interest->id}}" id="{{$interest->id}}" @if($selectedInterests->contains('interest_id', $interest->id)) checked @endif">
@@ -142,24 +132,22 @@
                     </div>
                     @endforeach
                 </div>
-            </section>
 
-            <section class="usuario bg-light mb-2 px-3 py-2">
-                <div class="form-group mx-4">                
-                    <div class="col d-flex justify-content-rigth">
+                <div class="form-group">                
+                    <div class="col d-flex justify-content-end">
                         <button type="submit" class="btn botao">Atualizar Perfil</button>
                     </div>
                 </div>
             </section>
         </form>
     </div>
-
+    
     <!-- Formulário de exclusão-->
     <section class="usuario bg-light mb-2 px-3 py-2">
         <form action="{{route('user.delete', $user->id)}}" method="post">
             @csrf
             @method('DELETE')        
-            <div class="d-flex align-items-center justify-content-between justify-content-md-end pt-3 col-10 offset-1">
+            <div class="col d-flex justify-content-end">
                 <span class="pr-3">Excluir perfil permanentemente</span>
                 <button type="submit" class="btn btn-secondary">Excluir</button>
             </div>
@@ -168,3 +156,16 @@
 </div>
 
 @endsection
+
+
+
+                
+
+
+
+
+
+                
+
+            
+
