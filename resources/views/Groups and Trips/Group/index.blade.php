@@ -10,18 +10,17 @@
 
 @section('conteudo')
 
-<div class="bg-light pt-4 pb-4 mb-3 card">
-        <div class="d-flex ml-3 align-items-center">
-            <a class="stretched-link" href="{{ route('user.listGroupsAndTrips') }}"><i class="material-icons">arrow_back</i></a>
-            <div class="container">
-                <h5>Minhas comunidades</h5>
-            </div>
-        </div>
+<div class="containerDesktop">
+<div class="pt-4 pb-4 mb-2 card menu-voltar">
+    <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
+        <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+        <h5>Minhas Comunidades</h5>
+    </a>
 </div>
 
 <main class="bg-light pt-4 pb-4">
-    <div class="row">
-        <div class="col-10 offset-1">
+
+        <div class="col-12 ml-3 mr-3 m-md-0">
 
             @include('flash::message')
 
@@ -58,11 +57,8 @@
 
                             <td class="d-flex">
                                 <div class="d-flex">
-                                    <a
-                                    href="{{route('group.edit',['id' => $group->id])}}"
-                                    class="btn btn-info">
-                                    Editar
-                                    </a>
+                                    <a href="{{route('group.edit',['id' => $group->id])}}" class="btn botao mr-3">Editar</a>
+                                    <a href="{{route('group.destroy', ['id' => $group->id])}}" class="btn botao_atencao">Excluir</a>
                                 </div>
                             </td>
 
@@ -70,7 +66,6 @@
                     @endforeach
                     </tbody>
                 </table>
-
             @endif
 
             @if($groups->count() == 0)
@@ -153,10 +148,8 @@
                     Você não participa de outras comunidades
                 @endif
             @endif
-
             </div>
-        </div>
-    </div>
 </main>
+</div>
 
 @endsection

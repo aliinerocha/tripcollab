@@ -9,7 +9,7 @@
 @endsection
 
 @section('conteudo')
-
+<img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
     <div class="containerDesktop">
 
         <!-- NAV ABA-->
@@ -22,7 +22,7 @@
             </div>
         </div> --}}
 
-        <div class="pt-4 pb-4 card menu-voltar">
+        <div class="pt-4 pb-4 mb-2 card menu-voltar">
             <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
                 <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
                 <h5>Criar nova viagem</h5>
@@ -30,11 +30,11 @@
         </div>
 
         <!-- CARD COM OS DETALHES DA VIAGEM SELECIONADA -->
-        <main class="bg-light pt-4 pb-4">
+        <main class="bg-light pt-2 pb-4">
 
                 <form action="{{route('trip.store')}}" method="POST" class="col-12" enctype="multipart/form-data">
                 @csrf
-                        <img src="{{url('./img/add.png')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
+                        {{-- <img src="{{url('./img/add.png')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="..."> --}}
                         <div class="form-group mt-4">
                             <label for="tituloDaViagem">Titulo da viagem:</label>
                             <input name="name" type="text" class="form-control" id="tituloDaViagem" placeholder="Insira titulo da viagem" value="">
