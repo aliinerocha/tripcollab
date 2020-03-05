@@ -19,18 +19,18 @@
             <div class="carousel-item active">
                 <img src="./img/home/banner3.jpg" class="img-fluid d-block w-100" alt="Responsive image">
             </div>
-            <div class="carousel-item">
+            <!-- <div class="carousel-item">
                 <img src="./img/test03.jpg" class="img-fluid d-block w-100" alt="Responsive image">
             </div>
             <div class="carousel-item">
                 <img src="./img/home/banner2.jpg" class="img-fluid d-block w-100" alt="Responsive image">
-            </div>     
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            </div>      -->
+            <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon"></span>            
             </a>
             <a class="carousel-control-next" href="#carouselExampleControls" data-slide="next">
             <span class="carousel-control-next-icon"></span>            
-            </a>
+            </a> -->
         </div>
     </div>
 
@@ -46,64 +46,72 @@
 </main>
 
 <!-- Conteudo -->
+<h2 class="text-center">Saiba porquê sua viagem começa aqui</h2>
+<div>
 
-<div class="container-fluid card " >
-    <h2 class="text-center">Saiba porquê sua viagem começa aqui</h2>
-    <hr>
-    <div class="row justify-content-center align-items-center">
-        <!--Perfil-->
-        <div class="col-sm-12 col-md-6 col-lg-3">
-            <div class="subtitulo text-center">
-                    <a href="/user/perfil" class="btn-floating btn-blue "><i class="far fa-user-circle fa-2x fa-lg"></i> </a>
-            </div>
-            <div class="card-body text-center">
-                    <p> <h5 class="text-center " >Criar um perfil com seus interesses de viagem e compartilhe experiencias com a nossa comunidade</h5> </p>
-            </div>
-        </div>
-        <!--Perfil-->
-        <hr>
-            <!--destinos-->
-        <div class=" col-xs-12 col-sm-12 col-md-6 col-lg-3">
-            <div class="subtitulo text-center">
-                <a href="/trip/detalhesDeViagem"  class="btn-floating btn-blue"><i class="far fa-compass fa-2x fa-lg"></i></a>
-            </div>
-            <div class="card-body text-center mr-4">
-                <h5 class="text-center " >Encontre os destinos de seu interesse com as melhores oportunidades oferecidas pelos nossos parceiros.</h5>
-            </div>
-        </div>
-            <!--destinos-->
-            <hr>
-            <!--comunidade-->
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-            <div class="subtitulo text-center">
-                <a href="/group/grupoComunidade" class="btn-floating btn-blue btn-lg btn-default d-flex flex-column align-items-center"><i class="fas fa-users "></i></a>
-            </div>
-            <div class="card-body text-center mr-4">
-                <h5 class="text-center" >Crie, organize ou participe de grupos de viagem com amigos, familiares ou ainda conheça uma galera totalmente nova e compatível com seus interesses.</h5>
+        <div class="card-group">
+             <!--Perfil-->
+                <div class="card">
+                    <div class="subtitulo text-center">
+                        <a href="/user/perfil" class="btn-floating btn-blue "><i class="far fa-user-circle fa-2x fa-lg"></i> </a>
+                    </div>
+                    <div class="card-body card-text text-center">
+                        <p> <h5 class="text-center " >Criar um perfil com seus interesses de viagem e compartilhe experiencias com a nossa comunidade</h5> </p>
+                    </div>
+                </div>
+             <!--Perfil-->
+             <!--destinos-->
+                <div class="card">
+                    <div class="subtitulo text-center">
+                    <a href="/trip/detalhesDeViagem"  class="btn-floating btn-blue"><i class="far fa-compass fa-2x fa-lg"></i></a>
+                    </div>
+                    <div class="card-body card-text text-center">
+                            <p> <h5 class="text-center " >Encontre os destinos de seu interesse com as melhores oportunidades oferecidas pelos nossos parceiros.</h5> </p>
+                    </div>
+                </div>
+             <!--destinos-->
+             <!--comunidade-->
+                <div class="card">
+                    <div class="subtitulo text-center">
+                    <a href="/group/grupoComunidade" class="btn-floating btn-blue btn-lg btn-default d-flex flex-column align-items-center"><i class="fas fa-users "></i></a>
+                    </div>
+                    <div class="card-body card-text text-center">
+                        <p><h5 class="text-center" >Crie, organize ou participe de grupos de viagem com amigos, familiares ou ainda conheça uma galera totalmente nova e compatível com seus interesses.</h5></p>
+                    </div>
+                </div>
+             <!--comunidade-->
 
-            </div>
+            <!--metas-->
+                <div class="card">
+                    <div class="subtitulo text-center">
+                        <a href="/trip/criarGrupoDeViagem"  class="btn-floating btn-blue btn-lg btn-default d-flex flex-column align-items-center"><i class="fas fa-flag "></i></a>
+                    </div>
+                    <div class="card-body card-text text-center">
+                            <p><h5 class="text-center" >Crie, organize ou participe de grupos de viagem com amigos, familiares ou ainda conheça uma galera totalmente nova e compatível com seus interesses.</h5></p>
+                    </div>
+                </div>
+            <!--metas-->
         </div>
-            <!--comunidade-->
-        <hr>
-        <!--metas-->
-        <div class=" col-xs-12 col-sm-12 col-md-6 col-lg-3">
-            <div class="subtitulo text-center">
-                <a href="/trip/criarGrupoDeViagem"  class="btn-floating btn-blue btn-lg btn-default d-flex flex-column align-items-center"><i class="fas fa-flag "></i></a>
-            </div>
-            <div class="card-body text-center mr-4">
-                <h5 class="text-center" >Crie, organize ou participe de grupos de viagem com amigos, familiares ou ainda conheça uma galera totalmente nova e compatível com seus interesses.</h5>
-
-            </div>
-        </div>
-        <!--metas-->
-        <hr>
-    </div>
+        
+   
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- GRUPOS MAIS POPULARES -->
 <section class="grupos-populares bg-light pt-4 pb-4 mb-3">
-        <!--Grupos info-->
-        <div class="over-hit">
+    <!--Grupos info-->
+    <div class="over-hit">
         <div class="container mb-4">
             <h2 class="text-center my-3 ">Grupos mais populares</h2>
         </div>
@@ -113,136 +121,103 @@
     </div>
     <!--Grupos info-->
 
-    <div id="carouselExampleControls"  class="carousel slide container grupo-slide" data-ride="carousel">
-            <div class="carousel-inner ml-5">
-                <!--primeiro slide grupo-->
-                <div class="carousel-item active">
-                    <div class="card border-0" style="width: 18rem;">
-                        <!-- card-header -->
-                        <div class="card-header border-0 text-center">
-                            <span>Sonhos na Disney</span>
-                        </div>
-                        <!--Card image-->
-                        <img src="./img/disney_card.jpg" class="card-img-top rounded-0 img-fluid d-block w-100 " style="max-height: 160px; object-fit: cover;" alt="Disney">
-                        <!--Card content-->
-                        <div class="card-body">
-                            <!--Title-->
-                            <div class="texto d-flex justify-content-start align-items-center ">
-                                <h5 class="mr-2 mb-0">250</h5>
-                                <small>membros</small>
-                            </div>
-                            <!--Text-->
-                            <p class="card-text">Comunidade dedicada ao compartilhamento dos melores roteiros nos parques da Disney.</p>
-                            <a class="btn btn-primary">Participar</a>
-                        </div>
-                    </div>
-                </div>
-                <!--primeiro slide grupo-->
+    <!-- cards -->
 
-                <!--segundo slide grupo-->
-                <div class="carousel-item ">
-                    <div class="card border-0" style="width: 18rem;">
-                        <!-- card-header -->
-                        <div class="card-header border-0 text-center">
-                            <span>Las Vegas</span>
-                        </div>
-                        <!--Card image-->
-                        <img src="./img/vegas_card.jpg" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Disney">
-                            <!--Card content-->
-                            <div class="card-body">
-                            <!--Title-->
-                            <div class="texto d-flex justify-content-start align-items-center ">
-                                <h5 class="mr-2 mb-0">250</h5>
-                                <small>membros</small>
-                            </div>
-                            <!--Text-->
-                            <p class="card-text">Dicas para aproveitar ao maximo a viagem e conhecer os melhores cassinos de Vegas. </p>
-                            <a class="btn btn-primary">Participar</a>
-                        </div>
-                    </div>
-                </div>
-                <!--segundo slide grupo-->
-                <!--terceiro slide grupo-->
-                <div class="carousel-item ">
-                    <div class="card border-0" style="width: 18rem;">
-                        <!-- card-header -->
-                        <div class="card-header border-0 text-center">
-                            <span>Ilha Bela</span>
-                        </div>
-                        <!--Card image-->
-                        <img src="./img/ilha-bela.jpeg"  class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Disney">
-                            <!--Card content-->
-                            <div class="card-body">
-                            <!--Title-->
-                            <div class="texto d-flex justify-content-start align-items-center ">
-                                <h5 class="mr-2 mb-0">250</h5>
-                                <small>membros</small>
-                            </div>
-                            <!--Text-->
-                            <p class="card-text">Comunidade dedicada a compartilhar destinos maravilhosos e pouco conhecidos.</p>
-                            <a class="btn btn-primary">Participar</a>
-                        </div>
-                    </div>
-                </div>
-                <!--terceiro slide grupo-->
-                <!--quarto slide grupo-->
-                <div class="carousel-item">
-                    <div class="card border-0" style="width: 18rem;">
-                        <!-- card-header -->
-                        <div class="card-header border-0 text-center">
-                            <span>Ilhas Paradisiacas</span>
-                        </div>
-                        <!--Card image-->
-                        <img src="./img/ilhas_card.jpg"  class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Disney">
-                            <!--Card content-->
-                            <div class="card-body">
-                            <!--Title-->
-                            <div class="texto d-flex justify-content-start align-items-center ">
-                                <h5 class="mr-2 mb-0">250</h5>
-                                <small>membros</small>
-                            </div>
-                            <!--Text-->
-                            <p class="card-text">Comunidade dedicada a compartilhar destinos maravilhos mais pouco conhecidos.</p>
-                            <a class="btn btn-primary">Participar</a>
-                        </div>
-                    </div>
-                </div>
-                <!--quarto slide grupo-->
-                <!--quinto slide grupo-->
-                <div class="carousel-item">
-                    <div class="card border-0" style="width: 18rem;">
-                        <!-- card-header -->
-                        <div class="card-header border-0 text-center">
-                            <span>Destinos Familiares</span>
-                        </div>
-                        <!--Card image-->
-                        <img src="./img/home/familia.jpg"  class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Disney">
-                            <!--Card content-->
-                            <div class="card-body">
-                            <!--Title-->
-                            <div class="texto d-flex justify-content-start align-items-center ">
-                                <h5 class="mr-2 mb-0">250</h5>
-                                <small>membros</small>
-                            </div>
-                            <!--Text-->
-                            <p class="card-text">Comunidades dedicada a compartilhar dicas de viagens para grupos familiares com crianças.</p>
-                            <a class="btn btn-primary">Participar</a>
-                        </div>
-                    </div>
-                </div>
-                <!--quinto slide grupo-->
+    <!-- Card deck -->
+    <div class="card-deck group-cards">
+
+        <!-- Card 1 -->
+        <div class="card mb-4">
+            <div class="card-header border-0 text-center">
+                <span>Sonhos na Disney</span>
+            </div>
+            <!--Card image-->
+            <div class="view overlay">
+            <img src="./img/disney_card.jpg" class="card-img-top rounded-0 img-fluid d-block w-100 "  style="max-height: 160px; object-fit: cover;" alt="Disney">
+            <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+            </a>
             </div>
 
-        <!-- controls -->
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-        </a>
+            <!--Card content-->
+            <div class="card-body">
+                <!--Title-->
+                <div class="texto d-flex justify-content-start align-items-center ">
+                    <h5 class="mr-2 mb-0">250</h5>
+                    <small>membros</small>
+                </div>
+                <!--Text-->
+                <p class="card-text">Comunidade dedicada ao compartilhamento dos melores roteiros nos parques da Disney.</p>
+                <a class="btn btn-primary btn-participar">Participar</a>
+            </div>
+
+        </div>
+        <!-- Card 1-->
+        <!-- Card 2-->
+        <div class="card mb-4">
+            <div class="card-header border-0 text-center">
+            <span>Las Vegas</span>
+            </div>
+            <!--Card image-->
+            <div class="view overlay">
+            <img src="./img/vegas_card.jpg" class="card-img-top rounded-0 img-fluid d-block w-100 " style="max-height: 160px; object-fit: cover;" alt="Disney">
+            <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+                <!--Title-->
+                <div class="texto d-flex justify-content-start align-items-center ">
+                    <h5 class="mr-2 mb-0">250</h5>
+                    <small>membros</small>
+                </div>
+            <!--Text-->
+            <p class="card-text">Dicas para aproveitar ao maximo a viagem e conhecer os melhores cassinos de Vegas. </p>
+            <a class="btn btn-primary btn-participar">Participar</a>
+                            
+            </div>
+
+        </div>
+        <!-- Card 2-->
+
+        <!-- Card 3-->
+        <div class="card mb-4">
+            <div class="card-header border-0 text-center">
+                <span>Ilha Bela</span>
+            </div>
+            <!--Card image-->
+            <div class="view overlay">
+            <img src="./img/ilha-bela.jpeg"  class="card-img-top rounded-0 img-fluid d-block w-100 "  style="max-height: 160px; object-fit: cover;" alt="Disney">
+            <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+                <!--Title-->
+                <div class="texto d-flex justify-content-start align-items-center ">
+                    <h5 class="mr-2 mb-0">250</h5>
+                    <small>membros</small>
+                </div>
+            <!--Text-->
+            <!--Text-->
+            <p class="card-text">Comunidade dedicada a compartilhar destinos maravilhosos e pouco conhecidos.</p>
+                <a class="btn btn-primary btn-participar">Participar</a>                                         
+            </div>
+
+        </div>
+        <!-- Card 3-->
+        
+
     </div>
+    <!-- Card deck -->
+
+
+    <!-- Cards -->
+    <!--  -->
 </section>
 
 <!-- Carousel CARDS grupos mais populares -->
@@ -265,4 +240,8 @@
     </a>
 </div>
 <!-- facebook instan twiter-->
+
+<script type="text/javascript" src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.14.0/js/jquery.min.js"></script>
+<script type="text/javascript" src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.14.0/js/popper.min.js"></script>
+<script type="text/javascript" src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/plugins/mdb-plugins-gathered.min.js"></script>
 @endsection

@@ -57,7 +57,7 @@
                     </div>
     </section>
                     
-                    {{-- <span class="d-flex mr-2">
+                    <span class="d-flex mr-2">
                         
                         <i class="material-icons mr-1">chat</i>
                         <span class="justify-content-center">{{$topic->topicMessages()->count()}} @if ($topic->topicMessages()->count()<=1) resposta @else respostas @endif</span>

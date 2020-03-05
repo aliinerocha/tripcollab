@@ -151,7 +151,7 @@ class TripController extends Controller
 
         $groups = $this->groups->all(['id','name']);
 
-        return view('/Groups and Trips/Trip/edit', compact( 'trip', 'interests', 'selectedInterests', 'groups'));
+        return view('/Groups and Trips/Trip/edit', compact('trip', 'interests', 'selectedInterests', 'groups'));
     }
 
     /**
@@ -275,46 +275,38 @@ class TripController extends Controller
 
     public function timeline () {
 
-        // $user = auth()->user();
+        $user = auth()->user();
 
-        // $trips = DB::table('trips')
-        // ->whereDate('return_date', '<=', Carbon::today()->toDateString())
-        // ->join('trips','trip_user.trip_id','=','trips.id')
-        // ->where('user_id', auth()->user()->id)
-        // ->select()
-        // ->get()
-        // ->toArray();
-
-        // // $trips = DB::table('trip_user')
-        // // ->where('user_id', auth()->user()->id)
-        // // ->get()
-        // // ->toArray();
-        // dd($trips);
+        $trips = Trip::where('return_date', '<=', Carbon::today()->toDateString())
+        ->select(['trips.id','trips.name as tripName','trips.description','trips.foreseen_budget'])
+        ->whereHas('user', function ($q) {
+            $q->where('user_id', auth()->user()->id);
+        })
+        ->get();
         
-        // if($trips !== [])
-        // {
-        //     $trips = $trips;
+        if($trips !== [])
+        {
+            $trips = $trips;
             
-        //     foreach($trips as $key => $trip)
-        //     {
-        //         $tripMembers = DB::table('trip_user')
-        //         ->where('trip_id', $trip->id)
-        //         ->where('status', 1)
-        //         ->join('users','trip_user.user_id','=','users.id')
-        //         ->select('users.id','users.name', 'users.photo')
-        //         ->get(['users.id as userId','users.name as userName', 'users.photo as userPhoto']);
+            foreach($trips as $key => $trip)
+            {
+                $tripMembers = DB::table('trip_user')
+                ->where('trip_id', $trip->id)
+                ->where('status', 1)
+                ->join('users','trip_user.user_id','=','users.id')
+                ->select(['users.id as userId','users.name as userName', 'users.photo as userPhoto'])
+                ->paginate(5);
                 
-        //         $countTripMembers = $tripMembers->count();
-                
-        //         $trip->countTripMembers = $countTripMembers;
-        //     }
-        // } else 
-        // { 
-        //     $trips = 0;
-        //     $tripMembers = 0;
-        // }
-        // , compact('user', 'trips', 'tripMembers', 'countTripMembers')
-             
-        return view('/Timeline/show');
+                $trip->tripMembers = $tripMembers;
+                $countTripMembers = $tripMembers->count();
+                $trip->countTripMembers = $countTripMembers;
+            }
+        } else 
+        { 
+            $trips = 0;
+            $tripMembers = 0;
+        }
+        
+        return view('/Timeline/show', compact('user', 'trips', 'tripMembers', 'countTripMembers'));
     }
 }

@@ -31,8 +31,8 @@ class TopicController extends Controller
         $group = $this->group->findOrFail($id);
         $topics = Topic::where('group_id',$group->id)->orderBy('topics.created_at', 'desc')->get();
         $user = auth()->user(['id', 'name']);
-        $footer = 'true';
-        return view('Groups and Trips/Group/Topics/index', compact('footer', 'group', 'topics', 'user'));
+        
+        return view('Groups and Trips/Group/Topics/index', compact('group', 'topics', 'user'));
     }
 
     /**
@@ -75,8 +75,7 @@ class TopicController extends Controller
         $user = auth()->user(['id', 'name']);
         $topicMessages = TopicMessage::where('topic_id',$topic->id)->orderBy('topic_messages.created_at', 'desc')->get();
         
-        $footer = 'true';
-        return view('Groups and Trips/Group/Topics/show', compact('topic','footer', 'user', 'topicMessages'));
+        return view('Groups and Trips/Group/Topics/show', compact('topic','user', 'topicMessages'));
     }
 
     /**
@@ -89,8 +88,8 @@ class TopicController extends Controller
     public function edit($id)
     {
         $topic = $this->topic->findOrFail($id);
-        $footer = 'true';
-        return view('Groups and Trips/Group/Topics/edit', compact('footer', 'topic'));
+
+        return view('Groups and Trips/Group/Topics/edit', compact('topic'));
     }
 
     /**

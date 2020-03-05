@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Group;
 use App\Trip;
 use App\Friendship;
 use App\Interest;
@@ -194,9 +195,7 @@ class UserController extends Controller
            $friendlist->pull($selectedUser);
         }
 
-        $footer = 'true';
-
-        return view('User/show', compact('footer','user', 'friendship', 'interests','friendlist'));
+        return view('User/show', compact('user', 'friendship', 'interests','friendlist'));
     }
 
     public function edit($id)
@@ -207,8 +206,7 @@ class UserController extends Controller
 
         $selectedInterests = DB::table('interest_user')->where('user_id', auth()->user()->id)->get();
 
-        $footer = 'true';
-        return view('User/edit', compact('footer', 'user', 'interests', 'selectedInterests'));
+        return view('User/edit', compact('user', 'interests', 'selectedInterests'));
     }
 
     public function update(Request $request, $id)
@@ -245,11 +243,10 @@ class UserController extends Controller
 
     public function listGroupsAndTrips()
     {
-        $confirmedGroups = DB::table('group_user')
-        ->where('user_id', auth()->user()->id)
-        ->join('groups','group_user.group_id','=','groups.id')
-        ->get()
-        ->toArray();
+        $confirmedGroups = Group::whereHas('user', function($q) {
+            $q->where('user_id', auth()->user()->id)
+            ->where('status','=',1);
+        })->paginate(6);
 
         foreach($confirmedGroups as $key => $group)
         {
@@ -334,9 +331,7 @@ class UserController extends Controller
         ->join('users','friendships.requester_user_id','=', 'users.id')
         ->get();
 
-        $footer = 'true';
-
-        return view('User/Friendships/index', compact('user','friendshipRequestors','friendlist','friendship','footer'));
+        return view('User/Friendships/index', compact('user','friendshipRequestors','friendlist','friendship'));
     }
 
     public function friendshipAdd($requestedUserID)

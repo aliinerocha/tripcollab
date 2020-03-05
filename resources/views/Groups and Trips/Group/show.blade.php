@@ -104,7 +104,7 @@
                 <h5>Membros:</h5>
                 <div class="d-flex align-items-center mb-3">
                 <h6 > {{$confirmed}} @if ($confirmed<=1) membro @else membros @endif </h6>
-                <u><a href="" class=" ml-3 ">Ver todos</a></u>
+                <u><a href="{{route('group.membersIndex',['id' => $group->id])}}" class=" ml-3 ">Ver todos</a></u>
                 </div>
                 @foreach($group->user as $member)
                     <a href="{{route('user.show', ['id' => $member->id])}}">

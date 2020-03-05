@@ -85,7 +85,7 @@
         <div class="mb-2">
             <div class="btn-group mt-2 filtro" role="group" aria-label="">
                 <a href="{{route('search.users.index')}}" class="btn btn-outline-primary border-top-0 border-left-0 border-bottom-0 filtro @if(request()->is('search/users*')) active @endif">Pessoas</a>
-                <a href="{{route('search.groups.index')}}" class="btn btn-outline-primary border-top-0 border-bottom-0 filtro @if(request()->is('search/groups*')) active @endif">Grupos</a>
+                <a href="{{route('search.groups.index')}}" class="btn btn-outline-primary border-top-0 border-bottom-0 filtro @if(request()->is('search/groups*')) active @endif">Comunidades</a>
                 <a href="{{route('search.trips.index')}}" class="btn btn-outline-primary border-top-0 border-bottom-0 border-right-0 filtro @if(request()->is('search/trips*')) active @endif">Viagens</a>
             </div>
         </div>
