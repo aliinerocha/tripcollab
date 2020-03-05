@@ -33,12 +33,28 @@
     font-size: 1rem;
 }
 
-/* carrousel Cards grupos populares */
+
+
+/* Cards Conteudo */
+
+.card-conteudo{
+    border: none;
+} 
+i{
+    color:  #1d6ab0;
+}
+
+
+/* Cards grupos mais populares */
+
 section.grupos-populares {
     background-image: url("../../img/home/mapa.png");
     background-size: cover;
 }
-
+.group-cards{
+    margin-left: 13vw;
+    margin-right: 13vw;
+}
 .card-header {
     background-color: #1d6ab0;
     color: #ffffff;
@@ -50,6 +66,16 @@ section.grupos-populares {
     height: 60vh;    
 }
 
+.btn-participar {
+    margin-left: 25vh;
+    
+}
+
+a:not([href]):not([tabindex]) {
+    color: #ffffff;; 
+    text-decoration: none;
+}
+
 /* redes sociais */
 .redes-sociais {
     background-color: #1d6ab0;
@@ -59,14 +85,6 @@ section.grupos-populares {
     flex: 1 0 auto;
 }
 
-
-.btn-participar{
-    margin-left: 25vh;
-}
-.group-cards{
-    margin-left: 13vw;
-    margin-right: 13vw;
-}
 
 /* RESPONSIVE banner img */
 
