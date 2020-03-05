@@ -11,10 +11,10 @@
 @section('conteudo')
     <div class="containerDesktop">
 
-        <div class="container">
+        <div class="container col-8">
             <section class="mt-4 mb-4">
             
-                <img class="rounded mx-auto d-block" src="./img/viajando.png" width="40" heigth="40" alt="pessoa com mala"></br>
+                <img class="rounded mx-auto d-block" src="./img/viajando.png" alt="pessoa com mala"></br>
                 <h3 class="text-center">Bem-vindo Novamente</h3>
 
                 <form form method="POST" action="{{ route('login') }}">

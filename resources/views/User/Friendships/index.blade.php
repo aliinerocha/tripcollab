@@ -11,28 +11,26 @@
 
 @section('conteudo')
 
-<div class="container-fluid p-0">
-    <!-- Foto da Capa -->
-    <main class="col-xs-12 capa p-0">
-        <img src="@if($user->photo == 'nophoto') {{asset('./img/default_cover.jpg')}}  @else {{asset("storage/usersBackgroundPhotos/$user->background_photo")}} @endif" alt="imagem de fundo escolhida pelo usuário">
-    </main>
-    <!-- Foto da Capa -->
+<!-- Foto da Capa -->
+<main class="col-xs-12 capa p-0">
+    <img src="@if($user->photo == 'nophoto') {{asset('./img/default_cover.jpg')}}  @else {{asset("storage/usersBackgroundPhotos/$user->background_photo")}} @endif" alt="imagem de fundo escolhida pelo usuário">
+</main>
+<!-- Foto da Capa -->
+
+<div class="containerDesktop">
+    <div class="container-fluid p-0">
 
     <section class="usuario bg-light mb-2 px-3 pb-4">
         <!-- Foto do Usuário -->
         <div class="col-xs-12 usuario-foto p-0">
             <img src="@if($user->photo == 'nophoto') {{asset('./img/icone_user.svg')}}  @else {{asset("storage/userPhotos/$user->photo")}} @endif" class="rounded-circle" style="width:100px; height: 100px">
-        </div>
-        <!-- Foto do Usuário -->
+        </div>      
 
         <!-- Botões -->
-
         <div class="dropdown col-xs-12 usuario-botoes text-right pull-right py-3 d-flex justify-content-end">
             <div style="height: 38px;">
             </div>
-        </div>
-
-        <!-- Botões -->
+        </div>        
 
         <!-- Nome -->
         <div class="d-flex">
@@ -40,7 +38,7 @@
             @if($user->public == 0) <i class="material-icons md-18 d-flex align-self-center mb-2 ml-1">lock</i>@endif
         </div>
 
-        @if(($user->id == auth()->user()->id) || $user->public == 1 || ($user->public == 0 && ($friendship && $friendship->status == 1)))
+            @if(($user->id == auth()->user()->id) || $user->public == 1 || ($user->public == 0 && ($friendship && $friendship->status == 1)))
 
         <section class="amigos bg-light px-3 py-4">
             @if($user->id == auth()->user()->id)
@@ -50,7 +48,7 @@
             @endif
 
             <!-- Busca -->
-
+            
             @if($friendlist->count() > 0)
             <div class=" input-group mb-3 py-3">
                 <input type="text" class="form-control border-0" placeholder='Pesquisar "Amigos"'>
@@ -170,6 +168,7 @@
 
         @endif
         <!-- Amigos -->
+    </div>
 </div>
 
 @endsection
