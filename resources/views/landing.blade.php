@@ -46,7 +46,7 @@
 </main>
 
 <!-- Conteudo -->
-<h2 class="text-center">Saiba porquê sua viagem começa aqui</h2>
+<h2 class="text-center mb-5">Saiba porquê sua viagem começa aqui</h2>
 <div class="card-group-conteudo mt-5">
 
         <div class="card-group">
@@ -140,7 +140,7 @@
                 </div>
                 <!--Text-->
                 <p class="card-text">Comunidade dedicada ao compartilhamento dos melores roteiros nos parques da Disney.</p>
-                <a class="btn btn-primary btn-participar">Participar</a>
+                <a class="btn botao">Participar</a>
             </div>
 
         </div>
@@ -167,7 +167,7 @@
                 </div>
             <!--Text-->
             <p class="card-text">Dicas para aproveitar ao maximo a viagem e conhecer os melhores cassinos de Vegas. </p>
-            <a class="btn btn-primary btn-participar">Participar</a>
+            <a class="btn botao">Participar</a>
                             
             </div>
 
@@ -197,7 +197,7 @@
             <!--Text-->
             <!--Text-->
             <p class="card-text">Comunidade dedicada a compartilhar destinos maravilhosos e pouco conhecidos.</p>
-                <a class="btn btn-primary btn-participar">Participar</a>                                         
+                <a class="btn botao">Participar</a>                                         
             </div>
 
         </div>

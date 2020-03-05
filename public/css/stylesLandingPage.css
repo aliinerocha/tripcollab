@@ -35,8 +35,17 @@
 
 
 
+.main{
+    height: 330px;
+}
+
 /* Cards Conteudo */
 
+.card-group-conteudo{
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-bottom: 1.5vw;;
+}
 .card-conteudo{
     border: none;
 } 
@@ -66,15 +75,30 @@ section.grupos-populares {
     height: 60vh;    
 }
 
-.btn-participar {
+
+
+.botao {
     margin-left: 25vh;
-    
-}
+    background-color: #1d6ab0;
+    color: #ffffff;
+    border-color: #064c8c;
+  
+  }
+
 
 a:not([href]):not([tabindex]) {
     color: #ffffff;; 
     text-decoration: none;
 }
+
+a:not([href]):not([tabindex]):hover {
+    background-color: #1d6ab0;
+    color: #ffffff;
+    border-color: white;
+    
+}
+
+
 
 /* redes sociais */
 .redes-sociais {
