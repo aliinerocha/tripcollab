@@ -23,6 +23,8 @@
     <div class="row">
         <div class="col-10 offset-1">
 
+            @include('flash::message')
+
             @if($admin->count() != 0)
 
             Comunidades administradas por você:
@@ -147,9 +149,9 @@
                         @endforeach
                         </tbody>
                     </table>
-                @else 
+                @else
                     Você não participa de outras comunidades
-                @endif    
+                @endif
             @endif
 
             </div>

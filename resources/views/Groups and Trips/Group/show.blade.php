@@ -13,7 +13,7 @@
         <!-- NAV ABA-->
     <div class="pt-4 pb-4 card menu-voltar">
             <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
-                <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+                <i class="material-icons mr-3 back stretched-link">arrow_back</i>
                 <h5>Minhas Comunidades</h5>
             </a>
     </div>
@@ -27,6 +27,8 @@
     <!-- NOME E MEMBROS -->
 
         <section class="bg-light pb-4 mb-3 pt-4">
+
+        @include('flash::message')
 
             <div class="ml-4 ml-md-0  mb-4 d-flex justify-content-between align-items-center mr-3">
                 <h1>{{$group->name}}</h1>
@@ -50,7 +52,7 @@
                         </a>
 
                         @elseif($userStatus && $userStatus->status == 0)
-            
+
                         <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}" type="button" class="btn botao_atencao">
                             Cancelar solicitação
                         </a>
@@ -66,14 +68,14 @@
 
     @else
 
-            <div class="ml-4 ml-md-0 mr-4 mb-4">            
+            <div class="ml-4 ml-md-0 mr-4 mb-4">
                 <h5>Descrição da comunidade:</h5>
                 <div>
                     {{$group->description}}
                 </div>
             </div>
 
-            <div class="ml-4 ml-md-0 mr-4 mb-4 pt-4">  
+            <div class="ml-4 ml-md-0 mr-4 mb-4 pt-4">
                 <h5>Administrador:</h5>
                 <p class="mb-4">
                     <a href="{{route('user.show', ['id' => $admin->id])}}">
@@ -173,8 +175,8 @@
                     <div>
                         <h5 class="pt-4">Criar Novo Topico</h5>
                             <form action="{{route('topic.store', ['group_id' => $group->id])}}" method="POST" enctype="multipart/form-data" class="my-md-0 mr-4">
-                                @csrf 
-                                
+                                @csrf
+
                                 <div class="form-group mt-4" >
                                     <label>Nome do Tópico</label>
                                     <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{old('name')}}" placeholder="Insira o nome do Tópico" required>
@@ -184,7 +186,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                                
+
                                 <div class="form-group mt-4">
                                     <label>Descrição</label>
                                     <textarea class="form-control @error('description') is-invalid @enderror"  type="text" name="description" value="{{old('description')}}" rows="3" placeholder="Insira a descrição do Tópico" required></textarea>
@@ -194,21 +196,21 @@
                                     </div>
                                     @enderror
                                 </div>
-                            
+
                                 <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                                 <input type="hidden" name="group_id" value="{{$group->id}}">
                                 <div class="row d-flex justify-content-end m-0">
                                     <div class="form-group d-flex justify-content-end">
                                         <button type="submit" class="btn botao btn-primary float-right border-0">Criar Topico</button>
                                     </div>
-                                </div> 
+                                </div>
                             </form>
-                    
+
                                             {{-- <a href="{{route('topic.create', ['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a> --}}
                     </div>
                 </div>
             </div>
-        </section> 
+        </section>
 
         <!-- TÓPICOS -->
         @foreach ( $topics as $topic)
@@ -229,9 +231,9 @@
                     <div class="mt-2">
                         {{$topic->description}}
                     </div>
-                    
+
                     <div class="d-flex w-100 mt-3 justify-content-between">
-                        
+
                         <div class="d-flex small">
                             <span class="d-flex mr-3 align-items-center">
                                 <i class="material-icons">thumb_up</i>
@@ -244,7 +246,7 @@
                         </div>
                         <span class="d-flex mr-2">
                             <i class="material-icons mr-1">chat</i>
-                            <span class="justify-content-center">{{$topic->topicMessages()->count()}} @if ($topic->topicMessages()->count()<=1) resposta @else respostas @endif</span>  
+                            <span class="justify-content-center">{{$topic->topicMessages()->count()}} @if ($topic->topicMessages()->count()<=1) resposta @else respostas @endif</span>
                         </span>
                         <div>
                             <a href="{{route('topic.show',['id' => $topic->id])}}" class="text-muted link-detalhes stretched-link">
@@ -256,7 +258,7 @@
             @endforeach
 
             @if ($group->topic()->count()>3)
-            <a href="{{route('topic.index', ['group_id' => $group->id])}}" class="botao btn btn-primary float-right mt-3 mr-3 mr-md-0">Ver todos</a> 
+            <a href="{{route('topic.index', ['group_id' => $group->id])}}" class="botao btn btn-primary float-right mt-3 mr-3 mr-md-0">Ver todos</a>
             @endif
         @endif
         </section>

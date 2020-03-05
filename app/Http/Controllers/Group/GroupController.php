@@ -77,6 +77,7 @@ class GroupController extends Controller
 
         $store = $this->group->create($data);
 
+        $id = $store->id;
         $store->interest()->sync($request->interest, false);
         $store->user()->sync(auth()->user()->id, false);
         $store = DB::table('group_user')
@@ -84,7 +85,9 @@ class GroupController extends Controller
         ->where('group_id', $store->id)
         ->update(['status' => '1',]);
 
-        return redirect()->route('group.create');
+        flash("Comunidade criada com sucesso")->success();
+
+        return redirect()->route('group.show', ['id' => $id]);
     }
 
     /**
@@ -98,11 +101,11 @@ class GroupController extends Controller
         $group = $this->group->findOrFail($group);
 
         $user = auth()->user(['id', 'name']);
-  
+
         $confirmed = $group->user()->count();
 
         $topics = Topic::where('group_id', $group->id)->orderBy('topics.created_at', 'desc')->paginate(3);
-        
+
         $admin = $group->admin()->first(['id','name','photo']);
 
         $userStatus = DB::table('group_user')->where([
@@ -126,7 +129,7 @@ class GroupController extends Controller
         $group = $this->group->findOrFail($id);
 
         $selectedInterests = DB::table('group_interest')->where('group_id', $id)->get();
-        
+
 
         return view('/Groups and Trips/Group/edit', compact('interests', 'selectedInterests', 'group'));
     }
@@ -167,6 +170,7 @@ class GroupController extends Controller
     public function destroy($id)
     {
         $group = $this->group->find($id);
+        $user = auth()->user();
 
         $group->topic()->delete();
         $group->trips()->delete();
@@ -174,11 +178,15 @@ class GroupController extends Controller
         $group->interest()->detach();
         $group->user()->detach();
 
+        $id = $user->id;
+
         $group->delete();
 
-        return redirect()->route('home');
+        flash("Comunidade excluída com sucesso")->success();
+
+        return redirect()->route('user.groups.index', ['id' => $id]);
     }
-    
+
     public function confirmPresence($groupId, $userId) {
 
         $group = $this->group->find($groupId);
