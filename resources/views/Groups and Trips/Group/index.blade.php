@@ -10,8 +10,7 @@
 
 @section('conteudo')
 <main>
-    {{-- <img src="@if($group->photo == 'nophoto') {{url('/img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner"> --}}
-    <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
+    <img src="@if($group->photo == 'nophoto') {{url('/img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner">
 </main>
 
 <div class="containerDesktop">
@@ -152,15 +151,9 @@
                         @endforeach
                         </tbody>
                     </table>
-<<<<<<< HEAD
                 @else 
                     Você inda não participa de outras comunidades
                 @endif    
-=======
-                @else
-                    Você não participa de outras comunidades
-                @endif
->>>>>>> 322cdced0d04e8314013799011ff8afbcc3c20b2
             @endif
         </div>
     </section>
