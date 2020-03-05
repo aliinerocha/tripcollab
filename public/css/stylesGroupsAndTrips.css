@@ -163,10 +163,6 @@ a:hover{
   cursor: unset;
 }
 
-.card-item{
-  background-color: #f7f7f7;
-}
-
 
   /* CSS DESKTOP */
   @media (min-width: 768px) {
@@ -183,8 +179,14 @@ a:hover{
     .banner-img {
       height: 25vh;
     }
-    .card-item{
-      background-color: white;      
+    .card-item-viagem{
+    border-radius: 7px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    }
+    .card-body-respostas{
+      background-color: white;
+      border-radius: 7px;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     }
   }
   

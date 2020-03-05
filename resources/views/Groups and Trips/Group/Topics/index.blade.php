@@ -9,19 +9,20 @@
 @endsection
 
 @section('conteudo')
+
+<!-- BANNER -->
+<main>
+    <img src="{{url('./img/default_cover.jpg')}}" class="img-fluid banner-img" alt="banner">
+</main>
+
 <div class="containerDesktop">
         <!-- NAV ABA-->
-        <div class="pt-4 pb-4 card menu-voltar">
+        <div class="pt-4 pb-4 card menu-voltar bg-light">
             <a  href="{{route('group.show',['id' => $group->id])}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
                 <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
                 <h5>{{$group->name}}</h5>
             </a>
         </div>
-
-    <!-- BANNER -->
-    <main class="mb-3">
-        <img src="{{url('./img/default_cover.jpg')}}" class="img-fluid banner-img" alt="banner">
-    </main>
 
     <!-- FÓRUM -->
 
@@ -71,7 +72,7 @@
          {{-- <div class="mx-1 my-2">
             <a href="{{route('topic.create',['group_id' => $group->id])}}" class="botao btn btn-primary border-0">Novo tópico</a>
         </div> --}}
-<section class="bg-light pt-3 pb-3 p-md-0 mb-2">
+<section class="bg-light pt-3 pb-3 p-md-0 mb-4">
         <div class="input-group ml-3 mr-3 m-md-0">
             <input type="text" class="form-control border-0" placeholder="Buscar">
             <span class="input-group-text border-0 mr-3 m-md-0"><i class="material-icons">search</i></span>
