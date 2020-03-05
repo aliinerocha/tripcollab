@@ -244,6 +244,6 @@ class GroupController extends Controller
         ->join('users','group_user.user_id','=','users.id')
         ->get();
 
-        return view('/Groups and Trips/Group/index', compact('group','user','groupMembers', 'groupMembersRequests'));
+        return view('/Groups and Trips/Group/Members/index', compact('group','user','groupMembers', 'groupMembersRequests'));
     }
 }

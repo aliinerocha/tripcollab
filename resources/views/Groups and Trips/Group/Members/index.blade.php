@@ -91,7 +91,7 @@
 
             @else
 
-            @if($groupMembers->count() == 1) Existe @else Existem @endif {{$groupMembers->count()}} @if($groupMembers->count() <= 1) membro confirmado @else membros confirmados @endif nessa comunidade.
+            @if($groupMembers->count() == 1) Existe @else Existem @endif {{$groupMembers->count()}} @if($groupMembers->count() <= 1) membro @else membros @endif nessa comunidade.
 
             <table class="table table-striped mt-3">
                 <thead>
@@ -115,13 +115,15 @@
                         <td >
                             <a href="{{route('user.show', ['id' => $member->id])}}">{{$member->name}}</a>
                         </td>
-
                         @if($user->id == $group->admin)
-                        <td class="td_acao">
-                                <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $member->id])}}"class="btn btn-danger">Excluir membro</a>
-                        </td>
+                            <td class="td_acao">
+                                @if($member->id !== $group->admin)
+                                    <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $member->id])}}"class="btn btn-danger">Excluir membro</a>
+                                @else
+                                    <p class="badge badge-pill badge-primary card-text text-right">Administrador</p>
+                                @endif
+                            </td>
                         @endif
-
                     </tr>
                 @endforeach
                 </tbody>

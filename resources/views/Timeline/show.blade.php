@@ -36,7 +36,21 @@ scrapbook-navbar
 
 <div class="timeline">
     <div class="entries">
-        
+        @foreach ($trips as $trip)
+        <div class="entry">
+            <h3 class="title">Nome: {{$trip->tripName}}</h3>
+            <div class="body">
+                <p>Descrição:</p>
+                <p>{{$trip->description}}</p>
+                <p>Membros:</p>
+                @foreach ($trip->tripMembers as $member)
+                <img class="img-fluid" src="@if($member->userPhoto == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$member->userPhoto")}} @endif" alt="Foto de {{$trip->userName}}">
+                @endforeach
+                <p>Gasto total:</p>
+                <p>{{number_format($trip->foreseen_budget, 0)}}</p>
+            </div>
+        </div>
+        @endforeach
         <div class="entry">
             <h3 class="title">Título da viagem</h3>
             <div class="body">

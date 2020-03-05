@@ -25,9 +25,9 @@
 
             @if($admin->count() != 0)
 
-            Comunidades administradas por você
+            Comunidades administradas por você:
 
-                <table class="table table-striped">
+                <table class="table table-striped mt-3">
                     <thead>
                         <tr>
                             <th>Foto</th>
@@ -77,76 +77,79 @@
 
             @else
 
-            @if($groups->count() - $admin->count() == 1)
+                @if($groups->count() - $admin->count() !== 0)
+                    @if($groups->count() - $admin->count() == 1)
 
-                {{$groups->count() - $admin->count()}} comunidade listada
+                        {{$groups->count() - $admin->count()}} comunidade listada:
 
-            @else
+                    @else
 
-                {{$groups->count() - $admin->count()}} comunidades listadas
+                        {{$groups->count() - $admin->count()}} comunidades listadas:
 
-            @endif
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Foto</th>
-                        <th>Comunidade</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($groups as $group)
-                    @if($group->admin != $user->id)
-                    <tr>
-                        <td>
-
-                        <a href="{{route('group.show', ['id' => $group->id])}}">
-                                <img
-                                class="foto-perfil rounded-circle"
-                                src="@if($group->photo == 'nophoto') {{asset('./img/add.png')}} @else {{asset('storage/' . $group->photo)}} @endif"
-                                alt="{{$group->name}}">
-                            </a>
-                        </td>
-
-                        <td>
-                            <a href="{{route('group.show', ['id' => $group->id])}}">
-                                {{$group->name}}
-                            </a>
-                        </td>
-
-                        <td class="d-flex">
-
-                        @if($group->status == 0)
-                            <div class="btn-group dropup">
-                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Solicitação enviada
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}">
-                                    Cancelar solicitação
-                                    </a>
-                                </div>
-                            </div>
-
-                        @elseif($group->status == 1)
-
-                            <div class="d-flex">
-                                <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn btn-danger">
-                                    Cancelar presença
-                                </a>
-                            </div>
-
-                        @endif
-
-                        </td>
-
-                    </tr>
                     @endif
-                @endforeach
-                </tbody>
-            </table>
 
+                    <table class="table table-striped mt-3">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Comunidade</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($groups as $group)
+                            @if($group->admin != $user->id)
+                            <tr>
+                                <td>
+
+                                <a href="{{route('group.show', ['id' => $group->id])}}">
+                                        <img
+                                        class="foto-perfil rounded-circle"
+                                        src="@if($group->photo == 'nophoto') {{asset('./img/add.png')}} @else {{asset('storage/' . $group->photo)}} @endif"
+                                        alt="{{$group->name}}">
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a href="{{route('group.show', ['id' => $group->id])}}">
+                                        {{$group->name}}
+                                    </a>
+                                </td>
+
+                                <td class="d-flex">
+
+                                @if($group->status == 0)
+                                    <div class="btn-group dropup">
+                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Solicitação enviada
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}">
+                                            Cancelar solicitação
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                @elseif($group->status == 1)
+
+                                    <div class="d-flex">
+                                        <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn btn-danger">
+                                            Cancelar participação
+                                        </a>
+                                    </div>
+
+                                @endif
+
+                                </td>
+
+                            </tr>
+                            @endif
+                        @endforeach
+                        </tbody>
+                    </table>
+                @else 
+                    Você não participa de outras comunidades
+                @endif    
             @endif
 
             </div>

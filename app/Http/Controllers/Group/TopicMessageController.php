@@ -55,7 +55,7 @@ class TopicMessageController extends Controller
         $topic = $this->topic->findOrFail($id);
         $topicMessage = new TopicMessage();
         $topicMessage->user_id = auth()->user()->id;
-        $topicMessage->topic_id = $request->input('topic_id');
+        $topicMessage->topic_id = $topic->id;
         $topicMessage->message = $request->message;
         $topicMessage->save();
 
