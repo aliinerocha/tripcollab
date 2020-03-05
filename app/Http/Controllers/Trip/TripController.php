@@ -51,11 +51,10 @@ class TripController extends Controller
      */
     public function create()
     {
-        $footer = 'true';
 
         $interests = Interest::get();
 
-        return view('/Groups and Trips/Trip/create', compact('footer','interests'));
+        return view('/Groups and Trips/Trip/create', compact('interests'));
     }
 
     /**
@@ -133,7 +132,7 @@ class TripController extends Controller
             ['trip_id', $trip->id]
         ])->first();
 
-        return view('/Groups and Trips/Trip/show', compact('footer', 'trip', 'admin', 'user', 'userStatus', 'interests', 'confirmedMembers', 'group'));
+        return view('/Groups and Trips/Trip/show', compact('trip', 'admin', 'user', 'userStatus', 'interests', 'confirmedMembers', 'group'));
     }
 
     /**
