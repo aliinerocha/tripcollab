@@ -34,7 +34,7 @@
             </div>
             <div>
 
-            @if(!($tripMembersRequests->count()) == 0 && $user->id == $trip->admin)
+            @if($tripMembersRequests->count()) != 0 && $user->id == $trip->admin)
 
             Solicitações para participar da viagem
 
@@ -131,7 +131,7 @@
                             </td>
 
                                 <td>
-                                @if($member->id != $trip->admin))
+                                @if($member->id != $trip->admin && auth()->user()->id == $trip->admin)
                                     <div class="d-flex">
                                         <a
                                         href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $member->id])}}"
@@ -139,7 +139,7 @@
                                         Cancelar a participação deste usuário
                                         </a>
                                     </div>
-                                @else
+                                @elseif($member->id == $trip->admin)
                                     <p class="badge badge-pill badge-primary card-text text-right">Administrador</p>
                                 @endif
                                 </td>
