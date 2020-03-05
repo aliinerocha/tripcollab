@@ -72,7 +72,7 @@
         <div class="d-none d-md-flex pl-4">
                 <!-- CARD COMUNIDADES 1 -->
                 @foreach($confirmedGroups as $key => $group)
-                    <div class="card border-0 ml-3" style="width: 18rem;">
+                    <div class="card card-grupos border-0 ml-3" style="width: 18rem;">
                         <div class="card-header border-0 text-center">
                             <span>{{$group->name}}</span>
                         </div>
