@@ -8,8 +8,13 @@ btnMenu.addEventListener("click", function() {
     } else {
         menu.style.display = "block";
     }
-  });
-  
-btnMenu.addEventListener("click", function (){
+});
+
+btnMenu.addEventListener("click", function() {
     btnMenu.classList.toggle("change");
-}); 
+});
+
+$("div.alert")
+    .not(".alert-important")
+    .delay(3000)
+    .fadeOut(350);

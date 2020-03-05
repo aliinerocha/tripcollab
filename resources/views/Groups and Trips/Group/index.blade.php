@@ -22,6 +22,8 @@
 
         <div class="col-12 ml-3 mr-3 m-md-0">
 
+            @include('flash::message')
+
             @if($admin->count() != 0)
 
             Comunidades administradas por você:
@@ -142,9 +144,9 @@
                         @endforeach
                         </tbody>
                     </table>
-                @else 
+                @else
                     Você não participa de outras comunidades
-                @endif    
+                @endif
             @endif
             </div>
 </main>
