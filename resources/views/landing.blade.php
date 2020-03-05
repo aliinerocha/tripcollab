@@ -47,13 +47,13 @@
 
 <!-- Conteudo -->
 <h2 class="text-center">Saiba porquê sua viagem começa aqui</h2>
-<div>
+<div class="card-group-conteudo mt-5">
 
         <div class="card-group">
              <!--Perfil-->
-                <div class="card">
+                <div class="card card-conteudo">
                     <div class="subtitulo text-center">
-                        <a href="/user/perfil" class="btn-floating btn-blue "><i class="far fa-user-circle fa-2x fa-lg"></i> </a>
+                        <i class="far fa-user-circle fa-2x "></i> </a>
                     </div>
                     <div class="card-body card-text text-center">
                         <p> <h5 class="text-center " >Criar um perfil com seus interesses de viagem e compartilhe experiencias com a nossa comunidade</h5> </p>
@@ -61,9 +61,9 @@
                 </div>
              <!--Perfil-->
              <!--destinos-->
-                <div class="card">
+                <div class="card card-conteudo">
                     <div class="subtitulo text-center">
-                    <a href="/trip/detalhesDeViagem"  class="btn-floating btn-blue"><i class="far fa-compass fa-2x fa-lg"></i></a>
+                        <i class="far fa-compass fa-2x "></i>
                     </div>
                     <div class="card-body card-text text-center">
                             <p> <h5 class="text-center " >Encontre os destinos de seu interesse com as melhores oportunidades oferecidas pelos nossos parceiros.</h5> </p>
@@ -71,9 +71,9 @@
                 </div>
              <!--destinos-->
              <!--comunidade-->
-                <div class="card">
+                <div class="card card-conteudo">
                     <div class="subtitulo text-center">
-                    <a href="/group/grupoComunidade" class="btn-floating btn-blue btn-lg btn-default d-flex flex-column align-items-center"><i class="fas fa-users "></i></a>
+                        <i class="fas fa-users fa-2x"></i>
                     </div>
                     <div class="card-body card-text text-center">
                         <p><h5 class="text-center" >Crie, organize ou participe de grupos de viagem com amigos, familiares ou ainda conheça uma galera totalmente nova e compatível com seus interesses.</h5></p>
@@ -82,9 +82,9 @@
              <!--comunidade-->
 
             <!--metas-->
-                <div class="card">
+                <div class="card card-conteudo">
                     <div class="subtitulo text-center">
-                        <a href="/trip/criarGrupoDeViagem"  class="btn-floating btn-blue btn-lg btn-default d-flex flex-column align-items-center"><i class="fas fa-flag "></i></a>
+                        <i class="fas fa-flag fa-2x"></i>
                     </div>
                     <div class="card-body card-text text-center">
                             <p><h5 class="text-center" >Crie, organize ou participe de grupos de viagem com amigos, familiares ou ainda conheça uma galera totalmente nova e compatível com seus interesses.</h5></p>
@@ -95,14 +95,6 @@
         
    
 </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -170,7 +162,7 @@
             <div class="card-body">
                 <!--Title-->
                 <div class="texto d-flex justify-content-start align-items-center ">
-                    <h5 class="mr-2 mb-0">250</h5>
+                    <h5 class="mr-2 mb-0">100</h5>
                     <small>membros</small>
                 </div>
             <!--Text-->
@@ -199,7 +191,7 @@
             <div class="card-body">
                 <!--Title-->
                 <div class="texto d-flex justify-content-start align-items-center ">
-                    <h5 class="mr-2 mb-0">250</h5>
+                    <h5 class="mr-2 mb-0">70</h5>
                     <small>membros</small>
                 </div>
             <!--Text-->
@@ -224,24 +216,21 @@
 
 <!-- facebook instan twiter-->
 
-<div class="redes-sociais text-center py-4 mb-60">
+<!-- <div class="redes-sociais text-center py-4 mb-60"> -->
     <!--Facebook-->
-    <a rel="nofollow" target="_blank" id="footer-link-facebook" href="https://www.facebook.com/mdbootstrap">
+    <!-- <a rel="nofollow" target="_blank" id="footer-link-facebook" href="https://www.facebook.com/mdbootstrap">
         <i class="fab fa-facebook-f white-text mr-2"> </i>
-        </a>
+        </a> -->
         <!--Twitter-->
-        <a rel="nofollow" target="_blank" id="footer-link-twitter" href="https://twitter.com/MDBootstrap">
+        <!-- <a rel="nofollow" target="_blank" id="footer-link-twitter" href="https://twitter.com/MDBootstrap">
         <i class="fab fa-twitter white-text  mr-2"> </i>
-        </a>
+        </a> -->
 
     <!--Youtube-->
-    <a rel="nofollow" target="_blank" id="footer-link-google" href="https://www.gmail.com">
+    <!-- <a rel="nofollow" target="_blank" id="footer-link-google" href="https://www.gmail.com">
         <i class="fab fa-x8 fa-google white-text mr-2"> </i>
-    </a>
-</div>
+    </a> -->
+<!-- </div> -->
 <!-- facebook instan twiter-->
 
-<script type="text/javascript" src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.14.0/js/jquery.min.js"></script>
-<script type="text/javascript" src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.14.0/js/popper.min.js"></script>
-<script type="text/javascript" src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/plugins/mdb-plugins-gathered.min.js"></script>
 @endsection
