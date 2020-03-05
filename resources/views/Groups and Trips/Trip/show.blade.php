@@ -9,31 +9,38 @@
 @endsection
 
 @section('conteudo')
-<div class="containerDesktop">
+<main>
+    {{-- <img src="@if($trip->photo == 'nophoto') {{url('/img/default_cover.jpg')}} @else{{asset($trip->photo)}}@endif" class="img-fluid banner-img" alt="banner"> --}}
+    <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
+</main>
 
     <!-- NAV ABA-->
-    <div class="bg-light pt-4 pb-4 mb-3">
-        <div class="d-flex ml-3 align-items-center">
-            <a class="link" href="{{ URL::previous() }}"><i class="material-icons">arrow_back</i></a>
-            <div class="container">
-                <h5>Minhas viagens</h5>
-            </div>
+<div class="containerDesktop">
+        <div class="pt-4 pb-4 mb-2 card menu-voltar">
+            <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
+                <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+                <h5>Minhas Viagens</h5>
+            </a>
         </div>
-    </div>
 
     <!-- CARD COM OS DETALHES DA VIAGEM SELECIONADA -->
-    <main class="bg-light pt-4 pb-4">
-        <div class="row">
-            <div class="col-10 offset-1">
+    <main class="bg-light pt-4 pb-5">
+
+            <div class="col-12">
             @include('flash::message')
                 <div class="d-flex mt-2 justify-content-center">
-                    <div class="col-11 p-0">
+                    {{-- <div class="col-11 p-0">
                         <img src="@if($trip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $trip->photo)}} @endif" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto; @if($trip->photo != 'nophoto') border-radius: 25px @endif" alt="...">
-                    </div>
+                    </div> --}}
                 </div>
                 <div>
-                    <div class="col-11 p-0">
-                        <h5 class="my-4 text-center">{{$trip->name}}</h5>
+                    <div class="ml-3 ml-md-0  mb-4 d-flex justify-content-between align-items-center mr-3">
+                        <h1>{{$trip->name}}</h1>
+                        @if($user->id == $trip->admin)
+                        <a href="{{route('trip.edit', ['id' => $trip->id])}}">
+                            <i class="far fa-edit fa-lg" style="color:  #7C7C7C"></i>
+                        </a>
+                    @endif
                     </div>
 
                 @if(
@@ -42,26 +49,35 @@
                     ($trip->visibility == 0 && !$userStatus)
                     )
 
-                <div class="d-flex justify-content-center">Esta viagem não é aberta ao público</div>
+                <span class="ml-3 ml-md-0 mr-3">Esta viagem não é aberta ao público</span>
 
                 @else
-
-                    <p class="mb-1">
+                    <h5 class="ml-3 ml-md-0  mb-4">Detalhes da viagem:</h5>
+                    <p class="titulo_campo ml-3 ml-md-0  mb-2">
+                        Descrição:
+                    </p>
+                    <p class="ml-3 ml-md-0  mb-4">
                         {{$trip->description}}
                     </p>
-                    <p class="titulo_campo mb-2">
+                    <p class="titulo_campo ml-3 ml-md-0  mb-2">
                         Data:
                     </p>
-                    <p class="mb-1">
+                    <p class="ml-3 ml-md-0  mb-2">
                         Partida: {{date('d/m/Y', strtotime($trip->departure))}}
                     </p>
-                    <p class="mb-4">
+                    <p class="ml-3 ml-md-0  mb-4">
                         Retorno: {{date('d/m/Y', strtotime($trip->return_date))}}
                     </p>
-                    <p class="titulo_campo mb-2">
-                        Administrador:
+                    <p class="titulo_campo ml-3 ml-md-0  mb-2">
+                        Investimento previsto por participante:
                     </p>
-                    <p class="mb-4">
+                    <p class="ml-3 ml-md-0  mb-5">
+                        R$ {{$trip->foreseen_budget}}
+                    </p>
+                    <h5 class="titulo_campo ml-3 ml-md-0  mb-4">
+                        Administrador:
+                    </h5>
+                    <p class="ml-3 ml-md-0  mb-5">
 
                         <a href="{{route('user.show', ['id' => $admin->id])}}">
                             <img
@@ -73,36 +89,31 @@
                         <a href="{{route('user.show', ['id' => $admin->id])}}">{{$admin->name}}</a>
 
                     </p>
-                    <p class="titulo_campo mb-2">
+                    <h5 class="titulo_campo ml-3 ml-md-0  mb-2">
                         Interesses:
-                    </p>
-                    <p class="mb-4">
+                    </h5>
+                    <p class="ml-3 ml-md-0  mb-5">
                         @foreach($interests as $interest)
                             <button type="button" class="btn btn-outline-primary mt-1">{{$interest->name}}</button>
                         @endforeach
                     </p>
-                    <p class="titulo_campo mb-2">
+                    <h5 class="titulo_campo ml-3 ml-md-0  mv-2">
                         Vinculado à comunidade:
-                    </p>
-                    <p class="mb-4">
+                    </h5>
+                    <p class="ml-3 ml-md-0  mb-5">
                         @if($group == null)
                         Nenhuma comunidade vinculada
                         @else
                         <a href="{{route('group.show', ['id' => $trip->group_id])}}">{{$group->name}}</a>
                         @endif
                     </p>
-                    <p class="titulo_campo mb-2">
-                        Investimento previsto por participante:
-                    </p>
-                    <p class="mb-4">
-                        R$ {{$trip->foreseen_budget}}
-                    </p>
-                    <p class="titulo_campo mt-4">
-                        Membros confirmados:
-                        <a href="{{route('trip.membersIndex', ['id' => $trip->id])}}">(Ver todos)</a>
-                    </p>
-
-                    <div>
+                    <div class="ml-3 ml-md-0 mr-3 py-4">
+                        <h5>Membros confirmados:</h5>
+                        <div class="d-flex align-items-center mb-3">
+                            {{-- <h6 > {{$confirmedMembers}} @if ($confirmedMembers<=1) membro @else membros @endif </h6> --}}
+                            <u><a href="{{route('trip.membersIndex', ['id' => $trip->id])}}" class=" ml-3">Ver todos</a></u>
+                            </div>
+                        {{-- <a href="{{route('trip.membersIndex', ['id' => $trip->id])}}">(Ver todos)</a> --}}
 
                         @foreach($confirmedMembers as $confirmedMember)
                             <a href="{{route('user.show', ['id' => $confirmedMember->user_id])}}">
@@ -112,42 +123,28 @@
                                 alt="{{$confirmedMember->name}}">
                             </a>
                         @endforeach
-
                     </div>
-
-                    @if($user->id == $trip->admin)
-                        <div class="d-flex mt-3">
-                            <a href="{{route('trip.edit',['id' => $trip->id])}}" class="btn btn-info">Editar</a>
-                        </div>
-                    @endif
-
                 @endif
 
                     @if(!$userStatus && $trip->visibility == 1)
-
-                    <div class="btn-group">
-                        <div class="d-flex mt-3">
-                            <a href="{{route('trip.confirmPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn btn-info">
+                        <div class="pb-4">
+                            <a href="{{route('trip.confirmPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn botao float-right">
                                 Confirmar presença
                             </a>
                         </div>
-                    </div>
 
                         @elseif(!$userStatus && $trip->visibility == 0)
 
-                    <div class="btn-group">
-                        <div>
-                            <a href="{{route('trip.confirmPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn btn-info">
+                        <div class="ml-3 ml-md-0 mr-3 mt-2">
+                            <a href="{{route('trip.confirmPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn botao">
                                 Solicitar participação
                             </a>
                         </div>
-                    </div>
 
                     @endif
 
-                    @if($userStatus && $userStatus->status == 0)
-
-                    <div class="btn-group dropup">
+                    @if($userStatus && $userStatus->status == 0 && $user->id != $trip->admin)
+                    {{-- <div class="btn-group dropup">
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Solicitação enviada
                         </button>
@@ -156,11 +153,16 @@
                             Cancelar solicitação
                             </a>
                         </div>
+                    </div> --}}
+                    <div class="ml-3 ml-md-0 mr-3 mt-2">
+                        <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}}" class="btn btn-danger">
+                        Cancelar solicitação
+                        </a>
                     </div>
 
                     @elseif($userStatus && $userStatus->status == 1)
-                        <div class="d-flex mt-3">
-                            <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn btn-danger">
+                    <div class="pb-4">
+                            <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn botao_atencao float-right">
                                 Cancelar presença
                             </a>
                         </div>
@@ -168,7 +170,6 @@
 
                 </div>
             </div>
-        </div>
     </main>
 
 </div>

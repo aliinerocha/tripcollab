@@ -105,20 +105,40 @@
             <span>Ver todas</span>
         </a>
     </section>
-    {{-- CARD VIAGENS --}}
-        @foreach($confirmedTrips as $confirmedTrip)
-        <div class="bg-light pb-3 pt-3 mt-2 d-flex">
-                <img src="@if($confirmedTrip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $confirmedTrip->photo)}} @endif" alt="..." style="max-width: 150px" class="ml-3">
-                <div class="ml-3">
-                        <h5 class="card-title">{{$confirmedTrip->name}}                        
-                             @if(auth()->user()->id == $confirmedTrip->admin) 
-                            <p class="badge badge-pill badge-primary card-text text-right">Administrador</p>
-                         @endif </h5>
-                    <p class="card-text ">{{$confirmedTrip->description}}</p>
-                    <p class="card-text text-right" style="text-decoration:underline"><a href="{{route('trip.show', ['id' => $confirmedTrip->id])}}">Ver detalhes</a></p>
-                </div>
+    {{-- CARD VIAGENS --}}        
+
+        <div class="row d-md-none">
+            @foreach($confirmedTrips as $confirmedTrip)
+            <div class="card-item pb-3 pt-3 mt-2 d-flex col-12 col-md-4 mx-md-1">
+                    <img src="@if($confirmedTrip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $confirmedTrip->photo)}} @endif" alt="..." style="widht: 150px; height: 150px" class="ml-3  ">
+                    <div class="ml-3">
+                        <h5 class="card-title">{{$confirmedTrip->name}} </h5>
+                        @if(auth()->user()->id == $confirmedTrip->admin) 
+                            <span class="badge  badge-primary mb-2 p-2">Administrador</span>
+                        @endif 
+                        <p class="card-text">{{$confirmedTrip->description}}</p>
+                        <p class="card-text" style="text-decoration:underline"><a href="{{route('trip.show', ['id' => $confirmedTrip->id])}}">Ver detalhes</a></p>
+                    </div>
+            </div>
+            @endforeach
         </div>
-        @endforeach
-</div>
+
+        <div class="mx-4 d-none d-md-flex pt-3">
+            @foreach($confirmedTrips as $confirmedTrip)
+            <div class="bg-white pt-3 pb-3 d-flex mx-2" style="width:600px;">
+                    <img src="@if($confirmedTrip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $confirmedTrip->photo)}} @endif" alt="..." style="widht: 150px; height: 150px" class="ml-3  ">
+                    <div class="ml-3 mr-2">
+                        <h5 class="card-title">{{$confirmedTrip->name}} </h5>
+                        @if(auth()->user()->id == $confirmedTrip->admin) 
+                            <span class="badge  badge-primary mb-2 p-2">Administrador</span>
+                        @endif 
+                        <p class="card-text">{{$confirmedTrip->description}}</p>
+                        <p class="card-text" style="text-decoration:underline"><a href="{{route('trip.show', ['id' => $confirmedTrip->id])}}">Ver detalhes</a></p>
+                    </div>
+            </div>
+            @endforeach
+
+        </div>
+
 
 @endsection

@@ -151,7 +151,7 @@ class TripController extends Controller
 
         $groups = $this->groups->all(['id','name']);
 
-        return view('/Groups and Trips/Trip/edit', compact('footer', 'trip', 'interests', 'selectedInterests', 'groups'));
+        return view('/Groups and Trips/Trip/edit', compact( 'trip', 'interests', 'selectedInterests', 'groups'));
     }
 
     /**
