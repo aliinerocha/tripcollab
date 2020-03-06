@@ -185,7 +185,7 @@
                                         <a href="{{route('group.show', ['id' => $group->id])}}">
                                             <img
                                             class="foto-perfil rounded-circle"
-                                            src="@if($group->photo == 'nophoto') {{asset('./img/add.png')}} @else {{asset("storage/userPhotos/$group->photo")}} @endif"
+                                            src="@if($group->photo == 'nophoto') {{asset('./img/add.png')}} @else {{asset("storage/$group->photo")}} @endif"
                                             alt="{{$group->name}}">
                                         </a>
 

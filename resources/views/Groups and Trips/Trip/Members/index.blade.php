@@ -58,9 +58,9 @@
                                 </a>
                             </td>
                                 <td>
-                                <!--    <div class="dropdown justify-content-center d-flex"> -->
+                                    <div class="dropdown justify-content-center d-flex">
                                         <button class="btn btn-info dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Solicitou participar da viagem
+                                        Solicitou participação
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" href="{{route('trip.acceptPresence', ['tripId' => $trip->id, 'userId' => $member->id])}}">
@@ -70,7 +70,7 @@
                                                 Rejeitar
                                             </a>
                                         </div>
-                                <!--    </div> -->
+                                    </div>
                                 </td>
                         </tr>
                     @endforeach

@@ -272,22 +272,22 @@ class TripController extends Controller
 
         return view('/Groups and Trips/Trip/Members/index', compact('trip','user','tripMembers', 'tripMembersRequests'));
     }
-    
+
     public function timeline () {
-        
+
         $user = auth()->user();
-        
+
         $trips = Trip::where('return_date', '<=', Carbon::today()->toDateString())
         ->select(['trips.id','trips.name as tripName','trips.description','trips.foreseen_budget'])
         ->whereHas('user', function ($q) {
             $q->where('user_id', auth()->user()->id);
         })
         ->get();
-        
+
         if($trips !== [])
         {
             $trips = $trips;
-            
+
             foreach($trips as $key => $trip)
             {
                 $tripMembers = DB::table('trip_user')
@@ -296,13 +296,13 @@ class TripController extends Controller
                 ->join('users','trip_user.user_id','=','users.id')
                 ->select(['users.id as userId','users.name as userName', 'users.photo as userPhoto'])
                 ->paginate(5);
-                dd($trips);
+                // dd($trips);
                 $trip->tripMembers = $tripMembers;
                 $countTripMembers = $tripMembers->count();
                 $trip->countTripMembers = $countTripMembers;
             }
-        } else 
-        { 
+        } else
+        {
             $trips = 0;
             $tripMembers = 0;
         }
