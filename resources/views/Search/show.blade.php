@@ -10,22 +10,23 @@
 
 @section('conteudo')
 
-<div class="bg-light pt-4 pb-4 mb-3">
-        <div class="d-flex ml-3 align-items-center">
-            <a class="link" href="{{ URL::previous() }}"><i class="material-icons">arrow_back</i></a>
-            <div class="container">
-                <h5>Busca</h5>
-            </div>
-        </div>
+<main>
+    <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner"> 
+</main>
+
+<div class="containerDesktop">
+
+<div class="pt-4 pb-4 pb-md-0 card bg-light menu-voltar mb-2 ">    
+        <h5  class="d-flex ml-4 ml-md-0 align-items-center mr-3">Minha busca</h5>
 </div>
 
-<main class="bg-light py-2">
-    <div class="row">
-        <div class="col-10 offset-1">
+<main class="bg-light">
+    <div class="row  ml-3 mr-3 m-md-0">
+        <div class="col-12">
 
         @if(request()->is('search/users*'))
 
-            <div class="d-flex"> <!-- Barra de busca de usuários -->
+            <div class="d-flex pt-4"> <!-- Barra de busca de usuários -->
                 <form action="{{route('search.users.index')}}" class="send-query w-100 d-flex" method="GET">
                     <div class="input-group">
                         @csrf
@@ -45,7 +46,7 @@
 
             @elseif(request()->is('search/groups*'))
 
-                <div class="d-flex"> <!-- Barra de busca de comunidades -->
+                <div class="d-flex pt-4"> <!-- Barra de busca de comunidades -->
                     <form action="{{route('search.groups.index')}}" class="send-query w-100 d-flex" method="GET">
                         <div class="input-group">
                             @csrf
@@ -64,7 +65,7 @@
 
             @elseif(request()->is('search/trips*'))
 
-                <div class="d-flex"> <!-- Barra de busca de viagens -->
+                <div class="d-flex pt-4"> <!-- Barra de busca de viagens -->
                     <form action="{{route('search.trips.index')}}" class="send-query w-100 d-flex" method="GET">
                         <div class="input-group">
                             @csrf
@@ -82,7 +83,7 @@
                 </div>
         @endif
 
-        <div class="mb-2">
+        <div class="mb-3 mt-2">
             <div class="btn-group mt-2 filtro" role="group" aria-label="">
                 <a href="{{route('search.users.index')}}" class="btn btn-outline-primary border-top-0 border-left-0 border-bottom-0 filtro @if(request()->is('search/users*')) active @endif">Pessoas</a>
                 <a href="{{route('search.groups.index')}}" class="btn btn-outline-primary border-top-0 border-bottom-0 filtro @if(request()->is('search/groups*')) active @endif">Comunidades</a>
@@ -253,5 +254,6 @@
         </div>
     </div>
 </main>
+</div>
 
 @endsection
