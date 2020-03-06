@@ -135,6 +135,7 @@
 
                 <div class="form-group">                
                     <div class="col d-flex justify-content-end">
+                    <a href="{{route('home')}}" type="submit" class="btn btn-secondary mr-3">Cancelar</a>
                         <button type="submit" class="btn botao">Atualizar Perfil</button>
                     </div>
                 </div>
@@ -147,9 +148,9 @@
         <form action="{{route('user.delete', $user->id)}}" method="post">
             @csrf
             @method('DELETE')        
-            <div class="col d-flex justify-content-end">
+            <div class="col d-flex justify-content-end align-items-center">
                 <span class="pr-3">Excluir perfil permanentemente</span>
-                <button type="submit" class="btn btn-secondary">Excluir</button>
+                <button type="submit" class="btn btn-danger">Excluir</button>
             </div>
         </form>
     </section>

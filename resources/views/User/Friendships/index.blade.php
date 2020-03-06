@@ -42,21 +42,21 @@
 
         <section class="amigos bg-light px-3 py-4">
             @if($user->id == auth()->user()->id)
-            <h5 class="nome pt-1 pb-1">Meus amigos</h5>
+            <h5 class="nome pt-1 pb-4">Meus amigos</h5>
             @else
-            <h5 class="nome pt-1 pb-1">Amigos de {{$user->name}}</h5>
+            <h5 class="nome pt-1 pb-4">Amigos de {{$user->name}}</h5>
             @endif
 
             <!-- Busca -->
             
-            @if($friendlist->count() > 0)
+            {{-- @if($friendlist->count() > 0)
             <div class=" input-group mb-3 py-3">
                 <input type="text" class="form-control border-0" placeholder='Pesquisar "Amigos"'>
                 <div class="input-group-append">
                     <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
                 </div>
             </div>
-            @endif
+            @endif --}}
 
             <!-- Lista de Amigos -->
 
@@ -70,16 +70,16 @@
 
                 <table class="table table-striped">
                     <thead>
-                        <tr>
-                            <th>Foto</th>
+                        <tr class="text-center">
+                            <th >Foto</th>
                             <th>Nome</th>
-                            <th>Ações</th>
+                            <th >Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($friendshipRequestors as $requestor)
-                        <tr>
-                            <td>
+                        <tr class="text-center">
+                            <td >
 
                             <a href="{{route('user.show', ['id' => $requestor->id])}}">
                                 <img
@@ -123,18 +123,18 @@
 
             <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>Foto</th>
-                        <th>Nome</th>
+                    <tr class="text-center">
+                        <th  >Foto</th>
+                        <th  >Nome</th>
                         @if($user->id == auth()->user()->id)
-                            <th>Ações</th>
+                            <th >Ações</th>
                         @endif
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($friendlist as $friend)
-                    <tr>
-                        <td>
+                    <tr class="text-center">
+                        <td  >
 
                         <a href="{{route('user.show', ['id' => $friend->id])}}">
                             <img
@@ -144,13 +144,11 @@
                         </a>
 
                         </td>
-                        <td>{{$friend->name}}</td>
+                        <td  >{{$friend->name}}</td>
 
                         @if($user->id == auth()->user()->id)
-                        <td>
-                            <div class="d-flex">
-                                <a href="{{route('friendship.delete', ['requestedUserID' => $friend->id])}}" class="btn btn-sm btn-danger w-100">Desfazer amizade</a>
-                            </div>
+                        <td  >
+                                <a href="{{route('friendship.delete', ['requestedUserID' => $friend->id])}}" class="btn btn-sm btn-danger ">Desfazer amizade</a>
                         </td>
                         @endif
                     </tr>

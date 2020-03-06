@@ -31,6 +31,12 @@
     border-color: #064c8c;
   }
 
+  .botao:hover {
+    background-color: #064c8c;
+    color: #ffffff;
+    border-color: #064c8c;
+  }
+
 
   /* FIM DO CSS ABA PERFIL */
 

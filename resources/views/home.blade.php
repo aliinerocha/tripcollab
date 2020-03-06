@@ -125,26 +125,27 @@
 
                 @if(!($friendlist->count() == 0))
 
-                <h6 href="" class="ml-1">
-                    <a href="{{route('friendship.index', ['id' => $user->id])}}">(ver todos)</a>
+                <h6 href="" class="ml-2">
+                    <a href="{{route('friendship.index', ['id' => $user->id])}}" style="text-decoration: underline; color: black">ver todos</a>
                 </h6>
 
                 @else
 
-                <h6 href="" class="ml-1">
-                    <a href="{{route('friendship.index', ['id' => $user->id])}}">(ver lista)</a>
+                <h6 href="" class="ml-2">
+                    <a href="{{route('friendship.index', ['id' => $user->id])}}" style="text-decoration: underline; color: black">ver lista</a>
                 </h6>
 
                 @endif
 
             </div>
 
-            <div class="d-flex">
+            <div class="d-flex flex-column  align-items-center flex-md-row justify-content-md-around">
 
                 @foreach($friendlist as $friend)
                 <div class="ml-3 py-4">
-                    <a href="{{route('user.show', ['id' => $friend->id])}}">
+                    <a href="{{route('user.show', ['id' => $friend->id])}}" class="d-flex flex-column  align-items-center" style="text-decoration: none; color: black">
                         <img alt="{{$friend->name}}" src="@if($friend->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$friend->photo")}} @endif" class="rounded-circle" style="width:90px; height: 90px">
+                        <span>{{$friend->name}}</span>
                     </a>
                 </div>
                 @endforeach
