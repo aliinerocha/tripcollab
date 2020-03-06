@@ -10,45 +10,18 @@
 
 @section('conteudo')
     <!-- BANNER -->
-    <main class="mb-2">
+    <main class="mb-0">
             <img src="../img/worldmap.svg" class="img-fluid banner-img" alt="banner">
-            <h3 class="titulo ml-3">
-        </div>
     </main>
 
     <!-- MENU LINHA DO TEMPO / CLASSIFICAÇÃO -->
     <div
-    class="d-flex
-    align-items-center
-    justify-content-center
-    w-100
-    mb-3
-    scrapbook-navbar
-    ">
-        <div
-        class="
-        d-flex
-        w-50
-        h-100
-        justify-content-center
-        align-items-center
-        unactive-link
-        "
-        >
-            <a href="{{route('trip.timeline')}}">Linha do tempo</a>
+    class="d-flex align-items-center justify-content-center w-100 mb-3 scrapbook-navbar">
+        <div class="d-flex w-50 h-100 justify-content-center align-items-center unactive-link">
+          <h5 class="title mb-0"><a href="{{route('trip.timeline')}}" id="classificacao">Linha do tempo</a></h5>
     	</div>
-        <div
-
-        class="
-        d-flex
-        w-50
-        h-100
-        justify-content-center
-        align-items-center
-        rounded-top
-        active-link"
-        >
-            <h5 class="title mb-0"> Classificação </h5>
+        <div class="d-flex w-50 h-100 justify-content-center align-items-center rounded-top active-link">
+          <h5 class="title mb-0"> Classificação </h5>
     	</div>
     </div>
     <!-- CLASSIFICAÇÃO -->
@@ -74,7 +47,7 @@
                 </i>
           </div>
           <div class="ml-3 d-flex flex-column">
-            <span>Prêmio 3</span>
+            <span>Prêmio 1</span>
             <span class="achievement-description">Descrição de como adquirir</span><br>
           </div>
         </div>
@@ -96,7 +69,7 @@
               </i>
           </div>
           <div class="ml-3 d-flex flex-column">
-              <span>Prêmio 1</span>
+              <span>Prêmio 3</span>
               <span class="achievement-description">Descrição de como adquirir</span><br>
             </div>
         </div>
