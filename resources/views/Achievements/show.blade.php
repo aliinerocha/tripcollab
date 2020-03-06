@@ -65,15 +65,10 @@
       </div>
     </div>
     <!-- class="other-achievements" -->
-    <div class="w-100 mt-3 classificacao row " class="other-achievements"> 
+    <div class="w-100 mt-3 classificacao row " class="other-achievements">
         <div class="d-flex achievement-row col-lg sm-4 m-5">
           <div
-          class="
-          d-flex
-          justify-content-center
-          align-items-center
-          achievement-box"
-          >
+          class="d-flex justify-content-center align-items-center achievement-box">
                 <i class="material-icons md-48">
                 explore
                 </i>
