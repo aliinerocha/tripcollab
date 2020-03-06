@@ -19,7 +19,7 @@
 
     <div class="pt-4 pb-4 card bg-light menu-voltar mb-2 ">
         <a  href="{{route('trip.show',['id' => $trip->id])}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
-            <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+            <i class="material-icons mr-3 back stretched-link">arrow_back</i>
             <h5>Membros da viagem</h5>
         </a>
     </div>
@@ -28,7 +28,7 @@
 <main class="bg-light pt-4 pb-4" style="height: 100vh">
     <h5 class="mb-4 mx-3 mx-md-0">{{$trip->name}}</h5>
     <div class="row mx-3 mx-md-0">
-            @if($tripMembersRequests->count()) != 0 && $user->id == $trip->admin)
+            @if($tripMembersRequests->count() != 0 && $user->id == $trip->admin)
 
             <span>Solicitações para participar da viagem</span>
 
@@ -58,14 +58,8 @@
                                 </a>
                             </td>
                                 <td>
-                                    <div class="d-flex dropdown">
-                                        <button
-                                            class="btn btn-sm btn-info flex-grow-1 dropdown-toggle"
-                                            id="dropdownMenuButton"
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true"
-                                            aria-expanded="false"
-                                        >
+                                <!--    <div class="dropdown justify-content-center d-flex"> -->
+                                        <button class="btn btn-info dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Solicitou participar da viagem
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -76,7 +70,7 @@
                                                 Rejeitar
                                             </a>
                                         </div>
-                                    </div>
+                                <!--    </div> -->
                                 </td>
                         </tr>
                     @endforeach
@@ -124,19 +118,19 @@
                                 </a>
                             </td>
 
-                                <td>
+                            <td>
                                 @if($member->id != $trip->admin && auth()->user()->id == $trip->admin)
                                     <div class="d-flex">
                                         <a
                                         href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $member->id])}}"
                                         class="btn btn-danger">
-                                        Cancelar a participação deste usuário
+                                        Excluir
                                         </a>
                                     </div>
                                 @elseif($member->id == $trip->admin)
                                     <span class="badge badge-primary p-2 badge-item">Administrador</span>
                                 @endif
-                                </td>
+                            </td>
 
                         </tr>
 

@@ -153,8 +153,8 @@
                             <div class="card-header border-0 text-center">
                                 <span>{{$trip->name}}</span>
                             </div>
-                            <img src="@if($trip->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($trip->photo)}}@endif" class="card-img-top rounded-0"
-                                style="max-height: 160px; object-fit: cover;" alt="Cancún">
+                            <img src="@if($trip->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else {{asset("storage/$trip->photo")}} @endif" class="card-img-top rounded-0"
+                                style="max-height: 160px; object-fit: cover;" alt="{{$trip->name}}">
                             <div class="card-body d-flex justify-content-between  border-0">
                                 <div class="texto d-flex justify-content-start align-items-center ">
                                     <h6 class="mr-2 mb-0">{{\Carbon\Carbon::parse($trip->return_date)->formatLocalized('%h de %Y')}}</h6>
