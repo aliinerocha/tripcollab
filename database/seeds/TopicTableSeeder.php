@@ -15,7 +15,7 @@ class TopicTableSeeder extends Seeder
         DB::statement('SET foreign_key_checks = 0');
         DB::table('topics')->truncate();
 
-        factory(\App\Topic::class, 4)->create();
+        factory(\App\Topic::class, 100)->create();
         // ->each(function($topic) {
 
         //     // Seed para a relação com group

@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
         DB::statement('SET foreign_key_checks = 0');
         DB::table('users')->truncate();
 
-        factory(\App\User::class, 20)->create();
+        factory(\App\User::class, 100)->create();
         
         // ->each(function($user) {
             

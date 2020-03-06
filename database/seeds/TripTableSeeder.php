@@ -15,7 +15,7 @@ class TripTableSeeder extends Seeder
         DB::statement('SET foreign_key_checks = 0');
         DB::table('trips')->truncate();
 
-        factory(\App\Trip::class, 20)->create();
+        factory(\App\Trip::class, 100)->create();
         
         // ->each(function($trip){
 
