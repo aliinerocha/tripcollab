@@ -94,10 +94,10 @@
             <h5 class="nome mx-3 pt-4">Meus interesses</h5>
             <div class="col-xs-12">
                 <div class="row interesses text-justify mx-3 py-2">
-                @if (!isset($interests))
-                @foreach($interests as $interest)
-                    <button type="button" class="btn btn-outline-primary mt-1 mr-1">{{$interest->name}}</button>
-                @endforeach
+                @if (($interests->count()) !== 0)
+                    @foreach($interests as $interest)
+                        <button type="button" class="btn btn-outline-primary mt-1 mr-1">{{$interest->name}}</button>
+                    @endforeach
                 @else Nenhum interesse foi informado
                 @endif
                 </div>

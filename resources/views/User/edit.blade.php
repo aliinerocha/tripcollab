@@ -23,7 +23,7 @@
                 <div class="form-row mx-3">
                     <div class="col-sm-6 mb-3">
                             <label for="nome">Nome</label>
-                            <input name="name" type="text" class="form-control is-valid" id="nome" placeholder="Digite o seu nome" value="{{$user->name}}" required>
+                            <input name="name" type="text" class="form-control" id="nome" placeholder="Digite o seu nome" value="{{$user->name}}" required>
                         <div class="valid-feedback">
                         Ok!
                         </div>
@@ -31,7 +31,7 @@
 
                     <div class="col-sm-6 mb-3">
                             <label for="email">E-mail</label>
-                            <input name="email" type="email" class="form-control is-valid" id="email" placeholder="Digite o seu e-mail" value="{{$user->email}}" required>
+                            <input name="email" type="email" class="form-control" id="email" placeholder="Digite o seu e-mail" value="{{$user->email}}" required>
                         <div class="valid-feedback">
                             Ok!
                         </div>
@@ -69,7 +69,7 @@
                 <div class="form-row mx-3 my-3">
                     <div class="col-md-4 mb-3">
                             <label for="cidade">Cidade</label>
-                            <input name="city" type="text" class="form-control is-valid" id="cidade" placeholder="Digite a sua cidade" value="{{$user->city}}" >
+                            <input name="city" type="text" class="form-control" id="cidade" placeholder="Digite a sua cidade" value="{{$user->city}}" >
                         <div class="valid-feedback">
                             Ok!
                         </div>
@@ -77,7 +77,7 @@
 
                     <div class="col-md-4 mb-3">
                             <label for="estado">Estado</label>
-                            <input type="text" class="form-control is-valid" name="state" id="estado" placeholder="Digite o seu estado" value="{{$user->state}}" >
+                            <input type="text" class="form-control" name="state" id="estado" placeholder="Digite o seu estado" value="{{$user->state}}" >
                         <div class="valid-feedback">
                             Ok!
                         </div>
@@ -85,7 +85,7 @@
 
                     <div class="col-md-4 mb-3">
                             <label for="pais">País</label>
-                            <input type="text" class="form-control is-valid" name="country" id="pais" placeholder="Digite o seu país" value="{{$user->country}}">
+                            <input type="text" class="form-control" name="country" id="pais" placeholder="Digite o seu país" value="{{$user->country}}">
                         <div class="valid-feedback">
                             Ok!
                         </div>
@@ -93,7 +93,7 @@
 
                     <div class="col-md-4 mb-3">
                             <label for="dataDeNascimento">Data de Nascimento</label>
-                            <input type="date" class="form-control is-valid" name="birthday" id="dataDeNascimento" value="{{$user->birthday}}">
+                            <input type="date" class="form-control" name="birthday" id="dataDeNascimento" value="{{$user->birthday}}">
                         <div class="valid-feedback">
                             Ok!
                         </div>

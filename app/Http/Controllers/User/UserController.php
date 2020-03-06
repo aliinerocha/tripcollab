@@ -236,7 +236,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        $user->interests()->sync($interests);
+        $user->interests()->sync($request->interests);
 
         return redirect()->route('home');
     }
