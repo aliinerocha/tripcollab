@@ -106,7 +106,7 @@
         </section>
 
         <!-- Amigos -->
-        <section class="amigos bg-light px-3 py-4">
+        <section class="amigos bg-light px-3 py-4" style="height: 100vh">
             <h5 class="nome pt-1 pb-1 ml-3">Meus amigos</h5>           
 
             <!-- Lista de Amigos -->

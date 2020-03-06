@@ -20,7 +20,7 @@
         <h5 class="title mb-0">Linha do tempo</h5>
     </div>
     <div class="d-flex w-50 h-100 justify-content-center align-items-center unactive-link">
-        <h5 class="title mb-0"><a href="/classificacao" id="classificacao"> Classificação </a></h5>
+        <h5 class="title mb-0"><a href="/classificacao" id="classificacao"> Conquistas </a></h5>
     </div>
 </div>
 <!-- LINHA DO TEMPO -->

@@ -21,13 +21,13 @@
           <h5 class="title mb-0"><a href="{{route('trip.timeline')}}" id="classificacao">Linha do tempo</a></h5>
     	</div>
         <div class="d-flex w-50 h-100 justify-content-center align-items-center rounded-top active-link">
-          <h5 class="title mb-0"> Classificação </h5>
+          <h5 class="title mb-0"> Conquistas </h5>
     	</div>
     </div>
     <!-- CLASSIFICAÇÃO -->
 
     <div class="d-flex flex-column align-items-center" >
-      <div class="d-flex flex-column align-items-center">
+      <div class="d-flex flex-column align-items-center mt-4 mb-2">
         <i class="material-icons md-48">
           explore
         </i>
@@ -47,7 +47,7 @@
                 </i>
           </div>
           <div class="ml-3 d-flex flex-column">
-            <span>Prêmio 1</span>
+            <span>Conquista 1</span>
             <span class="achievement-description">Descrição de como adquirir</span><br>
           </div>
         </div>
@@ -58,7 +58,7 @@
               </i>
           </div>
           <div class="ml-3 d-flex flex-column w-100 col-6">
-            <span>Prêmio 2</span>
+            <span>Conquista 2</span>
             <span class="achievement-description">Descrição de como adquirir</span><br>
           </div>
         </div>
@@ -69,7 +69,7 @@
               </i>
           </div>
           <div class="ml-3 d-flex flex-column">
-              <span>Prêmio 3</span>
+              <span>Conquista 3</span>
               <span class="achievement-description">Descrição de como adquirir</span><br>
             </div>
         </div>
