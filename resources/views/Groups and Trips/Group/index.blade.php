@@ -10,7 +10,7 @@
 
 @section('conteudo')
 <main>
-    <img src="@if($user->photo == 'nophoto') {{asset('./img/default_cover.jpg')}}  @else {{asset("storage/usersBackgroundPhotos/$user->background_photo")}} @endif" class="img-fluid banner-img" alt="banner">
+    <img src="@if($user->background_photo == 'nophoto') {{asset('./img/default_cover.jpg')}}  @else {{asset("storage/usersBackgroundPhotos/$user->background_photo")}} @endif" class="img-fluid banner-img" alt="banner">
 </main>
 
 <div class="containerDesktop">
@@ -71,17 +71,15 @@
                 </table>
             @endif
         </div>
-    </section>
 
-<section class="bg-light pt-4 pb-4 mt-2">
-         <div class="col-12 m-md-0">
+
+
             @if($groups->count() == 0)
 
             <span>Você ainda não participa de nenhuma comunidade</span>
 
             @else
 
-                @if($groups->count() - $admin->count() !== 0)
                     @if($groups->count() - $admin->count() == 1)
 
                         {{$groups->count() - $admin->count()}} comunidade listada:
@@ -148,10 +146,7 @@
                             @endif
                         @endforeach
                         </tbody>
-                    </table>
-                @else 
-                   <span> Você ainda não participa de outras comunidades</span>
-                @endif    
+                    </table>  
             @endif
         </div>
     </section>
