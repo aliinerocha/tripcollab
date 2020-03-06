@@ -298,7 +298,7 @@ class TripController extends Controller
                 ->paginate(5);
                 // dd($trips);
                 $trip->tripMembers = $tripMembers;
-                $countTripMembers = $tripMembers->count();
+                $countTripMembers = $tripMembers->total();
                 $trip->countTripMembers = $countTripMembers;
             }
         } else
