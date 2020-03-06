@@ -224,7 +224,10 @@ class UserController extends Controller
             $nameFile = "{$name}.{$extension}";
             $data['background_photo'] = $nameFile;
             $upload = $request->background_photo->storeAs('public/usersBackgroundPhotos', $nameFile);
-        }
+        } /* else
+        {
+            $data['background_photo'] = "nophoto";
+        } */
 
         if ($request->hasfile('photo')){
             $name = $user->id.'.'.Str::kebab($user->name).'.profile';
@@ -233,6 +236,10 @@ class UserController extends Controller
             $data['photo'] = $nameFile;
             $upload = $request->photo->storeAs('public/userPhotos', $nameFile);
         }
+        /* else
+        {
+            $data['photo'] = "nophoto";
+        } */
 
         $user->update($data);
 
