@@ -20,7 +20,7 @@
         <h5  class="d-flex ml-4 ml-md-0 align-items-center mr-3">Minha busca</h5>
 </div>
 
-<main class="bg-light">
+<main class="bg-light" style="height:100vh">
     <div class="row  ml-3 mr-3 m-md-0">
         <div class="col-12">
 
