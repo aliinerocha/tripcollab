@@ -29,7 +29,7 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($group)
+    public function index()
     {
         $user = auth()->user();
 
@@ -53,8 +53,9 @@ class GroupController extends Controller
     public function create()
     {
         $interests = Interest::get();
+        $user = auth()->user();
 
-        return view('Groups and Trips/Group/create', compact('interests'));
+        return view('Groups and Trips/Group/create', compact('interests', 'user'));
     }
 
     /**
@@ -155,9 +156,10 @@ class GroupController extends Controller
         }
 
         $group->update($data);
+        $group->interest()->sync($request->interest);
 
-        $group->interest()->sync($request->interest, false);
-
+        flash("Viagem editada com sucesso")->success();
+        
         return redirect()->route('group.show', ['id' => $id]);
     }
 
@@ -184,7 +186,7 @@ class GroupController extends Controller
 
         flash("Comunidade excluída com sucesso")->success();
 
-        return redirect()->route('user.groups.index', ['id' => $id]);
+        return redirect()->route('user.groups.index');
     }
 
     public function confirmPresence($groupId, $userId) {

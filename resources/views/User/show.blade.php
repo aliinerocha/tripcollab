@@ -82,7 +82,7 @@
             <div class="col-xs-12">
                 <div class="row usuario-local ml-3 pt-3">
                     <i class="fas fa-map-marker-alt fa-lg"></i>
-                    <h6 class="localizacao ml-2">{{$user->city}}, {{$user->state}}, {{$user->country}}</h6>
+                    <h6 class="localizacao ml-2">@if (null == ($user->city && $user->state && $user->country)) A localização não foi informada @else {{$user->city}}, {{$user->state}}, {{$user->country}} @endif</h6>
                 </div>
             </div>
 
@@ -106,9 +106,12 @@
 
             <div class="col-xs-12">
                 <div class="row interesses text-justify mx-3 py-2">
+                @if (!isset($interests))
                     @foreach($interests as $interest)
                         <button type="button" class="btn btn-outline-primary mt-1 mr-1">{{$interest->name}}</button>
                     @endforeach
+                @else Nenhum interesse foi informado
+                @endif
                 </div>
             </div>
 

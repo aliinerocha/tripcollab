@@ -109,14 +109,14 @@
                 <h6 > {{$confirmed}} @if ($confirmed<=1) membro @else membros @endif </h6>
                 <u><a href="{{route('group.membersIndex',['id' => $group->id])}}" class=" ml-3 ">Ver todos</a></u>
                 </div>
-                @foreach($group->user as $member)
+                {{-- @foreach($group->user as $member)
                     <a href="{{route('user.show', ['id' => $member->id])}}">
                         <img
                         class="foto-perfil rounded-circle"
                         src="@if($member->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif"
                         alt="{{$member->name}}">
                     </a>
-                @endforeach
+                @endforeach --}}
 
                 @if(!$userStatus && $group->visibility == 1)
                         <div class="d-flex mt-3">
@@ -137,6 +137,11 @@
 
             <div class="ml-4 ml-md-0 mb-4 py-4">
                 <h5>Viagens realizadas:</h5>
+                <div class=" interesses text-justify">
+                    @if($group->trip == null )
+                        A comunidade {{$group->name}} ainda não realizou nenhuma viagem.
+                    @endif
+                </div>
             </div>
 
             <div id="comunidade-slider" class="carousel slide container" data-ride="carousel">

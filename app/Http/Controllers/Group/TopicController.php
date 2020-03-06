@@ -72,10 +72,11 @@ class TopicController extends Controller
     public function show($id)
     {
         $topic = $this->topic->findOrFail($id);
+        $group = $this->group->findOrFail($topic->group_id);
         $user = auth()->user(['id', 'name']);
         $topicMessages = TopicMessage::where('topic_id',$topic->id)->orderBy('topic_messages.created_at', 'desc')->get();
         
-        return view('Groups and Trips/Group/Topics/show', compact('topic','user', 'topicMessages'));
+        return view('Groups and Trips/Group/Topics/show', compact('topic','user', 'topicMessages','group'));
     }
 
     /**
@@ -87,9 +88,13 @@ class TopicController extends Controller
 
     public function edit($id)
     {
+        $topicForm = $this->topic->findOrFail($id);
         $topic = $this->topic->findOrFail($id);
+        $group = $this->group->findOrFail($topic->group_id);
+        $user = auth()->user(['id', 'name']);
+        $topicMessages = TopicMessage::where('topic_id',$topic->id)->orderBy('topic_messages.created_at', 'desc')->get();
 
-        return view('Groups and Trips/Group/Topics/edit', compact('topic'));
+        return view('Groups and Trips/Group/Topics/show', compact('topicForm','topic','user', 'topicMessages','group'));
     }
 
     /**

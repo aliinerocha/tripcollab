@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('profile/trips/index', "Trip\TripController@index")->name('user.trips.index');
 
-    Route::get('profile/{id}/groups/index', "Group\GroupController@index")->name('user.groups.index');
+    Route::get('profile/groups/index', "Group\GroupController@index")->name('user.groups.index');
 
     Route::put('/profile/{id}' , 'User\UserController@update')->name('user.update');
 
