@@ -296,7 +296,7 @@ class TripController extends Controller
                 ->join('users','trip_user.user_id','=','users.id')
                 ->select(['users.id as userId','users.name as userName', 'users.photo as userPhoto'])
                 ->paginate(5);
-                
+                dd($trips);
                 $trip->tripMembers = $tripMembers;
                 $countTripMembers = $tripMembers->count();
                 $trip->countTripMembers = $countTripMembers;

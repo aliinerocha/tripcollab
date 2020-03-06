@@ -1,187 +1,54 @@
-/* banner img */
-.banner-img img {
+.banner-img {
     object-fit: cover;
     width: 100vw;
-    height: 20vh;
-}
-
-.titulo {
-    position: absolute;
-    margin-top: -35vh;
-    letter-spacing: -1px;
-    font-size: 1rem;
-    /* background-image: linear-gradient(161deg, rgba(0, 0, 0, 0.3) 0%, transparent 100%); */
-    color: #ffffff; 
-}
-
-.btn-cadastro {
-    position: relative;
-    background-color: #1d6ab0;
-    top: -100px;
-    left: 40px;
-    border: 0;
-}
-
-.btn-cadastro a {
-    color: #ffffff;
-    font-size: 1rem;
-}
-
-/* conteudo */
-.conteudo {
-    letter-spacing: -1px;
-    font-size: 1rem;
-}
-
-
-
-.main{
-    height: 330px;
-}
-
-/* Cards Conteudo */
-
-.card-group-conteudo{
-    margin-left: 5vw;
-    margin-right: 5vw;
-    margin-bottom: 1.5vw;;
-}
-.card-conteudo{
-    border: none;
-} 
-i{
-    color:  #1d6ab0;
-}
-
-
-/* Cards grupos mais populares */
-
-section.grupos-populares {
-    background-image: url("../../img/home/mapa.png");
-    background-size: cover;
-}
-.group-cards{
-    margin-left: 13vw;
-    margin-right: 13vw;
-}
-.card-header {
-    background-color: #1d6ab0;
-    color: #ffffff;
-}
-
-.card>img {  
-    object-fit: cover;
-    width: 100%;
-    height: 60vh;    
-}
-
-
-
-.botao {
-    margin-left: 25vh;
-    background-color: #1d6ab0;
-    color: #ffffff;
-    border-color: #064c8c;
-  
+    height: 35vh;
   }
 
 
-a:not([href]):not([tabindex]) {
-    color: #ffffff;; 
+
+  .botao {
+    background-color: #1d6ab0;
+    color: #ffffff;
+  }
+  .botao:hover {
+    background-color: #064c8c;
+    color: #ffffff;
+    border-color: #064c8c;
+  }
+
+  a {
+      color: #ffffff;
+  }
+
+  a:hover {
+    color: #ffffff;
     text-decoration: none;
 }
 
-a:not([href]):not([tabindex]):hover {
+.over {
+    position: absolute;
+    margin-top: -35vh;
+    width: 100vw;
+    height: 35vh;
+    background-color: rgb(0,0,0, 0.7);
+  }
+
+  .card {
+      outline: none;
+  }
+
+.card-header {
     background-color: #1d6ab0;
     color: #ffffff;
-    border-color: white;
+    }
     
+
+.grupos-populares {
+    background-image: url(../img/home/mapa.png);
 }
 
-
-
-/* redes sociais */
-.redes-sociais {
-    background-color: #1d6ab0;
+@media (min-width: 768px) {
+body{
+    padding-bottom: 0vh;
+  }
 }
-.row-equal > div[class*='col-'] {
-    display: flex;
-    flex: 1 0 auto;
-}
-
-
-/* RESPONSIVE banner img */
-
-@media (max-width: 768px) {    
-    .banner-img img {
-        height: 35vh;
-    }
-    .titulo{      
-        width: 80%;
-        height: 10vh;
-        margin-top: -35vh;
-        margin-right: 5vh;
-        letter-spacing: -1px;
-    }
-    .btn-cadastro{        
-        margin-right: 4vh;
-        margin-top: 4vh;    
-    }
-    .grupo-slide {
-        margin-right: 13vw;
-      }
-}
-@media (min-width: 768px) and (max-width: 1025px) {
-    /* RESPONSIVE banner img */
-    .banner-img img{
-        height: 50vh;
-    }
-    .titulo{
-      
-        width: 70%;
-        height: 20vh;
-        margin-top: -45vh;
-        margin-right: 25vh;
-        letter-spacing: -1px;
-    }
-    .subtitulo-viajar{
-        margin-top: 40vh;
-        
-    }
-    .btn-cadastro{
-        margin-right: 45vh;
-        size: 3rem;
-    }
-
-}
-@media (min-width: 1025px) {
-    /* RESPONSIVE banner img */
-    .banner-img img {
-        height: 40vh;
-        margin-bottom: 20vh;;
-    }
-    .over-banner{
-        margin-top: -15vh;
-        width: 100%;
-    }
-    .titulo{
-      
-        width: 100%;
-        height: 30vh;
-        margin-top: -40vh;
-        margin-right: 80vh;
-        letter-spacing: 1px;
-    }
-    .subtitulo-viajar{
-        margin-top: 40vh;
-        
-    }
-    .btn-cadastro{
-        margin-right: 100vh;
-        margin-left: 20vh;
-        margin-top: -20vh;
-        size: 5rem;
-    }
-}
-
-

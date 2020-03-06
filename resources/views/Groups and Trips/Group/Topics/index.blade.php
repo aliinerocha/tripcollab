@@ -12,7 +12,7 @@
 
 <!-- BANNER -->
 <main>
-    <img src="@if($group->photo == 'nophoto') {{url('/img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner">
+    <img src="" class="img-fluid banner-img" alt="banner">
 </main>
 <main>
     <img src="{{url('./img/default_cover.jpg')}}" class="img-fluid banner-img" alt="banner">
