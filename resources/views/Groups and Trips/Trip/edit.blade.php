@@ -89,8 +89,8 @@
                         </div>
                         <div class="row d-flex justify-content-end m-0">
                             <div class="d-flex justify-content-end">
-                                <a href="comunidadesEViagens" class="btn btn-secondary mr-2">Cancelar</a>
-                                <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
+                            <a href="{{route('trip.show',['id' => $trip->id])}}" class="btn btn-secondary mr-2">Cancelar</a>
+                                <button type="submit"  class="btn botao">Salvar</button>
                         </div>
                 </form>
         </main>

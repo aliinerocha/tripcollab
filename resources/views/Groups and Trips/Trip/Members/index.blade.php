@@ -1,4 +1,4 @@
-@extends('layouts.template', ['pagina' => 'perfil'])
+@extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('css')
 <link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
@@ -18,7 +18,7 @@
 <div class="containerDesktop">
 
     <div class="pt-4 pb-4 card bg-light menu-voltar mb-2 ">
-        <a  href="{{ URL::previous() }}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
+        <a  href="{{route('trip.show',['id' => $trip->id])}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
             <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
             <h5>Membros da viagem</h5>
         </a>

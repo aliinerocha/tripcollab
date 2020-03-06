@@ -1,4 +1,4 @@
-@extends('layouts.template', ['pagina' => 'perfil'])
+@extends('layouts.template', ['pagina' => 'comunidadesEviagens'])
 
 @section('css')
 <link rel="stylesheet" href="{{url('css/stylesGroupsAndTrips.css')}}">
