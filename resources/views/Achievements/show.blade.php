@@ -73,7 +73,7 @@
                 explore
                 </i>
           </div>
-          <div class="ml-3 d-flex flex-column w-100">
+          <div class="ml-3 d-flex flex-column">
             <span>Prêmio 3</span>
             <span class="achievement-description">Descrição de como adquirir</span><br>
           </div>
@@ -95,7 +95,7 @@
                 restaurant
               </i>
           </div>
-          <div class="ml-3 d-flex flex-column w-100">
+          <div class="ml-3 d-flex flex-column">
               <span>Prêmio 1</span>
               <span class="achievement-description">Descrição de como adquirir</span><br>
             </div>
