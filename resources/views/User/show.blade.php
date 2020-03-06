@@ -1,15 +1,21 @@
 @extends('layouts.template', ['pagina' => 'perfil'])
+
+@section('css')
+<link rel="stylesheet" href="{{url('css/stylesProfile.css')}}">
+@endsection
+
 @section('titulo')
     Perfil
 @endsection
 
 @section('conteudo')
+<!-- Foto da Capa -->
+<div class="col-xs-12 capa p-0">
+    <img src="@if($user->photo == 'nophoto') {{asset('./img/default_cover.jpg')}}  @else {{asset("storage/usersBackgroundPhotos/$user->background_photo")}} @endif" alt="imagem de fundo escolhida pelo usuário">
+</div>
+<!-- Foto da Capa -->
+<div class="containerDesktop">
     <div class="container-fluid p-0">
-        <!-- Foto da Capa -->
-        <div class="col-xs-12 capa p-0">
-            <img src="@if($user->photo == 'nophoto') {{asset('./img/default_cover.jpg')}}  @else {{asset("storage/usersBackgroundPhotos/$user->background_photo")}} @endif" alt="imagem de fundo escolhida pelo usuário">
-        </div>
-        <!-- Foto da Capa -->
 
         <div class="usuario bg-light mb-2 px-3 pb-4">
             <!-- Foto do Usuário -->
@@ -163,4 +169,6 @@
 
             @endif
         </div>
+    </div>
+</div>
 @endsection

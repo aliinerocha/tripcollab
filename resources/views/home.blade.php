@@ -10,13 +10,13 @@
 
 @section('conteudo')
 
+<!-- Foto da Capa -->
+<main class="col-xs-12 capa p-0">
+    <img src="@if($user->photo == 'nophoto') {{asset('./img/default_cover.jpg')}}  @else {{asset("storage/usersBackgroundPhotos/$user->background_photo")}} @endif" alt="imagem de fundo escolhida pelo usuário">
+</main>
+<!-- Foto da Capa -->
 <div class="containerDesktop">    
     <div class="container-fluid p-0">
-        <!-- Foto da Capa -->
-        <main class="col-xs-12 capa p-0">
-            <img src="@if($user->photo == 'nophoto') {{asset('./img/default_cover.jpg')}}  @else {{asset("storage/usersBackgroundPhotos/$user->background_photo")}} @endif" alt="imagem de fundo escolhida pelo usuário">
-        </main>
-        <!-- Foto da Capa -->
 
         <section class="usuario bg-light mb-2 px-3 pb-4">
             <!-- Foto do Usuário -->
@@ -28,8 +28,8 @@
             <!-- Botões -->
             <div class="col-xs-12 usuario-botoes text-right pull-right py-3">
                 <div class="row d-flex align-items-center">
-                    <div class="dropdown col-11 p-0 pr-2">
-                        <button class="btn btn-link px-1" data-display="static" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="dropdown col-11 pr-0 mr-0">
+                        <button class="btn btn-link pr-0 mr-2" data-display="static" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <a href="#" class="notification px-2">
                                 <i class="fas fa-bell fa-lg"></i><span class="badge">{{$totalRequest}}</span>
                             </a>
@@ -104,17 +104,9 @@
 
         <!-- Amigos -->
         <section class="amigos bg-light px-3 py-4">
-            <h5 class="nome pt-1 pb-1 ml-3">Meus amigos</h5>
-            <!-- Busca -->
-            <div class=" input-group mb-3 py-3">
-                <input type="text" class="form-control border-0" placeholder='Pesquisar "Amigos"'>
-                <div class="input-group-append">
-                    <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
-                </div>
-            </div>
+            <h5 class="nome pt-1 pb-1 ml-3">Meus amigos</h5>           
 
             <!-- Lista de Amigos -->
-
             <div class="d-flex">
 
                 <h6 class="amigo ml-3">

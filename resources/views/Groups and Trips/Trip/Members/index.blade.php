@@ -34,7 +34,7 @@
             </div>
             <div>
 
-            @if(!($tripMembersRequests->count()) == 0 && $user->id == $trip->admin)
+            @if($tripMembersRequests->count()) != 0 && $user->id == $trip->admin)
 
             Solicitações para participar da viagem
 
@@ -63,29 +63,27 @@
                                     {{$member->name}}
                                 </a>
                             </td>
-
-                            <td>
-                                <div class="d-flex dropdown">
-                                    <button
-                                        class="btn btn-sm btn-info flex-grow-1 dropdown-toggle"
-                                        id="dropdownMenuButton"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                    >
-                                    Solicitou participar da viagem
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{{route('trip.acceptPresence', ['tripId' => $trip->id, 'userId' => $member->id])}}">
-                                            Aceitar
-                                        </a>
-                                        <a class="dropdown-item" href="{{route('trip.cancelPresence', ['tripId' => $trip->id, 'userId' => $member->id])}}">
-                                            Rejeitar
-                                        </a>
+                                <td>
+                                    <div class="d-flex dropdown">
+                                        <button
+                                            class="btn btn-sm btn-info flex-grow-1 dropdown-toggle"
+                                            id="dropdownMenuButton"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                        Solicitou participar da viagem
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="{{route('trip.acceptPresence', ['tripId' => $trip->id, 'userId' => $member->id])}}">
+                                                Aceitar
+                                            </a>
+                                            <a class="dropdown-item" href="{{route('trip.cancelPresence', ['tripId' => $trip->id, 'userId' => $member->id])}}">
+                                                Rejeitar
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-
+                                </td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -113,16 +111,17 @@
                 </thead>
                 <tbody>
                 @foreach($tripMembers as $member)
-                    @if($member->id != $trip->admin)
+
                         <tr>
                             <td>
 
-                            <a href="{{route('user.show', ['id' => $member->id])}}">
+                                <a href="{{route('user.show', ['id' => $member->id])}}">
                                     <img
                                     class="foto-perfil rounded-circle"
                                     src="@if($member->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$member->photo")}} @endif"
                                     alt="{{$member->name}}">
                                 </a>
+
                             </td>
 
                             <td>
@@ -131,20 +130,22 @@
                                 </a>
                             </td>
 
-                            @if($user->id == $trip->admin)
-                            <td>
-                                <div class="d-flex">
-                                    <a
-                                    href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $member->id])}}"
-                                    class="btn btn-danger">
-                                    Cancelar a participação deste usuário
-                                    </a>
-                                </div>
-                            </td>
-                            @endif
+                                <td>
+                                @if($member->id != $trip->admin && auth()->user()->id == $trip->admin)
+                                    <div class="d-flex">
+                                        <a
+                                        href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $member->id])}}"
+                                        class="btn btn-danger">
+                                        Cancelar a participação deste usuário
+                                        </a>
+                                    </div>
+                                @elseif($member->id == $trip->admin)
+                                    <p class="badge badge-pill badge-primary card-text text-right">Administrador</p>
+                                @endif
+                                </td>
 
                         </tr>
-                    @endif
+
                 @endforeach
                 </tbody>
             </table>

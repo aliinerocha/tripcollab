@@ -12,7 +12,7 @@
 
 <div class="bg-light pt-4 pb-4 mb-3">
         <div class="d-flex ml-3 align-items-center">
-            <a class="link" href="{{ URL::previous() }}"><i class="material-icons">arrow_back</i></a>
+            <a class="link" href="{{ route('user.listGroupsAndTrips') }}"><i class="material-icons">arrow_back</i></a>
             <div class="container">
                 <h5>Minhas viagens</h5>
             </div>

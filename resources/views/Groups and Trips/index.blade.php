@@ -72,7 +72,7 @@
         <div class="d-none d-md-flex pl-4">
                 <!-- CARD COMUNIDADES 1 -->
                 @foreach($confirmedGroups as $key => $group)
-                    <div class="card border-0 ml-3" style="width: 18rem;">
+                    <div class="card card-grupos border-0 ml-3" style="width: 18rem;">
                         <div class="card-header border-0 text-center">
                             <span>{{$group->name}}</span>
                         </div>
@@ -109,7 +109,7 @@
 
         <div class="row d-md-none">
             @foreach($confirmedTrips as $confirmedTrip)
-            <div class="card-item pb-3 pt-3 mt-2 d-flex col-12 col-md-4 mx-md-1">
+            <div class="bg-light pb-3 pt-3 mt-2 d-flex col-12 col-md-4 mx-md-1">
                     <img src="@if($confirmedTrip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $confirmedTrip->photo)}} @endif" alt="..." style="widht: 150px; height: 150px" class="ml-3  ">
                     <div class="ml-3">
                         <h5 class="card-title">{{$confirmedTrip->name}} </h5>
@@ -125,7 +125,7 @@
 
         <div class="mx-4 d-none d-md-flex pt-3">
             @foreach($confirmedTrips as $confirmedTrip)
-            <div class="bg-white pt-3 pb-3 d-flex mx-2" style="width:600px;">
+            <div class="bg-white card-item-viagem pt-3 pb-3 d-flex mx-2" style="width:600px;">
                     <img src="@if($confirmedTrip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $confirmedTrip->photo)}} @endif" alt="..." style="widht: 150px; height: 150px" class="ml-3  ">
                     <div class="ml-3 mr-2">
                         <h5 class="card-title">{{$confirmedTrip->name}} </h5>

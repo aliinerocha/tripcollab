@@ -18,7 +18,7 @@
 <div class="containerDesktop">
         <div class="pt-4 pb-4 mb-2 card menu-voltar">
             <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
-                <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+                <i class="material-icons mr-3 back stretched-link">arrow_back</i>
                 <h5>Minhas Viagens</h5>
             </a>
         </div>
@@ -44,9 +44,9 @@
                     </div>
 
                 @if(
-                    ($trip->visibility == 0 && $userStatus && $userStatus->status == 0)
+                    ($trip->visibility == 0 && $userStatus && $userStatus->status == 0 && $trip->admin != $user->id)
                     ||
-                    ($trip->visibility == 0 && !$userStatus)
+                    ($trip->visibility == 0 && !$userStatus && $trip->admin != $user->id)
                     )
 
                 <span class="ml-3 ml-md-0 mr-3">Esta viagem não é aberta ao público</span>
@@ -126,14 +126,14 @@
                     </div>
                 @endif
 
-                    @if(!$userStatus && $trip->visibility == 1)
+                    @if(!$userStatus && $trip->visibility == 1 && $trip->admin != auth()->user()->id)
                         <div class="pb-4">
                             <a href="{{route('trip.confirmPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn botao float-right">
                                 Confirmar presença
                             </a>
                         </div>
 
-                        @elseif(!$userStatus && $trip->visibility == 0)
+                        @elseif(!$userStatus && $trip->visibility == 0 && $trip->admin != auth()->user()->id)
 
                         <div class="ml-3 ml-md-0 mr-3 mt-2">
                             <a href="{{route('trip.confirmPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn botao">
@@ -160,7 +160,7 @@
                         </a>
                     </div>
 
-                    @elseif($userStatus && $userStatus->status == 1)
+                    @elseif($userStatus && $userStatus->status == 1 && $trip->admin != auth()->user()->id)
                     <div class="pb-4">
                             <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn botao_atencao float-right">
                                 Cancelar presença
