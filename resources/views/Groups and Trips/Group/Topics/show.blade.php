@@ -10,7 +10,7 @@
 
 @section('conteudo')
 <main>
-    <img src="{{url('./img/default_cover.jpg')}}" class="img-fluid banner-img" alt="banner">
+    <img src="@if($user->photo == 'nophoto') {{asset('./img/default_cover.jpg')}}  @else {{asset("storage/usersBackgroundPhotos/$user->background_photo")}} @endif" class="img-fluid banner-img" alt="banner">
 </main>
 
 <div class="containerDesktop">
@@ -41,7 +41,7 @@
                     </a>
                     @endif
                 </div>
-                <img class="foto-perfil rounded-circle mt-2" src="@if($topic->user->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$topic->user->photo")}} @endif" alt="foto de perfil do membro {{$topic->user->name}}"> 
+                <img class="foto-perfil rounded-circle mt-2" src="@if($topic->user->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif" alt="foto de perfil do membro {{$topic->user->name}}"> 
                 <div class="mt-2">Criado por: {{$topic->user->name}}</div>
                 <div class="mt-2">Descrição: {{$topic->description}}</div>
                 <div class="mt-2">Em:  {{date('d/m/Y', strtotime($topic->created_at))}}</div>
@@ -76,7 +76,7 @@
                     @endif --}}
 
     <!-- Início Formulário de Edição dos Tópicos -->
-    <section class="bg-light mt-2 mb-2 pb-1">
+    <section class="bg-light mt-2 mb-2 pb-1 pt-2">
         @if (isset($topicForm))
         <div class="col-md-12 d-flex align-items-center justify-content-center mt-4">
             <h5 class="card-title mb-2">Editar Tópico</h5>

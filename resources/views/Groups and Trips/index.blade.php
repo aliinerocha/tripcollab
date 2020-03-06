@@ -45,7 +45,7 @@
                         <div class="card-header border-0 text-center">
                             <span>{{$group->name}}</span>
                         </div>
-                        <img src="@if($group->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Foto do Grupo">
+                        <img src="@if($group->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset("storage/$group->photo")}}@endif" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Foto do Grupo">
                         <div class="card-body d-flex justify-content-between">
                             <div class="texto d-flex justify-content-start align-items-center ">
                                 <h5 class="mr-2 mb-0">{{$group->members}}</h5>
@@ -74,7 +74,7 @@
                         <div class="card-header border-0 text-center">
                             <span>{{$group->name}}</span>
                         </div>
-                        <img src="@if($group->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Foto do Grupo">
+                        <img src="@if($group->photo == 'nophoto') {{url('./img/default_cover.jpg')}} @else{{asset("storage/$group->photo")}}@endif" class="card-img-top rounded-0" style="max-height: 160px; object-fit: cover;" alt="Foto do Grupo">
                         <div class="card-body d-flex justify-content-between">
                             <div class="texto d-flex justify-content-start align-items-center ">
                                 <h5 class="mr-2 mb-0">{{$group->members}}</h5>

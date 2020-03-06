@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Search
 
     Route::get('search', function () {
+
         return view('Search/index');
     });
 

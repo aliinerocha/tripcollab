@@ -11,7 +11,7 @@
 @section('conteudo')
 
 <main>
-    <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
+    <img src="{{asset('./img\background.jpg')}}" class="img-fluid banner-img" alt="banner">
 </main>
 
 <div class="containerDesktop">

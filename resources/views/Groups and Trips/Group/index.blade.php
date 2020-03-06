@@ -120,7 +120,7 @@
                                     </a>
                                 </td>
 
-                                <td class="d-flex">
+                                <td >
 
                                 @if($group->status == 0)
                                     <div class="btn-group dropup">
@@ -136,11 +136,9 @@
 
                                 @elseif($group->status == 1)
 
-                                    <div class="d-flex">
-                                        <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn btn-danger">
+                                        <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn botao_atencao" style="width: max-content">
                                             Cancelar participação
-                                        </a>
-                                    </div>
+                                        </a>    
 
                                 @endif
 

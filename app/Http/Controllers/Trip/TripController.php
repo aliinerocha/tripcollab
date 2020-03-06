@@ -53,8 +53,9 @@ class TripController extends Controller
     {
 
         $interests = Interest::get();
+        $user = auth()->user();
 
-        return view('/Groups and Trips/Trip/create', compact('interests'));
+        return view('/Groups and Trips/Trip/create', compact('interests', 'user'));
     }
 
     /**
@@ -151,7 +152,9 @@ class TripController extends Controller
 
         $groups = $this->groups->all(['id','name']);
 
-        return view('/Groups and Trips/Trip/edit', compact('trip', 'interests', 'selectedInterests', 'groups'));
+        $user = auth()->user();
+
+        return view('/Groups and Trips/Trip/edit', compact('trip', 'interests', 'selectedInterests', 'groups', 'user'));
     }
 
     /**

@@ -131,8 +131,10 @@ class GroupController extends Controller
 
         $selectedInterests = DB::table('group_interest')->where('group_id', $id)->get();
 
+        $user = auth()->user();
 
-        return view('/Groups and Trips/Group/edit', compact('interests', 'selectedInterests', 'group'));
+
+        return view('/Groups and Trips/Group/edit', compact('interests', 'selectedInterests', 'group', 'user'));
     }
 
     /**

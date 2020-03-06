@@ -9,7 +9,7 @@
 @endsection
 
 @section('conteudo')
-<img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
+<img src="@if($user->photo == 'nophoto') {{asset('./img/default_cover.jpg')}}  @else {{asset("storage/usersBackgroundPhotos/$user->background_photo")}} @endif" class="img-fluid banner-img" alt="banner">
     <div class="containerDesktop">
 
         <!-- NAV ABA-->
