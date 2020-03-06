@@ -18,7 +18,7 @@
         <div class="ml-4 mt-4 text-white">
         <h4 class="mb-4">Queremos viver momentos memoráveis com você!</h4><br>
         <h5>Bora viajar juntos?</strong><h5>
-        <button class="mt-1 btn botao"><a href="/register">CADASTRE-SE</a></button> 
+        <button class="mt-1 btn botao"><a href="/register" style="text-decoration: none; color:inherit">CADASTRE-SE</a></button> 
         </div>
     </div>
 

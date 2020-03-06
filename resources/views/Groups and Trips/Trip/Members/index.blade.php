@@ -10,33 +10,27 @@
 
 @section('conteudo')
 
-<div class="bg-light pt-4 pb-4 mb-3">
-        <div class="d-flex ml-3 align-items-center">
-            <a class="link" href="{{ URL::previous() }}"><i class="material-icons">arrow_back</i></a>
-            <div class="container">
-                <h5>Participantes da viagem</h5>
-            </div>
-        </div>
-</div>
+<main>
+    {{-- <img src="@if($trip->photo == 'nophoto') {{url('/img/default_cover.jpg')}} @else{{asset($trip->photo)}}@endif" class="img-fluid banner-img" alt="banner"> --}}
+    <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
+</main>
 
-<main class="bg-light pt-4 pb-4">
-    <div class="row">
-        <div class="col-10 offset-1">
-            <div class="d-flex mt-2 justify-content-center">
-                <div class="col-11 p-0">
-                    <img src="@if($trip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $trip->photo)}} @endif" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto; @if($trip->photo != 'nophoto') border-radius: 25px @endif" alt="...">
-                </div>
-            </div>
-            <div>
-                <div class="col-11 p-0">
-                    <h5 class="my-4 text-center">{{$trip->name}}</h5>
-                </div>
-            </div>
-            <div>
+<div class="containerDesktop">
 
+    <div class="pt-4 pb-4 card bg-light menu-voltar mb-2 ">
+        <a  href="{{ URL::previous() }}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
+            <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+            <h5>Membros da viagem</h5>
+        </a>
+    </div>
+
+
+<main class="bg-light pt-4 pb-4" style="height: 100vh">
+    <h5 class="mb-4 mx-3 mx-md-0">{{$trip->name}}</h5>
+    <div class="row mx-3 mx-md-0">
             @if($tripMembersRequests->count()) != 0 && $user->id == $trip->admin)
 
-            Solicitações para participar da viagem
+            <span>Solicitações para participar da viagem</span>
 
                 <table class="table table-striped">
                     <thead>
@@ -93,11 +87,11 @@
 
             @if($tripMembers->count() == 0)
 
-            Ainda não há membros para essa viagem
+           <span> Ainda não há membros para essa viagem</span>
 
             @else
 
-            Existem {{$tripMembers->count()}} membros confirmados nessa viagem
+            <span>Existem {{$tripMembers->count()}} membros confirmados nessa viagem</span>
 
             <table class="table table-striped">
                 <thead>
@@ -140,7 +134,7 @@
                                         </a>
                                     </div>
                                 @elseif($member->id == $trip->admin)
-                                    <p class="badge badge-pill badge-primary card-text text-right">Administrador</p>
+                                    <span class="badge badge-primary p-2 badge-item">Administrador</span>
                                 @endif
                                 </td>
 
@@ -151,8 +145,6 @@
             </table>
 
             @endif
-
-            </div>
         </div>
     </div>
 </main>

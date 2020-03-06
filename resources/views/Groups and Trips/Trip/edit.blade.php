@@ -10,25 +10,26 @@
 
 @section('conteudo')
 
+<main>
+    <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
+</main>
+
     <div class="containerDesktop">
         <!-- NAV ABA-->
-        <div class="bg-light pt-4 pb-4 mb-3">
-            <div class="d-flex ml-3 align-items-center">
-                <a class="link" href="{{route('user.listGroupsAndTrips')}}"><i class="material-icons">arrow_back</i></a>
-                <div class="container">
-                    <h5>Editar viagem</h5>
-                </div>
-            </div>
+
+        <div class="pt-4 pb-4 mb-2 card bg-light menu-voltar">
+            <a  href="{{route('trip.show',['id' => $trip->id])}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
+                <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+                <h5>{{$trip->name}}</h5>
+            </a>
         </div>
 
         <!-- CARD COM OS DETALHES DA VIAGEM SELECIONADA -->
-        <main class="bg-light pt-4 pb-4">
-            <div class="row">
-                <form action="{{route('trip.update', ['id' => $trip->id])}}" method="POST" class="col-10 offset-1" enctype="multipart/form-data">
+        <main class="bg-light pt-4 pb-4 px-3 px-md-0">
+                <form action="{{route('trip.update', ['id' => $trip->id])}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
                     @include('flash::message')
-                        <img src="@if($trip->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $trip->photo)}} @endif" class="d-block img-fluid" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="...">
                         <div class="form-group mt-4">
                             <label for="tituloDaViagem">Título da viagem:</label>
                             <input name="name" type="text" class="form-control" id="tituloDaViagem" placeholder="Insira titulo da viagem" value="{{$trip->name}}">
@@ -88,23 +89,20 @@
                         </div>
                         <div class="row d-flex justify-content-end m-0">
                             <div class="d-flex justify-content-end">
-                                <a href="comunidadesEViagens" class="btn botao_atencao mr-2">Cancelar</a>
+                                <a href="comunidadesEViagens" class="btn btn-secondary mr-2">Cancelar</a>
                                 <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>
                 </form>
-
-                <!-- </div> -->
-            </div>
         </main>
-            <div class="mt-3 py-4 bg-light">
+            <div class="mt-3 py-4 py-md-0 bg-light">
                 <form action="{{route('trip.destroy',['id' => $trip->id])}}" method="POST">
                     @csrf
                     @method("DELETE")
-                    <div class="d-flex align-items-center justify-content-between justify-content-md-end pt-3 col-10 offset-1">
-                        <span class="pr-3">Excluir viagem</span>
+                    <div class="d-flex align-items-center justify-content-between justify-content-md-end pt-3 ml-3 mr-3 m-md-0">
+                        <span class="pr-3">Excluir viagem permanentemente</span>
                         <button type="submit" class="btn btn-danger">Excluir</button>
                     </div>
-
                 </form>
             </div>
+        </div>
 @endsection

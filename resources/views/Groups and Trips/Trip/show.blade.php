@@ -16,10 +16,11 @@
 
     <!-- NAV ABA-->
 <div class="containerDesktop">
-        <div class="pt-4 pb-4 mb-2 card menu-voltar">
+
+        <div class="pt-4 pb-4 card bg-light menu-voltar mb-2 ">
             <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
-                <i class="material-icons mr-3 back stretched-link">arrow_back</i>
-                <h5>Minhas Viagens</h5>
+                <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+                <h5>Minhas viagens</h5>
             </a>
         </div>
 
@@ -107,22 +108,21 @@
                         <a href="{{route('group.show', ['id' => $trip->group_id])}}">{{$group->name}}</a>
                         @endif
                     </p>
-                    <div class="ml-3 ml-md-0 mr-3 py-4">
+                    <div class="ml-3 ml-md-0 mr-3 py-4 mb-3">
                         <h5>Membros confirmados:</h5>
-                        <div class="d-flex align-items-center mb-3">
                             {{-- <h6 > {{$confirmedMembers}} @if ($confirmedMembers<=1) membro @else membros @endif </h6> --}}
-                            <u><a href="{{route('trip.membersIndex', ['id' => $trip->id])}}" class=" ml-3">Ver todos</a></u>
-                            </div>
+                            <a href="{{route('trip.membersIndex', ['id' => $trip->id])}}" class="btn botao">Ver todos</a>
+                        </div>
                         {{-- <a href="{{route('trip.membersIndex', ['id' => $trip->id])}}">(Ver todos)</a> --}}
 
-                        @foreach($confirmedMembers as $confirmedMember)
+                        {{-- @foreach($confirmedMembers as $confirmedMember)
                             <a href="{{route('user.show', ['id' => $confirmedMember->user_id])}}">
                                 <img
                                 class="foto-perfil rounded-circle"
                                 src="@if($confirmedMember->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif"
                                 alt="{{$confirmedMember->name}}">
                             </a>
-                        @endforeach
+                        @endforeach --}}
                     </div>
                 @endif
 

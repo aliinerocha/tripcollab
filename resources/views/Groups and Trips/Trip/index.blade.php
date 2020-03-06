@@ -10,26 +10,29 @@
 
 @section('conteudo')
 
-<div class="bg-light pt-4 pb-4 mb-3">
-        <div class="d-flex ml-3 align-items-center">
-            <a class="link" href="{{ route('user.listGroupsAndTrips') }}"><i class="material-icons">arrow_back</i></a>
-            <div class="container">
-                <h5>Minhas viagens</h5>
-            </div>
-        </div>
-</div>
+<main>
+    <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
+</main>
 
-<main class="bg-light pt-4 pb-4">
-    <div class="row">
-        <div class="col-10 offset-1">
+<div class="containerDesktop">
+
+    <div class="pt-4 pb-4 card bg-light menu-voltar mb-2 ">
+        <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
+            <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+            <h5>Minhas viagens</h5>
+        </a>
+    </div>
+
+<main class="bg-light pt-4 pb-4" style="height: 100vh">
+    <div class="row mx-3 mx-md-0">
 
         @include('flash::message')
 
             @if($admin->count() != 0)
 
-            Viagens administradas por você
+            <span class="mb-2">Viagens administradas por você</span>
 
-                <table class="table table-striped">
+                <table class="table table-striped mb-5">
                     <thead>
                         <tr>
                             <th>Foto</th>
@@ -60,8 +63,13 @@
                                 <div class="d-flex">
                                     <a
                                     href="{{route('trip.edit',['id' => $trip->id])}}"
-                                    class="btn btn-info">
+                                    class="btn botao mr-3">
                                     Editar
+                                    </a>
+                                    <a
+                                    href="{{route('trip.destroy',['id' => $trip->id])}}"
+                                    class="btn botao_atencao">
+                                    Excluir
                                     </a>
                                 </div>
                             </td>
@@ -75,7 +83,7 @@
 
             @if($trips->count() == 0)
 
-            Você ainda não participa de nenhuma viagem
+            <span>Você ainda não participa de nenhuma viagem</span>
 
             @else
 
@@ -89,7 +97,7 @@
 
             @endif
 
-            <table class="table table-striped">
+            <table class="table table-striped mt-2" >
                 <thead>
                     <tr>
                         <th>Foto</th>
@@ -151,8 +159,7 @@
             @endif
 
             </div>
-        </div>
-    </div>
 </main>
+</div>
 
 @endsection

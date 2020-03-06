@@ -22,7 +22,7 @@
             </div>
         </div> --}}
 
-        <div class="pt-4 pb-4 mb-2 card menu-voltar">
+        <div class="pt-4 pb-4 card bg-light menu-voltar mb-2 ">
             <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
                 <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
                 <h5>Criar nova viagem</h5>
@@ -94,7 +94,7 @@
 
                         <div class="d-flex justify-content-end mt-4">
 
-                            <a href="{{route('user.listGroupsAndTrips')}}" class="btn botao_atencao mr-2">Cancelar</a>
+                            <a href="{{route('user.listGroupsAndTrips')}}" class="btn btn-secondary mr-2">Cancelar</a>
                             <button type="submit" href="comunidadesEViagens" class="btn botao">Salvar</button>
                         </div>
                 </form>

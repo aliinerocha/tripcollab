@@ -51,9 +51,7 @@
                                 <h5 class="mr-2 mb-0">{{$group->members}}</h5>
                                 <small>@if ($group->members<=1) membro @else membros @endif</small>
                             </div>
-                            <div class="botao">
-                                <a href="{{route('group.show', ['id' => $group->id])}}" class="botao btn btn-primary float-right border-0 stretched-link">Visitar</a>
-                            </div>
+                                <a href="{{route('group.show', ['id' => $group->id])}}" class="botao btn float-right stretched-link">Visitar</a>
                         </div>
                     </div>
                 </div>
@@ -101,9 +99,7 @@
             <span>Criar nova viagem</span>
             <i class="material-icons" style=" font-size: 30px">add</i>
         </a>
-        <a href="{{route('user.trips.index', ['id' => auth()->user()->id])}}" class="btn botao ml-3 p-2 mt-4" >
-            <span>Ver todas</span>
-        </a>
+        <a href="{{route('user.trips.index', ['id' => auth()->user()->id])}}" class="btn botao ml-3 p-2 mt-4" >Ver todas</a>
     </section>
     {{-- CARD VIAGENS --}}        
 

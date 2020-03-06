@@ -18,7 +18,6 @@
 <!-- Foto da Capa -->
 
 <div class="containerDesktop">
-    <div class="container-fluid p-0">
 
     <section class="usuario bg-light mb-2 px-3 pb-4">
         <!-- Foto do Usuário -->
@@ -40,7 +39,7 @@
 
             @if(($user->id == auth()->user()->id) || $user->public == 1 || ($user->public == 0 && ($friendship && $friendship->status == 1)))
 
-        <section class="amigos bg-light px-3 py-4">
+        <section class="bg-light px-3 py-4" style="height: 100vh">
             @if($user->id == auth()->user()->id)
             <h5 class="nome pt-1 pb-4">Meus amigos</h5>
             @else
@@ -148,7 +147,7 @@
 
                         @if($user->id == auth()->user()->id)
                         <td  >
-                                <a href="{{route('friendship.delete', ['requestedUserID' => $friend->id])}}" class="btn btn-sm btn-danger ">Desfazer amizade</a>
+                                <a href="{{route('friendship.delete', ['requestedUserID' => $friend->id])}}" class="btn btn-danger " style=" width: max-content;">Desfazer amizade</a>
                         </td>
                         @endif
                     </tr>
@@ -157,16 +156,12 @@
             </table>
 
             @endif
-
-        </section>
-
         @else
-
-        <div class="d-flex justify-content-center">Este perfil não é aberto ao público</div>
-
+        <div class="">Este perfil não é aberto ao público</div>
         @endif
-        <!-- Amigos -->
-    </div>
+
+    </section>
+
 </div>
 
 @endsection

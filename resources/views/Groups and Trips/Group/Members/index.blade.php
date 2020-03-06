@@ -10,18 +10,23 @@
 
 @section('conteudo')
 
+<main>
+    {{-- <img src="@if($trip->photo == 'nophoto') {{url('/img/default_cover.jpg')}} @else{{asset($trip->photo)}}@endif" class="img-fluid banner-img" alt="banner"> --}}
+    <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
+</main>
+
 <div class="containerDesktop">
     <!-- NAV ABA-->
-    <div class="pt-4 pb-4 card menu-voltar">
+    <div class="pt-4 pb-4 card menu-voltar mb-2">
         <a  href="{{route('group.show',['id' => $group->id])}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
             <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
-            <h5>{{$group->name}}</h5>
+            <h5>Membros da comunidade </h5>
         </a>
     </div>
 
-<main class="bg-light pt-4 pb-4 mx-3 mx-md-0">
-    <div class="row">
-        <div class="col-12">
+<main class="bg-light pt-4 pb-4" style="height: 100vh">
+    <h5 class="mb-4 mx-3 mx-md-0">{{$group->name}}</h5>
+    <div class="row row mx-3 mx-md-0">
             {{-- <div class="d-flex mt-2 justify-content-center">
                 <div class="col-11 p-0">
                     <img src="@if($group->photo == 'nophoto') {{url('./img/add.png')}} @else {{asset('storage/' . $group->photo)}} @endif" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto; @if($group->photo != 'nophoto') border-radius: 25px @endif" alt="...">
@@ -32,8 +37,6 @@
                     <h5 class="my-4 text-center">{{$group->name}}</h5>
                 </div>
             </div> --}}
-
-        <div>
 
             @if(!($groupMembersRequests->count()) == 0 && $user->id == $group->admin)
 
@@ -120,7 +123,7 @@
                                 @if($member->id !== $group->admin)
                                     <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $member->id])}}"class="btn btn-danger">Excluir membro</a>
                                 @else
-                                    <p class="badge badge-pill badge-primary card-text text-right">Administrador</p>
+                                <span class="badge badge-primary p-2 badge-item">Administrador</span>
                                 @endif
                             </td>
                         @endif
@@ -132,8 +135,6 @@
             @endif
 
             </div>
-        </div>
-    </div>
 </main>
 </div>
 @endsection

@@ -136,7 +136,7 @@
 
                 <!-- Lista de Amigos -->
 
-                <div class="d-flex">
+                <div>
                     <h6 class="amigo">
                         @if($friendlist->count() == 0)
                             {{$user->name}} ainda não possui amigos
@@ -147,7 +147,8 @@
                         @endif
                     </h6>
                     @if($friendlist->count() > 0)
-                        <h6 href="" class="ml-2"><a href="{{route('friendship.index', ['id' => $user->id])}}" style="text-decoration: underline; color: black">ver todos</a></h6>
+                        {{-- <h6 href="" class="ml-2"><a href="{{route('friendship.index', ['id' => $user->id])}}" style="text-decoration: underline; color: black">ver todos</a></h6> --}}
+                        <a href="{{route('friendship.index', ['id' => $user->id])}}" class="btn botao">Ver todos</a>
                     @endif
                 </div>
 

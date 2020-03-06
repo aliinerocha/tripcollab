@@ -100,9 +100,8 @@
   border-color: #064c8c;
 }
 .botao:hover {
-  background-color: #1d6ab0;
+  background-color: #064c8c;
   color: #ffffff;
-  border-color: #064c8c;
 }
 
 .botao_atencao {
@@ -174,6 +173,9 @@ a:hover{
   cursor: unset;
 }
 
+.badge-item{
+  vertical-align: -webkit-baseline-middle;
+}
 
   /* CSS DESKTOP */
   @media (min-width: 768px) {

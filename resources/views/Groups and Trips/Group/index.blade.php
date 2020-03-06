@@ -10,7 +10,7 @@
 
 @section('conteudo')
 <main>
-    <img src="" class="img-fluid banner-img" alt="banner">
+    <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
 </main>
 
 <div class="containerDesktop">
@@ -33,7 +33,7 @@
 
                 <table class="table table-striped mt-3">
                     <thead>
-                        <tr>
+                        <tr >
                             <th>Foto</th>
                             <th>Comunidade</th>
                             <th>Ações</th>
@@ -77,7 +77,7 @@
          <div class="col-12 m-md-0">
             @if($groups->count() == 0)
 
-            <span>Você ainda não participa de nenhuma comunidade</  span>
+            <span>Você ainda não participa de nenhuma comunidade</span>
 
             @else
 
@@ -152,7 +152,7 @@
                         </tbody>
                     </table>
                 @else 
-                    Você inda não participa de outras comunidades
+                   <span> Você ainda não participa de outras comunidades</span>
                 @endif    
             @endif
         </div>

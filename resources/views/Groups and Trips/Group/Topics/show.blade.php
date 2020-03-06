@@ -10,8 +10,9 @@
 
 @section('conteudo')
 <main>
-    <img src="" class="img-fluid banner-img" alt="banner">
+    <img src="{{url('./img/default_cover.jpg')}}" class="img-fluid banner-img" alt="banner">
 </main>
+
 <div class="containerDesktop">
     <div class="pt-4 pb-4 card menu-voltar bg-light">
         <a  href="" class="d-flex ml-3 ml-md-0 align-items-center mr-3">

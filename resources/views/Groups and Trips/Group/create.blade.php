@@ -7,7 +7,7 @@
 @section('conteudo')
 
 <main>
-    {{-- <img src="@if($group->photo == 'nophoto') {{url('/img/default_cover.jpg')}} @else{{asset($group->photo)}}@endif" class="img-fluid banner-img" alt="banner"> --}}
+    <img src="{{url('/img/default_cover.jpg')}}" class="img-fluid banner-img" alt="banner">
 </main>
     <div class="containerDesktop">
 
@@ -73,7 +73,7 @@
                         </div>
                         <input type="hidden" name="admin" value="{{auth()->user()->id}}">
                         <div class="d-flex justify-content-end mt-4">
-                            <a href="{{route('user.listGroupsAndTrips')}}" class="btn botao_atencao mr-2">Cancelar</a>
+                            <a href="{{route('user.listGroupsAndTrips')}}" class="btn btn-secondary mr-2">Cancelar</a>
                             <button type="submit" href="#" class="btn botao">Salvar</button>
                         </div>
                 </form>

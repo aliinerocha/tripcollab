@@ -16,14 +16,6 @@
     border-color: #064c8c;
   }
 
-  a {
-      color: #ffffff;
-  }
-
-  a:hover {
-    color: #ffffff;
-    text-decoration: none;
-}
 
 .over {
     position: absolute;

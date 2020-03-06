@@ -111,7 +111,7 @@
             <h5 class="nome pt-1 pb-1 ml-3">Meus amigos</h5>           
 
             <!-- Lista de Amigos -->
-            <div class="d-flex">
+            <div>
 
                 <h6 class="amigo ml-3">
                     @if($friendlist->count() == 0)
@@ -126,13 +126,14 @@
                 @if(!($friendlist->count() == 0))
 
                 <h6 href="" class="ml-2">
-                    <a href="{{route('friendship.index', ['id' => $user->id])}}" style="text-decoration: underline; color: black">ver todos</a>
+                    {{-- <a href="{{route('friendship.index', ['id' => $user->id])}}" style="text-decoration: underline; color: black">ver todos</a> --}}
+                    <a href="{{route('friendship.index', ['id' => $user->id])}}" class="btn botao">Ver todos</a>
                 </h6>
 
                 @else
 
                 <h6 href="" class="ml-2">
-                    <a href="{{route('friendship.index', ['id' => $user->id])}}" style="text-decoration: underline; color: black">ver lista</a>
+                    <a href="{{route('friendship.index', ['id' => $user->id])}}" class="btn botao">Ver lista</a>
                 </h6>
 
                 @endif

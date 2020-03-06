@@ -18,7 +18,7 @@
 <div class="containerDesktop">
 
         <!-- NAV ABA-->
-    <div class="pt-4 pb-4 card menu-voltar">
+    <div class="pt-4 pb-4 bg-light card menu-voltar mb-2">
             <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
                 <i class="material-icons mr-3 back stretched-link">arrow_back</i>
                 <h5>Minhas Comunidades</h5>
@@ -103,20 +103,19 @@
                 </div>
             </div>
 
-            <div class="ml-4 ml-md-0 mr-3 py-4">
+            <div class="ml-4 ml-md-0 mr-3 py-4 mb-3">
                 <h5>Membros:</h5>
-                <div class="d-flex align-items-center mb-3">
                 <h6 > {{$confirmed}} @if ($confirmed<=1) membro @else membros @endif </h6>
-                <u><a href="{{route('group.membersIndex',['id' => $group->id])}}" class=" ml-3 ">Ver todos</a></u>
-                </div>
-                @foreach($group->user as $member)
+                <a href="{{route('group.membersIndex',['id' => $group->id])}}" class="btn botao">Ver todos</a>
+            </div>
+                {{-- @foreach($group->user as $member)
                     <a href="{{route('user.show', ['id' => $member->id])}}">
                         <img
                         class="foto-perfil rounded-circle"
                         src="@if($member->photo == 'nophoto') {{asset('./img/icone_user.svg')}} @else {{asset("storage/userPhotos/$user->photo")}} @endif"
                         alt="{{$member->name}}">
                     </a>
-                @endforeach
+                @endforeach --}}
 
                 @if(!$userStatus && $group->visibility == 1)
                         <div class="d-flex mt-3">
