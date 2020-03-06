@@ -24,7 +24,7 @@
 
         <div class="pt-4 pb-4 card bg-light menu-voltar mb-2 ">
             <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
-                <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+                <i class="material-icons mr-3 back stretched-link">arrow_back</i>
                 <h5>Criar nova viagem</h5>
             </a>
         </div>
@@ -37,18 +37,18 @@
                         {{-- <img src="{{url('./img/add.png')}}" class="d-block" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto;" alt="..."> --}}
                         <div class="form-group mt-4">
                             <label for="tituloDaViagem">Titulo da viagem:</label>
-                            <input name="name" type="text" class="form-control" id="tituloDaViagem" placeholder="Insira titulo da viagem" value="">
+                            <input required name="name" type="text" class="form-control" id="tituloDaViagem" placeholder="Insira titulo da viagem" value="">
                         </div>
                         <div class="form-group mt-4">
                             <label for="departure">Embarque dia:</label>
-                            <input name="departure" type="date" class="form-control mb-2" placeholder="Insira a data de partida" value="">
+                            <input required name="departure" type="date" class="form-control mb-2" placeholder="Insira a data de partida" value="">
                             <label for="departure">Retorno dia:</label>
-                            <input name="return_date" type="date" class="form-control" placeholder="Insira a data de retorno" value="">
+                            <input required name="return_date" type="date" class="form-control" placeholder="Insira a data de retorno" value="">
                         </div>
 
                         <div class="form-group mt-4">
                             <label for="">Descrição da viagem:</label>
-                            <textarea name="description" type="text" class="form-control" id="" placeholder="Insira descrição da viagem"></textarea>
+                            <textarea required name="description" type="text" class="form-control" id="" placeholder="Insira descrição da viagem"></textarea>
                         </div>
 
                         <label for="">Foto ilustrativa</label>
@@ -62,7 +62,7 @@
                         -->
                         <div class="form-group mt-4">
                             <label for="investimentoPrevisto">Investimento previsto:</label>
-                            <input name="foreseen_budget" type="text" class="form-control mb-2" id="investimentoPrevisto" placeholder="Insira o investimento previsto" value="">
+                            <input required name="foreseen_budget" type="number" class="form-control mb-2" id="investimentoPrevisto" placeholder="Insira o investimento previsto" value="">
                         </div>
 
                         <div class="form-group mt-4">
@@ -85,7 +85,6 @@
                         <div class="form-group mt-4">
                             <label for="visibilidadeDoGrupo">Visivel ao público?</label>
                             <select name="visibility" class="form-control" id="visibilidadeDoGrupo">
-                                <option disabled value="padrao">Selecione o nível de visibilidade</option>
                                 <option value="1">Sim</option>
                                 <option value="0">Não</option>
                             </select>

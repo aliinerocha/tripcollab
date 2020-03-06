@@ -18,7 +18,7 @@
 
     <div class="pt-4 pb-4 card bg-light menu-voltar mb-2 ">
         <a  href="{{route('user.listGroupsAndTrips')}}" class="d-flex ml-3 ml-md-0 align-items-center mr-3">
-            <i class="material-icons mr-3 back stretched-link">arrow_back</i>      
+            <i class="material-icons mr-3 back stretched-link">arrow_back</i>
             <h5>Minhas viagens</h5>
         </a>
     </div>
@@ -128,12 +128,12 @@
                         <td>
                             <div class="d-flex">
                                 @if($trip->status == 0)
-                                    <div class="btn-group dropup">
+                                    <div class="btn-group dropdown">
                                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Solicitação enviada
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}">
+                                            <a class="dropdown-item" href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}">
                                             Cancelar solicitação
                                             </a>
                                         </div>
@@ -141,11 +141,11 @@
 
                                 @elseif($trip->status == 1)
 
-                                    <div class="d-flex">
-                                        <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn btn-danger">
+                                    <!-- <div class="d-flex"> -->
+                                        <a href="{{route('trip.cancelPresence',['tripId' => $trip->id, 'userId' => $user->id])}}" class="btn botao_atencao">
                                             Cancelar presença
                                         </a>
-                                    </div>
+                                    <!-- </div> -->
                                 @endif
                             </div>
                         </td>

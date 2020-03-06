@@ -11,12 +11,12 @@
 @section('conteudo')
 
 <main>
-    <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner"> 
+    <img src="/img/default_cover.jpg" class="img-fluid banner-img" alt="banner">
 </main>
 
 <div class="containerDesktop">
 
-<div class="pt-4 pb-4 pb-md-0 card bg-light menu-voltar mb-2 ">    
+<div class="pt-4 pb-4 pb-md-0 card bg-light menu-voltar mb-2 ">
         <h5  class="d-flex ml-4 ml-md-0 align-items-center mr-3">Minha busca</h5>
 </div>
 
@@ -236,7 +236,7 @@
                                         <a href="{{route('trip.show', ['id' => $trip->id])}}">
                                             <img
                                             class="foto-perfil rounded-circle"
-                                            src="@if($trip->photo == 'nophoto') {{asset('./img/add.png')}} @else {{asset("storage/userPhotos/$trip->photo")}} @endif"
+                                            src="@if($trip->photo == 'nophoto') {{asset('./img/add.png')}} @else {{asset("storage/$trip->photo")}} @endif"
                                             alt="{{$trip->name}}">
                                         </a>
 

@@ -118,13 +118,13 @@
                 @endforeach --}}
 
                 @if(!$userStatus && $group->visibility == 1)
-                        <div class="d-flex mt-3">
+                        <div class="ml-4 ml-md-0 mr-3">
                             <a href="{{route('group.confirmPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn botao">
                             Participar
                             </a>
                         </div>
                 @elseif($userStatus && $userStatus->status == 1 && $user->id != $group->admin)
-                        <div class="d-flex mt-3">
+                        <div class="ml-4 ml-md-0 mr-3">
                             <a href="{{route('group.cancelPresence',['groupId' => $group->id, 'userId' => $user->id])}}" class="btn btn-danger">
                             Cancelar participação
                             </a>
