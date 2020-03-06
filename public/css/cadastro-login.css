@@ -46,8 +46,16 @@ h3 {
     font-style: normal;
     font-size: 14px;
     width: 30%;
-    color: #ACACAC;
-    background-color:white;  
+    color: #ffffff;
+    background-color:  #1d6ab0;  
+}
+
+.btn-cadastre:hover {
+    font-style: normal;
+    font-size: 14px;
+    width: 30%;
+    color: #ffffff;
+    background-color:  #064c8c;  
 }
 
 h5 {

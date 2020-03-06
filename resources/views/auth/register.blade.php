@@ -22,7 +22,7 @@
                 <button type="button" class="btn-logar btn btn-block shadow-sm p-2 m-1 mb-2 rounded"><a class="fb-ic mr-3" role="button"><i class="fab fa-lg fa-facebook-f"></i></a>Cadastre-se com Facebook</button>
                 <button type= "button" class="btn-logar btn btn-block shadow-sm p-2 m-1 rounded"><a class="gplus-ic mr-3" role="button"><i class="fab fa-lg fa-google-plus-g"></i></a>Cadastre-se com Google</button>
                             
-                <span class="separador">ou preencha o formulário abaixo</span>                                           
+                <span class="separador mt-4">ou preencha o formulário abaixo</span>                                           
                                            
                 <form method="POST" action="{{ route('register') }}">
                     @csrf 
@@ -61,10 +61,10 @@
                         <label class="form-check-label" for="exampleCheck1">Concordo com os <a href="#">termos e condições.</a></label>
                     </div>
                     <div class="d-flex justify-content-center mb-2">
-                        <button type="submit" class="btn-cadastre btn btn-block shadow p-2 m-2 rounded">{{ __('Register') }}</button>
+                        <button type="submit" class="btn-cadastre btn p-2 m-2 rounded">{{ __('Register') }}</button>
                     </div>
 
-                    <h5>Já tem cadastro? Faça seu <a href="{{route('login')}}">login</a> agora</h5>
+                    <h5 class="text-secondary">Já tem cadastro? Faça seu <a href="{{route('login')}}">login</a> agora</h5>
 
                 </form>
             </section>

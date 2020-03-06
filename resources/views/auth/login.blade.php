@@ -41,7 +41,8 @@
                     <div class="d-flex justify-content-center mb-2">
                         <button type="submit" class="btn-cadastre btn btn-block shadow p-2 m-2 rounded">{{ __('Login') }}</button>
                     </div>
-                    <h5>Ainda não tem cadastro?<a href="{{route('register')}}">Cadastre-se</a></h5>
+
+                    <h5 class="mt-3 text-secondary">Ainda não tem cadastro? <a href="{{route('register')}}">Cadastre-se</a></h5>
 
                 </form>
             </section>

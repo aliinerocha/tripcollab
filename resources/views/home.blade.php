@@ -75,7 +75,7 @@
                 <h4 class="nome ml-3 py-1">{{$user->name}}</h4>
                 @if($user->public == 0) <i class="material-icons md-18 d-flex align-self-center mb-2 ml-1">lock</i>@endif
             </div>
-
+            
             <div class="col-xs-12">
                 <div class="row usuario-local ml-3 pt-3">
                     <i class="fas fa-map-marker-alt fa-lg"></i>
@@ -94,9 +94,13 @@
             <h5 class="nome mx-3 pt-4">Meus interesses</h5>
             <div class="col-xs-12">
                 <div class="row interesses text-justify mx-3 py-2">
-                @foreach($interests as $interest)
-                    <button type="button" class="btn btn-outline-primary mt-1 mr-1">{{$interest->name}}</button>
-                @endforeach
+                @if ($user->interests()->count()<1) 
+                    <span>Você ainda não selecionou nenhum interesse</span>
+                @else
+                    @foreach($interests as $interest)
+                        <button type="button" class="btn btn-outline-primary mt-1 mr-1">{{$interest->name}}</button>
+                    @endforeach
+                @endif
                 </div>
             </div>
             <!-- Interesses -->
