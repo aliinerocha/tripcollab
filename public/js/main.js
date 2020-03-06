@@ -5,8 +5,10 @@ let menu = document.querySelector("#menu");
 btnMenu.addEventListener("click", function() {
     if (btnMenu.classList.contains("change")) {
         menu.style.display = "none";
+        document.querySelector(".timeline").classList.remove("d-none");
     } else {
         menu.style.display = "block";
+        document.querySelector(".timeline").classList.add("d-none");
     }
 });
 
