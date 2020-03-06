@@ -48,14 +48,14 @@
 
             <!-- Busca -->
             
-            {{-- @if($friendlist->count() > 0)
+            <!-- @if($friendlist->count() > 0)
             <div class=" input-group mb-3 py-3">
                 <input type="text" class="form-control border-0" placeholder='Pesquisar "Amigos"'>
                 <div class="input-group-append">
                     <span class="input-group-text border-0"> <i class="material-icons">search</i></span>
                 </div>
             </div>
-            @endif --}}
+            @endif -->
 
             <!-- Lista de Amigos -->
 
@@ -112,9 +112,9 @@
                 @if($friendlist->count() == 0 && auth()->user()->id == $user->id)
                     Você ainda não possui amigos
                 @elseif($friendlist->count() == 1)
-                    {{$friendlist->count()}} amigo
+                    Amizades: {{$friendlist->count()}} amigo
                 @else
-                    {{$friendlist->count()}} amigos
+                    Amizades: {{$friendlist->count()}} amigos
                 @endif
             </h6>
 

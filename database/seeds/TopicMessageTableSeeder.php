@@ -15,7 +15,7 @@ class TopicMessageTableSeeder extends Seeder
         DB::statement('SET foreign_key_checks = 0');
         DB::table('topic_messages')->truncate();
 
-        factory(\App\TopicMessage::class, 5)->create();
+        factory(\App\TopicMessage::class, 100)->create();
         // ->each(function($topicMessage){
 
         //     // Seed para a relação com topic

@@ -10,6 +10,6 @@ $factory->define(Topic::class, function (Faker $faker) {
         'group_id' => factory('App\Group')->create()->id,
         'user_id' => factory('App\User')->create()->id,
         'name' => $faker->sentence,
-        'description' => $faker->paragraph(2, true),
+        'description' => $faker->paragraph(1, true),
     ];
 });

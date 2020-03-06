@@ -14,7 +14,7 @@ class LikeTopicTableSeeder extends Seeder
         DB::statement('SET foreign_key_checks = 0');
         DB::table('like_topics')->truncate();
 
-        factory(\App\LikeTopic::class, 4)->create();
+        factory(\App\LikeTopic::class, 100)->create();
         
         DB::statement('SET foreign_key_checks = 1');
     }

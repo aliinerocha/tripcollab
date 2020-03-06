@@ -136,6 +136,11 @@
 
             <div class="ml-4 ml-md-0 mb-4 py-4">
                 <h5>Viagens realizadas:</h5>
+                <div class=" interesses text-justify">
+                    @if($group->trip == null )
+                        A comunidade {{$group->name}} ainda não realizou nenhuma viagem.
+                    @endif
+                </div>
             </div>
 
             <div id="comunidade-slider" class="carousel slide container" data-ride="carousel">

@@ -91,6 +91,7 @@
             </div>
         </div>
 
+        @if(!empty($_GET))
             <div>
                 @if(isset($users))
 
@@ -252,6 +253,7 @@
 
             </div>
         </div>
+        @endif
     </div>
 </main>
 </div>

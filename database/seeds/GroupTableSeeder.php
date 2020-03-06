@@ -15,7 +15,7 @@ class GroupTableSeeder extends Seeder
         DB::statement('SET foreign_key_checks = 0');
         DB::table('groups')->truncate();
 
-        factory(\App\Group::class, 20)->create();
+        factory(\App\Group::class, 100)->create();
         // ->each(function($group) {
             
         //     // Seed para a relação com user

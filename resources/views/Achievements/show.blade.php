@@ -35,7 +35,7 @@
         unactive-link
         "
         >
-            <a href="/linhaDoTempo">Linha do tempo</a>
+            <a href="{{route('trip.timeline')}}">Linha do tempo</a>
     	</div>
         <div
 
