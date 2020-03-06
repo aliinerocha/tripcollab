@@ -99,7 +99,7 @@
 
             <div class="card border-0 mt-3 mt-md-0" style="width: 18rem;">
                 <div class="card-header border-0 text-center">
-                    <span>Sonhos na Disney</span>
+                    <span>Viva Las Vegas</span>
                 </div>
                 <img src="./img/vegas_card.jpg" style="max-height: 160px; object-fit: cover;" alt="Foto do Grupo">
                 <div class="card-body d-flex justify-content-between">

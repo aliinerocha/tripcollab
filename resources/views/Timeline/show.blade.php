@@ -28,7 +28,7 @@
 <div class="timeline @if($trips == null) .d-none @endif">
     <div class="entries">
         @if(count($trips) == 0)
-            <h6 class="bg-light p-2 m-0">Nenhuma viagem foi realizada</h6>
+            <h6 id="nenhum" class="p-2 m-0">Nenhuma viagem foi realizada</h6>
         @else
             @foreach ($trips as $trip)
             <div class="entry card">

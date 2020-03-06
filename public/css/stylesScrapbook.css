@@ -22,7 +22,9 @@
     position: absolute;
     margin-top: -15vh;
   }
-  
+#nenhum{
+    background-color: white;
+}  
 #classificacao{
     color: #212529;
 }
@@ -199,7 +201,7 @@
 
 /* CSS DESKTOP */
 @media (min-width: 768px) {
-    body, .timeline {
+    body, .timeline, #nenhum {
       background-color:#f9f9f9;
     }
     .containerDesktop {

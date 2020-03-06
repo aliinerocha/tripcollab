@@ -244,8 +244,7 @@ class UserController extends Controller
     public function listGroupsAndTrips()
     {
         $confirmedGroups = Group::whereHas('user', function($q) {
-            $q->where('user_id', auth()->user()->id)
-            ->where('status','=',1);
+            $q->where('user_id', auth()->user()->id);
         })->paginate(6);
 
         foreach($confirmedGroups as $key => $group)
