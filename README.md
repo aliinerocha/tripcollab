@@ -12,3 +12,4 @@ O Trip Collab é uma plataforma destinada a viagens colaborativas! Com o Trip Co
 -   **Organizar lista de participantes, contribuições, pagantes e vaquinhas:** chega de pirar com a organização da sua viagem, saiba exatamente quem vai participar, crie uma vaquinha no aplicativo para custear os gastos e saiba exatamente quem já contribuiu, comunique-se com facilidade e de forma organizada com a sua comunidade através das funcionalidade da plataforma.
     
 -   **Traçar suas metas e mostrar suas conquistas:** quanto mais você viajar e usar a plataforma, mais vai pontuando e adquirindo conquistas para exibir no seu perfil. É uma ótima organizadora de viagens? É fã de carteirinha de viajar e conhecer gente nova? Temos *badges* exclusivas para você mostrar tudo isso no seu perfil!
+
